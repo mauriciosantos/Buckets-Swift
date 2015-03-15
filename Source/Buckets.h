@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Mauricio Santos. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Buckets.
 FOUNDATION_EXPORT double BucketsVersionNumber;
