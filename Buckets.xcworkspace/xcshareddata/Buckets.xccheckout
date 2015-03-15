@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6650680B-7F04-43ED-8053-608EB3F0B2B4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Buckets</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F23EFC616C2E89058D8C79A9E50E60A8CED264EB</key>
+		<string>https://github.com/mauriciosantos/buckets.swift.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Buckets.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F23EFC616C2E89058D8C79A9E50E60A8CED264EB</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mauriciosantos/buckets.swift.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F23EFC616C2E89058D8C79A9E50E60A8CED264EB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F23EFC616C2E89058D8C79A9E50E60A8CED264EB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Buckets</string>
+		</dict>
+	</array>
+</dict>
+</plist>
