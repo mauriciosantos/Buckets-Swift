@@ -153,18 +153,18 @@ public struct BitArray {
     
     private mutating func setValue(newValue: Bool, atIndex logicalIndex: Int) {
         
-        let oldValue = valueAtIndex(logicalIndex)
-        
-        if logicalIndex == count && newValue {
-            cardinality++
-        } else if  logicalIndex < count && !oldValue && newValue {
-            cardinality++
-        } else if logicalIndex < count && oldValue && !newValue {
-            cardinality--
-        }
-        
         let indexPath = realIndexPath(logicalIndex)
-        let mask = 1 << indexPath.bitIndex
+        var mask = 1 << indexPath.bitIndex
+        let oldValue = mask & bits[indexPath.arrayIndex] != 0
+        
+        switch (oldValue, newValue) {
+            case (false, true):
+                cardinality++
+            case (true, false):
+                cardinality--
+            default:
+                break
+        }
         
         if newValue {
             bits[indexPath.arrayIndex] |= mask

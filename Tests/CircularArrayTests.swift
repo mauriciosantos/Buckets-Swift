@@ -143,14 +143,14 @@ class CircularArrayTests: XCTestCase {
         XCTAssertTrue(cArray.first != nil && cArray.first! == TestData.Value)
     }
     
-    // MARK: - SequenceType
+    // MARK: SequenceType
     
     func testSequenceTypeConformance() {
         cArray = CircularArray(elements: TestData.List)
         XCTAssertTrue(equal(cArray, TestData.List))
     }
     
-    // MARK: - MutableCollectionType
+    // MARK: MutableCollectionType
     
     func testSubscriptGet() {
         for i in 0..<TestData.List.count {
@@ -173,14 +173,14 @@ class CircularArrayTests: XCTestCase {
         }
     }
     
-    // MARK: - ArrayLiteralConvertible
+    // MARK: ArrayLiteralConvertible
     
     func testArrayLiteralConvertibleConformance() {
         cArray = [1,2,3]
         XCTAssertTrue(equal(cArray, [1,2,3]))
     }
     
-    // MARK: - Operators
+    // MARK: Operators
     
     func testEqual() {
         cArray = []
@@ -191,4 +191,5 @@ class CircularArrayTests: XCTestCase {
         other.append(TestData.Value)
         XCTAssertTrue(cArray == other)
     }
+    
 }
