@@ -13,7 +13,7 @@ import Buckets
 class BitArrayTests: XCTestCase {
     
     struct TestData {
-        static let Size = 17
+        static let Size = 10
         static let Cardinality = Size*2
         static let List: [Bool] = {
             var result = [Bool]()

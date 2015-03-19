@@ -8,11 +8,11 @@
 
 import Foundation
 
-/// An array boolean values stored
+/// An array of boolean values stored
 /// using individual bits, thus providing a
 /// very small memory footprint. It has most of the feaures of a
-/// standard array such as constant-time random access and
-/// amortized constant-time insertion at the end of the array.
+/// standard array such as constant time random access and
+/// amortized constant time insertion at the end of the array.
 /// Comforms to `SequenceType`, `MutableCollectionType`,
 /// `ArrayLiteralConvertible`, `Equatable`, `Printable` and `DebugPrintable`.
 public struct BitArray {
