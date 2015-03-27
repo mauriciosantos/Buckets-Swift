@@ -1,0 +1,16 @@
+BloomFilter.swift
+	public struct BloomFilter<T: Printable>
+Graph.swift
+	public struct Graph<V: Hashable, E>
+CircularArray.swift
+	public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool
+Stack.swift
+	public func !=<U: Equatable>(lhs: Stack<U>, rhs: Stack<U>) -> Bool
+Queue.swift
+	public func !=<U: Equatable>(lhs: Queue<U>, rhs: Queue<U>) -> Bool
+PriorityQueue.swift
+	public func !=<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool
+Deque.swift
+	public func !=<U: Equatable>(lhs: Deque<U>, rhs: Deque<U>) -> Bool
+Trie.swift
+	public struct Trie<T: SequenceType where T.Generator.Element: Hashable>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BitArray Extension Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script type="text/javascript">
+    window.jazzy = {'docset': false}
+    if (typeof window.dash != 'undefined') {
+      document.documentElement.className += ' dash'
+      window.jazzy.docset = true
+    }
+    if (navigator.userAgent.match(/xcode/i)) {
+      document.documentElement.className += ' xcode'
+      window.jazzy.docset = true
+    }
+    </script>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body id="reference" class="Swift">
+    <a name="//apple_ref/swift/Extension/BitArray" class="dashAnchor"></a>
+    <a title="BitArray Extension Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p class="header-text"><a href="../index.html">Buckets Docs</a> (93% documented)</p>
+        <p id="header-links"><a href="https://github.com/mauriciosantos/Buckets-Swift"><img id="header-icon" src="../img/gh.png" height="16px" width="16px" />View on GitHub</a></p>
+      </div>
+    </header>
+    <section id="valence">
+      <div class="content-wrapper">
+        <p id="hierarchial_navigation">
+        <a href="../index.html" id="design_resources_link">Buckets Reference</a>
+        <img id="carat" src="../img/carat.png" height="10px" width="6px" />
+        BitArray Extension Reference
+        </p>
+      </div>
+    </section>
+    <div class="content-wrapper">
+      <nav class="book-parts">
+        <ul class="nav-parts">
+          <li class="part-name tasks">
+          <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Extensions/BitArray.html">BitArray</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions/CircularArray.html">CircularArray</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions/Deque.html">Deque</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions/PriorityQueue.html">PriorityQueue</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions/Queue.html">Queue</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions/Stack.html">Stack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="../Functions.html">Functions</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_13CircularArrayQ__GS1_Q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_5StackQ__GS1_Q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_5QueueQ__GS1_Q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_13PriorityQueueQ__GS1_Q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_5DequeQ__GS1_Q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeFTVS_8BitArrayS0__Sb">==(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="../Structs.html">Structs</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Structs/BitArray.html">BitArray</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Structs/CircularArray.html">CircularArray</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Structs/Deque.html">Deque</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Structs/PriorityQueue.html">PriorityQueue</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Structs/Queue.html">Queue</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Structs/Stack.html">Stack</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="pixel-line"></div>
+      <div class="rubber-band-gap"></div>
+      <article class="chapter">
+      <a name="/"></a>
+        <h1 class="chapter-name">BitArray</h1>
+        <section>
+          <section class="section">
+            <p class="para">An array of boolean values stored using individual bits, thus providing a very small memory footprint. It has most of the feaures of a standard array such as constant time random access and amortized constant time insertion at the end of the array.</p><p class="para">Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/SequenceType%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/SequenceType Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/SequenceType%20Protocol%20Conformance">
+                  <h3 class="section-name">SequenceType Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets8BitArray8generateFS0_FT_GVSs11GeneratorOfSb_">
+                    <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArray8generateFS0_FT_GVSs11GeneratorOfSb_">generate()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Provides for-in loop functionality.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">GeneratorOf</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">A generator over the bits.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/MutableCollectionType%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/MutableCollectionType Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/MutableCollectionType%20Protocol%20Conformance">
+                  <h3 class="section-name">MutableCollectionType Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets8BitArray10startIndexSi">
+                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray10startIndexSi">startIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Always zero, which is the index of the first bit when non-empty.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets8BitArray8endIndexSi">
+                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray8endIndexSi">endIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Always <code>count</code>, which the successor of the last valid subscript argument.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/ArrayLiteralConvertible%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/ArrayLiteralConvertible Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/ArrayLiteralConvertible%20Protocol%20Conformance">
+                  <h3 class="section-name">ArrayLiteralConvertible Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets8BitArraycFMS0_Ft12arrayLiteralGSaSb__S0_">
+                    <a name="//apple_ref/swift/Method/init(arrayLiteral:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_Ft12arrayLiteralGSaSb__S0_">init(arrayLiteral:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Constructs a bit array using a <code>Bool</code> array literal. <code>let example: BitArray = [true, false, true]</code></p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">arrayLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">Bool</span><span class="o">...</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Printable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/Printable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/Printable%20Protocol%20Conformance">
+                  <h3 class="section-name">Printable Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets8BitArray11descriptionSS">
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray11descriptionSS">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A string containing a suitable textual representation of the bit array.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/DebugPrintable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/DebugPrintable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/DebugPrintable%20Protocol%20Conformance">
+                  <h3 class="section-name">DebugPrintable Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets8BitArray16debugDescriptionSS">
+                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray16debugDescriptionSS">debugDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A string containing a suitable debug  textual representation of the bit array.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-03-26)</p>
+          <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

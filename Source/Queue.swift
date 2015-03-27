@@ -11,6 +11,7 @@ import Foundation
 /// A queue is a First-In-First-Out (FIFO) collection, 
 /// the first element added to the queue will be the first one 
 /// to be removed.
+///
 /// The `enqueue` and `dequeue` operations run in amortized constant time.
 /// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable` and `DebugPrintable`.
@@ -73,7 +74,7 @@ extension Queue: SequenceType {
     
     // MARK: SequenceType Protocol Conformance
     
-    /// Provides for-in loop functionality.
+    /// Provides for-in loop functionality. Generates elements in FIFO order.
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<T> {

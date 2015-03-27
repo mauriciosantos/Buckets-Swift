@@ -12,3 +12,10 @@ var cop = tr
 tr.insertSequence("holb")
 cop.containsSequence("holb")
 tr.containsSequence("holb")
+
+
+
+var pr = PriorityQueue<Int>(<)
+pr.enqueue(4)
+pr.enqueue(2)
+pr.first

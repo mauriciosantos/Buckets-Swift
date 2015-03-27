@@ -13,6 +13,7 @@ import Foundation
 /// very small memory footprint. It has most of the feaures of a
 /// standard array such as constant time random access and
 /// amortized constant time insertion at the end of the array.
+///
 /// Comforms to `SequenceType`, `MutableCollectionType`,
 /// `ArrayLiteralConvertible`, `Equatable`, `Printable` and `DebugPrintable`.
 public struct BitArray {

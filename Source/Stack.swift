@@ -10,6 +10,7 @@ import Foundation
 
 /// A Stack is a Last-In-First-Out (LIFO) collection,
 /// the last element added to the stack will be the first one to be removed.
+///
 /// The `push` and `pop` operations run in amortized constant time.
 /// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable` and `DebugPrintable`.
@@ -72,7 +73,7 @@ extension Stack: SequenceType {
     
     // MARK: SequenceType Protocol Conformance
     
-    /// Provides for-in loop functionality.
+    /// Provides for-in loop functionality. Generates elements in LIFO order.
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<T> {

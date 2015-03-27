@@ -11,6 +11,7 @@ import Foundation
 /// A double-ended queue (deque) is a collection that generalizes a
 /// queue, for which elements can be added to or removed from either
 /// the front or back.
+///
 /// The `enqueueFirst`, `enqueueLast`, `dequeueFirst` and `dequeueLast` 
 /// operations run in amortized constant time.
 /// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
@@ -91,7 +92,7 @@ extension Deque: SequenceType {
     
     // MARK: SequenceType Protocol Conformance
     
-    /// Provides for-in loop functionality.
+    /// Provides for-in loop functionality. Generates elements in FIFO order.
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<T> {

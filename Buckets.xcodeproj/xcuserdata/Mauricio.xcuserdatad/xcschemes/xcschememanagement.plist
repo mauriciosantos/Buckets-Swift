@@ -14,9 +14,44 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Documentation.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>220DD0AD1AC506D90023F3B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>220DD0C21AC5076C0023F3B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>220DD0C61AC507970023F3B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>220DD0CA1AC507C50023F3B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>220DD0CF1AC508330023F3B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>220DD0D41AC508E20023F3B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>22A142D91AB4D40900E70376</key>
 		<dict>
 			<key>primary</key>
