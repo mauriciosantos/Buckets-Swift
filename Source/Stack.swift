@@ -42,9 +42,7 @@ public struct Stack<T> {
     /// Constructs a stack from a standard array.
     /// The elements will be pushed from first to last.
     public init(elements: [T]) {
-        for e in elements {
-            push(e)
-        }
+        self.elements = elements
     }
     
     // MARK: Adding and Removing Elements
@@ -100,9 +98,7 @@ extension Stack: ArrayLiteralConvertible {
     /// The elements will be pushed from first to last.
     /// `let stack: Stack<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        for element in elements {
-            push(element)
-        }
+        self.elements = elements
     }
 }
 

@@ -43,9 +43,7 @@ public struct Queue<T> {
     /// Constructs a queue from a standard array.
     /// The elements will be enqueued from first to last.
     public init(elements: [T]) {
-        for e in elements {
-            enqueue(e)
-        }
+        items = CircularArray(elements: elements)
     }
     
     // MARK: Adding and Removing Elements
@@ -93,9 +91,7 @@ extension Queue: ArrayLiteralConvertible {
     /// The elements will be enqueued from first to last.
     /// `let queue: Queue<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        for element in elements {
-            enqueue(element)
-        }
+        items = CircularArray(elements: elements)
     }
 }
 

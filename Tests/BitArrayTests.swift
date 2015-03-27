@@ -13,7 +13,7 @@ import Buckets
 class BitArrayTests: XCTestCase {
     
     struct TestData {
-        static let Size = 10
+        static let Size = 20
         static let Cardinality = Size*2
         static let List: [Bool] = {
             var result = [Bool]()
@@ -82,31 +82,39 @@ class BitArrayTests: XCTestCase {
         }
     }
     
-    func testInsertAtIndex() {
-        for i in 0..<TestData.List.count {
-            for j in 0...i {
-                var list = [] + TestData.List[0...i]
+    func testMultipleElementsInsertAtIndex() {
+        // TODO: Split in multiple tests
+        for i in 0...TestData.List.count {
+                var list = TestData.List
                 var array = BitArray(boolRepresentation: list)
-                list.insert(true, atIndex: j)
-                array.insert(true, atIndex: j)
+                list.insert(true, atIndex: i)
+                array.insert(true, atIndex: i)
                 XCTAssertEqual(array.count, list.count)
                 XCTAssertEqual(array.cardinality, cardinality(list))
                 XCTAssertTrue(equal(list, array))
-            }
         }
     }
     
-    func testRemoveAtIndex() {
+    func testEmptyInsertAtIndex() {
+        bArray.insert(true, atIndex: 0)
+        XCTAssertTrue(bArray.first != nil && bArray.first! == true)
+    }
+    
+    func testMultipleElementsRemoveAtIndex() {
         for i in 0..<TestData.List.count {
-            for j in 0...i {
-                var list = [] + TestData.List[0...i]
-                var array = BitArray(boolRepresentation: list)
-                XCTAssertEqual(list.removeAtIndex(j), array.removeAtIndex(j))
-                XCTAssertEqual(array.cardinality, cardinality(list))
-                XCTAssertEqual(array.count, list.count)
-                XCTAssertTrue(equal(list, array))
-            }
+            var list = TestData.List
+            var array = BitArray(boolRepresentation: list)
+            XCTAssertEqual(list.removeAtIndex(i), array.removeAtIndex(i))
+            XCTAssertEqual(array.cardinality, cardinality(list))
+            XCTAssertEqual(array.count, list.count)
+            XCTAssertTrue(equal(list, array))
         }
+    }
+    
+    func testSingleElementRemoveAtIndex() {
+        bArray.append(true)
+        XCTAssertEqual(bArray.removeAtIndex(0), true)
+        XCTAssertNil(bArray.first)
     }
     
     func testRemoveAll() {
@@ -135,15 +143,13 @@ class BitArrayTests: XCTestCase {
     // MARK: MutableCollectionType
     
     func testSubscriptGet() {
-        for i in 0..<TestData.List.count {
-            let list = [] + TestData.List[0...i]
-            bArray = BitArray(boolRepresentation: list)
-            for j in 0...i {
-                XCTAssertEqual(bArray[j], list[j])
-            }
-            XCTAssertEqual(bArray[0], bArray.first!)
-            XCTAssertEqual(bArray[i], bArray.last!)
+        let list = TestData.List
+        bArray = BitArray(boolRepresentation: list)
+        for i in 0..<bArray.count {
+            XCTAssertEqual(bArray[i], list[i])
         }
+        XCTAssertEqual(bArray[0], bArray.first!)
+        XCTAssertEqual(bArray[bArray.count-1], bArray.last!)
     }
     
     func testSubscriptSet() {
@@ -158,8 +164,7 @@ class BitArrayTests: XCTestCase {
     func testArrayLiteralConvertibleConformance() {
         bArray = [true,false,true]
         XCTAssertTrue(equal(bArray, [true,false,true]))
-         XCTAssertEqual(bArray.cardinality, 2)
-        
+        XCTAssertEqual(bArray.cardinality, 2)
     }
 
     // MARK: Equatable

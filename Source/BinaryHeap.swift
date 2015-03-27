@@ -56,6 +56,10 @@ struct BinaryHeap<T> : SequenceType {
     }
     
     private mutating func siftUp() {
+        func parent(index: Int) -> Int {
+            return (index - 1) / 2
+        }
+        
         var i = count - 1
         var paren = parent(i)
         while i > 0 && !isOrderedBefore(items[paren], items[i]) {
@@ -79,6 +83,14 @@ struct BinaryHeap<T> : SequenceType {
             }
         }
         
+        func leftChild(index: Int) -> Int {
+            return (2 * index) + 1
+        }
+        
+        func rightChild(index: Int) -> Int {
+            return (2 * index) + 2
+        }
+        
         var i = 0
         var max = maxIndex(leftChild(i), rightChild(i))
         while max >= 0 && !isOrderedBefore(items[i], items[max]) {
@@ -87,17 +99,18 @@ struct BinaryHeap<T> : SequenceType {
             max = maxIndex(leftChild(i), rightChild(i))
         }
     }
-    
-    private func parent(index: Int) -> Int {
-        return (index - 1) / 2
-    }
-    
-    private func leftChild(index: Int) -> Int {
-        return (2 * index) + 1
-    }
-    
-    private func rightChild(index: Int) -> Int {
-        return (2 * index) + 2
-    }
+}
+
+// MARK: Heap Operators
+
+/// Returns `true` if and only if the heaps contain the same elements
+/// in the same order.
+/// The underlying elements must conform to the `Equatable` protocol.
+func ==<U: Equatable>(lhs: BinaryHeap<U>, rhs: BinaryHeap<U>) -> Bool {
+    return lhs.items.sorted(lhs.isOrderedBefore) == rhs.items.sorted(rhs.isOrderedBefore)
+}
+
+func !=<U: Equatable>(lhs: BinaryHeap<U>, rhs: BinaryHeap<U>) -> Bool {
+    return !(lhs==rhs)
 }
 

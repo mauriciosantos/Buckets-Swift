@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220DD09A1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0991AC4C8DB0023F3B0 /* QueueTests.swift */; };
+		220DD09B1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0991AC4C8DB0023F3B0 /* QueueTests.swift */; };
+		220DD09D1AC4CD080023F3B0 /* DequeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD09C1AC4CD080023F3B0 /* DequeTests.swift */; };
+		220DD09E1AC4CD080023F3B0 /* DequeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD09C1AC4CD080023F3B0 /* DequeTests.swift */; };
+		220DD0A01AC4D7910023F3B0 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD09F1AC4D7910023F3B0 /* StackTests.swift */; };
+		220DD0A11AC4D7910023F3B0 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD09F1AC4D7910023F3B0 /* StackTests.swift */; };
+		220DD0A31AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */; };
+		220DD0A41AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */; };
 		222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
 		222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
@@ -59,6 +67,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220DD0991AC4C8DB0023F3B0 /* QueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueueTests.swift; path = Tests/QueueTests.swift; sourceTree = SOURCE_ROOT; };
+		220DD09C1AC4CD080023F3B0 /* DequeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DequeTests.swift; path = Tests/DequeTests.swift; sourceTree = SOURCE_ROOT; };
+		220DD09F1AC4D7910023F3B0 /* StackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackTests.swift; path = Tests/StackTests.swift; sourceTree = SOURCE_ROOT; };
+		220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriorityQueueTests.swift; path = Tests/PriorityQueueTests.swift; sourceTree = SOURCE_ROOT; };
 		222334F31AB50F9D00F7480F /* CircularArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularArrayTests.swift; path = Tests/CircularArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		222334F61AB50FB500F7480F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
 		226D18151AB50E230075E567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -116,6 +128,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220DD0981AC4C40A0023F3B0 /* Private structures */ = {
+			isa = PBXGroup;
+			children = (
+				22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */,
+			);
+			name = "Private structures";
+			sourceTree = "<group>";
+		};
 		22A142D01AB4D40900E70376 = {
 			isa = PBXGroup;
 			children = (
@@ -140,18 +160,18 @@
 			isa = PBXGroup;
 			children = (
 				22DC031D1AB50D4B006190C7 /* Buckets.h */,
+				220DD0981AC4C40A0023F3B0 /* Private structures */,
 				22DC031E1AB50D4B006190C7 /* CircularArray.swift */,
 				22DC031B1AB50D4B006190C7 /* BitArray.swift */,
 				22DC03251AB50D4B006190C7 /* Queue.swift */,
 				22DC031F1AB50D4B006190C7 /* Deque.swift */,
 				22DC03261AB50D4B006190C7 /* Stack.swift */,
-				22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */,
-				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
-				22DC03201AB50D4B006190C7 /* FNVHash.swift */,
-				22DC03211AB50D4B006190C7 /* Graph.swift */,
-				22DC03221AB50D4B006190C7 /* LinkedList.swift */,
 				22DC03241AB50D4B006190C7 /* PriorityQueue.swift */,
 				22DC03271AB50D4B006190C7 /* Trie.swift */,
+				22DC03211AB50D4B006190C7 /* Graph.swift */,
+				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
+				22DC03201AB50D4B006190C7 /* FNVHash.swift */,
+				22DC03221AB50D4B006190C7 /* LinkedList.swift */,
 				22A142DD1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Source;
@@ -171,6 +191,10 @@
 			children = (
 				222334F31AB50F9D00F7480F /* CircularArrayTests.swift */,
 				228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */,
+				220DD0991AC4C8DB0023F3B0 /* QueueTests.swift */,
+				220DD09C1AC4CD080023F3B0 /* DequeTests.swift */,
+				220DD09F1AC4D7910023F3B0 /* StackTests.swift */,
+				220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */,
 				22A142EA1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Tests;
@@ -377,8 +401,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220DD0A01AC4D7910023F3B0 /* StackTests.swift in Sources */,
 				222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
+				220DD09A1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */,
+				220DD09D1AC4CD080023F3B0 /* DequeTests.swift in Sources */,
 				228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */,
+				220DD0A31AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,8 +433,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220DD0A11AC4D7910023F3B0 /* StackTests.swift in Sources */,
 				222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
+				220DD09B1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */,
+				220DD09E1AC4CD080023F3B0 /* DequeTests.swift in Sources */,
 				228E4DBB1AB51AD400DB68BA /* BitArrayTests.swift in Sources */,
+				220DD0A41AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

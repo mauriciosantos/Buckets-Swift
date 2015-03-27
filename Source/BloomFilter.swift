@@ -17,7 +17,6 @@ public struct BloomFilter<T: Printable> {
     
     public let falsePositiveProbability: Double
     
-    
     public var approximateCount: Int {
         let count = Double(bits.count)
         let bitsSetToOne = Double(bits.cardinality)

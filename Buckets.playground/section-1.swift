@@ -3,10 +3,12 @@
 import Foundation
 import Buckets
 
-var circ = CircularArray<Int>()
-circ.append(1)
-circ.description
+var tr = Trie<String>()
+tr.insertSequence("hola")
+tr.hasPrefix("hoa")
 
+var cop = tr
 
-var b = BitArray()
-b.append(true)
+tr.insertSequence("holb")
+cop.containsSequence("holb")
+tr.containsSequence("holb")

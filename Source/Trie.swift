@@ -12,20 +12,24 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
     
     typealias ElementType = T.Generator.Element
     
-    private var roots : [ElementType : TrieNode<T>] = [:]
+    private var subNodes = [ElementType : TrieNode<T>]()
+    
+    // Ugly! abusing HeapBuffer purely to detect unique references an copy on write
+    private var tag = HeapBuffer<Int,Int>(HeapBuffer<Int,Int>.Storage.self, 1, 0)
     
     public var sequences: [T] {
         var result = [T]()
-        getAllSequences(self.roots, result:  &result)
+        getAllSequences(self.subNodes, result:  &result)
         return result
     }
     
     public init() {}
     
     public mutating func insertSequence(sequence: T) {
+        copyMyself()
         var generator = sequence.generate()
         let firstElement = generator.next()
-        insertSequence(sequence, element: firstElement, generator:&generator, nodes: &self.roots)
+        insertSequence(sequence, element: firstElement, generator:&generator, nodes: &self.subNodes)
     }
     
     public func hasPrefix(prefix: T) -> Bool {
@@ -53,7 +57,7 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
     
     
     private func lastNodeOfPrefix(prefix: T) -> TrieNode<T>? {
-        var nodes = roots
+        var nodes = subNodes
         var lastNode : TrieNode<T>? = nil
         for element in prefix {
             lastNode = nodes[element]
@@ -86,26 +90,26 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
             insertSequence(sequence, element: nextElement, generator:&generator, nodes: &nodes[element]!.subNodes)
         }
     }
+    
+    private mutating func copyMyself() {
+        if tag.isUniquelyReferenced() {
+           return
+        }
+        var newNodes = [ElementType : TrieNode<T>]()
+        for (k,v) in subNodes {
+            newNodes[k] = v.copy()
+        }
+        subNodes = newNodes
+    }
 }
 
 
-private struct TrieNode<T: SequenceType where T.Generator.Element: Hashable> {
+private class TrieNode<T: SequenceType where T.Generator.Element: Hashable> {
     
     typealias ElementType = T.Generator.Element
     
-    // Ugly! - required for recursive generic structs
-    var privateSequence: Any?
-    var privateElement: Any
-    
-    var completeSequence: T? {
-        get {return privateSequence as T?}
-        set {privateSequence = newValue}
-    }
-    var element: ElementType {
-        get {return privateElement as ElementType}
-        set {privateElement = newValue}
-    }
-    
+    var completeSequence: T?
+    var element: ElementType
     var subNodes = [ElementType : TrieNode<T>]()
     
     var isEndOfSequence : Bool {
@@ -113,7 +117,15 @@ private struct TrieNode<T: SequenceType where T.Generator.Element: Hashable> {
     }
     
     init(element: ElementType, completeSequence: T? = nil){
-        self.privateSequence = completeSequence
-        self.privateElement = element
+        self.completeSequence = completeSequence
+        self.element = element
+    }
+    
+    func copy() -> TrieNode<T> {
+        var selfCopy = TrieNode(element: element, completeSequence: completeSequence)
+        for (k,v) in subNodes {
+            selfCopy.subNodes[k] = v.copy()
+        }
+        return selfCopy
     }
 }

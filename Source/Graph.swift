@@ -11,12 +11,15 @@ import Foundation
 private struct Edge<V, E> {
     private let origin: V
     private let destination: V
-    private let info: E
+    private let data: E
 }
 
 public struct Graph<V: Hashable, E> {
 
     private var adjacencyLists = [V: [Edge<V,E>]]()
+    
+    // Ugly! abusing HeapBuffer purely to detect unique references an copy on write
+    private var tag = HeapBuffer<Int,Int>(HeapBuffer<Int,Int>.Storage.self, 1, 0)
     
     public mutating func insertVertex(vertex: V) {
         if adjacencyLists[vertex] != nil {
@@ -25,10 +28,10 @@ public struct Graph<V: Hashable, E> {
     }
     
     // Origin and destination are inserted to the graph if they are not present already   
-    public mutating func insertEdgeFrom(origin o: V, destination d: V, edgeInfo e: E) {
+    public mutating func insertEdgeFrom(origin o: V, destination d: V, edgeData e: E) {
         insertVertex(o)
         insertVertex(d)
-        adjacencyLists[o]?.append(Edge(origin: o, destination: d, info: e))
+        adjacencyLists[o]?.append(Edge(origin: o, destination: d, data: e))
     }
     
     public mutating func removeVertex(vertex : V) {

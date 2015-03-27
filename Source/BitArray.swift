@@ -55,6 +55,7 @@ public struct BitArray {
     /// Consctructs a new bit array from an `Int` array representation.
     /// All values different than 0 are considered `true`.
     public init(intRepresentation : [Int]) {
+        bits.reserveCapacity((intRepresentation.count/Constants.IntSize) + 1)
         for value in intRepresentation {
             append(value != 0)
         }
@@ -62,6 +63,7 @@ public struct BitArray {
     
     /// Consctructs a new bit array from a `Bool` array representation.
     public init(boolRepresentation : [Bool]) {
+        bits.reserveCapacity((boolRepresentation.count/Constants.IntSize) + 1)
         for value in boolRepresentation {
             append(value)
         }
@@ -249,6 +251,7 @@ extension BitArray: ArrayLiteralConvertible {
     /// Constructs a bit array using a `Bool` array literal.
     /// `let example: BitArray = [true, false, true]`
     public init(arrayLiteral elements: Bool...) {
+        bits.reserveCapacity((elements.count/Constants.IntSize) + 1)
         for element in elements {
             append(element)
         }

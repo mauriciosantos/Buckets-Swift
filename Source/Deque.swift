@@ -49,9 +49,7 @@ public struct Deque<T> {
     /// Constructs a deque from a standard array.
     /// The elements will be enqueued from first to last.
     public init(elements: [T]) {
-        for e in elements {
-            enqueueLast(e)
-        }
+        items = CircularArray(elements: elements)
     }
     
     // MARK: Adding and Removing Elements
@@ -111,9 +109,7 @@ extension Deque: ArrayLiteralConvertible {
     /// The elements will be enqueued from first to last.
     /// `let deque: Deque<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        for element in elements {
-            enqueueLast(element)
-        }
+        items = CircularArray(elements: elements)
     }
 }
 

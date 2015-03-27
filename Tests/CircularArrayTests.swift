@@ -79,9 +79,6 @@ class CircularArrayTests: XCTestCase {
         let first = cArray.removeFirst()
         XCTAssertTrue(first != nil && first == TestData.List.first!)
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
-        for i in 1..<TestData.List.count {
-            XCTAssertEqual(cArray[i-1], TestData.List[i])
-        }
     }
     
     func testEmptyRemoveLast() {
@@ -91,15 +88,10 @@ class CircularArrayTests: XCTestCase {
     
     func testNonEmptyRemoveLast() {
         cArray = CircularArray(elements: TestData.List)
-        
         let last = cArray.removeLast()
         XCTAssertTrue(last != nil && last == TestData.List.last!)
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
-        
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
-        for i in 0..<cArray.count {
-            XCTAssertEqual(cArray[i], TestData.List[i])
-        }
     }
     
     
