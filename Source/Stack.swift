@@ -40,10 +40,10 @@ public struct Stack<T> {
     /// Constructs an empty stack of type `T`.
     public init() {}
     
-    /// Constructs a stack from a standard array.
+    /// Constructs a stack from a sequence, such as an array.
     /// The elements will be pushed from first to last.
-    public init(elements: [T]) {
-        self.elements = elements
+    public init<S: SequenceType where S.Generator.Element == T>(elements: S){
+        self.elements = Array(elements)
     }
     
     // MARK: Adding and Removing Elements

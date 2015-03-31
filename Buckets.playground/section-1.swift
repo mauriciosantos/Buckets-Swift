@@ -4,8 +4,8 @@ import Foundation
 import Buckets
 
 var tr = Trie<String>()
-tr.insertSequence("hola")
-tr.hasPrefix("hoa")
+tr.insertSequence("hello")
+tr.hasPrefix("helo")
 
 var cop = tr
 
@@ -13,9 +13,5 @@ tr.insertSequence("holb")
 cop.containsSequence("holb")
 tr.containsSequence("holb")
 
+var str: String
 
-
-var pr = PriorityQueue<Int>(<)
-pr.enqueue(4)
-pr.enqueue(2)
-pr.first

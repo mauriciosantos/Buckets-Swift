@@ -47,14 +47,14 @@ public struct PriorityQueue<T> {
         self.init(elements: [], isOrderedBefore: isOrderedBefore)
     }
     
-    /// Constructs a priority queue from a standard array using a given closure to
+    /// Constructs a priority queue from a sequence, such as an array, using a given closure to
     /// determine the order of a provided pair of elements. The closure that you supply for
     /// `isOrderedBefore` should return a Boolean value to indicate whether one element
     /// should be before (`true`) or after (`false`) another element.
     ///
     /// :param: isOrderedBefore Function to check if the first element has higher priority.
-    public init(elements: [T], isOrderedBefore: (T,T) -> Bool) {
-        heap = BinaryHeap<T>(isOrderedBefore)
+     public init<S: SequenceType where S.Generator.Element == T>(elements: S, isOrderedBefore: (T,T) -> Bool) {
+        heap = BinaryHeap<T>(compareFunction: isOrderedBefore)
         for e in elements {
             enqueue(e)
         }

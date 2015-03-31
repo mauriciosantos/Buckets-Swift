@@ -1,7 +1,5 @@
 BloomFilter.swift
 	public struct BloomFilter<T: Printable>
-Graph.swift
-	public struct Graph<V: Hashable, E>
 CircularArray.swift
 	public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool
 Stack.swift

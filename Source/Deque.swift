@@ -47,9 +47,9 @@ public struct Deque<T> {
     /// Constructs an empty deque of type `T`.
     public init() {}
     
-    /// Constructs a deque from a standard array.
+    /// Constructs a deque from a sequence, such as an array.
     /// The elements will be enqueued from first to last.
-    public init(elements: [T]) {
+    public init<S: SequenceType where S.Generator.Element == T>(elements: S) {
         items = CircularArray(elements: elements)
     }
     

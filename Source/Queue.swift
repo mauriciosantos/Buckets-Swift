@@ -41,9 +41,9 @@ public struct Queue<T> {
     /// Constructs an empty queue of type `T`.
     public init() {}
     
-    /// Constructs a queue from a standard array.
+    /// Constructs a queue from a sequence, such as an array.
     /// The elements will be enqueued from first to last.
-    public init(elements: [T]) {
+    public init<S: SequenceType where S.Generator.Element == T>(elements: S){
         items = CircularArray(elements: elements)
     }
     

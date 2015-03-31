@@ -63,8 +63,8 @@ public struct CircularArray<T> {
         }
     }
     
-    /// Constructs a circular array from a standard array.
-    public init(elements: [T]) {
+    /// Constructs a circular array from a sequence, such as an array.
+    public init<S: SequenceType where S.Generator.Element == T>(elements: S){
         for e in elements {
             append(e)
         }

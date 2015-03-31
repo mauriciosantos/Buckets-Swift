@@ -13,9 +13,7 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
     typealias ElementType = T.Generator.Element
     
     private var subNodes = [ElementType : TrieNode<T>]()
-    
-    // Ugly! abusing HeapBuffer purely to detect unique references an copy on write
-    private var tag = HeapBuffer<Int,Int>(HeapBuffer<Int,Int>.Storage.self, 1, 0)
+    private var tag = Tag()
     
     public var sequences: [T] {
         var result = [T]()
@@ -92,9 +90,10 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
     }
     
     private mutating func copyMyself() {
-        if tag.isUniquelyReferenced() {
-           return
+        if isUniquelyReferencedNonObjC(&tag) {
+            return
         }
+        tag = Tag()
         var newNodes = [ElementType : TrieNode<T>]()
         for (k,v) in subNodes {
             newNodes[k] = v.copy()
@@ -103,6 +102,10 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
     }
 }
 
+// Class to detect unique reference and implement copy on write
+private class Tag {
+    
+}
 
 private class TrieNode<T: SequenceType where T.Generator.Element: Hashable> {
     

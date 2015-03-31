@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Stack Extension Reference</title>
+    <title>Multiset Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -20,8 +20,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body id="reference" class="Swift">
-    <a name="//apple_ref/swift/Extension/Stack" class="dashAnchor"></a>
-    <a title="Stack Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/Multiset" class="dashAnchor"></a>
+    <a title="Multiset Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p class="header-text"><a href="../index.html">Buckets Docs</a> (95% documented)</p>
@@ -33,7 +33,7 @@
         <p id="hierarchial_navigation">
         <a href="../index.html" id="design_resources_link">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" height="10px" width="6px" />
-        Stack Extension Reference
+        Multiset Extension Reference
         </p>
       </div>
     </section>
@@ -124,10 +124,10 @@
       <div class="rubber-band-gap"></div>
       <article class="chapter">
       <a name="/"></a>
-        <h1 class="chapter-name">Stack</h1>
+        <h1 class="chapter-name">Multiset</h1>
         <section>
           <section class="section">
-            <p class="para">A Stack is a Last-In-First-Out (LIFO) collection, the last element added to the stack will be the first one to be removed.</p><p class="para">The <code>push</code> and <code>pop</code> operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+            <p class="para">A Multiset (sometimes called a bag) is a special kind of set in which  members are allowed to appear more than once.</p><p class="para">Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -144,9 +144,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5Stack8generateU__FGS0_Q__FT_GVSs11GeneratorOfQ__">
+                    <a name="/s:FV7Buckets8Multiset8generateUSs8Hashable__FGS0_Q__FT_GVSs11GeneratorOfQ__">
                     <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Stack8generateU__FGS0_Q__FT_GVSs11GeneratorOfQ__">generate()</a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multiset8generateUSs8Hashable__FGS0_Q__FT_GVSs11GeneratorOfQ__">generate()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -154,7 +154,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Provides for-in loop functionality. Generates elements in LIFO order.</p>
+                        <p class="para">Provides for-in loop functionality. Generates a single ocurrence per element.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -188,9 +188,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5StackcU__FMGS0_Q__Ft12arrayLiteralGSaQ___GS0_Q__">
+                    <a name="/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__Ft12arrayLiteralGSaQ___GS0_Q__">
                     <a name="//apple_ref/swift/Method/init(arrayLiteral:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5StackcU__FMGS0_Q__Ft12arrayLiteralGSaQ___GS0_Q__">init(arrayLiteral:)</a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__Ft12arrayLiteralGSaQ___GS0_Q__">init(arrayLiteral:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,7 +198,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Constructs a stack using an array literal. The elements will be pushed from first to last. <code>let stack: Stack&lt;Int&gt; = [1,2,3]</code></p>
+                        <p class="para">Constructs a multiset using an array literal. Unlike a set, multiple copies of an element are inserted.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -217,10 +217,10 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Printable%20Protocol%20Conformance"></a>
-                <a name="//apple_ref/swift/Section/Printable Protocol Conformance" class="dashAnchor"></a>
-                <a href="#/Printable%20Protocol%20Conformance">
-                  <h3 class="section-name">Printable Protocol Conformance</h3>
+                <a name="/Hashable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/Hashable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/Hashable%20Protocol%20Conformance">
+                  <h3 class="section-name">Hashable Protocol Conformance</h3>
                 </a>
                 
               </div>
@@ -228,9 +228,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets5Stack11descriptionSS">
-                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack11descriptionSS">description</a>
+                    <a name="/s:vV7Buckets8Multiset9hashValueSi">
+                    <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multiset9hashValueSi">hashValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -238,54 +238,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A string containing a suitable textual representation of the stack.</p>
+                        <p class="para">The hash value. <code>x == y</code> implies <code>x.hashValue == y.hashValue</code></p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                
-                <a name="/DebugPrintable%20Protocol%20Conformance"></a>
-                <a name="//apple_ref/swift/Section/DebugPrintable Protocol Conformance" class="dashAnchor"></a>
-                <a href="#/DebugPrintable%20Protocol%20Conformance">
-                  <h3 class="section-name">DebugPrintable Protocol Conformance</h3>
-                </a>
-                
-              </div>
-              <ul class="task-group-list">
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:vV7Buckets5Stack16debugDescriptionSS">
-                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack16debugDescriptionSS">debugDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">A string containing a suitable textual representation of the stack when debugging.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>

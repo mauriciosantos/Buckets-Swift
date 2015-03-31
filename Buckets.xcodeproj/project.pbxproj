@@ -29,6 +29,8 @@
 		220DD0A11AC4D7910023F3B0 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD09F1AC4D7910023F3B0 /* StackTests.swift */; };
 		220DD0A31AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */; };
 		220DD0A41AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */; };
+		220DD0DA1AC756080023F3B0 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0D91AC756080023F3B0 /* Multiset.swift */; };
+		220DD0DB1AC756080023F3B0 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0D91AC756080023F3B0 /* Multiset.swift */; };
 		222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
 		222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
@@ -86,6 +88,7 @@
 		220DD09F1AC4D7910023F3B0 /* StackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackTests.swift; path = Tests/StackTests.swift; sourceTree = SOURCE_ROOT; };
 		220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriorityQueueTests.swift; path = Tests/PriorityQueueTests.swift; sourceTree = SOURCE_ROOT; };
 		220DD0B01AC506D90023F3B0 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = Library/Frameworks/AppleScriptObjC.framework; sourceTree = DEVELOPER_DIR; };
+		220DD0D91AC756080023F3B0 /* Multiset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Multiset.swift; path = Source/Multiset.swift; sourceTree = SOURCE_ROOT; };
 		222334F31AB50F9D00F7480F /* CircularArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularArrayTests.swift; path = Tests/CircularArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		222334F61AB50FB500F7480F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
 		226D18151AB50E230075E567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -191,6 +194,7 @@
 				22DC031F1AB50D4B006190C7 /* Deque.swift */,
 				22DC03261AB50D4B006190C7 /* Stack.swift */,
 				22DC03241AB50D4B006190C7 /* PriorityQueue.swift */,
+				220DD0D91AC756080023F3B0 /* Multiset.swift */,
 				22DC03271AB50D4B006190C7 /* Trie.swift */,
 				22DC03211AB50D4B006190C7 /* Graph.swift */,
 				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
@@ -432,6 +436,7 @@
 				22DC03361AB50D4B006190C7 /* Graph.swift in Sources */,
 				22DC03341AB50D4B006190C7 /* FNVHash.swift in Sources */,
 				22DC03301AB50D4B006190C7 /* CircularArray.swift in Sources */,
+				220DD0DA1AC756080023F3B0 /* Multiset.swift in Sources */,
 				22DC033E1AB50D4B006190C7 /* Stack.swift in Sources */,
 				22DC033C1AB50D4B006190C7 /* Queue.swift in Sources */,
 				22DC033A1AB50D4B006190C7 /* PriorityQueue.swift in Sources */,
@@ -464,6 +469,7 @@
 				22DC03371AB50D4B006190C7 /* Graph.swift in Sources */,
 				22DC03351AB50D4B006190C7 /* FNVHash.swift in Sources */,
 				22DC03311AB50D4B006190C7 /* CircularArray.swift in Sources */,
+				220DD0DB1AC756080023F3B0 /* Multiset.swift in Sources */,
 				22DC033F1AB50D4B006190C7 /* Stack.swift in Sources */,
 				22DC033D1AB50D4B006190C7 /* Queue.swift in Sources */,
 				22DC033B1AB50D4B006190C7 /* PriorityQueue.swift in Sources */,
@@ -770,6 +776,7 @@
 				220DD0D71AC508E20023F3B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22A142D41AB4D40900E70376 /* Build configuration list for PBXProject "Buckets" */ = {
 			isa = XCConfigurationList;
