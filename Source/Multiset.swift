@@ -9,7 +9,8 @@
 import Foundation
 
 /// A Multiset (sometimes called a bag) is a special kind of set in which 
-/// members are allowed to appear more than once.
+/// members are allowed to appear more than once. It's possible to convert a multiset
+/// to a set: `let set = Set(multiset)`
 ///
 /// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
@@ -48,11 +49,11 @@ public struct Multiset<T: Hashable> {
     
     /// Returns `true` if the multiset contains the specified element.
     public func contains(element: T) -> Bool {
-        return members[element] == nil ? false : true
+        return members[element] != nil
     }
     
     /// Returns the number of occurences of an element.
-    public func countOf(element: T) -> Int {
+    public func ocurrences(element: T) -> Int {
         return members[element] ?? 0
     }
     
@@ -69,7 +70,7 @@ public struct Multiset<T: Hashable> {
     ///
     /// :returns: The number of ocurrences of the element before the operation.
     public mutating func insert(element: T, ocurrences: Int) -> Int {
-        if count < 1 {
+        if ocurrences < 1 {
             fatalError("Can't insert < 1 ocurrences")
         }
         let previousNumber = members[element] ?? 0
@@ -92,7 +93,7 @@ public struct Multiset<T: Hashable> {
     ///
     /// :returns: The number of ocurrences of the element before the operation.
     public mutating func remove(element: T, ocurrences: Int) -> Int {
-        if count < 1 {
+        if ocurrences < 1 {
             fatalError("Can't remove < 1 ocurrences")
         }
         if let currentOcurrences = members[element] {
@@ -104,7 +105,7 @@ public struct Multiset<T: Hashable> {
             } else {
                 members[element] = newOcurrencies
             }
-            return nRemoved
+            return currentOcurrences
         } else {
             return 0
         }
@@ -114,9 +115,9 @@ public struct Multiset<T: Hashable> {
     ///
     /// :returns: The number of ocurrences of the element before the operation.
     public mutating func removeAllOf(element: T) -> Int {
-        let ocurrences = countOf(element)
-        if ocurrences >= 1 {
-            return remove(element, ocurrences: countOf(element))
+        let ocurren = ocurrences(element)
+        if ocurren >= 1 {
+            return remove(element, ocurrences: ocurren)
         }
         return 0
     }
@@ -126,13 +127,6 @@ public struct Multiset<T: Hashable> {
     public mutating func removeAll(keepCapacity keep: Bool = true) {
         members.removeAll(keepCapacity: keep)
         count = 0
-    }
-    
-    // MARK: Transforming a Multiset
-    
-    /// Returns a set containing all the elements in the multiset.
-    public func toSet() -> Set<T> {
-        return Set(members.keys)
     }
 }
 
@@ -176,8 +170,10 @@ extension Multiset: Hashable {
     /// `x == y` implies `x.hashValue == y.hashValue`
     public var hashValue: Int {
         var result = 3
+        result = result ^ uniqueCount
+        result = result ^ count
         for element in self {
-            result = 37 &* result &+ element.hashValue
+            result = (31 ^ result) ^ element.hashValue
         }
         return result
     }
@@ -191,7 +187,7 @@ public func ==<T>(lhs: Multiset<T>, rhs: Multiset<T>) -> Bool {
         return false
     }
     for element in lhs {
-        if lhs.countOf(element) != rhs.countOf(element) {
+        if lhs.ocurrences(element) != rhs.ocurrences(element) {
             return false
         }
     }
