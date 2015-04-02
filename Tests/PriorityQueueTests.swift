@@ -18,7 +18,7 @@ class PriorityQueueTests: XCTestCase {
         static let Max = 5
     }
     
-    var queue = PriorityQueue<Int>(isOrderedBefore: >)
+    var queue = PriorityQueue<Int>(>)
     
     func testEmptyQueue() {
         XCTAssertEqual(queue.count, 0)
@@ -84,8 +84,8 @@ class PriorityQueueTests: XCTestCase {
     // MARK: Operators
     
     func testEqual() {
-        queue = PriorityQueue<Int>(isOrderedBefore: >)
-        var other = PriorityQueue<Int>(isOrderedBefore: >)
+        queue = PriorityQueue<Int>(>)
+        var other = PriorityQueue<Int>(>)
         XCTAssertTrue(queue == other)
         queue.enqueue(TestData.Value)
         XCTAssertFalse(queue == other)

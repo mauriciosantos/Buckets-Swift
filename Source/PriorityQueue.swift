@@ -43,7 +43,7 @@ public struct PriorityQueue<T> {
     /// should be before (`true`) or after (`false`) another element.
     ///
     /// :param: isOrderedBefore Function to check if the first element has higher priority.
-    public init(isOrderedBefore: (T,T) -> Bool) {
+    public init(_ isOrderedBefore: (T,T) -> Bool) {
         self.init(elements: [], isOrderedBefore: isOrderedBefore)
     }
     

@@ -28,7 +28,7 @@ class MultisetTests: XCTestCase {
     }
     
     func testInitWithArray() {
-        multiset = Multiset(elements: TestData.List)
+        multiset = Multiset(TestData.List)
         XCTAssertEqual(multiset.count, TestData.List.count)
         XCTAssertEqual(multiset.uniqueCount, TestData.UniqueCount)
         for e in TestData.List {
@@ -114,14 +114,14 @@ class MultisetTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        multiset = Multiset(elements: TestData.List)
+        multiset = Multiset(TestData.List)
         multiset.removeAll(keepCapacity: true)
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.uniqueCount, 0)
     }
     
     func testToSet() {
-        multiset = Multiset(elements: TestData.List)
+        multiset = Multiset(TestData.List)
         let set = Set(multiset)
         XCTAssertEqual(set.count, TestData.UniqueCount)
         for e in TestData.List {
@@ -132,15 +132,12 @@ class MultisetTests: XCTestCase {
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
-        multiset = Multiset(elements: TestData.List)
+        multiset = Multiset(TestData.List)
         var list = TestData.List
         for element in multiset {
-            for _ in 0..<multiset.ocurrences(element) {
-                if let index = find(list, element) {
-                    list.removeAtIndex(index)
-                }
+            if let index = find(list, element) {
+                list.removeAtIndex(index)
             }
-           
         }
         XCTAssertEqual(list.count, 0)
     }
@@ -156,11 +153,11 @@ class MultisetTests: XCTestCase {
     // MARK: Hashable and Equatable
     
     func testHashableConformance() {
-        multiset = Multiset(elements: TestData.List)
+        multiset = Multiset(TestData.List)
         var other = Multiset<Int>()
         XCTAssertNotEqual(multiset.hashValue, other.hashValue)
         XCTAssertTrue(multiset != other)
-        other = Multiset(elements: TestData.List.reverse())
+        other = Multiset(TestData.List.reverse())
         XCTAssertEqual(multiset.hashValue, other.hashValue)
         XCTAssertTrue(multiset == other)
     }

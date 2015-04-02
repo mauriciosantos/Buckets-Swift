@@ -3,9 +3,15 @@
 import Foundation
 import Buckets
 
+
+
+
+var mp: Multimap<Int,String> = [1:"2", 1:"2", 4:"34"]
+mp[1]
+
 var tr = Trie<String>()
 tr.insertSequence("hello")
-tr.hasPrefix("helo")
+tr.hasPrefix("hello")
 
 var cop = tr
 

@@ -12,22 +12,17 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
     
     typealias ElementType = T.Generator.Element
     
-    private var subNodes = [ElementType : TrieNode<T>]()
-    private var tag = Tag()
+    private var root = TrieNode<T>(element: nil, completeSequence: nil)
     
     public var sequences: [T] {
-        var result = [T]()
-        getAllSequences(self.subNodes, result:  &result)
-        return result
+        return getAllSequences(root)
     }
     
     public init() {}
     
     public mutating func insertSequence(sequence: T) {
         copyMyself()
-        var generator = sequence.generate()
-        let firstElement = generator.next()
-        insertSequence(sequence, element: firstElement, generator:&generator, nodes: &self.subNodes)
+        insertSequence(sequence, elementGenerator:sequence.generate(), node: root)
     }
     
     public func hasPrefix(prefix: T) -> Bool {
@@ -44,18 +39,20 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
         return sequences
     }
     
-    private func getAllSequences(nodes: [ElementType : TrieNode<T>], inout result: [T]) {
-        for (_,v) in nodes {
+    private func getAllSequences(node: TrieNode<T>) -> [T] {
+        var result = [T]()
+        for (_,v) in node.subNodes {
             if let sequence = v.completeSequence {
                 result.append(sequence)
             }
-            getAllSequences(v.subNodes, result: &result)
+            result += getAllSequences(v)
         }
+        return result
     }
     
     
     private func lastNodeOfPrefix(prefix: T) -> TrieNode<T>? {
-        var nodes = subNodes
+        var nodes = root.subNodes
         var lastNode : TrieNode<T>? = nil
         for element in prefix {
             lastNode = nodes[element]
@@ -68,58 +65,50 @@ public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
         return lastNode
     }
     
-    private mutating func insertSequence(sequence: T, element: ElementType!, inout generator: T.Generator,
-        inout nodes: [ElementType : TrieNode<T>]) {
-        
-        if element == nil {
-            return
+    private mutating func insertSequence(sequence: T, var elementGenerator: T.Generator, node: TrieNode<T>) -> Bool {
+        let nextElement = elementGenerator.next()
+        if nextElement == nil {
+            return true
         }
         
-        let nextElement = generator.next()
-        let fullSequence: T? = nextElement == nil ? sequence : nil
-        
-        if nodes[element] == nil {
-            var node = TrieNode<T>(element: element, completeSequence: fullSequence)
-            insertSequence(sequence, element: nextElement, generator:&generator, nodes: &node.subNodes)
-            nodes[element] = node
+        let nextNode: TrieNode<T>
+        if node.subNodes[nextElement!] == nil {
+            nextNode = TrieNode<T>(element: nextElement!, completeSequence: nil)
         }
         else {
-            nodes[element]!.completeSequence = nodes[element]!.isEndOfSequence ? nodes[element]!.completeSequence : fullSequence
-            insertSequence(sequence, element: nextElement, generator:&generator, nodes: &nodes[element]!.subNodes)
+            nextNode = node.subNodes[nextElement!]!
         }
+        
+        let isComplete = insertSequence(sequence, elementGenerator:elementGenerator, node: nextNode)
+        node.subNodes[nextElement!] = nextNode
+        
+        if isComplete {
+            nextNode.completeSequence = sequence
+        }
+        
+        return false
     }
     
     private mutating func copyMyself() {
-        if isUniquelyReferencedNonObjC(&tag) {
-            return
+        if !isUniquelyReferencedNonObjC(&root) {
+            root = root.copy()
         }
-        tag = Tag()
-        var newNodes = [ElementType : TrieNode<T>]()
-        for (k,v) in subNodes {
-            newNodes[k] = v.copy()
-        }
-        subNodes = newNodes
     }
 }
 
-// Class to detect unique reference and implement copy on write
-private class Tag {
-    
-}
-
-private class TrieNode<T: SequenceType where T.Generator.Element: Hashable> {
+private final class TrieNode<T: SequenceType where T.Generator.Element: Hashable> {
     
     typealias ElementType = T.Generator.Element
     
     var completeSequence: T?
-    var element: ElementType
+    var element: ElementType?
     var subNodes = [ElementType : TrieNode<T>]()
     
     var isEndOfSequence : Bool {
         return completeSequence != nil
     }
     
-    init(element: ElementType, completeSequence: T? = nil){
+    init(element: ElementType?, completeSequence: T?){
         self.completeSequence = completeSequence
         self.element = element
     }

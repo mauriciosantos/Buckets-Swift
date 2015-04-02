@@ -38,6 +38,8 @@
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		228E4DBB1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		22A142E61AB4D40900E70376 /* Buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A142DA1AB4D40900E70376 /* Buckets.framework */; };
+		22AB6B2D1ACCB68C00DEC0D4 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */; };
+		22AB6B2E1ACCB68C00DEC0D4 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */; };
 		22DC03281AB50D4B006190C7 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */; };
 		22DC03291AB50D4B006190C7 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */; };
 		22DC032A1AB50D4B006190C7 /* BitArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031B1AB50D4B006190C7 /* BitArray.swift */; };
@@ -98,6 +100,7 @@
 		228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArrayTests.swift; path = Tests/BitArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		22A142DA1AB4D40900E70376 /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A142E51AB4D40900E70376 /* Buckets iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Buckets iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Multimap.swift; path = Source/Multimap.swift; sourceTree = SOURCE_ROOT; };
 		22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinaryHeap.swift; path = Source/BinaryHeap.swift; sourceTree = SOURCE_ROOT; };
 		22DC031B1AB50D4B006190C7 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArray.swift; path = Source/BitArray.swift; sourceTree = SOURCE_ROOT; };
 		22DC031C1AB50D4B006190C7 /* BloomFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilter.swift; path = Source/BloomFilter.swift; sourceTree = SOURCE_ROOT; };
@@ -198,6 +201,7 @@
 				22DC03261AB50D4B006190C7 /* Stack.swift */,
 				22DC03241AB50D4B006190C7 /* PriorityQueue.swift */,
 				220DD0D91AC756080023F3B0 /* Multiset.swift */,
+				22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */,
 				22DC03271AB50D4B006190C7 /* Trie.swift */,
 				22DC03211AB50D4B006190C7 /* Graph.swift */,
 				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
@@ -439,6 +443,7 @@
 				22DC03281AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				22DC03361AB50D4B006190C7 /* Graph.swift in Sources */,
 				22DC03341AB50D4B006190C7 /* FNVHash.swift in Sources */,
+				22AB6B2D1ACCB68C00DEC0D4 /* Multimap.swift in Sources */,
 				22DC03301AB50D4B006190C7 /* CircularArray.swift in Sources */,
 				220DD0DA1AC756080023F3B0 /* Multiset.swift in Sources */,
 				22DC033E1AB50D4B006190C7 /* Stack.swift in Sources */,
@@ -473,6 +478,7 @@
 				22DC03291AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				22DC03371AB50D4B006190C7 /* Graph.swift in Sources */,
 				22DC03351AB50D4B006190C7 /* FNVHash.swift in Sources */,
+				22AB6B2E1ACCB68C00DEC0D4 /* Multimap.swift in Sources */,
 				22DC03311AB50D4B006190C7 /* CircularArray.swift in Sources */,
 				220DD0DB1AC756080023F3B0 /* Multiset.swift in Sources */,
 				22DC033F1AB50D4B006190C7 /* Stack.swift in Sources */,

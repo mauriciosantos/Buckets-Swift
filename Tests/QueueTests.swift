@@ -25,7 +25,7 @@ class QueueTests: XCTestCase {
     }
     
     func testInitWithArray() {
-        queue = Queue(elements: TestData.List)
+        queue = Queue(TestData.List)
         for i in 0..<TestData.List.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
@@ -59,7 +59,7 @@ class QueueTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        queue = Queue(elements: TestData.List)
+        queue = Queue(TestData.List)
         queue.removeAll(keepCapacity: true)
         XCTAssertEqual(queue.count, 0)
         XCTAssertNil(queue.dequeue())
@@ -68,7 +68,7 @@ class QueueTests: XCTestCase {
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
-        queue = Queue(elements: TestData.List)
+        queue = Queue(TestData.List)
         XCTAssertTrue(equal(queue, TestData.List))
     }
     

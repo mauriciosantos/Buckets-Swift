@@ -49,8 +49,8 @@ public struct Deque<T> {
     
     /// Constructs a deque from a sequence, such as an array.
     /// The elements will be enqueued from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(elements: S) {
-        items = CircularArray(elements: elements)
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S) {
+        items = CircularArray(elements)
     }
     
     // MARK: Adding and Removing Elements
@@ -110,7 +110,7 @@ extension Deque: ArrayLiteralConvertible {
     /// The elements will be enqueued from first to last.
     /// `let deque: Deque<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        items = CircularArray(elements: elements)
+        self.init(elements)
     }
 }
 

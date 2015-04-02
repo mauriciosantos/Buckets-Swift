@@ -39,7 +39,7 @@ public struct Multiset<T: Hashable> {
     public init() {}
     
     /// Constructs a Multiset from a sequence, such as an array.
-    public init<S: SequenceType where S.Generator.Element == T>(elements: S){
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
         for e in elements {
             insert(e)
         }
@@ -136,14 +136,44 @@ extension Multiset: SequenceType {
     
     // MARK: SequenceType Protocol Conformance
     
-    /// Provides for-in loop functionality. Generates a single ocurrence per element.
+    /// Provides for-in loop functionality. Generates multiple ocurrences per element.
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<T> {
         var keyValueGenerator = members.generate()
+        var elementCount = 0
+        var element : T? = nil
         return GeneratorOf<T> {
-            return keyValueGenerator.next()?.0
+            if elementCount > 0 {
+                elementCount--
+                return element
+            }
+            let nextTuple = keyValueGenerator.next()
+            element = nextTuple?.0
+            elementCount = nextTuple?.1 ?? 1
+            elementCount--
+            return element
         }
+    }
+}
+// MARK: - Printable
+
+extension Multiset: Printable, DebugPrintable {
+    
+    // MARK: Printable Protocol Conformance
+    
+    /// A string containing a suitable textual
+    /// representation of the multiset.
+    public var description: String {
+        return "[" + join(", ", map(self) {"\($0)"}) + "]"
+    }
+    
+    // MARK: DebugPrintable Protocol Conformance
+    
+    /// A string containing a suitable textual representation
+    /// of the multiset when debugging.
+    public var debugDescription: String {
+        return description
     }
 }
 
@@ -156,7 +186,7 @@ extension Multiset: ArrayLiteralConvertible {
     /// Constructs a multiset using an array literal.
     /// Unlike a set, multiple copies of an element are inserted.
     public init(arrayLiteral elements: T...) {
-        self.init(elements: elements)
+        self.init(elements)
     }
 }
 

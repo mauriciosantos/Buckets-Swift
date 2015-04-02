@@ -26,7 +26,7 @@ class DequeTests: XCTestCase {
     }
     
     func testInitWithArray() {
-        deque = Deque(elements: TestData.List)
+        deque = Deque(TestData.List)
         for i in 0..<TestData.List.count {
             let element = deque.dequeueFirst()
             XCTAssertNotNil(element)
@@ -78,7 +78,7 @@ class DequeTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        deque = Deque(elements: TestData.List)
+        deque = Deque(TestData.List)
         deque.removeAll(keepCapacity: true)
         XCTAssertEqual(deque.count, 0)
         XCTAssertNil(deque.dequeueFirst())
@@ -88,7 +88,7 @@ class DequeTests: XCTestCase {
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
-        deque = Deque(elements: TestData.List)
+        deque = Deque(TestData.List)
         XCTAssertTrue(equal(deque, TestData.List))
     }
     

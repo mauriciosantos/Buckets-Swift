@@ -64,7 +64,7 @@ public struct CircularArray<T> {
     }
     
     /// Constructs a circular array from a sequence, such as an array.
-    public init<S: SequenceType where S.Generator.Element == T>(elements: S){
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
         for e in elements {
             append(e)
         }
@@ -110,7 +110,6 @@ public struct CircularArray<T> {
             let rIndex = realIndex(i)
             let nextIndex = realIndex(i+1)
             items[nextIndex] = items[rIndex]
-            
         }
         items[index] = element
     }
@@ -141,7 +140,6 @@ public struct CircularArray<T> {
             let prevIndex = realIndex(i-1)
             items[prevIndex] = items[rIndex]
         }
-        
         removeLast()
         return element!
     }
@@ -261,9 +259,7 @@ extension CircularArray: ArrayLiteralConvertible {
     /// Constructs a circular array using an array literal.
     /// `let example: CircularArray<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        for e in elements {
-            append(e)
-        }
+        self.init(elements)
     }
 }
 

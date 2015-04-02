@@ -75,7 +75,7 @@ class CircularArrayTests: XCTestCase {
     }
     
     func testNonEmptyRemoveFirst() {
-        cArray = CircularArray(elements: TestData.List)
+        cArray = CircularArray(TestData.List)
         let first = cArray.removeFirst()
         XCTAssertTrue(first != nil && first == TestData.List.first!)
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
@@ -87,7 +87,7 @@ class CircularArrayTests: XCTestCase {
     }
     
     func testNonEmptyRemoveLast() {
-        cArray = CircularArray(elements: TestData.List)
+        cArray = CircularArray(TestData.List)
         let last = cArray.removeLast()
         XCTAssertTrue(last != nil && last == TestData.List.last!)
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
@@ -99,7 +99,7 @@ class CircularArrayTests: XCTestCase {
         for i in 0..<TestData.List.count {
             for j in 0...i {
                 var list = [] + TestData.List[0...i]
-                var array = CircularArray(elements: list)
+                var array = CircularArray(list)
                 list.insert(TestData.Value, atIndex: j)
                 array.insert(TestData.Value, atIndex: j)
                 XCTAssertEqual(array.count, list.count)
@@ -113,7 +113,7 @@ class CircularArrayTests: XCTestCase {
         for i in 0..<TestData.List.count {
             for j in 0...i {
                 var list = [] + TestData.List[0...i]
-                var array = CircularArray(elements: list)
+                var array = CircularArray(list)
                 XCTAssertEqual(list.removeAtIndex(j), array.removeAtIndex(j))
                 XCTAssertEqual(array.count, list.count)
                 XCTAssertTrue(equal(list, array))
@@ -122,14 +122,14 @@ class CircularArrayTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        cArray = CircularArray(elements: TestData.List)
+        cArray = CircularArray(TestData.List)
         cArray.removeAll(keepCapacity: true)
         XCTAssertEqual(cArray.count, 0)
         XCTAssertNil(cArray.removeFirst())
     }
     
     func testAppendAfterRemoveAll() {
-        cArray = CircularArray(elements: TestData.List)
+        cArray = CircularArray(TestData.List)
         cArray.removeAll(keepCapacity: true)
         cArray.append(TestData.Value)
         XCTAssertTrue(cArray.first != nil && cArray.first! == TestData.Value)
@@ -138,7 +138,7 @@ class CircularArrayTests: XCTestCase {
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
-        cArray = CircularArray(elements: TestData.List)
+        cArray = CircularArray(TestData.List)
         XCTAssertTrue(equal(cArray, TestData.List))
     }
     
@@ -147,7 +147,7 @@ class CircularArrayTests: XCTestCase {
     func testSubscriptGet() {
         for i in 0..<TestData.List.count {
             let list = [] + TestData.List[0...i]
-            cArray = CircularArray(elements: list)
+            cArray = CircularArray(list)
             for j in 0...i {
                 XCTAssertEqual(cArray[j], list[j])
             }

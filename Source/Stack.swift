@@ -42,7 +42,7 @@ public struct Stack<T> {
     
     /// Constructs a stack from a sequence, such as an array.
     /// The elements will be pushed from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(elements: S){
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
         self.elements = Array(elements)
     }
     

@@ -43,8 +43,8 @@ public struct Queue<T> {
     
     /// Constructs a queue from a sequence, such as an array.
     /// The elements will be enqueued from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(elements: S){
-        items = CircularArray(elements: elements)
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+        items = CircularArray(elements)
     }
     
     // MARK: Adding and Removing Elements
@@ -92,7 +92,7 @@ extension Queue: ArrayLiteralConvertible {
     /// The elements will be enqueued from first to last.
     /// `let queue: Queue<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        items = CircularArray(elements: elements)
+        self.init(elements)
     }
 }
 
