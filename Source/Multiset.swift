@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// A Multiset (sometimes called a bag) is a special kind of set in which 
+/// A Multiset (sometimes called a bag) is a special kind of set in which
 /// members are allowed to appear more than once. It's possible to convert a multiset
 /// to a set: `let set = Set(multiset)`
 ///
@@ -31,14 +31,14 @@ public struct Multiset<T: Hashable> {
         return members.count
     }
     
-    private var members = [T:Int]()
+    private var members = [T: Int]()
     
     // MARK: Creating a Multiset
     
     /// Constructs an empty Multiset of type `T`.
     public init() {}
     
-    /// Constructs a Multiset from a sequence, such as an array.
+    /// Constructs a multiset from a sequence, such as an array.
     public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
         for e in elements {
             insert(e)

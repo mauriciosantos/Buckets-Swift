@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>BitArray Struct Reference</title>
+    <title>Multimap Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -20,8 +20,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body id="reference" class="Swift">
-    <a name="//apple_ref/swift/Struct/BitArray" class="dashAnchor"></a>
-    <a title="BitArray Struct Reference"></a>
+    <a name="//apple_ref/swift/Struct/Multimap" class="dashAnchor"></a>
+    <a title="Multimap Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p class="header-text"><a href="../index.html">Buckets Docs</a> (95% documented)</p>
@@ -33,7 +33,7 @@
         <p id="hierarchial_navigation">
         <a href="../index.html" id="design_resources_link">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" height="10px" width="6px" />
-        BitArray Struct Reference
+        Multimap Struct Reference
         </p>
       </div>
     </section>
@@ -133,10 +133,10 @@
       <div class="rubber-band-gap"></div>
       <article class="chapter">
       <a name="/"></a>
-        <h1 class="chapter-name">BitArray</h1>
+        <h1 class="chapter-name">Multimap</h1>
         <section>
           <section class="section">
-            <p class="para">An array of boolean values stored using individual bits, thus providing a very small memory footprint. It has most of the feaures of a standard array such as constant time random access and amortized constant time insertion at the end of the array.</p><p class="para">Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+            <p class="para">A Multimap is a special kind of dictionary in which each key may be  associated with multiple values. This implementation allows duplicate key-value pairs.</p><p class="para">Comforms to <code>SequenceType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -153,9 +153,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets8BitArray5countSi">
+                    <a name="/s:vV7Buckets8Multimap5countSi">
                     <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray5countSi">count</a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multimap5countSi">count</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -163,7 +163,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Number of bits stored in the bit array.</p>
+                        <p class="para">Number of key-value pairs stored in the multimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -180,9 +180,36 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets8BitArray7isEmptySb">
+                    <a name="/s:vV7Buckets8Multimap8keyCountSi">
+                    <a name="//apple_ref/swift/Property/keyCount" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multimap8keyCountSi">keyCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Number of keys stored in the multimap.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">keyCount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets8Multimap7isEmptySb">
                     <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray7isEmptySb">isEmpty</a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multimap7isEmptySb">isEmpty</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -207,9 +234,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets8BitArray5firstGSqSb_">
-                    <a name="//apple_ref/swift/Property/first" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray5firstGSqSb_">first</a>
+                    <a name="/s:vV7Buckets8Multimap4keysERR">
+                    <a name="//apple_ref/swift/Property/keys" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multimap4keysERR">keys</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -217,14 +244,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">The first bit, or nil if the bit array is empty.</p>
+                        <p class="para">A set containing all the keys in the multimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">first</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">keys</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">Key</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -234,9 +261,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets8BitArray4lastGSqSb_">
-                    <a name="//apple_ref/swift/Property/last" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray4lastGSqSb_">last</a>
+                    <a name="/s:vV7Buckets8Multimap6valuesGSaQ0__">
+                    <a name="//apple_ref/swift/Property/values" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multimap6valuesGSaQ0__">values</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -244,41 +271,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">The last bit, or nil if the bit array is empty.</p>
+                        <p class="para">An array containing all the values in the multimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">last</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:vV7Buckets8BitArray11cardinalitySi">
-                    <a name="//apple_ref/swift/Property/cardinality" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray11cardinalitySi">cardinality</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">The number of bits set to <code>true</code> in the bit array.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">cardinality</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">Value</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -290,10 +290,10 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Creating%20a%20Bit%20Array"></a>
-                <a name="//apple_ref/swift/Section/Creating a Bit Array" class="dashAnchor"></a>
-                <a href="#/Creating%20a%20Bit%20Array">
-                  <h3 class="section-name">Creating a Bit Array</h3>
+                <a name="/Creating%20a%20Multimap"></a>
+                <a name="//apple_ref/swift/Section/Creating a Multimap" class="dashAnchor"></a>
+                <a href="#/Creating%20a%20Multimap">
+                  <h3 class="section-name">Creating a Multimap</h3>
                 </a>
                 
               </div>
@@ -301,9 +301,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArraycFMS0_FT_S0_">
+                    <a name="/s:FV7Buckets8MultimapcUSs8Hashable_Ss9Equatable__FMGS0_Q_Q0__FT_GS0_Q_Q0__">
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_FT_S0_">init()</a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8MultimapcUSs8Hashable_Ss9Equatable__FMGS0_Q_Q0__FT_GS0_Q_Q0__">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -311,7 +311,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Consctructs an empty bit array.</p>
+                        <p class="para">Constructs an empty multimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -328,9 +328,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArraycFMS0_FT17intRepresentationGSaSi__S0_">
-                    <a name="//apple_ref/swift/Method/init(intRepresentation:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_FT17intRepresentationGSaSi__S0_">init(intRepresentation:)</a>
+                    <a name="/s:FV7Buckets8MultimapcUSs8Hashable_Ss9Equatable__FMGS0_Q_Q0__USs12SequenceType_USs13GeneratorType___FQ_GS0_Qd__Qd_0__">
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8MultimapcUSs8Hashable_Ss9Equatable__FMGS0_Q_Q0__USs12SequenceType_USs13GeneratorType___FQ_GS0_Qd__Qd_0__">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -338,68 +338,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Consctructs a new bit array from an <code>Int</code> array representation. All values different than 0 are considered <code>true</code>.</p>
+                        <p class="para">Constructs a multimap from a sequence of key-value pairs, such as a dictionary or another multimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">intRepresentation</span> <span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets8BitArraycFMS0_FT18boolRepresentationGSaSb__S0_">
-                    <a name="//apple_ref/swift/Method/init(boolRepresentation:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_FT18boolRepresentationGSaSb__S0_">init(boolRepresentation:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Consctructs a new bit array from a <code>Bool</code> array representation.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">boolRepresentation</span> <span class="p">:</span> <span class="p">[</span><span class="kt">Bool</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets8BitArraycFMS0_FT5countSi13repeatedValueSb_S0_">
-                    <a name="//apple_ref/swift/Method/init(count:repeatedValue:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_FT5countSi13repeatedValueSb_S0_">init(count:repeatedValue:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Consctructs a new bit array with <code>count</code> bits set to the specified value.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">count</span><span class="p">:</span><span class="kt">Int</span><span class="p">,</span> <span class="nv">repeatedValue</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span><span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="p">(</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -411,10 +357,10 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Adding%20and%20Removing%20Bits"></a>
-                <a name="//apple_ref/swift/Section/Adding and Removing Bits" class="dashAnchor"></a>
-                <a href="#/Adding%20and%20Removing%20Bits">
-                  <h3 class="section-name">Adding and Removing Bits</h3>
+                <a name="/Querying%20a%20Multimap"></a>
+                <a name="//apple_ref/swift/Section/Querying a Multimap" class="dashAnchor"></a>
+                <a href="#/Querying%20a%20Multimap">
+                  <h3 class="section-name">Querying a Multimap</h3>
                 </a>
                 
               </div>
@@ -422,9 +368,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArray6appendFRS0_FSbT_">
-                    <a name="//apple_ref/swift/Method/append(_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArray6appendFRS0_FSbT_">append(_:)</a>
+                    <a name="/s:FV7Buckets8Multimap12valuesForKeyUSs8Hashable_Ss9Equatable__FGS0_Q_Q0__FQ_GSaQ0__">
+                    <a name="//apple_ref/swift/Method/valuesForKey(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap12valuesForKeyUSs8Hashable_Ss9Equatable__FGS0_Q_Q0__FQ_GSaQ0__">valuesForKey(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -432,14 +378,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Adds a new <code>Bool</code> as the last bit in an existing bit array.</p>
+                        <p class="para">Returns an array containing the values associated with the given key. An empty array is returned if the key does not exist in the multimap. Subscript access is preffered.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">bit</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">valuesForKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Value</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -449,9 +395,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArray6insertFRS0_FTSb7atIndexSi_T_">
-                    <a name="//apple_ref/swift/Method/insert(_:atIndex:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArray6insertFRS0_FTSb7atIndexSi_T_">insert(_:atIndex:)</a>
+                    <a name="/s:FV7Buckets8Multimap11containsKeyUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FQ_Sb">
+                    <a name="//apple_ref/swift/Method/containsKey(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap11containsKeyUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FQ_Sb">containsKey(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -459,14 +405,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Inserts a bit into the array at a given index. Use this method to insert a new bit anywhere within the range of existing bits, or as the last bit. The index must be less than or equal to the number of bits in the bit array. If you attempt to remove a bit at a greater index, you’ll trigger an error.</p>
+                        <p class="para">Returns <code>true</code> if the multimap contains at least one key-value pair with the given key.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insert</span><span class="p">(</span><span class="nv">bit</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">containsKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -476,9 +422,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArray10removeLastFRS0_FT_GSqSb_">
-                    <a name="//apple_ref/swift/Method/removeLast()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArray10removeLastFRS0_FT_GSqSb_">removeLast()</a>
+                    <a name="/s:FV7Buckets8Multimap13containsValueUSs8Hashable_Ss9Equatable__FGS0_Q_Q0__FTQ0_6forKeyQ__Sb">
+                    <a name="//apple_ref/swift/Method/containsValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap13containsValueUSs8Hashable_Ss9Equatable__FGS0_Q_Q0__FTQ0_6forKeyQ__Sb">containsValue(_:forKey:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -486,20 +432,179 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Removes the last bit from the bit array and returns it.</p>
+                        <p class="para">Returns <code>true</code> if the multimap contains at least one key-value pair with the given key and value.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeLast</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Adding%20and%20Removing%20Elements"></a>
+                <a name="//apple_ref/swift/Section/Adding and Removing Elements" class="dashAnchor"></a>
+                <a href="#/Adding%20and%20Removing%20Elements">
+                  <h3 class="section-name">Adding and Removing Elements</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets8Multimap11insertValueUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FTQ0_6forKeyQ__T_">
+                    <a name="//apple_ref/swift/Method/insertValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap11insertValueUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FTQ0_6forKeyQ__T_">insertValue(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Inserts a key-value pair into the multimap.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insertValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets8Multimap12insertValuesUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__USs12SequenceType_USs13GeneratorType__FTQ_6forKeyQd___T_">
+                    <a name="//apple_ref/swift/Method/insertValues(_:forKey:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap12insertValuesUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__USs12SequenceType_USs13GeneratorType__FTQ_6forKeyQd___T_">insertValues(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Inserts multiple key-value pairs into the multimap.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="n">insertValues</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span><span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">Value</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">values</span><span class="p">:</span> <span class="kt">S</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">values</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">A sequence of values to associate with the given key</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets8Multimap13replaceValuesUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__USs12SequenceType_USs13GeneratorType__FTQ_6forKeyQd___T_">
+                    <a name="//apple_ref/swift/Method/replaceValues(_:forKey:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap13replaceValuesUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__USs12SequenceType_USs13GeneratorType__FTQ_6forKeyQd___T_">replaceValues(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Replaces all the values associated with a given key. If the key does not exist in the multimap, the values are inserted.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="n">replaceValues</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span><span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">Value</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">values</span><span class="p">:</span> <span class="kt">S</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">values</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">A sequence of values to associate with the given key</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets8Multimap11removeValueUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FTQ0_6forKeyQ__GSqQ0__">
+                    <a name="//apple_ref/swift/Method/removeValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap11removeValueUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FTQ0_6forKeyQ__GSqQ0__">removeValue(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Removes a single key-value pair with the given key and value from the multimap, if it exists.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="result-description">
                         <h4>Return Value</h4>
-                        <p class="para">The last bit, or nil if the bit array is empty.</p>
+                        <p class="para">The removed value, or nil if no matching pair is found.</p>
                       </div>
                     </section>
                   </div>
@@ -507,9 +612,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArray13removeAtIndexFRS0_FSiSb">
-                    <a name="//apple_ref/swift/Method/removeAtIndex(_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArray13removeAtIndexFRS0_FSiSb">removeAtIndex(_:)</a>
+                    <a name="/s:FV7Buckets8Multimap18removeValuesForKeyUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FQ_T_">
+                    <a name="//apple_ref/swift/Method/removeValuesForKey(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap18removeValuesForKeyUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FQ_T_">removeValuesForKey(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -517,14 +622,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Removes the bit at the given index and returns it. The index must be less than the number of bits in the bit array. If you attempt to remove a bit at a greater index, you’ll trigger an error.</p>
+                        <p class="para">Removes all values associated with the given key.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeAtIndex</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeValuesForKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -534,9 +639,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArray9removeAllFRS0_FT12keepCapacitySb_T_">
+                    <a name="/s:FV7Buckets8Multimap9removeAllUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FT12keepCapacitySb_T_">
                     <a name="//apple_ref/swift/Method/removeAll(keepCapacity:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArray9removeAllFRS0_FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap9removeAllUSs8Hashable_Ss9Equatable__FRGS0_Q_Q0__FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -544,7 +649,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Removes all the bits from the array, and by default clears the underlying storage buffer.</p>
+                        <p class="para">Removes all the elements from the multimap, and by default clears the underlying storage buffer.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>

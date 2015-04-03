@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>BitArray Extension Reference</title>
+    <title>Multimap Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -20,8 +20,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body id="reference" class="Swift">
-    <a name="//apple_ref/swift/Extension/BitArray" class="dashAnchor"></a>
-    <a title="BitArray Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/Multimap" class="dashAnchor"></a>
+    <a title="Multimap Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p class="header-text"><a href="../index.html">Buckets Docs</a> (95% documented)</p>
@@ -33,7 +33,7 @@
         <p id="hierarchial_navigation">
         <a href="../index.html" id="design_resources_link">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" height="10px" width="6px" />
-        BitArray Extension Reference
+        Multimap Extension Reference
         </p>
       </div>
     </section>
@@ -133,10 +133,10 @@
       <div class="rubber-band-gap"></div>
       <article class="chapter">
       <a name="/"></a>
-        <h1 class="chapter-name">BitArray</h1>
+        <h1 class="chapter-name">Multimap</h1>
         <section>
           <section class="section">
-            <p class="para">An array of boolean values stored using individual bits, thus providing a very small memory footprint. It has most of the feaures of a standard array such as constant time random access and amortized constant time insertion at the end of the array.</p><p class="para">Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+            <p class="para">A Multimap is a special kind of dictionary in which each key may be  associated with multiple values. This implementation allows duplicate key-value pairs.</p><p class="para">Comforms to <code>SequenceType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -153,9 +153,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets8BitArray8generateFS0_FT_GVSs11GeneratorOfSb_">
+                    <a name="/s:FV7Buckets8Multimap8generateUSs8Hashable_Ss9Equatable__FGS0_Q_Q0__FT_GVSs11GeneratorOfTQ_Q0___">
                     <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArray8generateFS0_FT_GVSs11GeneratorOfSb_">generate()</a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8Multimap8generateUSs8Hashable_Ss9Equatable__FGS0_Q_Q0__FT_GVSs11GeneratorOfTQ_Q0___">generate()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -170,13 +170,13 @@
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">GeneratorOf</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">GeneratorOf</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">Key</span><span class="p">,</span><span class="kt">Value</span><span class="p">)</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
                       <div class="result-description">
                         <h4>Return Value</h4>
-                        <p class="para">A generator over the bits.</p>
+                        <p class="para">A generator over the elements.</p>
                       </div>
                     </section>
                   </div>
@@ -186,10 +186,10 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/MutableCollectionType%20Protocol%20Conformance"></a>
-                <a name="//apple_ref/swift/Section/MutableCollectionType Protocol Conformance" class="dashAnchor"></a>
-                <a href="#/MutableCollectionType%20Protocol%20Conformance">
-                  <h3 class="section-name">MutableCollectionType Protocol Conformance</h3>
+                <a name="/DictionaryLiteralConvertible%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/DictionaryLiteralConvertible Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/DictionaryLiteralConvertible%20Protocol%20Conformance">
+                  <h3 class="section-name">DictionaryLiteralConvertible Protocol Conformance</h3>
                 </a>
                 
               </div>
@@ -197,9 +197,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets8BitArray10startIndexSi">
-                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray10startIndexSi">startIndex</a>
+                    <a name="/s:FV7Buckets8MultimapcUSs8Hashable_Ss9Equatable__FMGS0_Q_Q0__Ft17dictionaryLiteralGSaTQ_Q0____GS0_Q_Q0__">
+                    <a name="//apple_ref/swift/Method/init(dictionaryLiteral:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8MultimapcUSs8Hashable_Ss9Equatable__FMGS0_Q_Q0__Ft17dictionaryLiteralGSaTQ_Q0____GS0_Q_Q0__">init(dictionaryLiteral:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -207,81 +207,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Always zero, which is the index of the first bit when non-empty.</p>
+                        <p class="para">Constructs a multiset using a dictionary literal. Unlike a set, multiple copies of an element are inserted.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:vV7Buckets8BitArray8endIndexSi">
-                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray8endIndexSi">endIndex</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Always <code>count</code>, which the successor of the last valid subscript argument.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                
-                <a name="/ArrayLiteralConvertible%20Protocol%20Conformance"></a>
-                <a name="//apple_ref/swift/Section/ArrayLiteralConvertible Protocol Conformance" class="dashAnchor"></a>
-                <a href="#/ArrayLiteralConvertible%20Protocol%20Conformance">
-                  <h3 class="section-name">ArrayLiteralConvertible Protocol Conformance</h3>
-                </a>
-                
-              </div>
-              <ul class="task-group-list">
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets8BitArraycFMS0_Ft12arrayLiteralGSaSb__S0_">
-                    <a name="//apple_ref/swift/Method/init(arrayLiteral:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_Ft12arrayLiteralGSaSb__S0_">init(arrayLiteral:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Constructs a bit array using a <code>Bool</code> array literal. <code>let example: BitArray = [true, false, true]</code></p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">arrayLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">Bool</span><span class="o">...</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">dictionaryLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">(</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span><span class="o">...</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -304,9 +237,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets8BitArray11descriptionSS">
+                    <a name="/s:vV7Buckets8Multimap11descriptionSS">
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray11descriptionSS">description</a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multimap11descriptionSS">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -314,7 +247,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A string containing a suitable textual representation of the bit array.</p>
+                        <p class="para">A string containing a suitable textual representation of the multimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -344,9 +277,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets8BitArray16debugDescriptionSS">
+                    <a name="/s:vV7Buckets8Multimap16debugDescriptionSS">
                     <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8BitArray16debugDescriptionSS">debugDescription</a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multimap16debugDescriptionSS">debugDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -354,7 +287,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A string containing a suitable debug  textual representation of the bit array.</p>
+                        <p class="para">A string containing a suitable textual representation of the multimap when debugging.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>

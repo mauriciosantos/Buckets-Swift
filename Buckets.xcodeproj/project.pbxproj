@@ -40,6 +40,10 @@
 		22A142E61AB4D40900E70376 /* Buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A142DA1AB4D40900E70376 /* Buckets.framework */; };
 		22AB6B2D1ACCB68C00DEC0D4 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */; };
 		22AB6B2E1ACCB68C00DEC0D4 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */; };
+		22AB6B301ACD28B200DEC0D4 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2F1ACD28B200DEC0D4 /* BidirectionalMap.swift */; };
+		22AB6B311ACD28B200DEC0D4 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2F1ACD28B200DEC0D4 /* BidirectionalMap.swift */; };
+		22AB6B331ACE213C00DEC0D4 /* MultimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */; };
+		22AB6B341ACE213C00DEC0D4 /* MultimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */; };
 		22DC03281AB50D4B006190C7 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */; };
 		22DC03291AB50D4B006190C7 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */; };
 		22DC032A1AB50D4B006190C7 /* BitArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031B1AB50D4B006190C7 /* BitArray.swift */; };
@@ -101,6 +105,8 @@
 		22A142DA1AB4D40900E70376 /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A142E51AB4D40900E70376 /* Buckets iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Buckets iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Multimap.swift; path = Source/Multimap.swift; sourceTree = SOURCE_ROOT; };
+		22AB6B2F1ACD28B200DEC0D4 /* BidirectionalMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BidirectionalMap.swift; path = Source/BidirectionalMap.swift; sourceTree = SOURCE_ROOT; };
+		22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultimapTests.swift; path = Tests/MultimapTests.swift; sourceTree = SOURCE_ROOT; };
 		22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinaryHeap.swift; path = Source/BinaryHeap.swift; sourceTree = SOURCE_ROOT; };
 		22DC031B1AB50D4B006190C7 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArray.swift; path = Source/BitArray.swift; sourceTree = SOURCE_ROOT; };
 		22DC031C1AB50D4B006190C7 /* BloomFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilter.swift; path = Source/BloomFilter.swift; sourceTree = SOURCE_ROOT; };
@@ -202,6 +208,7 @@
 				22DC03241AB50D4B006190C7 /* PriorityQueue.swift */,
 				220DD0D91AC756080023F3B0 /* Multiset.swift */,
 				22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */,
+				22AB6B2F1ACD28B200DEC0D4 /* BidirectionalMap.swift */,
 				22DC03271AB50D4B006190C7 /* Trie.swift */,
 				22DC03211AB50D4B006190C7 /* Graph.swift */,
 				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
@@ -231,6 +238,7 @@
 				220DD09F1AC4D7910023F3B0 /* StackTests.swift */,
 				220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */,
 				220DB8C51ACB59A600CA69C1 /* MultisetTests.swift */,
+				22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */,
 				22A142EA1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Tests;
@@ -446,6 +454,7 @@
 				22AB6B2D1ACCB68C00DEC0D4 /* Multimap.swift in Sources */,
 				22DC03301AB50D4B006190C7 /* CircularArray.swift in Sources */,
 				220DD0DA1AC756080023F3B0 /* Multiset.swift in Sources */,
+				22AB6B301ACD28B200DEC0D4 /* BidirectionalMap.swift in Sources */,
 				22DC033E1AB50D4B006190C7 /* Stack.swift in Sources */,
 				22DC033C1AB50D4B006190C7 /* Queue.swift in Sources */,
 				22DC033A1AB50D4B006190C7 /* PriorityQueue.swift in Sources */,
@@ -462,6 +471,7 @@
 			files = (
 				220DD0A01AC4D7910023F3B0 /* StackTests.swift in Sources */,
 				222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
+				22AB6B331ACE213C00DEC0D4 /* MultimapTests.swift in Sources */,
 				220DD09A1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */,
 				220DB8C61ACB59A600CA69C1 /* MultisetTests.swift in Sources */,
 				220DD09D1AC4CD080023F3B0 /* DequeTests.swift in Sources */,
@@ -481,6 +491,7 @@
 				22AB6B2E1ACCB68C00DEC0D4 /* Multimap.swift in Sources */,
 				22DC03311AB50D4B006190C7 /* CircularArray.swift in Sources */,
 				220DD0DB1AC756080023F3B0 /* Multiset.swift in Sources */,
+				22AB6B311ACD28B200DEC0D4 /* BidirectionalMap.swift in Sources */,
 				22DC033F1AB50D4B006190C7 /* Stack.swift in Sources */,
 				22DC033D1AB50D4B006190C7 /* Queue.swift in Sources */,
 				22DC033B1AB50D4B006190C7 /* PriorityQueue.swift in Sources */,
@@ -497,6 +508,7 @@
 			files = (
 				220DD0A11AC4D7910023F3B0 /* StackTests.swift in Sources */,
 				222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
+				22AB6B341ACE213C00DEC0D4 /* MultimapTests.swift in Sources */,
 				220DD09B1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */,
 				220DB8C71ACB59A600CA69C1 /* MultisetTests.swift in Sources */,
 				220DD09E1AC4CD080023F3B0 /* DequeTests.swift in Sources */,
@@ -627,6 +639,8 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -635,9 +649,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = Buckets;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -646,6 +662,8 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -654,8 +672,10 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = Buckets;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
 			name = Release;
 		};

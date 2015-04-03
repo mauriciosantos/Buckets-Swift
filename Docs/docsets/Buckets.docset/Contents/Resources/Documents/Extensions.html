@@ -52,6 +52,9 @@
                 <a href="Extensions/Deque.html">Deque</a>
               </li>
               <li class="nav-chapter">
+                <a href="Extensions/Multimap.html">Multimap</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Extensions/Multiset.html">Multiset</a>
               </li>
               <li class="nav-chapter">
@@ -68,6 +71,9 @@
           <li class="part-name tasks">
           <a href="Functions.html">Functions</a>
             <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F7Bucketsoi2eeUSs8Hashable_Ss9Equatable__FTGVS_8MultimapQ_Q0__GS2_Q_Q0___Sb">==(_:_:)</a>
+              </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_13CircularArrayQ__GS1_Q___Sb">==(_:_:)</a>
               </li>
@@ -104,6 +110,9 @@
                 <a href="Structs/Deque.html">Deque</a>
               </li>
               <li class="nav-chapter">
+                <a href="Structs/Multimap.html">Multimap</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Structs/Multiset.html">Multiset</a>
               </li>
               <li class="nav-chapter">
@@ -129,6 +138,47 @@
             <p class="para">The following extensions are available globally.</p>
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <hr/>
+                <a name="/SequenceType"></a>
+                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
+                <a href="#/SequenceType">
+                  <h3 class="section-name">SequenceType</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:V7Buckets8Multimap">
+                    <a name="//apple_ref/swift/Extension/Multimap" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:V7Buckets8Multimap">Multimap</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A Multimap is a special kind of dictionary in which each key may be  associated with multiple values. This implementation allows duplicate key-value pairs.Comforms to <code>SequenceType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <a href="Extensions/Multimap.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Multimap</span><span class="o">&lt;</span><span class="kt">Key</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Value</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <div class="task-name-container">
                 
@@ -169,9 +219,9 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType"></a>
+                <a name="/SequenceType2"></a>
                 <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType">
+                <a href="#/SequenceType2">
                   <h3 class="section-name">SequenceType</h3>
                 </a>
                 
@@ -190,7 +240,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A Multiset (sometimes called a bag) is a special kind of set in which  members are allowed to appear more than once.Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">A Multiset (sometimes called a bag) is a special kind of set in which members are allowed to appear more than once. It&rsquo;s possible to convert a multiset to a set: <code>let set = Set(multiset)</code>Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
                         <a href="Extensions/Multiset.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -210,9 +260,9 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType2"></a>
+                <a name="/SequenceType3"></a>
                 <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType2">
+                <a href="#/SequenceType3">
                   <h3 class="section-name">SequenceType</h3>
                 </a>
                 
@@ -251,9 +301,9 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType3"></a>
+                <a name="/SequenceType4"></a>
                 <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType3">
+                <a href="#/SequenceType4">
                   <h3 class="section-name">SequenceType</h3>
                 </a>
                 
@@ -292,9 +342,9 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType4"></a>
+                <a name="/SequenceType5"></a>
                 <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType4">
+                <a href="#/SequenceType5">
                   <h3 class="section-name">SequenceType</h3>
                 </a>
                 
@@ -333,9 +383,9 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType5"></a>
+                <a name="/SequenceType6"></a>
                 <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType5">
+                <a href="#/SequenceType6">
                   <h3 class="section-name">SequenceType</h3>
                 </a>
                 
@@ -374,9 +424,9 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType6"></a>
+                <a name="/SequenceType7"></a>
                 <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType6">
+                <a href="#/SequenceType7">
                   <h3 class="section-name">SequenceType</h3>
                 </a>
                 
@@ -415,7 +465,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-03-30)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-04-02)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

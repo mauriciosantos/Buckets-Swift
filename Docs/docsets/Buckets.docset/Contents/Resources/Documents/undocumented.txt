@@ -2,6 +2,8 @@ BloomFilter.swift
 	public struct BloomFilter<T: Printable>
 CircularArray.swift
 	public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool
+BidirectionalMap.swift
+	public struct BidirectionalMap<Key: Hashable, Value: Hashable>
 Stack.swift
 	public func !=<U: Equatable>(lhs: Stack<U>, rhs: Stack<U>) -> Bool
 Queue.swift

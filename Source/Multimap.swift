@@ -8,13 +8,19 @@
 
 import Foundation
 
-
+/// A Multimap is a special kind of dictionary in which each key may be 
+/// associated with multiple values. This implementation allows duplicate key-value pairs.
+///
+/// Comforms to `SequenceType`, `DictionaryLiteralConvertible`,
+/// `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
 public struct Multimap<Key: Hashable, Value: Equatable> {
+    
+    // MARK: Properties
     
     /// Number of key-value pairs stored in the multimap.
     public private(set) var count = 0
     
-    /// Number of keys stored in the Multimap.
+    /// Number of keys stored in the multimap.
     public var keyCount: Int {
         return dictionary.count
     }
@@ -24,51 +30,59 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return count == 0
     }
     
-    // Returns a new array containing the key from each key-value pair in this Multimap
+    /// A set containing all the keys in the multimap.
     public var keys: Set<Key> {
         return Set(dictionary.keys)
     }
     
-    // Returns a new array containing the value from each key-value pair contained in this Multimap, without collapsing duplicates (so values.count == self.count).  Order is not deterministic
+    /// An array containing all the values in the multimap.
     public var values: [Value] {
         var result = [Value]()
-        for (k, v) in dictionary {
-            result += v
+        for (_, values) in dictionary {
+            result += values
         }
         return result
     }
     
-    private var dictionary = [Key:[Value]]()
+    private var dictionary = [Key: [Value]]()
     
+    // MARK: Creating a Multimap
+    
+    /// Constructs an empty multimap.
     public init() {}
     
+    /// Constructs a multimap from a sequence of key-value pairs, such as a dictionary or another multimap.
     public init<S:SequenceType where S.Generator.Element == (Key, Value)>(_ elements: S) {
         for (k,value) in elements {
             insertValue(value, forKey: k)
         }
     }
     
+    // MARK: Querying a Multimap
     
-    // subscript access is preffered
+    /// Returns an array containing the values associated with the given key.
+    /// An empty array is returned if the key does not exist in the multimap.
+    /// Subscript access is preffered.
     public func valuesForKey(key: Key) -> [Value] {
-            if let values = dictionary[key] {
-                return values
-            }
-            return []
-    }
-    
-    
-    public subscript(key: Key) -> [Value] {
-        get {
-            return valuesForKey(key)
+        if let values = dictionary[key] {
+            return values
         }
+        return []
     }
     
+    /// Returns an array containing the values associated with the specified key.
+    /// An empty array is returned if the key does not exist in the multimap.
+    /// Equivalent to `valuesForKey`.
+    public subscript(key: Key) -> [Value] {
+        return valuesForKey(key)
+    }
+    
+    /// Returns `true` if the multimap contains at least one key-value pair with the given key.
     public mutating func containsKey(key: Key) -> Bool {
         return dictionary[key] != nil
     }
     
-    // Returns true if this Multimap contains at least one key-value pair with the key key and the value value.
+    /// Returns `true` if the multimap contains at least one key-value pair with the given key and value.
     public func containsValue(value: Value, forKey key: Key) -> Bool {
         if let values = dictionary[key] {
             return contains(values, value)
@@ -76,28 +90,39 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return false
     }
     
+    // MARK: Adding and Removing Elements
+    
+    /// Inserts a key-value pair into the multimap.
     public mutating func insertValue(value: Value, forKey key: Key) {
-       insertValues([value], forKey: key)
+        insertValues([value], forKey: key)
     }
     
+    /// Inserts multiple key-value pairs into the multimap.
+    ///
+    /// :param: values A sequence of values to associate with the given key
     public mutating func insertValues<S:SequenceType where S.Generator.Element == Value>(values: S, forKey key: Key) {
         var result = dictionary[key] ?? []
-        for element in values {
-            count++
-            result.append(element)
-        }
+        let originalSize = result.count
+        result += values
+        count += result.count - originalSize
         if !result.isEmpty {
             dictionary[key] = result
         }
     }
     
+    /// Replaces all the values associated with a given key.
+    /// If the key does not exist in the multimap, the values are inserted.
+    ///
+    /// :param: values A sequence of values to associate with the given key
     public mutating func replaceValues<S:SequenceType where S.Generator.Element == Value>(values: S, forKey key: Key) {
         removeValuesForKey(key)
         insertValues(values, forKey: key)
     }
     
-    // Removes a single key-value pairs with the key key and the value value from this Multimap, if such exists.
-    public mutating func remove(value: Value, forKey key: Key) -> Value? {
+    /// Removes a single key-value pair with the given key and value from the multimap, if it exists.
+    ///
+    /// :returns: The removed value, or nil if no matching pair is found.
+    public mutating func removeValue(value: Value, forKey key: Key) -> Value? {
         if var values = dictionary[key] {
             var removeIndex: Int?
             for (index, element) in enumerate(values) {
@@ -119,11 +144,10 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return nil
     }
     
-    /// Removes all values associated with the key key.
+    /// Removes all values associated with the given key.
     public mutating func removeValuesForKey(key: Key) {
-        if containsKey(key) {
-            count -= dictionary[key]!.count
-            dictionary.removeValueForKey(key)
+        if let values = dictionary.removeValueForKey(key) {
+            count -= values.count
         }
     }
     
@@ -133,20 +157,6 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         dictionary.removeAll(keepCapacity: keep)
         count = 0
     }
-    
-}
-
-// MARK: - DictionaryLiteralConvertible
-
-extension Multimap: DictionaryLiteralConvertible {
-    
-    // MARK: DictionaryLiteralConvertible Protocol Conformance
-    
-    /// Constructs a multiset using an array literal.
-    /// Unlike a set, multiple copies of an element are inserted.
-    public init(dictionaryLiteral elements: (Key, Value)...) {
-        self.init(elements)
-    }
 }
 
 // MARK: - SequenceType
@@ -155,7 +165,7 @@ extension Multimap: SequenceType {
     
     // MARK: SequenceType Protocol Conformance
     
-    /// Provides for-in loop functionality
+    /// Provides for-in loop functionality.
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<(Key,Value)> {
@@ -177,12 +187,49 @@ extension Multimap: SequenceType {
     }
 }
 
+// MARK: - DictionaryLiteralConvertible
+
+extension Multimap: DictionaryLiteralConvertible {
+    
+    // MARK: DictionaryLiteralConvertible Protocol Conformance
+    
+    /// Constructs a multiset using a dictionary literal.
+    /// Unlike a set, multiple copies of an element are inserted.
+    public init(dictionaryLiteral elements: (Key, Value)...) {
+        self.init(elements)
+    }
+}
+
+// MARK: - Printable
+
+extension Multimap: Printable, DebugPrintable {
+    
+    // MARK: Printable Protocol Conformance
+    
+    /// A string containing a suitable textual
+    /// representation of the multimap.
+    public var description: String {
+        return "[" + join(", ", map(self) {"\($0.0): \($0.1)"}) + "]"
+    }
+    
+    // MARK: DebugPrintable Protocol Conformance
+    
+    /// A string containing a suitable textual representation
+    /// of the multimap when debugging.
+    public var debugDescription: String {
+        return description
+    }
+}
+
 // MARK: - Equatable
 
 extension Multimap: Equatable {
-
+    
 }
 
+// MARK: Multimap Operators
+
+/// Returns `true` if and only if the multimaps contain the same key-value pairs.
 public func ==<Key, Value>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>) -> Bool {
     if lhs.count != rhs.count || lhs.keyCount != rhs.keyCount   {
         return false

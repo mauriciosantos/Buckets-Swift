@@ -53,6 +53,9 @@
                 <a href="../Extensions/Deque.html">Deque</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Extensions/Multimap.html">Multimap</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Extensions/Multiset.html">Multiset</a>
               </li>
               <li class="nav-chapter">
@@ -69,6 +72,9 @@
           <li class="part-name tasks">
           <a href="../Functions.html">Functions</a>
             <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeUSs8Hashable_Ss9Equatable__FTGVS_8MultimapQ_Q0__GS2_Q_Q0___Sb">==(_:_:)</a>
+              </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_13CircularArrayQ__GS1_Q___Sb">==(_:_:)</a>
               </li>
@@ -105,6 +111,9 @@
                 <a href="../Structs/Deque.html">Deque</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Structs/Multimap.html">Multimap</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Structs/Multiset.html">Multiset</a>
               </li>
               <li class="nav-chapter">
@@ -127,7 +136,7 @@
         <h1 class="chapter-name">Multiset</h1>
         <section>
           <section class="section">
-            <p class="para">A Multiset (sometimes called a bag) is a special kind of set in which  members are allowed to appear more than once.</p><p class="para">Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+            <p class="para">A Multiset (sometimes called a bag) is a special kind of set in which members are allowed to appear more than once. It&rsquo;s possible to convert a multiset to a set: <code>let set = Set(multiset)</code></p><p class="para">Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -154,7 +163,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Provides for-in loop functionality. Generates a single ocurrence per element.</p>
+                        <p class="para">Provides for-in loop functionality. Generates multiple ocurrences per element.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -168,6 +177,86 @@
                       <div class="result-description">
                         <h4>Return Value</h4>
                         <p class="para">A generator over the elements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Printable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/Printable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/Printable%20Protocol%20Conformance">
+                  <h3 class="section-name">Printable Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets8Multiset11descriptionSS">
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multiset11descriptionSS">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A string containing a suitable textual representation of the multiset.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/DebugPrintable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/DebugPrintable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/DebugPrintable%20Protocol%20Conformance">
+                  <h3 class="section-name">DebugPrintable Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets8Multiset16debugDescriptionSS">
+                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets8Multiset16debugDescriptionSS">debugDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A string containing a suitable textual representation of the multiset when debugging.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -257,7 +346,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-03-30)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-04-02)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
