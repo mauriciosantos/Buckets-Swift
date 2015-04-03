@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Stack Struct Reference</title>
+    <title>Bimap Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -20,8 +20,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body id="reference" class="Swift">
-    <a name="//apple_ref/swift/Struct/Stack" class="dashAnchor"></a>
-    <a title="Stack Struct Reference"></a>
+    <a name="//apple_ref/swift/Extension/Bimap" class="dashAnchor"></a>
+    <a title="Bimap Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p class="header-text"><a href="../index.html">Buckets Docs</a> (96% documented)</p>
@@ -33,7 +33,7 @@
         <p id="hierarchial_navigation">
         <a href="../index.html" id="design_resources_link">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" height="10px" width="6px" />
-        Stack Struct Reference
+        Bimap Extension Reference
         </p>
       </div>
     </section>
@@ -142,19 +142,19 @@
       <div class="rubber-band-gap"></div>
       <article class="chapter">
       <a name="/"></a>
-        <h1 class="chapter-name">Stack</h1>
+        <h1 class="chapter-name">Bimap</h1>
         <section>
           <section class="section">
-            <p class="para">A Stack is a Last-In-First-Out (LIFO) collection, the last element added to the stack will be the first one to be removed.</p><p class="para">The <code>push</code> and <code>pop</code> operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+            <p class="para">A Bimap is a special kind of dictionary that allows bidirectional lookup between key and values. It allows to get, set, or delete a key-value pair using subscript notation: <code>bimap[value: theValue]</code> or <code>bimap[key: thekey]</code></p><p class="para">Comforms to <code>SequenceType</code>, <code>CollectionType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Properties"></a>
-                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
-                <a href="#/Properties">
-                  <h3 class="section-name">Properties</h3>
+                <a name="/SequenceType%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/SequenceType Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/SequenceType%20Protocol%20Conformance">
+                  <h3 class="section-name">SequenceType Protocol Conformance</h3>
                 </a>
                 
               </div>
@@ -162,9 +162,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets5Stack5countSi">
-                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack5countSi">count</a>
+                    <a name="/s:FV7Buckets5Bimap8generateUSs8Hashable_S1___FGS0_Q_Q0__FT_GVSs19DictionaryGeneratorQ_Q0__">
+                    <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Bimap8generateUSs8Hashable_S1___FGS0_Q_Q0__FT_GVSs19DictionaryGeneratorQ_Q0__">generate()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -172,218 +172,43 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Number of elements stored in the stack.</p>
+                        <p class="para">Provides for-in loop functionality.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:vV7Buckets5Stack7isEmptySb">
-                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack7isEmptySb">isEmpty</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para"><code>true</code> if and only if <code>count == 0</code>.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:vV7Buckets5Stack3topGSqQ__">
-                    <a name="//apple_ref/swift/Property/top" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack3topGSqQ__">top</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">The top element of the stack, or <code>nil</code> if the stack is empty.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">top</span><span class="p">:</span> <span class="kt">T</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                
-                <a name="/Creating%20a%20Stack"></a>
-                <a name="//apple_ref/swift/Section/Creating a Stack" class="dashAnchor"></a>
-                <a href="#/Creating%20a%20Stack">
-                  <h3 class="section-name">Creating a Stack</h3>
-                </a>
-                
-              </div>
-              <ul class="task-group-list">
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets5StackcU__FMGS0_Q__FT_GS0_Q__">
-                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5StackcU__FMGS0_Q__FT_GS0_Q__">init()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Constructs an empty stack of type <code>T</code>.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets5StackcU__FMGS0_Q__USs12SequenceType_USs13GeneratorType__FQ_GS0_Qd___">
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5StackcU__FMGS0_Q__USs12SequenceType_USs13GeneratorType__FQ_GS0_Qd___">init(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Constructs a stack from a sequence, such as an array. The elements will be pushed from first to last.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                
-                <a name="/Adding%20and%20Removing%20Elements"></a>
-                <a name="//apple_ref/swift/Section/Adding and Removing Elements" class="dashAnchor"></a>
-                <a href="#/Adding%20and%20Removing%20Elements">
-                  <h3 class="section-name">Adding and Removing Elements</h3>
-                </a>
-                
-              </div>
-              <ul class="task-group-list">
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets5Stack4pushU__FRGS0_Q__FQ_T_">
-                    <a name="//apple_ref/swift/Method/push(_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Stack4pushU__FRGS0_Q__FQ_T_">push(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Inserts an element into the top of the stack.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">push</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets5Stack3popU__FRGS0_Q__FT_GSqQ__">
-                    <a name="//apple_ref/swift/Method/pop()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Stack3popU__FRGS0_Q__FT_GSqQ__">pop()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Retrieves and removes the top element of the stack.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">pop</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">DictionaryGenerator</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
                       <div class="result-description">
                         <h4>Return Value</h4>
-                        <p class="para">The top element, or <code>nil</code> if the stack is empty.</p>
+                        <p class="para">A generator over the elements.</p>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/SequenceType%20Protocol%20Conformance2"></a>
+                <a name="//apple_ref/swift/Section/SequenceType Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/SequenceType%20Protocol%20Conformance2">
+                  <h3 class="section-name">SequenceType Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5Stack9removeAllU__FRGS0_Q__FT12keepCapacitySb_T_">
-                    <a name="//apple_ref/swift/Method/removeAll(keepCapacity:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Stack9removeAllU__FRGS0_Q__FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
+                    <a name="/s:vV7Buckets5Bimap10startIndexGVSs15DictionaryIndexQ_Q0__">
+                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap10startIndexGVSs15DictionaryIndexQ_Q0__">startIndex</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -391,14 +216,201 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Removes all the elements from the stack, and by default clears the underlying storage buffer.</p>
+                        <p class="para">The position of the first element in a non-empty bimap.Identical to <code>endIndex</code> in an empty bimapComplexity: amortized O(1)</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeAll</span><span class="p">(</span><span class="n">keepCapacity</span> <span class="nv">keep</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="kt">DictionaryIndex</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap8endIndexGVSs15DictionaryIndexQ_Q0__">
+                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap8endIndexGVSs15DictionaryIndexQ_Q0__">endIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">The collection&rsquo;s <q>past the end</q> position.<code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always reachable from <code>startIndex</code> by zero or more applications of <code>successor()</code>.Complexity: amortized O(1)</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="kt">DictionaryIndex</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/DictionaryLiteralConvertible%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/DictionaryLiteralConvertible Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/DictionaryLiteralConvertible%20Protocol%20Conformance">
+                  <h3 class="section-name">DictionaryLiteralConvertible Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__Ft17dictionaryLiteralGSaTQ_Q0____GS0_Q_Q0__">
+                    <a name="//apple_ref/swift/Method/init(dictionaryLiteral:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__Ft17dictionaryLiteralGSaTQ_Q0____GS0_Q_Q0__">init(dictionaryLiteral:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Constructs a bimap using a dictionary literal.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">dictionaryLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">(</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span><span class="o">...</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Printable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/Printable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/Printable%20Protocol%20Conformance">
+                  <h3 class="section-name">Printable Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap11descriptionSS">
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap11descriptionSS">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A string containing a suitable textual representation of the bimap.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/DebugPrintable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/DebugPrintable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/DebugPrintable%20Protocol%20Conformance">
+                  <h3 class="section-name">DebugPrintable Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap16debugDescriptionSS">
+                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap16debugDescriptionSS">debugDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A string containing a suitable textual representation of the bimap when debugging.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Hashable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/Hashable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/Hashable%20Protocol%20Conformance">
+                  <h3 class="section-name">Hashable Protocol Conformance</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap9hashValueSi">
+                    <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap9hashValueSi">hashValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">The hash value. <code>x == y</code> implies <code>x.hashValue == y.hashValue</code></p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>

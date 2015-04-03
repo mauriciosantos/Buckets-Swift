@@ -90,7 +90,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return false
     }
     
-    // MARK: Adding and Removing Elements
+    // MARK: Accessing and Changing Dictionary Elements
     
     /// Inserts a key-value pair into the multimap.
     public mutating func insertValue(value: Value, forKey key: Key) {

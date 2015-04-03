@@ -23,7 +23,7 @@
     <a title="Structs  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p class="header-text"><a href="index.html">Buckets Docs</a> (95% documented)</p>
+        <p class="header-text"><a href="index.html">Buckets Docs</a> (96% documented)</p>
         <p id="header-links"><a href="https://github.com/mauriciosantos/Buckets-Swift"><img id="header-icon" src="img/gh.png" height="16px" width="16px" />View on GitHub</a></p>
       </div>
     </header>
@@ -42,6 +42,9 @@
           <li class="part-name tasks">
           <a href="Extensions.html">Extensions</a>
             <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Extensions/Bimap.html">Bimap</a>
+              </li>
               <li class="nav-chapter">
                 <a href="Extensions/BitArray.html">BitArray</a>
               </li>
@@ -81,6 +84,9 @@
                 <a href="Functions.html#/s:F7Bucketsoi2eeUSs8Hashable__FTGVS_8MultisetQ__GS1_Q___Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
+                <a href="Functions.html#/s:F7Bucketsoi2eeUSs8Hashable_S0___FTGVS_5BimapQ_Q0__GS1_Q_Q0___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_5StackQ__GS1_Q___Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
@@ -100,6 +106,9 @@
           <li class="part-name tasks">
           <a href="Structs.html">Structs</a>
             <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Structs/Bimap.html">Bimap</a>
+              </li>
               <li class="nav-chapter">
                 <a href="Structs/BitArray.html">BitArray</a>
               </li>
@@ -195,7 +204,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A circular array provides most of the feaures of a standard array such as constant-time random access in addition to amortized constant-time insertion/removal at both ends, instead of just one end.Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">A circular array provides most of the feaures of a standard array such as constant-time random access in addition to amortized constant-time insertion/removal at both ends, instead of just one end. It allows to get or set elements using subscript notation.Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
                         <a href="Structs/CircularArray.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -259,6 +268,43 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
+                    <a name="/s:V7Buckets5Bimap">
+                    <a name="//apple_ref/swift/Struct/Bimap" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:V7Buckets5Bimap">Bimap</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A Bimap is a special kind of dictionary that allows bidirectional lookup between key and values. It allows to get, set, or delete a key-value pair using subscript notation: <code>bimap[value: theValue]</code> or <code>bimap[key: thekey]</code>Comforms to <code>SequenceType</code>, <code>CollectionType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <a href="Structs/Bimap.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Bimap</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Value</span><span class="p">:</span> <span class="kt">Hashable</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Unnamed5"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
                     <a name="/s:V7Buckets5Stack">
                     <a name="//apple_ref/swift/Struct/Stack" class="dashAnchor"></a>
                     <a class="x-instance-method Swift" href="#/s:V7Buckets5Stack">Stack</a>
@@ -289,7 +335,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed5"></a>
+                <a name="/Unnamed6"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -326,7 +372,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed6"></a>
+                <a name="/Unnamed7"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -363,7 +409,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed7"></a>
+                <a name="/Unnamed8"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -400,7 +446,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed8"></a>
+                <a name="/Unnamed9"></a>
                 
               </div>
               <ul class="task-group-list">

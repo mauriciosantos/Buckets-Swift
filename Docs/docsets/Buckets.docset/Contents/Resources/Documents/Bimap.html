@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Stack Struct Reference</title>
+    <title>Bimap Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -20,8 +20,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body id="reference" class="Swift">
-    <a name="//apple_ref/swift/Struct/Stack" class="dashAnchor"></a>
-    <a title="Stack Struct Reference"></a>
+    <a name="//apple_ref/swift/Struct/Bimap" class="dashAnchor"></a>
+    <a title="Bimap Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p class="header-text"><a href="../index.html">Buckets Docs</a> (96% documented)</p>
@@ -33,7 +33,7 @@
         <p id="hierarchial_navigation">
         <a href="../index.html" id="design_resources_link">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" height="10px" width="6px" />
-        Stack Struct Reference
+        Bimap Struct Reference
         </p>
       </div>
     </section>
@@ -142,10 +142,10 @@
       <div class="rubber-band-gap"></div>
       <article class="chapter">
       <a name="/"></a>
-        <h1 class="chapter-name">Stack</h1>
+        <h1 class="chapter-name">Bimap</h1>
         <section>
           <section class="section">
-            <p class="para">A Stack is a Last-In-First-Out (LIFO) collection, the last element added to the stack will be the first one to be removed.</p><p class="para">The <code>push</code> and <code>pop</code> operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+            <p class="para">A Bimap is a special kind of dictionary that allows bidirectional lookup between key and values. It allows to get, set, or delete a key-value pair using subscript notation: <code>bimap[value: theValue]</code> or <code>bimap[key: thekey]</code></p><p class="para">Comforms to <code>SequenceType</code>, <code>CollectionType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -162,9 +162,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets5Stack5countSi">
+                    <a name="/s:vV7Buckets5Bimap5countSi">
                     <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack5countSi">count</a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap5countSi">count</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -172,14 +172,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Number of elements stored in the stack.</p>
+                        <p class="para">Number of key-value pairs stored in the multimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -189,9 +189,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets5Stack7isEmptySb">
+                    <a name="/s:vV7Buckets5Bimap7isEmptySb">
                     <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack7isEmptySb">isEmpty</a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap7isEmptySb">isEmpty</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -216,9 +216,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:vV7Buckets5Stack3topGSqQ__">
-                    <a name="//apple_ref/swift/Property/top" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Stack3topGSqQ__">top</a>
+                    <a name="/s:vV7Buckets5Bimap4keysGVSs21LazyForwardCollectionGVSs17MapCollectionViewGVSs10DictionaryQ_Q0__Q___">
+                    <a name="//apple_ref/swift/Property/keys" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap4keysGVSs21LazyForwardCollectionGVSs17MapCollectionViewGVSs10DictionaryQ_Q0__Q___">keys</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,14 +226,41 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">The top element of the stack, or <code>nil</code> if the stack is empty.</p>
+                        <p class="para">An unordered iterable collection of all of a bimap&rsquo;s keys (read-only).</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">top</span><span class="p">:</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">keys</span><span class="p">:</span> <span class="kt">LazyForwardCollection</span><span class="o">&lt;</span><span class="kt">MapCollectionView</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Key</span> <span class="p">:</span> <span class="kt">Value</span><span class="p">],</span> <span class="kt">Key</span><span class="o">&gt;&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap6valuesGVSs21LazyForwardCollectionGVSs17MapCollectionViewGVSs10DictionaryQ0_Q__Q0___">
+                    <a name="//apple_ref/swift/Property/values" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vV7Buckets5Bimap6valuesGVSs21LazyForwardCollectionGVSs17MapCollectionViewGVSs10DictionaryQ0_Q__Q0___">values</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">An unordered iterable collection of all of a bimap&rsquo;s values (read-only).</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">values</span><span class="p">:</span> <span class="kt">LazyForwardCollection</span><span class="o">&lt;</span><span class="kt">MapCollectionView</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Value</span> <span class="p">:</span> <span class="kt">Key</span><span class="p">],</span> <span class="kt">Value</span><span class="o">&gt;&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -245,10 +272,10 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Creating%20a%20Stack"></a>
-                <a name="//apple_ref/swift/Section/Creating a Stack" class="dashAnchor"></a>
-                <a href="#/Creating%20a%20Stack">
-                  <h3 class="section-name">Creating a Stack</h3>
+                <a name="/Creating%20a%20Bimap"></a>
+                <a name="//apple_ref/swift/Section/Creating a Bimap" class="dashAnchor"></a>
+                <a href="#/Creating%20a%20Bimap">
+                  <h3 class="section-name">Creating a Bimap</h3>
                 </a>
                 
               </div>
@@ -256,9 +283,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5StackcU__FMGS0_Q__FT_GS0_Q__">
+                    <a name="/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__FT_GS0_Q_Q0__">
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5StackcU__FMGS0_Q__FT_GS0_Q__">init()</a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__FT_GS0_Q_Q0__">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -266,7 +293,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Constructs an empty stack of type <code>T</code>.</p>
+                        <p class="para">Constructs an empty bimap.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -283,9 +310,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5StackcU__FMGS0_Q__USs12SequenceType_USs13GeneratorType__FQ_GS0_Qd___">
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5StackcU__FMGS0_Q__USs12SequenceType_USs13GeneratorType__FQ_GS0_Qd___">init(_:)</a>
+                    <a name="/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__FT15minimumCapacitySi_GS0_Q_Q0__">
+                    <a name="//apple_ref/swift/Method/init(minimumCapacity:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__FT15minimumCapacitySi_GS0_Q_Q0__">init(minimumCapacity:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -293,14 +320,41 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Constructs a stack from a sequence, such as an array. The elements will be pushed from first to last.</p>
+                        <p class="para">Constructs a bimap with at least the given number of elements worth of storage. The actual capacity will be the smallest power of 2 that&rsquo;s &gt;= <code>minimumCapacity</code>.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">minimumCapacity</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__USs12SequenceType_USs13GeneratorType___FQ_GS0_Qd__Qd_0__">
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5BimapcUSs8Hashable_S1___FMGS0_Q_Q0__USs12SequenceType_USs13GeneratorType___FQ_GS0_Qd__Qd_0__">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Constructs a bimap from a sequence of key-value pairs, such as a dictionary.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span><span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="p">(</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -312,10 +366,10 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Adding%20and%20Removing%20Elements"></a>
-                <a name="//apple_ref/swift/Section/Adding and Removing Elements" class="dashAnchor"></a>
-                <a href="#/Adding%20and%20Removing%20Elements">
-                  <h3 class="section-name">Adding and Removing Elements</h3>
+                <a name="/Accessing%20and%20Changing%20Bimap%20Elements"></a>
+                <a name="//apple_ref/swift/Section/Accessing and Changing Bimap Elements" class="dashAnchor"></a>
+                <a href="#/Accessing%20and%20Changing%20Bimap%20Elements">
+                  <h3 class="section-name">Accessing and Changing Bimap Elements</h3>
                 </a>
                 
               </div>
@@ -323,9 +377,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5Stack4pushU__FRGS0_Q__FQ_T_">
-                    <a name="//apple_ref/swift/Method/push(_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Stack4pushU__FRGS0_Q__FQ_T_">push(_:)</a>
+                    <a name="/s:FV7Buckets5Bimap11updateValueUSs8Hashable_S1___FRGS0_Q_Q0__FTQ0_6forKeyQ__GSqQ0__">
+                    <a name="//apple_ref/swift/Method/updateValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Bimap11updateValueUSs8Hashable_S1___FRGS0_Q_Q0__FTQ0_6forKeyQ__GSqQ0__">updateValue(_:forKey:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -333,14 +387,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Inserts an element into the top of the stack.</p>
+                        <p class="para">Inserts or updates a value for a given key and returns the previous value  for that key if one existed, or <code>nil</code> if a previous value did not exist.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">push</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">updateValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -350,9 +404,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5Stack3popU__FRGS0_Q__FT_GSqQ__">
-                    <a name="//apple_ref/swift/Method/pop()" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Stack3popU__FRGS0_Q__FT_GSqQ__">pop()</a>
+                    <a name="/s:FV7Buckets5Bimap17removeValueForKeyUSs8Hashable_S1___FRGS0_Q_Q0__FQ_GSqQ0__">
+                    <a name="//apple_ref/swift/Method/removeValueForKey(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Bimap17removeValueForKeyUSs8Hashable_S1___FRGS0_Q_Q0__FQ_GSqQ0__">removeValueForKey(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -360,20 +414,16 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Retrieves and removes the top element of the stack.</p>
+                        <p class="para">Removes the key-value pair for the specified key and returns its value,  or <code>nil</code> if a value for that key did not previously exist</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">pop</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeValueForKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div class="result-description">
-                        <h4>Return Value</h4>
-                        <p class="para">The top element, or <code>nil</code> if the stack is empty.</p>
                       </div>
                     </section>
                   </div>
@@ -381,9 +431,36 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FV7Buckets5Stack9removeAllU__FRGS0_Q__FT12keepCapacitySb_T_">
+                    <a name="/s:FV7Buckets5Bimap17removeKeyForValueUSs8Hashable_S1___FRGS0_Q_Q0__FQ0_GSqQ__">
+                    <a name="//apple_ref/swift/Method/removeKeyForValue(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Bimap17removeKeyForValueUSs8Hashable_S1___FRGS0_Q_Q0__FQ0_GSqQ__">removeKeyForValue(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Removes the key-value pair for the specified value and returns its key, or <code>nil</code> if a key for that value did not previously exist</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeKeyForValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Key</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FV7Buckets5Bimap9removeAllUSs8Hashable_S1___FRGS0_Q_Q0__FT12keepCapacitySb_T_">
                     <a name="//apple_ref/swift/Method/removeAll(keepCapacity:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Stack9removeAllU__FRGS0_Q__FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets5Bimap9removeAllUSs8Hashable_S1___FRGS0_Q_Q0__FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -391,7 +468,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Removes all the elements from the stack, and by default clears the underlying storage buffer.</p>
+                        <p class="para">Removes all the elements from the Bimap, and by default clears the underlying storage buffer.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>

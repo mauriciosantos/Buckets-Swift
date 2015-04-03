@@ -16,6 +16,7 @@ private struct Constants {
 /// A circular array provides most of the feaures of a standard array
 /// such as constant-time random access in addition to amortized constant-time
 /// insertion/removal at both ends, instead of just one end.
+/// It allows to get or set elements using subscript notation.
 ///
 /// Comforms to `SequenceType`, `MutableCollectionType`,
 /// `ArrayLiteralConvertible`, `Equatable`, `Printable` and `DebugPrintable`.
