@@ -9,7 +9,8 @@
 import Foundation
 
 /// A Bimap is a special kind of dictionary that allows bidirectional lookup between key and values.
-/// It allows to get, set, or delete a key-value pair using
+/// All keys and values must be unique.
+/// It allows to get, set, or delete a key-value pairs using
 /// subscript notation: `bimap[value: theValue]` or `bimap[key: thekey]`
 ///
 /// Comforms to `SequenceType`, `CollectionType`, `DictionaryLiteralConvertible`,
@@ -18,7 +19,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     
     // MARK: Properties
     
-    /// Number of key-value pairs stored in the multimap.
+    /// Number of key-value pairs stored in the bimap.
     public var count: Int {
         return keysToValues.count
     }
@@ -63,16 +64,15 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     
     // MARK: Accessing and Changing Bimap Elements
     
-    /// Gets, sets, or deletes a key-value pair in a bimap using square bracket subscripting.
+    /// Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
     public subscript(#key: Key) -> Value? {
         get {
             return keysToValues[key]
         }
         set {
-            if newValue == nil {
-                if let oldValue = keysToValues[key] {
-                    valuesToKeys.removeValueForKey(oldValue)
-                }
+            let oldValue = keysToValues.removeValueForKey(key)
+            if let oldValue = oldValue {
+                valuesToKeys.removeValueForKey(oldValue)
             }
             keysToValues[key] = newValue
             if let newValue = newValue {
@@ -81,16 +81,15 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
         }
     }
     
-    /// Gets, sets, or deletes a key-value pair in a bimap using square bracket subscripting.
+    /// Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
     public subscript(#value: Value) -> Key? {
         get {
             return valuesToKeys[value]
         }
         set(newKey) {
-            if newKey == nil {
-                if let oldKey = valuesToKeys[value] {
-                    keysToValues.removeValueForKey(oldKey)
-                }
+            let oldKey = valuesToKeys.removeValueForKey(value)
+            if let oldKey = oldKey {
+                keysToValues.removeValueForKey(oldKey)
             }
             valuesToKeys[value] = newKey
             if let newKey = newKey {
@@ -102,31 +101,35 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     
     /// Inserts or updates a value for a given key and returns the previous value 
     /// for that key if one existed, or `nil` if a previous value did not exist.
+    /// Subscript access is prefered.
     public mutating func updateValue(value: Value, forKey key: Key) -> Value? {
         let previous = self[key: key]
         self[key: key] = value
         return previous
     }
     
-    /// Removes the key-value pair for the specified key and returns its value, 
-    /// or `nil` if a value for that key did not previously exist
+    /// Removes the key-value pair for the given key and returns its value,
+    /// or `nil` if a value for that key did not previously exist.
+    /// Subscript access is prefered.
     public mutating func removeValueForKey(key: Key) -> Value? {
         let previous = self[key: key]
         self[key: key] = nil
         return previous
     }
     
-    /// Removes the key-value pair for the specified value and returns its key,
-    /// or `nil` if a key for that value did not previously exist
+    /// Removes the key-value pair for the given value and returns its key,
+    /// or `nil` if a key for that value did not previously exist.
+    /// Subscript access is prefered.
     public mutating func removeKeyForValue(value: Value) -> Key? {
         let previous = self[value: value]
         self[value: value] = nil
         return previous
     }
     
-    /// Removes all the elements from the Bimap, and by default
+    /// Removes all the elements from the bimap, and by default
     /// clears the underlying storage buffer.
     public mutating func removeAll(keepCapacity keep: Bool = true) {
+        valuesToKeys.removeAll(keepCapacity: keep)
         keysToValues.removeAll(keepCapacity: keep)
     }
 }

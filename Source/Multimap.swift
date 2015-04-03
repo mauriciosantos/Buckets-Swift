@@ -62,7 +62,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     
     /// Returns an array containing the values associated with the given key.
     /// An empty array is returned if the key does not exist in the multimap.
-    /// Subscript access is preffered.
+    /// Subscript access is prefered.
     public func valuesForKey(key: Key) -> [Value] {
         if let values = dictionary[key] {
             return values

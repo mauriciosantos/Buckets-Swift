@@ -43,6 +43,7 @@ public struct BloomFilter<T: Printable> {
     :returns:
     */
     public init(expectedSize: Int, falsePositiveProbability fpp: Double = Constants.DefaultFPP) {
+        fnv1(-1.0)
         
         if expectedSize < 0 {
             fatalError("Can't construct BloomFilter with expectedSize < 0")
