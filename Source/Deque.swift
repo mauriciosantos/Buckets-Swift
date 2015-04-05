@@ -15,7 +15,7 @@ import Foundation
 /// The `enqueueFirst`, `enqueueLast`, `dequeueFirst` and `dequeueLast` 
 /// operations run in amortized constant time.
 /// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
-/// `Printable` and `DebugPrintable`.
+/// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Deque<T> {
     
     // MARK: Properties
@@ -44,7 +44,7 @@ public struct Deque<T> {
     
     // MARK: Creating a Deque
     
-    /// Constructs an empty deque of type `T`.
+    /// Constructs an empty deque.
     public init() {}
     
     /// Constructs a deque from a sequence, such as an array.
@@ -86,7 +86,7 @@ public struct Deque<T> {
     }    
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension Deque: SequenceType {
     
@@ -100,8 +100,6 @@ extension Deque: SequenceType {
     }
 }
 
-// MARK: - ArrayLiteralConvertible
-
 extension Deque: ArrayLiteralConvertible {
     
     // MARK: ArrayLiteralConvertible Protocol Conformance
@@ -113,8 +111,6 @@ extension Deque: ArrayLiteralConvertible {
         self.init(elements)
     }
 }
-
-// MARK: - Printable
 
 extension Deque: Printable, DebugPrintable {
     
@@ -149,3 +145,5 @@ public func ==<U: Equatable>(lhs: Deque<U>, rhs: Deque<U>) -> Bool {
 public func !=<U: Equatable>(lhs: Deque<U>, rhs: Deque<U>) -> Bool {
     return !(lhs==rhs)
 }
+
+extension Deque: ReconstructableSequence {}

@@ -37,7 +37,7 @@ public struct PriorityQueue<T> {
     
     // MARK: Creating a Priority Queue
     
-    /// Constructs an empty priority queue of type `T` using a given closure to
+    /// Constructs an empty priority queue using the given closure to
     /// determine the order of a provided pair of elements. The closure that you supply for 
     /// `isOrderedBefore` should return a Boolean value to indicate whether one element 
     /// should be before (`true`) or after (`false`) another element.
@@ -81,7 +81,7 @@ public struct PriorityQueue<T> {
     }
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension PriorityQueue: SequenceType {
     
@@ -94,8 +94,6 @@ extension PriorityQueue: SequenceType {
         return heap.generate()
     }
 }
-
-// MARK: - Printable
 
 extension PriorityQueue: Printable, DebugPrintable {
     

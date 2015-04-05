@@ -14,7 +14,7 @@ import Foundation
 ///
 /// The `enqueue` and `dequeue` operations run in amortized constant time.
 /// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
-/// `Printable` and `DebugPrintable`.
+/// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Queue<T> {
     
     private var items = CircularArray<T>()
@@ -38,7 +38,7 @@ public struct Queue<T> {
     
     // MARK: Creating a Queue
     
-    /// Constructs an empty queue of type `T`.
+    /// Constructs an empty queue.
     public init() {}
     
     /// Constructs a queue from a sequence, such as an array.
@@ -68,7 +68,7 @@ public struct Queue<T> {
     }
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension Queue: SequenceType {
     
@@ -82,8 +82,6 @@ extension Queue: SequenceType {
     }
 }
 
-// MARK: - ArrayLiteralConvertible
-
 extension Queue: ArrayLiteralConvertible {
     
     // MARK: ArrayLiteralConvertible Protocol Conformance
@@ -95,8 +93,6 @@ extension Queue: ArrayLiteralConvertible {
         self.init(elements)
     }
 }
-
-// MARK: - Printable
 
 extension Queue: Printable, DebugPrintable {
     
@@ -117,7 +113,7 @@ extension Queue: Printable, DebugPrintable {
     }
 }
 
-// MARK: - Operators
+// MARK: -
 
 // MARK: Queue Operators
 
@@ -132,4 +128,4 @@ public func !=<U: Equatable>(lhs: Queue<U>, rhs: Queue<U>) -> Bool {
     return !(lhs==rhs)
 }
 
-
+extension Queue: ReconstructableSequence {}

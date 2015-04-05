@@ -19,7 +19,7 @@ private struct Constants {
 /// It allows to get or set elements using subscript notation.
 ///
 /// Comforms to `SequenceType`, `MutableCollectionType`,
-/// `ArrayLiteralConvertible`, `Equatable`, `Printable` and `DebugPrintable`.
+/// `ArrayLiteralConvertible`, `Equatable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct CircularArray<T> {
     
     // MARK: Properties
@@ -50,7 +50,7 @@ public struct CircularArray<T> {
     
     // MARK: Creating a Circular Array
     
-    /// Constructs an empty array of type `T`.
+    /// Constructs an empty circular array.
     public init() {}
     
     /// Constructs a circular array with a given number of elements, each 
@@ -196,7 +196,7 @@ public struct CircularArray<T> {
     }
 }
 
-// MARK:- SequenceType
+// MARK: -
 
 extension CircularArray: SequenceType {
     
@@ -216,8 +216,6 @@ extension CircularArray: SequenceType {
         }
     }
 }
-
-// MARK: - MutableCollectionType
 
 extension CircularArray: MutableCollectionType {
     
@@ -251,8 +249,6 @@ extension CircularArray: MutableCollectionType {
     }
 }
 
-// MARK: - ArrayLiteralConvertible
-
 extension CircularArray: ArrayLiteralConvertible {
     
     // MARK: ArrayLiteralConvertible Protocol Conformance
@@ -263,8 +259,6 @@ extension CircularArray: ArrayLiteralConvertible {
         self.init(elements)
     }
 }
-
-// MARK: - Printable
 
 extension CircularArray: Printable, DebugPrintable {
     
@@ -302,3 +296,5 @@ public func ==<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bo
 public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool {
     return !(lhs==rhs)
 }
+
+extension CircularArray: ReconstructableSequence {}

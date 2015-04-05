@@ -43,6 +43,9 @@
           <a href="Extensions.html">Extensions</a>
             <ul class="nav-chapters">
               <li class="nav-chapter">
+                <a href="Extensions.html#/s:Sa">Array</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Extensions/Bimap.html">Bimap</a>
               </li>
               <li class="nav-chapter">
@@ -68,6 +71,12 @@
               </li>
               <li class="nav-chapter">
                 <a href="Extensions/Stack.html">Stack</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Extensions.html#/s:SS">String</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Extensions/Trie.html">Trie</a>
               </li>
             </ul>
           </li>
@@ -104,6 +113,14 @@
             </ul>
           </li>
           <li class="part-name tasks">
+          <a href="Protocols.html">Protocols</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Protocols.html#/s:P7Buckets23ReconstructableSequence">ReconstructableSequence</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
           <a href="Structs.html">Structs</a>
             <ul class="nav-chapters">
               <li class="nav-chapter">
@@ -133,6 +150,9 @@
               <li class="nav-chapter">
                 <a href="Structs/Stack.html">Stack</a>
               </li>
+              <li class="nav-chapter">
+                <a href="Structs/Trie.html">Trie</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -149,12 +169,71 @@
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
+                
+                <a name="/Unnamed"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:SS">
+                    <a name="//apple_ref/swift/Extension/String" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:SS">String</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">An arbitrary Unicode string value.Unicode-Correct ===============Swift strings are designed to be Unicode-correct.  In particular, the APIs make it easy to write code that works correctly, and does not surprise end-users, regardless of where you venture in the Unicode character space.  For example,<ul><li>The <code>==</code> operator checks for Unicode canonical equivalence, so two different representations of the same string will always compare equal.</li><li>String elements are <code>Characters</code> (Unicode extended grapheme clusters), a unit of text that is meaningful to most humans.</li></ul>Locale-Insensitive ==================The fundamental operations on Swift strings are not sensitive to locale settings.  That&rsquo;s because, for example, the validity of a <code>Dictionary&lt;String, T&gt;</code> in a running program depends on a given string comparison having a single, stable result.  Therefore, Swift always uses the default, un-tailored Unicode algorithms for basic string operations.Importing <code>Foundation</code> endows swift strings with the full power of the <code>NSString</code> API, which allows you to choose more complex locale-sensitive operations explicitly.Value Semantics ===============Each string variable, <code>let</code> binding, or stored property has an independent value, so mutations to the string are not observable through its copies::<blockquote>var a = <q>foo</q> var b = a b[b.endIndex.predecessor()] = <q>x</q> println(<q>a=\(a), b=\(b)</q>)     // a=foo, b=fox</blockquote>Strings use Copy-on-Write so that their data is only copied lazily, upon mutation, when more than one string instance is using the same buffer.  Therefore, the first in any sequence of mutating operations may cost <code>O(N)</code> time and space, where <code>N</code> is the length of the string&rsquo;s (unspecified) underlying representation,.Growth and Capacity ===================When a string&rsquo;s contiguous storage fills up, new storage must be allocated and characters must be moved to the new storage. <code>String</code> uses an exponential growth strategy that makes <code>append</code> a constant time operation <em>when amortized over many invocations</em>.Objective-C Bridge ==================<code>String</code> is bridged to Objective-C as <code>NSString</code>, and a <code>String</code> that originated in Objective-C may store its characters in an <code>NSString</code>.  Since any arbitrary subclass of <code>NSSString</code> can become a <code>String</code>, there are no guarantees about representation or efficiency in this case.  Since <code>NSString</code> is immutable, it is just as though the storage was shared by some copy: the first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost <code>O(N)</code> time and space, where <code>N</code> is the length of the string representation (or more, if the underlying <code>NSString</code> is has unusual performance characteristics).</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:Sa">
+                    <a name="//apple_ref/swift/Extension/Array" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:Sa">Array</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Conceptually_, <code>Array</code> is an efficient, tail-growable random-access collection of arbitrary elements.Common Properties of Array Types ================================The information in this section applies to all three of Swift&rsquo;s array types, <code>Array&lt;T&gt;</code>, <code>ContiguousArray&lt;T&gt;</code>, and <code>Slice&lt;T&gt;</code>. When you read the word <q>array</q> here in a normal typeface, it applies to all three of them.Value Semantics &mdash;&mdash;&mdash;&mdash;&mdash;Each array variable, <code>let</code> binding, or stored property has an independent value that includes the values of all of its elements. Therefore, mutations to the array are not observable through its copies::<blockquote>var a = [1, 2, 3] var b = a b[0] = 4 println(<q>a=\(a), b=\(b)</q>)     // a=[1, 2, 3], b=[4, 2, 3]</blockquote>(Of course, if the array stores <code>class</code> references, the objects are shared; only the values of the references are independent)Arrays use Copy-on-Write so that their storage and elements are only copied lazily, upon mutation, when more than one array instance is using the same buffer.  Therefore, the first in any sequence of mutating operations may cost <code>O(N)</code> time and space, where <code>N</code> is the length of the array.Growth and Capacity &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-When an array&rsquo;s contiguous storage fills up, new storage must be allocated and elements must be moved to the new storage.  <code>Array</code>, <code>ContiguousArray</code>, and <code>Slice</code> share an exponential growth strategy that makes <code>append</code> a constant time operation <em>when amortized over many invocations</em>.  In addition to a <code>count</code> property, these array types have a <code>capacity</code> that reflects their potential to store elements without reallocation, and when you know how many elements you&rsquo;ll store, you can call <code>reserveCapacity</code> to pre-emptively reallocate and prevent intermediate reallocations&hellip; _Conceptually:Objective-C Bridge ==================The main distinction between <code>Array</code> and the other array types is that it interoperates seamlessly and efficiently with Objective-C.<code>Array&lt;T&gt;</code> is considered bridged to Objective-C iff <code>T</code> is bridged to Objective-C.When <code>T</code> is a <code>class</code> or <code>@objc</code> protocol type, <code>Array</code> may store its elements in an <code>NSArray</code>.  Since any arbitrary subclass of <code>NSArray</code> can become an <code>Array</code>, there are no guarantees about representation or efficiency in this case (see also <code>ContiguousArray</code>).  Since <code>NSArray</code> is immutable, it is just as though the storage was shared by some copy: the first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost <code>O(N)</code> time and space, where <code>N</code> is the length of the array (or more, if the underlying <code>NSArray</code> is has unusual performance characteristics).Bridging to Objective-C &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;Any bridged <code>Array</code> can be implicitly converted to an <code>NSArray</code>. When <code>T</code> is a <code>class</code> or <code>@objc</code> protocol, bridging takes O(1) time and O(1) space.  Other <code>Array</code>\ s must be bridged element-by-element, allocating a new object for each element, at a cost of at least O(<code>count</code>) time and space.Bridging from Objective-C &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-An <code>NSArray</code> can be implicitly or explicitly converted to any bridged <code>Array&lt;T&gt;</code>.  This conversion calls <code>copyWithZone</code> on the <code>NSArray</code>, to ensure it won&rsquo;t be modified, and stores the result in the <code>Array</code>.  Type-checking, to ensure the <code>NSArray</code>\ &rsquo;s elements match or can be bridged to <code>T</code>, is deferred until the first element access.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">MutableCollectionType</span><span class="p">,</span> <span class="kt">Sliceable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed2"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -190,8 +269,8 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                
-                <a name="/Unnamed"></a>
+                <hr/>
+                <a name="/Unnamed3"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -208,7 +287,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A circular array provides most of the feaures of a standard array such as constant-time random access in addition to amortized constant-time insertion/removal at both ends, instead of just one end. It allows to get or set elements using subscript notation.Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">A circular array provides most of the feaures of a standard array such as constant-time random access in addition to amortized constant-time insertion/removal at both ends, instead of just one end. It allows to get or set elements using subscript notation.Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code>, <code>DebugPrintable</code> and <code>ReconstructableSequence</code>.</p>
                         <a href="Extensions/CircularArray.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -228,11 +307,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType2"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType2">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed4"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -269,11 +344,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType3"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType3">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed5"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -290,7 +361,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A Bimap is a special kind of dictionary that allows bidirectional lookup between key and values. It allows to get, set, or delete a key-value pair using subscript notation: <code>bimap[value: theValue]</code> or <code>bimap[key: thekey]</code>Comforms to <code>SequenceType</code>, <code>CollectionType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">A Bimap is a special kind of dictionary that allows bidirectional lookup between key and values. All keys and values must be unique. It allows to get, set, or delete a key-value pairs using subscript notation: <code>bimap[value: theValue]</code> or <code>bimap[key: thekey]</code>Comforms to <code>SequenceType</code>, <code>CollectionType</code>, <code>DictionaryLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
                         <a href="Extensions/Bimap.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -310,11 +381,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType4"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType4">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed6"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -331,7 +398,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A Stack is a Last-In-First-Out (LIFO) collection, the last element added to the stack will be the first one to be removed.The <code>push</code> and <code>pop</code> operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">A Stack is a Last-In-First-Out (LIFO) collection, the last element added to the stack will be the first one to be removed.The <code>push</code> and <code>pop</code> operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code>, <code>DebugPrintable</code> and <code>ReconstructableSequence</code>.</p>
                         <a href="Extensions/Stack.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -351,11 +418,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType5"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType5">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed7"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -372,7 +435,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A queue is a First-In-First-Out (FIFO) collection,  the first element added to the queue will be the first one  to be removed.The <code>enqueue</code> and <code>dequeue</code> operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">A queue is a First-In-First-Out (FIFO) collection,  the first element added to the queue will be the first one  to be removed.The <code>enqueue</code> and <code>dequeue</code> operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code>, <code>DebugPrintable</code> and <code>ReconstructableSequence</code>.</p>
                         <a href="Extensions/Queue.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -392,11 +455,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType6"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType6">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed8"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -433,11 +492,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType7"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType7">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed9"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -454,7 +509,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">A double-ended queue (deque) is a collection that generalizes a queue, for which elements can be added to or removed from either the front or back.The <code>enqueueFirst</code>, <code>enqueueLast</code>, <code>dequeueFirst</code> and <code>dequeueLast</code>  operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">A double-ended queue (deque) is a collection that generalizes a queue, for which elements can be added to or removed from either the front or back.The <code>enqueueFirst</code>, <code>enqueueLast</code>, <code>dequeueFirst</code> and <code>dequeueLast</code>  operations run in amortized constant time. Comforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>, <code>Printable</code>, <code>DebugPrintable</code> and <code>ReconstructableSequence</code>.</p>
                         <a href="Extensions/Deque.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -474,11 +529,44 @@
             <div class="task-group">
               <div class="task-name-container">
                 <hr/>
-                <a name="/SequenceType8"></a>
-                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
-                <a href="#/SequenceType8">
-                  <h3 class="section-name">SequenceType</h3>
-                </a>
+                <a name="/Unnamed10"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:V7Buckets4Trie">
+                    <a name="//apple_ref/swift/Extension/Trie" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:V7Buckets4Trie">Trie</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">A Trie (sometimes called a prefix tree) is used for storing a set of sequences compactly and searching for full sequences or partial prefixes very efficiently. It is commonly used with strings, but is not mandatory. However, is recommended that sequences have a somewhat limited set of possible elemment values. Trie elements must conform to the <code>ReconstructableSequence</code> protocol.The operations for insertion, removal, lookup, and prefix matching run in O(n) time, where n is the length of the sequence or prefix. Comforms to <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <a href="Extensions/Trie.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Trie</span><span class="o">&lt;</span><span class="kt">T</span> <span class="p">:</span> <span class="kt">ReconstructableSequence</span> <span class="k">where</span> <span class="kt">T</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <hr/>
+                <a name="/Unnamed11"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -495,7 +583,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">An array of boolean values stored using individual bits, thus providing a very small memory footprint. It has most of the feaures of a standard array such as constant time random access and amortized constant time insertion at the end of the array.Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+                        <p class="para">An array of boolean values stored using individual bits, thus providing a very small memory footprint. It has most of the feaures of a standard array such as constant time random access and amortized constant time insertion at the end of the array.Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code>, <code>DebugPrintable</code> and <code>ReconstructableSequence</code>.</p>
                         <a href="Extensions/BitArray.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -515,7 +603,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-04-02)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-04-05)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

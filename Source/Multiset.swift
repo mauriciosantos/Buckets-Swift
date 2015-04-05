@@ -35,7 +35,7 @@ public struct Multiset<T: Hashable> {
     
     // MARK: Creating a Multiset
     
-    /// Constructs an empty Multiset of type `T`.
+    /// Constructs an empty multiset.
     public init() {}
     
     /// Constructs a multiset from a sequence, such as an array.
@@ -47,7 +47,7 @@ public struct Multiset<T: Hashable> {
     
     // MARK: Querying a Multiset
     
-    /// Returns `true` if the multiset contains the specified element.
+    /// Returns `true` if the multiset contains the given element.
     public func contains(element: T) -> Bool {
         return members[element] != nil
     }
@@ -130,7 +130,7 @@ public struct Multiset<T: Hashable> {
     }
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension Multiset: SequenceType {
     
@@ -156,7 +156,6 @@ extension Multiset: SequenceType {
         }
     }
 }
-// MARK: - Printable
 
 extension Multiset: Printable, DebugPrintable {
     
@@ -177,8 +176,6 @@ extension Multiset: Printable, DebugPrintable {
     }
 }
 
-// MARK: - ArrayLiteralConvertible
-
 extension Multiset: ArrayLiteralConvertible {
     
     // MARK: ArrayLiteralConvertible Protocol Conformance
@@ -190,8 +187,6 @@ extension Multiset: ArrayLiteralConvertible {
     }
 }
 
-// MARK: - Hashable
-
 extension Multiset: Hashable {
     
     // MARK: Hashable Protocol Conformance
@@ -200,8 +195,8 @@ extension Multiset: Hashable {
     /// `x == y` implies `x.hashValue == y.hashValue`
     public var hashValue: Int {
         var result = 3
-        result = result ^ uniqueCount
-        result = result ^ count
+        result = (31 ^ result) ^ uniqueCount
+        result = (31 ^ result) ^ count
         for element in self {
             result = (31 ^ result) ^ element.hashValue
         }
@@ -209,7 +204,7 @@ extension Multiset: Hashable {
     }
 }
 
-// MARK: Multiset Operators
+// MARK: Multiset Equatable Conformance
 
 /// Returns `true` if and only if the multisets contain the same number of ocurrences per element.
 public func ==<T>(lhs: Multiset<T>, rhs: Multiset<T>) -> Bool {

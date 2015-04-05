@@ -13,7 +13,7 @@ import Foundation
 ///
 /// The `push` and `pop` operations run in amortized constant time.
 /// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
-/// `Printable` and `DebugPrintable`.
+/// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Stack<T> {
 
     // MARK: Properties
@@ -37,7 +37,7 @@ public struct Stack<T> {
 
     // MARK: Creating a Stack
     
-    /// Constructs an empty stack of type `T`.
+    /// Constructs an empty stack.
     public init() {}
     
     /// Constructs a stack from a sequence, such as an array.
@@ -67,7 +67,7 @@ public struct Stack<T> {
     }
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension Stack: SequenceType {
     
@@ -89,8 +89,6 @@ extension Stack: SequenceType {
     }
 }
 
-// MARK: - ArrayLiteralConvertible
-
 extension Stack: ArrayLiteralConvertible {
     
     // MARK: ArrayLiteralConvertible Protocol Conformance
@@ -102,8 +100,6 @@ extension Stack: ArrayLiteralConvertible {
         self.elements = elements
     }
 }
-
-// MARK: - Printable
 
 extension Stack: Printable, DebugPrintable {
     
@@ -139,3 +135,4 @@ public func !=<U: Equatable>(lhs: Stack<U>, rhs: Stack<U>) -> Bool {
     return !(lhs == rhs)
 }
 
+extension Stack: ReconstructableSequence {}

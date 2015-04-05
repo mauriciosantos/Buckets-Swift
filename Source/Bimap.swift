@@ -134,7 +134,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     }
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension Bimap: SequenceType {
     
@@ -148,11 +148,9 @@ extension Bimap: SequenceType {
     }
 }
 
-// MARK: - CollectionType
-
 extension Bimap: CollectionType {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: CollectionType Protocol Conformance
     
     /// The position of the first element in a non-empty bimap.
     ///
@@ -179,8 +177,6 @@ extension Bimap: CollectionType {
     }
 }
 
-// MARK: - DictionaryLiteralConvertible
-
 extension Bimap: DictionaryLiteralConvertible {
     
     // MARK: DictionaryLiteralConvertible Protocol Conformance
@@ -190,8 +186,6 @@ extension Bimap: DictionaryLiteralConvertible {
         self.init(elements)
     }
 }
-
-// MARK: - Printable
 
 extension Bimap: Printable, DebugPrintable {
     
@@ -212,8 +206,6 @@ extension Bimap: Printable, DebugPrintable {
     }
 }
 
-// MARK: - Hashable
-
 extension Bimap: Hashable {
     
     // MARK: Hashable Protocol Conformance
@@ -230,7 +222,7 @@ extension Bimap: Hashable {
     }
 }
 
-// MARK: Bimap Operators
+// MARK: Bimap Equatable Conformance
 
 /// Returns `true` if and only if the bimaps contain the same key-value pairs.
 public func ==<Key, Value>(lhs: Bimap<Key, Value>, rhs: Bimap<Key, Value>) -> Bool {

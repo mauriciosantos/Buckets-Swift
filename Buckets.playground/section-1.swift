@@ -10,29 +10,20 @@ import Buckets
 ////bimap[key: "hey"] = nil
 //bimap[value: "hello"]
 
-
-
-var mp: Multimap<Int,String> = [1:"2", 1:"2", 4:"34"]
-mp[1]
-mp[1, .Insert] = ["444"]
-mp[1]
-mp.insertValue(1, forKey: 2)
-
-
-
-var multiset = Multiset<Int>([1,1,3])
-
-multiset.description
-
 var tr = Trie<String>()
-tr.insertSequence("hello")
-tr.hasPrefix("hello")
+tr.insert("hello")
+tr.insert("hello")
 
-var cop = tr
 
-tr.insertSequence("holb")
-cop.containsSequence("holb")
-tr.containsSequence("holb")
+tr.insert("holb")
+tr.containsPrefix("rello")
+tr.insert("holb")
+tr.insert("holba")
+tr.insert("holb")
+tr.contains("")
+tr.elements
+tr.elementsMatchingPrefix("hol")
+tr.longestPrefixMatching("holbaa")
 
-var str: String
+
 

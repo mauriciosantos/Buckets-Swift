@@ -69,7 +69,7 @@ class BitArrayTests: XCTestCase {
     }
     
     func testNonEmptyRemoveLast() {
-        bArray = BitArray(boolRepresentation: TestData.List)
+        bArray = BitArray(TestData.List)
         
         let last = bArray.removeLast()
         XCTAssertTrue(last != nil && last == TestData.List.last!)
@@ -86,7 +86,7 @@ class BitArrayTests: XCTestCase {
         // TODO: Split in multiple tests
         for i in 0...TestData.List.count {
                 var list = TestData.List
-                var array = BitArray(boolRepresentation: list)
+                var array = BitArray(list)
                 list.insert(true, atIndex: i)
                 array.insert(true, atIndex: i)
                 XCTAssertEqual(array.count, list.count)
@@ -103,7 +103,7 @@ class BitArrayTests: XCTestCase {
     func testMultipleElementsRemoveAtIndex() {
         for i in 0..<TestData.List.count {
             var list = TestData.List
-            var array = BitArray(boolRepresentation: list)
+            var array = BitArray(list)
             XCTAssertEqual(list.removeAtIndex(i), array.removeAtIndex(i))
             XCTAssertEqual(array.cardinality, cardinality(list))
             XCTAssertEqual(array.count, list.count)
@@ -118,7 +118,7 @@ class BitArrayTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        bArray = BitArray(boolRepresentation: TestData.List)
+        bArray = BitArray(TestData.List)
         bArray.removeAll(keepCapacity: true)
         XCTAssertEqual(bArray.cardinality, 0)
         XCTAssertEqual(bArray.count, 0)
@@ -126,7 +126,7 @@ class BitArrayTests: XCTestCase {
     }
     
     func testAppendAfterRemoveAll() {
-        bArray = BitArray(boolRepresentation: TestData.List)
+        bArray = BitArray(TestData.List)
         bArray.removeAll(keepCapacity: true)
         bArray.append(true)
         XCTAssertEqual(bArray.cardinality, 1)
@@ -136,7 +136,7 @@ class BitArrayTests: XCTestCase {
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
-        bArray = BitArray(boolRepresentation: TestData.List)
+        bArray = BitArray(TestData.List)
         XCTAssertTrue(equal(bArray, TestData.List))
     }
     
@@ -144,7 +144,7 @@ class BitArrayTests: XCTestCase {
     
     func testSubscriptGet() {
         let list = TestData.List
-        bArray = BitArray(boolRepresentation: list)
+        bArray = BitArray(list)
         for i in 0..<bArray.count {
             XCTAssertEqual(bArray[i], list[i])
         }

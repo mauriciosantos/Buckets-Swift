@@ -44,6 +44,9 @@
           <a href="../Extensions.html">Extensions</a>
             <ul class="nav-chapters">
               <li class="nav-chapter">
+                <a href="../Extensions.html#/s:Sa">Array</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Extensions/Bimap.html">Bimap</a>
               </li>
               <li class="nav-chapter">
@@ -69,6 +72,12 @@
               </li>
               <li class="nav-chapter">
                 <a href="../Extensions/Stack.html">Stack</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions.html#/s:SS">String</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions/Trie.html">Trie</a>
               </li>
             </ul>
           </li>
@@ -105,6 +114,14 @@
             </ul>
           </li>
           <li class="part-name tasks">
+          <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Protocols.html#/s:P7Buckets23ReconstructableSequence">ReconstructableSequence</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
           <a href="../Structs.html">Structs</a>
             <ul class="nav-chapters">
               <li class="nav-chapter">
@@ -134,6 +151,9 @@
               <li class="nav-chapter">
                 <a href="../Structs/Stack.html">Stack</a>
               </li>
+              <li class="nav-chapter">
+                <a href="../Structs/Trie.html">Trie</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -145,7 +165,7 @@
         <h1 class="chapter-name">BitArray</h1>
         <section>
           <section class="section">
-            <p class="para">An array of boolean values stored using individual bits, thus providing a very small memory footprint. It has most of the feaures of a standard array such as constant time random access and amortized constant time insertion at the end of the array.</p><p class="para">Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+            <p class="para">An array of boolean values stored using individual bits, thus providing a very small memory footprint. It has most of the feaures of a standard array such as constant time random access and amortized constant time insertion at the end of the array.</p><p class="para">Comforms to <code>SequenceType</code>, <code>MutableCollectionType</code>, <code>ArrayLiteralConvertible</code>, <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code>, <code>DebugPrintable</code> and <code>ReconstructableSequence</code>.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -337,6 +357,33 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
+                    <a name="/s:FV7Buckets8BitArraycFMS0_USs12SequenceType_USs13GeneratorType__FQ_S0_">
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_USs12SequenceType_USs13GeneratorType__FQ_S0_">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Constructs a bit array from a <code>Bool</code> sequence, such as an array.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">Bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
                     <a name="/s:FV7Buckets8BitArraycFMS0_FT17intRepresentationGSaSi__S0_">
                     <a name="//apple_ref/swift/Method/init(intRepresentation:)" class="dashAnchor"></a>
                     <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_FT17intRepresentationGSaSi__S0_">init(intRepresentation:)</a>
@@ -355,33 +402,6 @@
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">intRepresentation</span> <span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:FV7Buckets8BitArraycFMS0_FT18boolRepresentationGSaSb__S0_">
-                    <a name="//apple_ref/swift/Method/init(boolRepresentation:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FV7Buckets8BitArraycFMS0_FT18boolRepresentationGSaSb__S0_">init(boolRepresentation:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Consctructs a new bit array from a <code>Bool</code> array representation.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">boolRepresentation</span> <span class="p">:</span> <span class="p">[</span><span class="kt">Bool</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -572,7 +592,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-04-02)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2015-04-05)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

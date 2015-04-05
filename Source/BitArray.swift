@@ -15,7 +15,7 @@ import Foundation
 /// amortized constant time insertion at the end of the array.
 ///
 /// Comforms to `SequenceType`, `MutableCollectionType`,
-/// `ArrayLiteralConvertible`, `Equatable`, `Printable` and `DebugPrintable`.
+/// `ArrayLiteralConvertible`, `Equatable`, `Hashable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct BitArray {
     
     private struct Constants {
@@ -53,20 +53,19 @@ public struct BitArray {
     /// Consctructs an empty bit array.
     public init() {}
     
+    /// Constructs a bit array from a `Bool` sequence, such as an array.
+    public init<S: SequenceType where S.Generator.Element == Bool>(_ elements: S){
+        for value in elements {
+            append(value)
+        }
+    }
+    
     /// Consctructs a new bit array from an `Int` array representation.
     /// All values different than 0 are considered `true`.
     public init(intRepresentation : [Int]) {
         bits.reserveCapacity((intRepresentation.count/Constants.IntSize) + 1)
         for value in intRepresentation {
             append(value != 0)
-        }
-    }
-    
-    /// Consctructs a new bit array from a `Bool` array representation.
-    public init(boolRepresentation : [Bool]) {
-        bits.reserveCapacity((boolRepresentation.count/Constants.IntSize) + 1)
-        for value in boolRepresentation {
-            append(value)
         }
     }
     
@@ -188,7 +187,7 @@ public struct BitArray {
     }
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension BitArray: SequenceType {
     
@@ -209,8 +208,6 @@ extension BitArray: SequenceType {
         }
     }
 }
-
-// MARK: - MutableCollectionType
 
 extension BitArray: MutableCollectionType {
     
@@ -243,8 +240,6 @@ extension BitArray: MutableCollectionType {
     }
 }
 
-// MARK: - ArrayLiteralConvertible
-
 extension BitArray: ArrayLiteralConvertible {
     
     // MARK: ArrayLiteralConvertible Protocol Conformance
@@ -258,8 +253,6 @@ extension BitArray: ArrayLiteralConvertible {
         }
     }
 }
-
-// MARK: - Printable
 
 extension BitArray: Printable, DebugPrintable {
     
@@ -280,8 +273,6 @@ extension BitArray: Printable, DebugPrintable {
     }
 }
 
-// MARK: - Equatable Protocol Conformance
-
 extension BitArray: Equatable {
 }
 
@@ -294,3 +285,20 @@ public func ==(lhs: BitArray, rhs: BitArray) -> Bool {
     }
     return equal(lhs, rhs)
 }
+
+extension BitArray: Hashable {
+    // MARK: Hashable Protocol Conformance
+    
+    /// The hash value.
+    /// `x == y` implies `x.hashValue == y.hashValue`
+    public var hashValue: Int {
+        var result = 43
+        result = (31 ^ result) ^ count
+        for element in self {
+            result = (31 ^ result) ^ element.hashValue
+        }
+        return result
+    }
+}
+
+extension BitArray: ReconstructableSequence {}

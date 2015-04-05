@@ -159,7 +159,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     }
 }
 
-// MARK: - SequenceType
+// MARK: -
 
 extension Multimap: SequenceType {
     
@@ -187,8 +187,6 @@ extension Multimap: SequenceType {
     }
 }
 
-// MARK: - DictionaryLiteralConvertible
-
 extension Multimap: DictionaryLiteralConvertible {
     
     // MARK: DictionaryLiteralConvertible Protocol Conformance
@@ -199,8 +197,6 @@ extension Multimap: DictionaryLiteralConvertible {
         self.init(elements)
     }
 }
-
-// MARK: - Printable
 
 extension Multimap: Printable, DebugPrintable {
     
@@ -221,13 +217,11 @@ extension Multimap: Printable, DebugPrintable {
     }
 }
 
-// MARK: - Equatable
-
 extension Multimap: Equatable {
     
 }
 
-// MARK: Multimap Operators
+// MARK: Multimap Equatable Conformance
 
 /// Returns `true` if and only if the multimaps contain the same key-value pairs.
 public func ==<Key, Value>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>) -> Bool {

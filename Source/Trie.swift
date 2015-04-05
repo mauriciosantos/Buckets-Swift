@@ -8,116 +8,282 @@
 
 import Foundation
 
-public struct Trie<T: SequenceType where T.Generator.Element: Hashable> {
+/// A Trie (sometimes called a prefix tree) is used for storing a set of
+/// sequences compactly and searching for full sequences or partial prefixes very efficiently.
+/// It is commonly used with strings, but is not mandatory. However, is recommended that
+/// sequences have a somewhat limited set of possible elemment values.
+/// Trie elements must conform to the `ReconstructableSequence` protocol.
+///
+/// The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
+/// where n is the length of the sequence or prefix.
+/// Comforms to `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
+public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashable> {
     
-    typealias ElementType = T.Generator.Element
+    typealias Key = T.Generator.Element
     
-    private var root = TrieNode<T>(element: nil, completeSequence: nil)
+    /// Empty Sequence of type `T`.
+    private let EmptySequence = T([])
     
-    public var sequences: [T] {
-        return getAllSequences(root)
+    // MARK: Properties
+    
+    /// Number of elements stored in the trie.
+    public private(set) var count = 0
+    
+    /// `true` if and only if `count == 0`.
+    public var isEmpty: Bool {
+        return count == 0
     }
     
-    public init() {}
-    
-    public mutating func insertSequence(sequence: T) {
-        copyMyself()
-        insertSequence(sequence, elementGenerator:sequence.generate(), node: root)
+    /// Reconstructs and returns all elements stored in the trie.
+    public var elements: [T] {
+        let emptyGenerator = EmptySequence.generate()
+        return reconstructElementsMatchingPrefix(emptyGenerator, lastKeys: [], node: root)
     }
     
-    public func hasPrefix(prefix: T) -> Bool {
-        return lastNodeOfPrefix(prefix) != nil
-    }
-    
-    public func containsSequence(sequence: T) -> Bool {
-        return lastNodeOfPrefix(sequence)?.isEndOfSequence ?? false
-    }
-    
-    public func allSequences() -> [T] {
-        var sequences = [T]()
-        var currentSequence = [ElementType]()
-        return sequences
-    }
-    
-    private func getAllSequences(node: TrieNode<T>) -> [T] {
+    private func reconstructElementsMatchingPrefix(var prefixGenerator: T.Generator, var lastKeys: [Key], node: TrieNode<Key>) -> [T] {
         var result = [T]()
-        for (_,v) in node.subNodes {
-            if let sequence = v.completeSequence {
-                result.append(sequence)
+        if let key = node.key {
+            lastKeys.append(key)
+        }
+        if let theKey = prefixGenerator.next(), let nextNode = node.subNodes[theKey] {
+            result += reconstructElementsMatchingPrefix(prefixGenerator, lastKeys: lastKeys, node: nextNode)
+        } else {
+            if node.isEndOfSequence {
+                result.append(T(lastKeys))
             }
-            result += getAllSequences(v)
+            for (_, subNode) in node.subNodes {
+                result += reconstructElementsMatchingPrefix(prefixGenerator, lastKeys: lastKeys, node: subNode)
+            }
         }
         return result
     }
     
     
-    private func lastNodeOfPrefix(prefix: T) -> TrieNode<T>? {
-        var nodes = root.subNodes
-        var lastNode : TrieNode<T>? = nil
-        for element in prefix {
-            lastNode = nodes[element]
-            if let lastNode = lastNode {
-                nodes = lastNode.subNodes
-            } else {
-                return nil
-            }
+    private var root = TrieNode<Key>(key: nil)
+    
+    // MARK: Creating a Trie
+    
+    /// Constructs an empty Trie.
+    public init() {}
+    
+    /// Constructs a trie from a sequence, such as an array. Inserts all the elements
+    /// from the given sequence into the trie.
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+        for e in elements {
+            insert(e)
         }
-        return lastNode
     }
     
-    private mutating func insertSequence(sequence: T, var elementGenerator: T.Generator, node: TrieNode<T>) -> Bool {
-        let nextElement = elementGenerator.next()
-        if nextElement == nil {
+    // MARK: Querying a Trie
+    
+    /// Returns `true` if the trie contains the given element
+    /// and it's not just a prefix of another element.
+    public func contains(element: T) -> Bool {
+        let keys = element.generate()
+        let nodePair = nodePairForPrefix(keys, node: root, parent: nil)
+        return nodePair.endNode?.isEndOfSequence ?? false
+    }
+    
+    private func nodePairForPrefix(var keyGenerator: T.Generator,
+        node: TrieNode<Key>, parent: TrieNode<Key>?) -> (endNode: TrieNode<Key>?, parent: TrieNode<Key>?) {
+            
+            let nextKey: Key! = keyGenerator.next()
+            if nextKey == nil {
+                return (node, parent)
+            }
+            
+            if let nextNode = node.subNodes[nextKey] {
+                return nodePairForPrefix(keyGenerator, node: nextNode, parent: node)
+            } else {
+                return (nil, node)
+            }
+    }
+    
+    /// Returns `true` if the trie contains an element matching the given prefix or if the
+    /// given prefix is empty.
+    public func containsPrefix(prefix: T) -> Bool {
+        let keys = prefix.generate()
+        let nodePair = nodePairForPrefix(keys, node: root, parent: nil)
+        return nodePair.endNode != nil
+    }
+    
+    /// Returns all the elements in the trie matching the given prefix.
+    public func elementsMatchingPrefix(prefix: T) -> [T] {
+        let keys = prefix.generate()
+        return reconstructElementsMatchingPrefix(keys, lastKeys: [], node: root)
+    }
+    
+    /// Returns the longest prefix in the trie matching the given prefix.
+    /// This is not necessarily an inserted element.
+    public func longestPrefixMatching(prefix: T) -> T {
+        let keys = prefix.generate()
+        return longestPrefixMatching(keys, lastKeys:[], node: root)
+    }
+    
+    private func longestPrefixMatching(var keyGenerator: T.Generator,
+        var lastKeys: [Key], node: TrieNode<Key>) -> T {
+            
+            if let key = node.key {
+                lastKeys.append(key)
+            }
+            if let theKey = keyGenerator.next(), let nextNode = node.subNodes[theKey] {
+                return longestPrefixMatching(keyGenerator, lastKeys:lastKeys, node: nextNode)
+            }
+            return T(lastKeys)
+    }
+    
+    // MARK: Adding and Removing Elements
+    
+    /// Inserts the given element into the trie.
+    ///
+    /// :returns: `true` if the trie did not already contain the element.
+    public mutating func insert(element: T) -> Bool {
+        copyMyself()
+        if insert(element.generate(), node: root) {
+            count++
             return true
         }
-        
-        let nextNode: TrieNode<T>
-        if node.subNodes[nextElement!] == nil {
-            nextNode = TrieNode<T>(element: nextElement!, completeSequence: nil)
-        }
-        else {
-            nextNode = node.subNodes[nextElement!]!
-        }
-        
-        let isComplete = insertSequence(sequence, elementGenerator:elementGenerator, node: nextNode)
-        node.subNodes[nextElement!] = nextNode
-        
-        if isComplete {
-            nextNode.completeSequence = sequence
-        }
-        
         return false
     }
     
+    private func insert(var keyGenerator: T.Generator, node: TrieNode<Key>) -> Bool {
+        if let nextKey = keyGenerator.next() {
+            let nextNode = node.subNodes[nextKey] ?? TrieNode<Key>(key: nextKey)
+            node.subNodes[nextKey] = nextNode
+            return insert(keyGenerator, node: nextNode )
+        } else {
+            let trieWasModified = node.isEndOfSequence != true
+            node.isEndOfSequence = true
+            return trieWasModified
+        }
+    }
+    
+    /// Removes the given element from the trie and returns
+    /// it if it was present. This does not affect other members
+    /// matching the given element as a prefix.
+    public mutating func remove(element: T) -> T? {
+        copyMyself()
+        let generator = element.generate()
+        let nodePair = nodePairForPrefix(generator, node: root, parent: nil)
+        
+        if let elementNode = nodePair.endNode where elementNode.isEndOfSequence {
+            elementNode.isEndOfSequence = false
+            if let parentNode = nodePair.parent, let key = elementNode.key where elementNode.subNodes.isEmpty  {
+                parentNode.subNodes.removeValueForKey(key)
+            }
+            return element
+        }
+        return nil
+    }
+    
+    /// Removes all the elements from the trie.
+    public mutating func removeAll() {
+        root = TrieNode<Key>(key: nil)
+        count = 0
+    }
+    
+    // MARK: Private Helper Methods
+    
+    /// Cretes a new copy of the root node and all its subnodes if there´s
+    /// more than one strong reference pointing to the root node.
+    ///
+    /// The Trie itself is a value type but a TrieNode is a reference type,
+    /// calling this method ensures copy-on-write behavior.
     private mutating func copyMyself() {
         if !isUniquelyReferencedNonObjC(&root) {
-            root = root.copy()
+            root = deepCopyNode(root)
         }
+    }
+    
+    private func deepCopyNode(node: TrieNode<Key>) -> TrieNode<Key> {
+        var copy = TrieNode(key: node.key, isEndOfSequence: node.isEndOfSequence)
+        for (key, subNode) in node.subNodes {
+            copy.subNodes[key] = deepCopyNode(subNode)
+        }
+        return copy
     }
 }
 
-private final class TrieNode<T: SequenceType where T.Generator.Element: Hashable> {
+// MARK: -
+
+extension Trie: Printable, DebugPrintable {
     
-    typealias ElementType = T.Generator.Element
+    // MARK: Printable Protocol Conformance
     
-    var completeSequence: T?
-    var element: ElementType?
-    var subNodes = [ElementType : TrieNode<T>]()
-    
-    var isEndOfSequence : Bool {
-        return completeSequence != nil
+    /// A string containing a suitable textual
+    /// representation of the trie.
+    public var description: String {
+        return "[" + join(", ", map(elements) {"\($0)"}) + "]"
     }
     
-    init(element: ElementType?, completeSequence: T?){
-        self.completeSequence = completeSequence
-        self.element = element
-    }
+    // MARK: DebugPrintable Protocol Conformance
     
-    func copy() -> TrieNode<T> {
-        var selfCopy = TrieNode(element: element, completeSequence: completeSequence)
-        for (k,v) in subNodes {
-            selfCopy.subNodes[k] = v.copy()
-        }
-        return selfCopy
+    /// A string containing a suitable textual representation
+    /// of the trie when debugging.
+    public var debugDescription: String {
+        return description
     }
 }
+
+extension Trie: Hashable {
+    
+    // MARK: Hashable Protocol Conformance
+    
+    /// The hash value.
+    /// `x == y` implies `x.hashValue == y.hashValue`
+    public var hashValue: Int {
+        return hashValue(root)
+    }
+    
+    private func hashValue(node: TrieNode<Key>) -> Int {
+        var result = 71
+        result = (31 ^ result) ^ node.isEndOfSequence.hashValue
+        result = (31 ^ result) ^ (node.key?.hashValue ?? 0)
+        for (_, subNode) in node.subNodes {
+            result = (31 ^ result) ^ hashValue(subNode)
+        }
+        return result
+    }
+}
+
+// MARK:- Trie Equatable Conformance
+
+/// Returns `true` if and only if the tries contain the same elements.
+public func ==<T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool {
+    if lhs.count != rhs.count {
+        return false
+    }
+    return lhs.root == rhs.root
+}
+
+private func ==<Key>(lhs: TrieNode<Key>, rhs: TrieNode<Key>) -> Bool {
+    if lhs.key != rhs.key || lhs.isEndOfSequence != rhs.isEndOfSequence {
+        return false
+    }
+    if lhs.subNodes.count != rhs.subNodes.count {
+        return false
+    }
+    for (key, leftNode) in lhs.subNodes {
+        if let rightNode = rhs.subNodes[key] {
+            return leftNode == rightNode
+        } else {
+            return false
+        }
+    }
+    return true
+}
+
+// MARK: - TrieNode
+
+private final class TrieNode<Key: Hashable> {
+    let key: Key?
+    var isEndOfSequence : Bool = false
+    var subNodes = [Key : TrieNode<Key>]()
+    
+    init(key: Key?, isEndOfSequence: Bool = false) {
+        self.key = key
+        self.isEndOfSequence = isEndOfSequence
+    }
+}
+
+

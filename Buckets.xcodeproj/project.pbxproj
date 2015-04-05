@@ -35,6 +35,8 @@
 		220DD0DB1AC756080023F3B0 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0D91AC756080023F3B0 /* Multiset.swift */; };
 		222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
 		222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
+		228463CC1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
+		228463CD1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		228E4DBB1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		22A142E61AB4D40900E70376 /* Buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A142DA1AB4D40900E70376 /* Buckets.framework */; };
@@ -103,6 +105,7 @@
 		222334F31AB50F9D00F7480F /* CircularArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularArrayTests.swift; path = Tests/CircularArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		222334F61AB50FB500F7480F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
 		226D18151AB50E230075E567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
+		228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReconstructableSequence.swift; path = Source/ReconstructableSequence.swift; sourceTree = SOURCE_ROOT; };
 		228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArrayTests.swift; path = Tests/BitArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		22A142DA1AB4D40900E70376 /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A142E51AB4D40900E70376 /* Buckets iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Buckets iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +164,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220B6DB01ACF6C6300D2FA52 /* BloomFilter */ = {
+			isa = PBXGroup;
+			children = (
+				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
+				22DC03201AB50D4B006190C7 /* FNVHash.swift */,
+			);
+			name = BloomFilter;
+			sourceTree = "<group>";
+		};
 		220DD0981AC4C40A0023F3B0 /* Private structures */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +187,15 @@
 				220DD0B01AC506D90023F3B0 /* AppleScriptObjC.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		228463CA1ACF6A6E00FE2BC1 /* Trie */ = {
+			isa = PBXGroup;
+			children = (
+				22DC03271AB50D4B006190C7 /* Trie.swift */,
+				228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */,
+			);
+			name = Trie;
 			sourceTree = "<group>";
 		};
 		22A142D01AB4D40900E70376 = {
@@ -212,11 +233,10 @@
 				220DD0D91AC756080023F3B0 /* Multiset.swift */,
 				22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */,
 				22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */,
-				22DC03271AB50D4B006190C7 /* Trie.swift */,
-				22DC03211AB50D4B006190C7 /* Graph.swift */,
-				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
-				22DC03201AB50D4B006190C7 /* FNVHash.swift */,
+				228463CA1ACF6A6E00FE2BC1 /* Trie */,
+				220B6DB01ACF6C6300D2FA52 /* BloomFilter */,
 				22DC03221AB50D4B006190C7 /* LinkedList.swift */,
+				22DC03211AB50D4B006190C7 /* Graph.swift */,
 				22A142DD1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Source;
@@ -452,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DC032C1AB50D4B006190C7 /* BloomFilter.swift in Sources */,
+				228463CC1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */,
 				22DC03281AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				22DC03361AB50D4B006190C7 /* Graph.swift in Sources */,
 				22DC03341AB50D4B006190C7 /* FNVHash.swift in Sources */,
@@ -490,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DC032D1AB50D4B006190C7 /* BloomFilter.swift in Sources */,
+				228463CD1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */,
 				22DC03291AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				22DC03371AB50D4B006190C7 /* Graph.swift in Sources */,
 				22DC03351AB50D4B006190C7 /* FNVHash.swift in Sources */,
