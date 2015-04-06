@@ -77,15 +77,8 @@ extension Stack: SequenceType {
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<T> {
-        var index = count - 1
-        return GeneratorOf<T> {
-            if index >= 0 {
-                let value = self.elements[index]
-                index--
-                return value
-            }
-            return nil
-        }
+        let reverseArrayView = lazy(self.elements).reverse()
+        return GeneratorOf(IndexingGenerator(reverseArrayView))
     }
 }
 

@@ -107,7 +107,7 @@ public struct CircularArray<T> {
     public mutating func insert(element: T, atIndex index: Int) {
         checkIndex(index, lessThan: count + 1)
         append(element)
-        for var i = count - 2; i >= index; i-- {
+        for i in stride(from: count - 2, through: index, by: -1) {
             let rIndex = realIndex(i)
             let nextIndex = realIndex(i+1)
             items[nextIndex] = items[rIndex]
@@ -206,14 +206,7 @@ extension CircularArray: SequenceType {
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<T> {
-        var current = head
-        return GeneratorOf<T> {
-            if let value = self.items[current] {
-                current = self.increaseIndex(current)
-                return value
-            }
-            return nil
-        }
+        return GeneratorOf(IndexingGenerator(self))
     }
 }
 

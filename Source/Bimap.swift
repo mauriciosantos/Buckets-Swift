@@ -29,12 +29,12 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
         return keysToValues.isEmpty
     }
     
-    /// An unordered iterable collection of all of a bimap's keys (read-only).
+    /// A collection containing all the bimap's keys.
     public var keys: LazyForwardCollection<MapCollectionView<[Key : Value], Key>> {
         return keysToValues.keys
     }
     
-    /// An unordered iterable collection of all of a bimap's values (read-only).
+    /// A collection containing all the bimap's values.
     public var values: LazyForwardCollection<MapCollectionView<[Value : Key], Value>> {
         return valuesToKeys.keys
     }

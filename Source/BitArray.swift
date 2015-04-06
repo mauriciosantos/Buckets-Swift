@@ -98,7 +98,7 @@ public struct BitArray {
     public mutating func insert(bit: Bool, atIndex index: Int) {
         checkIndex(index, lessThan: count + 1)
         append(bit)
-        for var i = count - 2; i >= index; i-- {
+        for i in stride(from: count - 2, through: index, by: -1) {
             let iBit = valueAtIndex(i)
             setValue(iBit, atIndex: i+1)
         }
@@ -197,15 +197,7 @@ extension BitArray: SequenceType {
     ///
     /// :returns: A generator over the bits.
     public func generate() -> GeneratorOf<Bool> {
-        var i = 0
-        return GeneratorOf<Bool> {
-            if i < self.count {
-                let value = self.valueAtIndex(i)
-                i++
-                return value
-            }
-            return nil
-        }
+        return GeneratorOf(IndexingGenerator(self))
     }
 }
 

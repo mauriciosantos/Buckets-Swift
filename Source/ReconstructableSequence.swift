@@ -13,6 +13,5 @@ public protocol ReconstructableSequence: SequenceType {
     init<S: SequenceType where S.Generator.Element == Generator.Element>(_ elements: S)
 }
 
-/// lala
 extension String: ReconstructableSequence {}
 extension Array: ReconstructableSequence {}

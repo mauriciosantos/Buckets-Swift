@@ -30,18 +30,16 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return count == 0
     }
     
-    /// A set containing all the keys in the multimap.
-    public var keys: Set<Key> {
-        return Set(dictionary.keys)
+    /// A sequence containing the multimap's unique keys.
+    public var keys: LazySequence<LazyForwardCollection<MapCollectionView<[Key : [Value]], Key>>> {
+        return lazy(dictionary.keys)
     }
     
-    /// An array containing all the values in the multimap.
-    public var values: [Value] {
-        var result = [Value]()
-        for (_, values) in dictionary {
-            result += values
-        }
-        return result
+    /// A sequence containing the multimap's values.
+    public var values: LazySequence<GeneratorOf<Value>> {
+        var selfGenerator = generate()
+        let valueGenerator = GeneratorOf { selfGenerator.next()?.1 }
+        return lazy(valueGenerator)
     }
     
     private var dictionary = [Key: [Value]]()
@@ -124,18 +122,11 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     /// :returns: The removed value, or nil if no matching pair is found.
     public mutating func removeValue(value: Value, forKey key: Key) -> Value? {
         if var values = dictionary[key] {
-            var removeIndex: Int?
-            for (index, element) in enumerate(values) {
-                if element == value {
-                    removeIndex = index
-                    break
-                }
-            }
-            if let removeIndex = removeIndex {
-                let removed = values.removeAtIndex(removeIndex)
+            if let removeIndex = find(values, value) {
+                let removedValue = values.removeAtIndex(removeIndex)
                 count--
                 dictionary[key] = values
-                return removed
+                return removedValue
             }
             if values.isEmpty {
                 dictionary.removeValueForKey(key)
@@ -171,7 +162,7 @@ extension Multimap: SequenceType {
     public func generate() -> GeneratorOf<(Key,Value)> {
         var keyValueGenerator = dictionary.generate()
         var index = 0
-        var pairs : (Key, [Value])? = keyValueGenerator.next()
+        var pairs = keyValueGenerator.next()
         return GeneratorOf<(Key,Value)> {
             if let tuple = pairs {
                 let value = tuple.1[index]
@@ -225,12 +216,12 @@ extension Multimap: Equatable {
 
 /// Returns `true` if and only if the multimaps contain the same key-value pairs.
 public func ==<Key, Value>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>) -> Bool {
-    if lhs.count != rhs.count || lhs.keyCount != rhs.keyCount   {
+    if lhs.count != rhs.count || lhs.keyCount != rhs.keyCount {
         return false
     }
-    for (k,v) in lhs {
-        var leftValues = lhs[k]
-        var rightValues = rhs[k]
+    for (key, _) in lhs {
+        var leftValues = lhs[key]
+        var rightValues = rhs[key]
         if leftValues.count != rightValues.count {
             return false
         }

@@ -53,59 +53,59 @@ public struct Multiset<T: Hashable> {
     }
     
     /// Returns the number of occurences of an element.
-    public func ocurrences(element: T) -> Int {
+    public func occurrences(element: T) -> Int {
         return members[element] ?? 0
     }
     
     // MARK: Adding and Removing Elements
     
-    /// Inserts a single ocurrence of an element into the multiset.
+    /// Inserts a single occurrence of an element into the multiset.
     ///
-    /// :returns: The number of ocurrences of the element before the operation.
+    /// :returns: The number of occurrences of the element before the operation.
     public mutating func insert(element: T) -> Int {
-        return insert(element, ocurrences: 1)
+        return insert(element, occurrences: 1)
     }
     
     /// Inserts a number of occurrences of an element into the multiset.
     ///
-    /// :returns: The number of ocurrences of the element before the operation.
-    public mutating func insert(element: T, ocurrences: Int) -> Int {
-        if ocurrences < 1 {
-            fatalError("Can't insert < 1 ocurrences")
+    /// :returns: The number of occurrences of the element before the operation.
+    public mutating func insert(element: T, occurrences: Int) -> Int {
+        if occurrences < 1 {
+            fatalError("Can't insert < 1 occurrences")
         }
         let previousNumber = members[element] ?? 0
         
-        members[element] = previousNumber + ocurrences
-        count += ocurrences
+        members[element] = previousNumber + occurrences
+        count += occurrences
         return previousNumber
     }
     
     /// Removes a single occurrence of an element from the multiset, if present.
     ///
-    /// :returns: The number of ocurrences of the element before the operation.
+    /// :returns: The number of occurrences of the element before the operation.
     public mutating func remove(element: T) -> Int {
-        return remove(element, ocurrences: 1)
+        return remove(element, occurrences: 1)
     }
     
     /// Removes a number of occurrences of an element from the multiset.
     /// If the multiset contains fewer than this number of occurrences to begin with,
     /// all occurrences will be removed.
     ///
-    /// :returns: The number of ocurrences of the element before the operation.
-    public mutating func remove(element: T, ocurrences: Int) -> Int {
-        if ocurrences < 1 {
-            fatalError("Can't remove < 1 ocurrences")
+    /// :returns: The number of occurrences of the element before the operation.
+    public mutating func remove(element: T, occurrences: Int) -> Int {
+        if occurrences < 1 {
+            fatalError("Can't remove < 1 occurrences")
         }
-        if let currentOcurrences = members[element] {
-            let nRemoved = min(currentOcurrences, ocurrences)
+        if let currentoccurrences = members[element] {
+            let nRemoved = min(currentoccurrences, occurrences)
             count -= nRemoved
-            let newOcurrencies = currentOcurrences - nRemoved
+            let newOcurrencies = currentoccurrences - nRemoved
             if newOcurrencies == 0 {
                 members.removeValueForKey(element)
             } else {
                 members[element] = newOcurrencies
             }
-            return currentOcurrences
+            return currentoccurrences
         } else {
             return 0
         }
@@ -113,11 +113,11 @@ public struct Multiset<T: Hashable> {
 
     /// Removes all occurrences of an element from the multiset, if present.
     ///
-    /// :returns: The number of ocurrences of the element before the operation.
+    /// :returns: The number of occurrences of the element before the operation.
     public mutating func removeAllOf(element: T) -> Int {
-        let ocurren = ocurrences(element)
+        let ocurren = occurrences(element)
         if ocurren >= 1 {
-            return remove(element, ocurrences: ocurren)
+            return remove(element, occurrences: ocurren)
         }
         return 0
     }
@@ -136,7 +136,7 @@ extension Multiset: SequenceType {
     
     // MARK: SequenceType Protocol Conformance
     
-    /// Provides for-in loop functionality. Generates multiple ocurrences per element.
+    /// Provides for-in loop functionality. Generates multiple occurrences per element.
     ///
     /// :returns: A generator over the elements.
     public func generate() -> GeneratorOf<T> {
@@ -206,13 +206,13 @@ extension Multiset: Hashable {
 
 // MARK: Multiset Equatable Conformance
 
-/// Returns `true` if and only if the multisets contain the same number of ocurrences per element.
+/// Returns `true` if and only if the multisets contain the same number of occurrences per element.
 public func ==<T>(lhs: Multiset<T>, rhs: Multiset<T>) -> Bool {
     if lhs.count != rhs.count || lhs.uniqueCount != rhs.uniqueCount {
         return false
     }
     for element in lhs {
-        if lhs.ocurrences(element) != rhs.ocurrences(element) {
+        if lhs.occurrences(element) != rhs.occurrences(element) {
             return false
         }
     }

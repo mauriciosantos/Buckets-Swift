@@ -59,24 +59,9 @@ func fnv1a(str: String) -> UInt {
     return fnv1a(str.utf8)
 }
 
-/// Calculates FNV-1 hash from an integer type.
-func fnv1<T: IntegerType>(value: T) -> UInt {
+/// Calculates FNV-1 hash from a numeric type.
+func fnv1<T: NumericType>(value: T) -> UInt {
     return fnv1(bytesFromNumber(value))
-}
-
-/// Calculates FNV-1a hash from an integer type.
-func fnv1a<T: IntegerType>(value: T) -> UInt {
-    return fnv1a(bytesFromNumber(value))
-}
-
-/// Calculates FNV-1 hash from a floating point type.
-func fnv1<T: FloatingPointType>(value: T) -> UInt {
-    return fnv1(bytesFromNumber(value))
-}
-
-/// Calculates FNV-1a hash from a floating point type.
-func fnv1a<T: FloatingPointType>(value: T) -> UInt {
-    return fnv1a(bytesFromNumber(value))
 }
 
 private func bytesFromNumber<T>(var value: T) -> [UInt8] {
@@ -84,3 +69,18 @@ private func bytesFromNumber<T>(var value: T) -> [UInt8] {
         Array(UnsafeBufferPointer(start: UnsafePointer<UInt8>($0), count: sizeof(T)))
     }
 }
+
+
+protocol NumericType {}
+extension Double : NumericType {}
+extension Float  : NumericType {}
+extension Int    : NumericType {}
+extension Int8   : NumericType {}
+extension Int16  : NumericType {}
+extension Int32  : NumericType {}
+extension Int64  : NumericType {}
+extension UInt   : NumericType {}
+extension UInt8  : NumericType {}
+extension UInt16 : NumericType {}
+extension UInt32 : NumericType {}
+extension UInt64 : NumericType {}

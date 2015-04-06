@@ -10,8 +10,8 @@ import Foundation
 
 /// A Trie (sometimes called a prefix tree) is used for storing a set of
 /// sequences compactly and searching for full sequences or partial prefixes very efficiently.
-/// It is commonly used with strings, but is not mandatory. However, is recommended that
-/// sequences have a somewhat limited set of possible elemment values.
+/// It is commonly used with strings, but it's not mandatory. However, it is recommended that
+/// sequences have a somewhat limited set of possible element values.
 /// Trie elements must conform to the `ReconstructableSequence` protocol.
 ///
 /// The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
@@ -34,7 +34,7 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
         return count == 0
     }
     
-    /// Reconstructs and returns all elements stored in the trie.
+    /// Reconstructs and returns all the elements stored in the trie.
     public var elements: [T] {
         let emptyGenerator = EmptySequence.generate()
         return reconstructElementsMatchingPrefix(emptyGenerator, lastKeys: [], node: root)
@@ -57,7 +57,6 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
         }
         return result
     }
-    
     
     private var root = TrieNode<Key>(key: nil)
     

@@ -32,7 +32,7 @@ class MultisetTests: XCTestCase {
         XCTAssertEqual(multiset.count, TestData.List.count)
         XCTAssertEqual(multiset.uniqueCount, TestData.UniqueCount)
         for e in TestData.List {
-            XCTAssertEqual(TestData.List.filter{$0==e}.count, multiset.ocurrences(e))
+            XCTAssertEqual(TestData.List.filter{$0==e}.count, multiset.occurrences(e))
             XCTAssertTrue(multiset.contains(e))
         }
     }
@@ -41,7 +41,7 @@ class MultisetTests: XCTestCase {
         multiset.insert(TestData.Value)
         XCTAssertEqual(multiset.count, 1)
         XCTAssertEqual(multiset.uniqueCount, 1)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 1)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 1)
     }
     
     func testConsecutiveInserts() {
@@ -49,24 +49,24 @@ class MultisetTests: XCTestCase {
         multiset.insert(TestData.Value)
         XCTAssertEqual(multiset.count, 2)
         XCTAssertEqual(multiset.uniqueCount, 1)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 2)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 2)
     }
     
-    func testSingleInsertOcurrences() {
-        let prev = multiset.insert(TestData.Value, ocurrences: 5)
+    func testSingleInsertoccurrences() {
+        let prev = multiset.insert(TestData.Value, occurrences: 5)
         XCTAssertEqual(prev, 0)
         XCTAssertEqual(multiset.count, 5)
         XCTAssertEqual(multiset.uniqueCount, 1)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 5)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 5)
     }
     
-    func testConsecutiveInsertOcurrences() {
-        multiset.insert(TestData.Value, ocurrences: 5)
-        let prev = multiset.insert(TestData.Value, ocurrences: 5)
+    func testConsecutiveInsertoccurrences() {
+        multiset.insert(TestData.Value, occurrences: 5)
+        let prev = multiset.insert(TestData.Value, occurrences: 5)
         XCTAssertEqual(prev, 5)
         XCTAssertEqual(multiset.count, 10)
         XCTAssertEqual(multiset.uniqueCount, 1)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 10)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 10)
     }
     
     func testEmptyRemove() {
@@ -74,40 +74,40 @@ class MultisetTests: XCTestCase {
     }
     
     func testRemove() {
-        multiset.insert(TestData.Value, ocurrences: 5)
+        multiset.insert(TestData.Value, occurrences: 5)
         XCTAssertEqual(multiset.remove(TestData.Value), 5)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 4)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 4)
         XCTAssertEqual(multiset.count, 4)
         XCTAssertEqual(multiset.uniqueCount, 1)
     }
     
     func testRemoveUnique() {
-        multiset.insert(TestData.Value, ocurrences: 1)
+        multiset.insert(TestData.Value, occurrences: 1)
         XCTAssertEqual(multiset.remove(TestData.Value), 1)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 0)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 0)
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.uniqueCount, 0)
     }
     
-    func testRemoveOcurrences() {
-        multiset.insert(TestData.Value, ocurrences: 5)
-        XCTAssertEqual(multiset.remove(TestData.Value, ocurrences: 2), 5)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 3)
+    func testRemoveoccurrences() {
+        multiset.insert(TestData.Value, occurrences: 5)
+        XCTAssertEqual(multiset.remove(TestData.Value, occurrences: 2), 5)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 3)
         XCTAssertEqual(multiset.count, 3)
         XCTAssertEqual(multiset.uniqueCount, 1)
     }
     
-    func testRemoveOcurrencesMax() {
-        multiset.insert(TestData.Value, ocurrences: 5)
-        XCTAssertEqual(multiset.remove(TestData.Value, ocurrences: 10), 5)
-        XCTAssertEqual(multiset.ocurrences(TestData.Value), 0)
+    func testRemoveoccurrencesMax() {
+        multiset.insert(TestData.Value, occurrences: 5)
+        XCTAssertEqual(multiset.remove(TestData.Value, occurrences: 10), 5)
+        XCTAssertEqual(multiset.occurrences(TestData.Value), 0)
         XCTAssertFalse(multiset.contains(TestData.Value))
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.uniqueCount, 0)
     }
     
     func testRemoveAllOf() {
-        multiset.insert(TestData.Value, ocurrences: 5)
+        multiset.insert(TestData.Value, occurrences: 5)
         XCTAssertEqual(multiset.removeAllOf(TestData.Value), 5)
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.uniqueCount, 0)
