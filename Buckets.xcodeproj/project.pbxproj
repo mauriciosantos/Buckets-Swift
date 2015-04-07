@@ -46,6 +46,8 @@
 		22AB6B311ACD28B200DEC0D4 /* Bimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */; };
 		22AB6B331ACE213C00DEC0D4 /* MultimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */; };
 		22AB6B341ACE213C00DEC0D4 /* MultimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */; };
+		22CC94411AD35A3A00DCB028 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC94401AD35A3A00DCB028 /* TrieTests.swift */; };
+		22CC94421AD35A3A00DCB028 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC94401AD35A3A00DCB028 /* TrieTests.swift */; };
 		22DB5B2B1ACF42AC00FD59BB /* BimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB5B2A1ACF42AC00FD59BB /* BimapTests.swift */; };
 		22DB5B2C1ACF42AC00FD59BB /* BimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB5B2A1ACF42AC00FD59BB /* BimapTests.swift */; };
 		22DC03281AB50D4B006190C7 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */; };
@@ -112,6 +114,7 @@
 		22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Multimap.swift; path = Source/Multimap.swift; sourceTree = SOURCE_ROOT; };
 		22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bimap.swift; path = Source/Bimap.swift; sourceTree = SOURCE_ROOT; };
 		22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultimapTests.swift; path = Tests/MultimapTests.swift; sourceTree = SOURCE_ROOT; };
+		22CC94401AD35A3A00DCB028 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrieTests.swift; path = Tests/TrieTests.swift; sourceTree = SOURCE_ROOT; };
 		22DB5B2A1ACF42AC00FD59BB /* BimapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BimapTests.swift; path = Tests/BimapTests.swift; sourceTree = SOURCE_ROOT; };
 		22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinaryHeap.swift; path = Source/BinaryHeap.swift; sourceTree = SOURCE_ROOT; };
 		22DC031B1AB50D4B006190C7 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArray.swift; path = Source/BitArray.swift; sourceTree = SOURCE_ROOT; };
@@ -263,6 +266,7 @@
 				220DB8C51ACB59A600CA69C1 /* MultisetTests.swift */,
 				22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */,
 				22DB5B2A1ACF42AC00FD59BB /* BimapTests.swift */,
+				22CC94401AD35A3A00DCB028 /* TrieTests.swift */,
 				22A142EA1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Tests;
@@ -495,6 +499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				220DD0A01AC4D7910023F3B0 /* StackTests.swift in Sources */,
+				22CC94411AD35A3A00DCB028 /* TrieTests.swift in Sources */,
 				222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
 				22AB6B331ACE213C00DEC0D4 /* MultimapTests.swift in Sources */,
 				220DD09A1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */,
@@ -534,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				220DD0A11AC4D7910023F3B0 /* StackTests.swift in Sources */,
+				22CC94421AD35A3A00DCB028 /* TrieTests.swift in Sources */,
 				222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
 				22AB6B341ACE213C00DEC0D4 /* MultimapTests.swift in Sources */,
 				220DD09B1AC4C8DB0023F3B0 /* QueueTests.swift in Sources */,

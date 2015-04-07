@@ -11,7 +11,7 @@ import Foundation
 /// A Trie (sometimes called a prefix tree) is used for storing a set of
 /// sequences compactly and searching for full sequences or partial prefixes very efficiently.
 /// It is commonly used with strings, but it's not mandatory. However, it is recommended that
-/// sequences have a somewhat limited set of possible element values.
+/// sequences have a somewhat limited set of values.
 /// Trie elements must conform to the `ReconstructableSequence` protocol.
 ///
 /// The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
@@ -45,8 +45,10 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
         if let key = node.key {
             lastKeys.append(key)
         }
-        if let theKey = prefixGenerator.next(), let nextNode = node.subNodes[theKey] {
-            result += reconstructElementsMatchingPrefix(prefixGenerator, lastKeys: lastKeys, node: nextNode)
+        if let theKey = prefixGenerator.next() {
+            if let nextNode = node.subNodes[theKey] {
+                result += reconstructElementsMatchingPrefix(prefixGenerator, lastKeys: lastKeys, node: nextNode)
+            }
         } else {
             if node.isEndOfSequence {
                 result.append(T(lastKeys))
@@ -56,6 +58,7 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
             }
         }
         return result
+        
     }
     
     private var root = TrieNode<Key>(key: nil)
@@ -170,6 +173,7 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
             if let parentNode = nodePair.parent, let key = elementNode.key where elementNode.subNodes.isEmpty  {
                 parentNode.subNodes.removeValueForKey(key)
             }
+            count--
             return element
         }
         return nil
@@ -255,6 +259,20 @@ public func ==<T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool {
     return lhs.root == rhs.root
 }
 
+
+// MARK: - TrieNode
+
+private final class TrieNode<Key: Hashable>: Equatable {
+    let key: Key?
+    var isEndOfSequence : Bool = false
+    var subNodes = [Key : TrieNode<Key>]()
+    
+    init(key: Key?, isEndOfSequence: Bool = false) {
+        self.key = key
+        self.isEndOfSequence = isEndOfSequence
+    }
+}
+
 private func ==<Key>(lhs: TrieNode<Key>, rhs: TrieNode<Key>) -> Bool {
     if lhs.key != rhs.key || lhs.isEndOfSequence != rhs.isEndOfSequence {
         return false
@@ -264,25 +282,14 @@ private func ==<Key>(lhs: TrieNode<Key>, rhs: TrieNode<Key>) -> Bool {
     }
     for (key, leftNode) in lhs.subNodes {
         if let rightNode = rhs.subNodes[key] {
-            return leftNode == rightNode
+            if leftNode != rightNode {
+                return false
+            }
         } else {
             return false
         }
     }
     return true
-}
-
-// MARK: - TrieNode
-
-private final class TrieNode<Key: Hashable> {
-    let key: Key?
-    var isEndOfSequence : Bool = false
-    var subNodes = [Key : TrieNode<Key>]()
-    
-    init(key: Key?, isEndOfSequence: Bool = false) {
-        self.key = key
-        self.isEndOfSequence = isEndOfSequence
-    }
 }
 
 
