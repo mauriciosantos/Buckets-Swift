@@ -35,6 +35,8 @@
 		220DD0DB1AC756080023F3B0 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0D91AC756080023F3B0 /* Multiset.swift */; };
 		222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
 		222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
+		22504CBC1AD744CA00FBF4BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22504CBB1AD744CA00FBF4BB /* GraphTests.swift */; };
+		22504CBD1AD744CA00FBF4BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22504CBB1AD744CA00FBF4BB /* GraphTests.swift */; };
 		228463CC1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
 		228463CD1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
@@ -66,8 +68,6 @@
 		22DC03351AB50D4B006190C7 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03201AB50D4B006190C7 /* FNVHash.swift */; };
 		22DC03361AB50D4B006190C7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03211AB50D4B006190C7 /* Graph.swift */; };
 		22DC03371AB50D4B006190C7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03211AB50D4B006190C7 /* Graph.swift */; };
-		22DC03381AB50D4B006190C7 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03221AB50D4B006190C7 /* LinkedList.swift */; };
-		22DC03391AB50D4B006190C7 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03221AB50D4B006190C7 /* LinkedList.swift */; };
 		22DC033A1AB50D4B006190C7 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03241AB50D4B006190C7 /* PriorityQueue.swift */; };
 		22DC033B1AB50D4B006190C7 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03241AB50D4B006190C7 /* PriorityQueue.swift */; };
 		22DC033C1AB50D4B006190C7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03251AB50D4B006190C7 /* Queue.swift */; };
@@ -106,6 +106,7 @@
 		220DD0D91AC756080023F3B0 /* Multiset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Multiset.swift; path = Source/Multiset.swift; sourceTree = SOURCE_ROOT; };
 		222334F31AB50F9D00F7480F /* CircularArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularArrayTests.swift; path = Tests/CircularArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		222334F61AB50FB500F7480F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
+		22504CBB1AD744CA00FBF4BB /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphTests.swift; path = Tests/GraphTests.swift; sourceTree = SOURCE_ROOT; };
 		226D18151AB50E230075E567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
 		228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReconstructableSequence.swift; path = Source/ReconstructableSequence.swift; sourceTree = SOURCE_ROOT; };
 		228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArrayTests.swift; path = Tests/BitArrayTests.swift; sourceTree = SOURCE_ROOT; };
@@ -124,7 +125,6 @@
 		22DC031F1AB50D4B006190C7 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deque.swift; path = Source/Deque.swift; sourceTree = SOURCE_ROOT; };
 		22DC03201AB50D4B006190C7 /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FNVHash.swift; path = Source/FNVHash.swift; sourceTree = SOURCE_ROOT; };
 		22DC03211AB50D4B006190C7 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Source/Graph.swift; sourceTree = SOURCE_ROOT; };
-		22DC03221AB50D4B006190C7 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = Source/LinkedList.swift; sourceTree = SOURCE_ROOT; };
 		22DC03241AB50D4B006190C7 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriorityQueue.swift; path = Source/PriorityQueue.swift; sourceTree = SOURCE_ROOT; };
 		22DC03251AB50D4B006190C7 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Source/Queue.swift; sourceTree = SOURCE_ROOT; };
 		22DC03261AB50D4B006190C7 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Source/Stack.swift; sourceTree = SOURCE_ROOT; };
@@ -238,7 +238,6 @@
 				22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */,
 				228463CA1ACF6A6E00FE2BC1 /* Trie */,
 				220B6DB01ACF6C6300D2FA52 /* BloomFilter */,
-				22DC03221AB50D4B006190C7 /* LinkedList.swift */,
 				22DC03211AB50D4B006190C7 /* Graph.swift */,
 				22A142DD1AB4D40900E70376 /* Supporting Files */,
 			);
@@ -267,6 +266,7 @@
 				22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */,
 				22DB5B2A1ACF42AC00FD59BB /* BimapTests.swift */,
 				22CC94401AD35A3A00DCB028 /* TrieTests.swift */,
+				22504CBB1AD744CA00FBF4BB /* GraphTests.swift */,
 				22A142EA1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Tests;
@@ -466,7 +466,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $SRCROOT/Utilities\nsh docs.sh\ncd ..\ncd Docs/\nopen ./index.html";
+			shellScript = "cd $SRCROOT/Utilities\nsudo sh docs.sh\ncd ..\ncd Docs/\nopen ./index.html";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -489,7 +489,6 @@
 				22DC033A1AB50D4B006190C7 /* PriorityQueue.swift in Sources */,
 				22DC03321AB50D4B006190C7 /* Deque.swift in Sources */,
 				22DC03401AB50D4B006190C7 /* Trie.swift in Sources */,
-				22DC03381AB50D4B006190C7 /* LinkedList.swift in Sources */,
 				22DC032A1AB50D4B006190C7 /* BitArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				220DD0A01AC4D7910023F3B0 /* StackTests.swift in Sources */,
+				22504CBC1AD744CA00FBF4BB /* GraphTests.swift in Sources */,
 				22CC94411AD35A3A00DCB028 /* TrieTests.swift in Sources */,
 				222334F41AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
 				22AB6B331ACE213C00DEC0D4 /* MultimapTests.swift in Sources */,
@@ -529,7 +529,6 @@
 				22DC033B1AB50D4B006190C7 /* PriorityQueue.swift in Sources */,
 				22DC03331AB50D4B006190C7 /* Deque.swift in Sources */,
 				22DC03411AB50D4B006190C7 /* Trie.swift in Sources */,
-				22DC03391AB50D4B006190C7 /* LinkedList.swift in Sources */,
 				22DC032B1AB50D4B006190C7 /* BitArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,6 +538,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				220DD0A11AC4D7910023F3B0 /* StackTests.swift in Sources */,
+				22504CBD1AD744CA00FBF4BB /* GraphTests.swift in Sources */,
 				22CC94421AD35A3A00DCB028 /* TrieTests.swift in Sources */,
 				222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */,
 				22AB6B341ACE213C00DEC0D4 /* MultimapTests.swift in Sources */,

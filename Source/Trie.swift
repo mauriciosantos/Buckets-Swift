@@ -16,52 +16,10 @@ import Foundation
 ///
 /// The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
 /// where n is the length of the sequence or prefix.
-/// Comforms to `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
+/// Conforms to `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
 public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashable> {
     
     typealias Key = T.Generator.Element
-    
-    /// Empty Sequence of type `T`.
-    private let EmptySequence = T([])
-    
-    // MARK: Properties
-    
-    /// Number of elements stored in the trie.
-    public private(set) var count = 0
-    
-    /// `true` if and only if `count == 0`.
-    public var isEmpty: Bool {
-        return count == 0
-    }
-    
-    /// Reconstructs and returns all the elements stored in the trie.
-    public var elements: [T] {
-        let emptyGenerator = EmptySequence.generate()
-        return reconstructElementsMatchingPrefix(emptyGenerator, lastKeys: [], node: root)
-    }
-    
-    private func reconstructElementsMatchingPrefix(var prefixGenerator: T.Generator, var lastKeys: [Key], node: TrieNode<Key>) -> [T] {
-        var result = [T]()
-        if let key = node.key {
-            lastKeys.append(key)
-        }
-        if let theKey = prefixGenerator.next() {
-            if let nextNode = node.subNodes[theKey] {
-                result += reconstructElementsMatchingPrefix(prefixGenerator, lastKeys: lastKeys, node: nextNode)
-            }
-        } else {
-            if node.isEndOfSequence {
-                result.append(T(lastKeys))
-            }
-            for (_, subNode) in node.subNodes {
-                result += reconstructElementsMatchingPrefix(prefixGenerator, lastKeys: lastKeys, node: subNode)
-            }
-        }
-        return result
-        
-    }
-    
-    private var root = TrieNode<Key>(key: nil)
     
     // MARK: Creating a Trie
     
@@ -78,60 +36,54 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
     
     // MARK: Querying a Trie
     
+    /// Number of elements stored in the trie.
+    public private(set) var count = 0
+    
+    /// `true` if and only if `count == 0`.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+    
+    /// Reconstructs and returns all the elements stored in the trie.
+    public var elements: [T] {
+        var emptyGenerator = EmptySequence.generate()
+        var result = [T]()
+        var lastKeys = [Key]()
+        result.reserveCapacity(count)
+        findPrefix(&emptyGenerator, keyStack: &lastKeys, result: &result, node: root)
+        return result
+    }
+    
     /// Returns `true` if the trie contains the given element
     /// and it's not just a prefix of another element.
     public func contains(element: T) -> Bool {
-        let keys = element.generate()
-        let nodePair = nodePairForPrefix(keys, node: root, parent: nil)
-        return nodePair.endNode?.isEndOfSequence ?? false
+        var keys = element.generate()
+        let nodePair = nodePairForPrefix(&keys, node: root, parent: nil)
+        return nodePair.endNode?.isFinal ?? false
     }
     
-    private func nodePairForPrefix(var keyGenerator: T.Generator,
-        node: TrieNode<Key>, parent: TrieNode<Key>?) -> (endNode: TrieNode<Key>?, parent: TrieNode<Key>?) {
-            
-            let nextKey: Key! = keyGenerator.next()
-            if nextKey == nil {
-                return (node, parent)
-            }
-            
-            if let nextNode = node.subNodes[nextKey] {
-                return nodePairForPrefix(keyGenerator, node: nextNode, parent: node)
-            } else {
-                return (nil, node)
-            }
-    }
-    
-    /// Returns `true` if the trie contains an element matching the given prefix or if the
+    /// Returns `true` if the trie contains at least one element matching the given prefix or if the
     /// given prefix is empty.
-    public func containsPrefix(prefix: T) -> Bool {
-        let keys = prefix.generate()
-        let nodePair = nodePairForPrefix(keys, node: root, parent: nil)
+    public func isPrefix(prefix: T) -> Bool {
+        var keys = prefix.generate()
+        let nodePair = nodePairForPrefix(&keys, node: root, parent: nil)
         return nodePair.endNode != nil
     }
     
     /// Returns all the elements in the trie matching the given prefix.
-    public func elementsMatchingPrefix(prefix: T) -> [T] {
-        let keys = prefix.generate()
-        return reconstructElementsMatchingPrefix(keys, lastKeys: [], node: root)
+    public func findPrefix(prefix: T) -> [T] {
+        var prefixKeys = prefix.generate()
+        var result = [T]()
+        var lastKeys = [Key]()
+        findPrefix(&prefixKeys, keyStack: &lastKeys, result:&result, node: root)
+        return result
     }
     
-    /// Returns the longest prefix in the trie matching the given prefix.
-    /// This is not necessarily an inserted element.
-    public func longestPrefixMatching(prefix: T) -> T {
-        let keys = prefix.generate()
-        return longestPrefixMatching(keys, lastKeys:[], node: root)
-    }
-    
-    private func longestPrefixMatching(var keyGenerator: T.Generator,
-        var lastKeys: [Key], node: TrieNode<Key>) -> T {
-            
-            if let key = node.key {
-                lastKeys.append(key)
-            }
-            if let theKey = keyGenerator.next(), let nextNode = node.subNodes[theKey] {
-                return longestPrefixMatching(keyGenerator, lastKeys:lastKeys, node: nextNode)
-            }
-            return T(lastKeys)
+    /// Returns the longest prefix in the trie matching the given element.
+    /// The returned value is not necessarily a full inserted element.
+    public func longestPrefixIn(element: T) -> T {
+        var keys = element.generate()
+        return longestPrefixIn(&keys, lastKeys:[], node: root)
     }
     
     // MARK: Adding and Removing Elements
@@ -140,41 +92,35 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
     ///
     /// :returns: `true` if the trie did not already contain the element.
     public mutating func insert(element: T) -> Bool {
-        copyMyself()
-        if insert(element.generate(), node: root) {
-            count++
-            return true
+        if !contains(element) {
+            copyMyself()
+            var keyGenerator = element.generate()
+            if insert(&keyGenerator, node: root) {
+                count++
+                return true
+            }
         }
         return false
-    }
-    
-    private func insert(var keyGenerator: T.Generator, node: TrieNode<Key>) -> Bool {
-        if let nextKey = keyGenerator.next() {
-            let nextNode = node.subNodes[nextKey] ?? TrieNode<Key>(key: nextKey)
-            node.subNodes[nextKey] = nextNode
-            return insert(keyGenerator, node: nextNode )
-        } else {
-            let trieWasModified = node.isEndOfSequence != true
-            node.isEndOfSequence = true
-            return trieWasModified
-        }
     }
     
     /// Removes the given element from the trie and returns
     /// it if it was present. This does not affect other members
     /// matching the given element as a prefix.
     public mutating func remove(element: T) -> T? {
-        copyMyself()
-        let generator = element.generate()
-        let nodePair = nodePairForPrefix(generator, node: root, parent: nil)
-        
-        if let elementNode = nodePair.endNode where elementNode.isEndOfSequence {
-            elementNode.isEndOfSequence = false
-            if let parentNode = nodePair.parent, let key = elementNode.key where elementNode.subNodes.isEmpty  {
-                parentNode.subNodes.removeValueForKey(key)
+        if contains(element) {
+            copyMyself()
+            var generator = element.generate()
+            let nodePair = nodePairForPrefix(&generator, node: root, parent: nil)
+            
+            if let elementNode = nodePair.endNode where elementNode.isFinal {
+                elementNode.isFinal = false
+                if let parentNode = nodePair.parent, key = elementNode.key
+                    where elementNode.children.isEmpty  {
+                        parentNode.children.removeValueForKey(key)
+                }
+                count--
+                return element
             }
-            count--
-            return element
         }
         return nil
     }
@@ -185,9 +131,79 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
         count = 0
     }
     
-    // MARK: Private Helper Methods
+    // MARK: Private Properties and Helper Methods
     
-    /// Cretes a new copy of the root node and all its subnodes if there´s
+    /// The root node containing an empty sequence.
+    private var root = TrieNode<Key>(key: nil)
+    
+    /// Empty Sequence of type `T`.
+    private let EmptySequence = T([])
+    
+    
+    /// Returns the node containing the last key of the prefix and its parent.
+    private func nodePairForPrefix(inout keyGenerator: T.Generator, node: TrieNode<Key>,
+        parent: TrieNode<Key>?) -> (endNode: TrieNode<Key>?, parent: TrieNode<Key>?) {
+            
+        let nextKey: Key! = keyGenerator.next()
+        if nextKey == nil {
+            return (node, parent)
+        }
+        
+        if let nextNode = node.children[nextKey] {
+            return nodePairForPrefix(&keyGenerator, node: nextNode, parent: node)
+        } else {
+            return (nil, node)
+        }
+    }
+    
+    private func findPrefix(inout prefixGenerator: T.Generator,
+        inout keyStack: [Key], inout result: [T], node: TrieNode<Key>) {
+        
+        if let key = node.key {
+            keyStack.append(key)
+        }
+        if let theKey = prefixGenerator.next() {
+            if let nextNode = node.children[theKey] {
+                findPrefix(&prefixGenerator, keyStack: &keyStack, result:&result, node: nextNode)
+            }
+        } else {
+            if node.isFinal {
+                result.append(T(keyStack))
+            }
+            for (_, subNode) in node.children {
+                findPrefix(&prefixGenerator, keyStack: &keyStack, result:&result, node: subNode)
+            }
+        }
+        if let key = node.key {
+            keyStack.removeLast()
+        }
+    }
+    
+    private func longestPrefixIn(inout keyGenerator: T.Generator,
+        var lastKeys: [Key], node: TrieNode<Key>) -> T {
+            
+        if let key = node.key {
+            lastKeys.append(key)
+        }
+        if let theKey = keyGenerator.next(), nextNode = node.children[theKey] {
+            return longestPrefixIn(&keyGenerator, lastKeys:lastKeys, node: nextNode)
+        }
+        return T(lastKeys)
+    }
+    
+    private func insert(inout keyGenerator: T.Generator, node: TrieNode<Key>) -> Bool {
+        if let nextKey = keyGenerator.next() {
+            let nextNode = node.children[nextKey] ?? TrieNode<Key>(key: nextKey)
+            node.children[nextKey] = nextNode
+            return insert(&keyGenerator, node: nextNode )
+        } else {
+            let trieWasModified = node.isFinal != true
+            node.isFinal = true
+            return trieWasModified
+        }
+    }
+    
+    /// Creates a new copy of the root node and all its sub nodes if there´s
     /// more than one strong reference pointing to the root node.
     ///
     /// The Trie itself is a value type but a TrieNode is a reference type,
@@ -199,9 +215,9 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
     }
     
     private func deepCopyNode(node: TrieNode<Key>) -> TrieNode<Key> {
-        var copy = TrieNode(key: node.key, isEndOfSequence: node.isEndOfSequence)
-        for (key, subNode) in node.subNodes {
-            copy.subNodes[key] = deepCopyNode(subNode)
+        var copy = TrieNode(key: node.key, isFinal: node.isFinal)
+        for (key, subNode) in node.children {
+            copy.children[key] = deepCopyNode(subNode)
         }
         return copy
     }
@@ -240,9 +256,9 @@ extension Trie: Hashable {
     
     private func hashValue(node: TrieNode<Key>) -> Int {
         var result = 71
-        result = (31 ^ result) ^ node.isEndOfSequence.hashValue
+        result = (31 ^ result) ^ node.isFinal.hashValue
         result = (31 ^ result) ^ (node.key?.hashValue ?? 0)
-        for (_, subNode) in node.subNodes {
+        for (_, subNode) in node.children {
             result = (31 ^ result) ^ hashValue(subNode)
         }
         return result
@@ -262,30 +278,24 @@ public func ==<T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool {
 
 // MARK: - TrieNode
 
-private final class TrieNode<Key: Hashable>: Equatable {
+private class TrieNode<Key: Hashable>: Equatable {
     let key: Key?
-    var isEndOfSequence : Bool = false
-    var subNodes = [Key : TrieNode<Key>]()
+    var isFinal : Bool = false
+    var children = [Key : TrieNode<Key>]()
     
-    init(key: Key?, isEndOfSequence: Bool = false) {
+    init(key: Key?, isFinal: Bool = false) {
         self.key = key
-        self.isEndOfSequence = isEndOfSequence
+        self.isFinal = isFinal
     }
 }
 
 private func ==<Key>(lhs: TrieNode<Key>, rhs: TrieNode<Key>) -> Bool {
-    if lhs.key != rhs.key || lhs.isEndOfSequence != rhs.isEndOfSequence {
+    if lhs.key != rhs.key || lhs.isFinal != rhs.isFinal
+        || lhs.children.count != rhs.children.count  {
         return false
     }
-    if lhs.subNodes.count != rhs.subNodes.count {
-        return false
-    }
-    for (key, leftNode) in lhs.subNodes {
-        if let rightNode = rhs.subNodes[key] {
-            if leftNode != rightNode {
-                return false
-            }
-        } else {
+    for (key, leftNode) in lhs.children {
+        if leftNode != rhs.children[key] {
             return false
         }
     }

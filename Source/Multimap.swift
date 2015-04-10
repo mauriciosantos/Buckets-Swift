@@ -15,12 +15,24 @@ import Foundation
 /// `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
 public struct Multimap<Key: Hashable, Value: Equatable> {
     
-    // MARK: Properties
+    // MARK: Creating a Multimap
+    
+    /// Constructs an empty multimap.
+    public init() {}
+    
+    /// Constructs a multimap from a sequence of key-value pairs, such as a dictionary or another multimap.
+    public init<S:SequenceType where S.Generator.Element == (Key, Value)>(_ elements: S) {
+        for (k,value) in elements {
+            insertValue(value, forKey: k)
+        }
+    }
+    
+    // MARK: Querying a Multimap
     
     /// Number of key-value pairs stored in the multimap.
     public private(set) var count = 0
     
-    /// Number of keys stored in the multimap.
+    /// Number of distinct keys stored in the multimap.
     public var keyCount: Int {
         return dictionary.count
     }
@@ -42,25 +54,9 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return lazy(valueGenerator)
     }
     
-    private var dictionary = [Key: [Value]]()
-    
-    // MARK: Creating a Multimap
-    
-    /// Constructs an empty multimap.
-    public init() {}
-    
-    /// Constructs a multimap from a sequence of key-value pairs, such as a dictionary or another multimap.
-    public init<S:SequenceType where S.Generator.Element == (Key, Value)>(_ elements: S) {
-        for (k,value) in elements {
-            insertValue(value, forKey: k)
-        }
-    }
-    
-    // MARK: Querying a Multimap
-    
     /// Returns an array containing the values associated with the given key.
     /// An empty array is returned if the key does not exist in the multimap.
-    /// Subscript access is prefered.
+    /// Subscript access is preferred.
     public func valuesForKey(key: Key) -> [Value] {
         if let values = dictionary[key] {
             return values
@@ -88,7 +84,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return false
     }
     
-    // MARK: Accessing and Changing Dictionary Elements
+    // MARK: Accessing and Changing Multimap Elements
     
     /// Inserts a key-value pair into the multimap.
     public mutating func insertValue(value: Value, forKey key: Key) {
@@ -148,6 +144,11 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         dictionary.removeAll(keepCapacity: keep)
         count = 0
     }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Internal dictionary holding the elements.
+    private var dictionary = [Key: [Value]]()
 }
 
 // MARK: -

@@ -12,26 +12,9 @@ import Foundation
 /// members are allowed to appear more than once. It's possible to convert a multiset
 /// to a set: `let set = Set(multiset)`
 ///
-/// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
+/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
 public struct Multiset<T: Hashable> {
-
-    // MARK: Properties
-    
-    /// Number of elements stored in the multiset, including multiple copies.
-    public private(set) var count = 0
-    
-    /// `true` if and only if `count == 0`.
-    public var isEmpty: Bool {
-        return count == 0
-    }
-    
-    /// Number of unique elements stored in the multiset.
-    public var uniqueCount: Int {
-        return members.count
-    }
-    
-    private var members = [T: Int]()
     
     // MARK: Creating a Multiset
     
@@ -47,13 +30,31 @@ public struct Multiset<T: Hashable> {
     
     // MARK: Querying a Multiset
     
+    /// Number of elements stored in the multiset, including multiple copies.
+    public private(set) var count = 0
+    
+    /// `true` if and only if `count == 0`.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+    
+    /// Number of distinct elements stored in the multiset.
+    public var distinctCount: Int {
+        return members.count
+    }
+    
+    /// A sequence containing the multiset's distinct elements.
+    public var distinctElements: LazySequence<LazyForwardCollection<MapCollectionView<[T : Int], T>>> {
+        return lazy(members.keys)
+    }
+    
     /// Returns `true` if the multiset contains the given element.
     public func contains(element: T) -> Bool {
         return members[element] != nil
     }
     
-    /// Returns the number of occurences of an element.
-    public func occurrences(element: T) -> Int {
+    /// Returns the number of occurrences  of an element in the multiset.
+    public func count(element: T) -> Int {
         return members[element] ?? 0
     }
     
@@ -96,16 +97,16 @@ public struct Multiset<T: Hashable> {
         if occurrences < 1 {
             fatalError("Can't remove < 1 occurrences")
         }
-        if let currentoccurrences = members[element] {
-            let nRemoved = min(currentoccurrences, occurrences)
+        if let currentOccurrences = members[element] {
+            let nRemoved = min(currentOccurrences, occurrences)
             count -= nRemoved
-            let newOcurrencies = currentoccurrences - nRemoved
+            let newOcurrencies = currentOccurrences - nRemoved
             if newOcurrencies == 0 {
                 members.removeValueForKey(element)
             } else {
                 members[element] = newOcurrencies
             }
-            return currentoccurrences
+            return currentOccurrences
         } else {
             return 0
         }
@@ -115,9 +116,9 @@ public struct Multiset<T: Hashable> {
     ///
     /// :returns: The number of occurrences of the element before the operation.
     public mutating func removeAllOf(element: T) -> Int {
-        let ocurren = occurrences(element)
-        if ocurren >= 1 {
-            return remove(element, occurrences: ocurren)
+        let ocurrences = count(element)
+        if ocurrences >= 1 {
+            return remove(element, occurrences: ocurrences)
         }
         return 0
     }
@@ -128,6 +129,11 @@ public struct Multiset<T: Hashable> {
         members.removeAll(keepCapacity: keep)
         count = 0
     }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Internal dictionary holding the elements.
+    private var members = [T: Int]()
 }
 
 // MARK: -
@@ -195,7 +201,7 @@ extension Multiset: Hashable {
     /// `x == y` implies `x.hashValue == y.hashValue`
     public var hashValue: Int {
         var result = 3
-        result = (31 ^ result) ^ uniqueCount
+        result = (31 ^ result) ^ distinctCount
         result = (31 ^ result) ^ count
         for element in self {
             result = (31 ^ result) ^ element.hashValue
@@ -208,11 +214,11 @@ extension Multiset: Hashable {
 
 /// Returns `true` if and only if the multisets contain the same number of occurrences per element.
 public func ==<T>(lhs: Multiset<T>, rhs: Multiset<T>) -> Bool {
-    if lhs.count != rhs.count || lhs.uniqueCount != rhs.uniqueCount {
+    if lhs.count != rhs.count || lhs.distinctCount != rhs.distinctCount {
         return false
     }
     for element in lhs {
-        if lhs.occurrences(element) != rhs.occurrences(element) {
+        if lhs.count(element) != rhs.count(element) {
             return false
         }
     }

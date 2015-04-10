@@ -13,16 +13,45 @@ private struct Constants {
     private static let DefaultCapacity = 8
 }
 
-/// A circular array provides most of the feaures of a standard array
+/// A circular array provides most of the features of a standard array
 /// such as constant-time random access in addition to amortized constant-time
 /// insertion/removal at both ends, instead of just one end.
 /// It allows to get or set elements using subscript notation.
 ///
-/// Comforms to `SequenceType`, `MutableCollectionType`,
+/// Conforms to `SequenceType`, `MutableCollectionType`,
 /// `ArrayLiteralConvertible`, `Equatable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct CircularArray<T> {
     
-    // MARK: Properties
+    // MARK: Creating a Circular Array
+    
+    /// Constructs an empty circular array.
+    public init() {}
+    
+    /// Constructs a circular array with a given number of elements, each 
+    /// initialized to the same value.
+    public init(count: Int, repeatedValue: T) {
+        if count < 0 {
+            fatalError("Can't construct CircularArray with count < 0")
+        }
+        var nextPowerOfTwo = 1
+        while nextPowerOfTwo < count + 1 {
+            nextPowerOfTwo *= 2
+        }
+        
+        let capacity = max(nextPowerOfTwo, Constants.DefaultCapacity)
+        items = [T?](count: capacity, repeatedValue: repeatedValue)
+        items[count..<capacity] = [nil]
+        tail = count
+    }
+    
+    /// Constructs a circular array from a sequence, such as an array.
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+        for e in elements {
+            append(e)
+        }
+    }
+    
+    // MARK: Querying a Circular Array
     
     /// Number of elements stored in the circular array.
     public var count : Int {
@@ -42,33 +71,6 @@ public struct CircularArray<T> {
     /// The last element, or `nil` if the circular array is empty.
     public var last: T? {
         return items[decreaseIndex(tail)]
-    }
-    
-    private var items = [T?](count: Constants.DefaultCapacity, repeatedValue: nil)
-    private var head: Int = 0
-    private var tail: Int = 0
-    
-    // MARK: Creating a Circular Array
-    
-    /// Constructs an empty circular array.
-    public init() {}
-    
-    /// Constructs a circular array with a given number of elements, each 
-    /// initialized to the same value.
-    public init(count: Int, repeatedValue: T) {
-        if count < 0 {
-            fatalError("Can't construct CircularArray with count < 0")
-        }
-        for _ in 0..<count {
-            append(repeatedValue)
-        }
-    }
-    
-    /// Constructs a circular array from a sequence, such as an array.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
-        for e in elements {
-            append(e)
-        }
     }
     
     // MARK: Adding and Removing Elements
@@ -157,7 +159,16 @@ public struct CircularArray<T> {
         head = 0
     }
     
-    // MARK: Private Helper Methods
+    // MARK: Private Properties and Helper Methods
+    
+    /// Regular array holding the elements.
+    private var items = [T?](count: Constants.DefaultCapacity, repeatedValue: nil)
+    
+    /// The real index of the first item.
+    private var head: Int = 0
+    
+    /// The real index of the last item + 1.
+    private var tail: Int = 0
     
     private func increaseIndex(index: Int) -> Int {
         return (index + 1) & (items.count - 1)
@@ -224,7 +235,7 @@ extension CircularArray: MutableCollectionType {
         return count
     }
     
-    /// Provides random access to elements using square bracket noation.
+    /// Provides random access to elements using square bracket notation.
     /// The index must be less than the number of items in the circular array.
     /// If you attempt to get or set an item at a greater 
     /// index, you’ll trigger an error.
@@ -272,6 +283,10 @@ extension CircularArray: Printable, DebugPrintable {
     }
 }
 
+// MARK: ReconstructableSequence Protocol Conformance
+
+extension CircularArray: ReconstructableSequence {}
+
 // MARK: - Operators
 
 // MARK: CircularArray Operators
@@ -290,4 +305,3 @@ public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bo
     return !(lhs==rhs)
 }
 
-extension CircularArray: ReconstructableSequence {}

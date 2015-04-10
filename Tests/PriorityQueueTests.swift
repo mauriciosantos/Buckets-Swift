@@ -26,7 +26,7 @@ class PriorityQueueTests: XCTestCase {
     }
     
     func testInitWithArray() {
-        queue = PriorityQueue(elements: TestData.List, isOrderedBefore: >)
+        queue = PriorityQueue(TestData.List, >)
         let list = TestData.List.sorted(>)
         for i in 0..<list.count {
             let element = queue.dequeue()
@@ -62,7 +62,7 @@ class PriorityQueueTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        queue = PriorityQueue(elements: TestData.List, isOrderedBefore: >)
+        queue = PriorityQueue(TestData.List, >)
         queue.removeAll(keepCapacity: true)
         XCTAssertEqual(queue.count, 0)
         XCTAssertNil(queue.dequeue())
@@ -71,7 +71,7 @@ class PriorityQueueTests: XCTestCase {
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
-        queue = PriorityQueue(elements: TestData.List, isOrderedBefore: >)
+        queue = PriorityQueue(TestData.List, >)
         var list = TestData.List
         for element in queue {
             if let index = find(list, element) {

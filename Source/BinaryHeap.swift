@@ -61,11 +61,11 @@ struct BinaryHeap<T> : SequenceType {
         }
         
         var i = count - 1
-        var paren = parent(i)
-        while i > 0 && !isOrderedBefore(items[paren], items[i]) {
-            swap(&items[i], &items[paren])
-            i = paren
-            paren = parent(i)
+        var parentIndex = parent(i)
+        while i > 0 && !isOrderedBefore(items[parentIndex], items[i]) {
+            swap(&items[i], &items[parentIndex])
+            i = parentIndex
+            parentIndex = parent(i)
         }
     }
     

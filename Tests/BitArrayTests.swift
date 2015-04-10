@@ -13,7 +13,7 @@ import Buckets
 class BitArrayTests: XCTestCase {
     
     struct TestData {
-        static let Size = 20
+        static let Size = 40
         static let Cardinality = Size*2
         static let List: [Bool] = {
             var result = [Bool]()
@@ -41,6 +41,9 @@ class BitArrayTests: XCTestCase {
         for i in 0..<TestData.Size {
             XCTAssertEqual(bArray[i], true)
         }
+        bArray.append(false)
+        XCTAssertEqual(bArray.count, TestData.Size + 1)
+        XCTAssertEqual(bArray.last!, false)
     }
     
     func testSingleAppend() {

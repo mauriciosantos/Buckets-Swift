@@ -13,10 +13,38 @@ import Foundation
 /// elements with the highest priority are dequeued first).
 ///
 /// The `enqueue` and `dequeue` operations run in O(log(n)) time.
-/// Comforms to `SequenceType`, `Printable` and `DebugPrintable`.
+/// Conforms to `SequenceType`, `Printable` and `DebugPrintable`.
 public struct PriorityQueue<T> {
     
-    // MARK: Properties
+    // MARK: Creating a Priority Queue
+    
+    /// Constructs an empty priority queue using a closure to
+    /// determine the order of a provided pair of elements. The closure that you supply for 
+    /// `isOrderedBefore` should return a boolean value to indicate whether one element
+    /// should be before (`true`) or after (`false`) another element using strict weak ordering.
+    /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
+    ///
+    /// :param: isOrderedBefore Strict weak ordering function for checking if the first element has higher priority.
+    public init(_ isOrderedBefore: (T,T) -> Bool) {
+        [1].sorted(<)
+        self.init([], isOrderedBefore)
+    }
+    
+    /// Constructs a priority queue from a sequence, such as an array, using a given closure to
+    /// determine the order of a provided pair of elements. The closure that you supply for
+    /// `isOrderedBefore` should return a boolean value to indicate whether one element
+    /// should be before (`true`) or after (`false`) another element using strict weak ordering.
+    /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
+    ///
+    /// :param: isOrderedBefore Strict weak ordering function for checking if the first element has higher priority.
+     public init<S: SequenceType where S.Generator.Element == T>(_ elements: S, _ isOrderedBefore: (T,T) -> Bool) {
+        heap = BinaryHeap<T>(compareFunction: isOrderedBefore)
+        for e in elements {
+            enqueue(e)
+        }
+    }
+    
+    // MARK: Querying a Priority Queue
     
     /// Number of elements stored in the priority queue.
     public var count: Int {
@@ -31,33 +59,6 @@ public struct PriorityQueue<T> {
     /// The highest priority element in the queue, or `nil` if the queue is empty.
     public var first: T? {
         return heap.max
-    }
-    
-    private var heap : BinaryHeap<T>
-    
-    // MARK: Creating a Priority Queue
-    
-    /// Constructs an empty priority queue using the given closure to
-    /// determine the order of a provided pair of elements. The closure that you supply for 
-    /// `isOrderedBefore` should return a Boolean value to indicate whether one element 
-    /// should be before (`true`) or after (`false`) another element.
-    ///
-    /// :param: isOrderedBefore Function to check if the first element has higher priority.
-    public init(_ isOrderedBefore: (T,T) -> Bool) {
-        self.init(elements: [], isOrderedBefore: isOrderedBefore)
-    }
-    
-    /// Constructs a priority queue from a sequence, such as an array, using a given closure to
-    /// determine the order of a provided pair of elements. The closure that you supply for
-    /// `isOrderedBefore` should return a Boolean value to indicate whether one element
-    /// should be before (`true`) or after (`false`) another element.
-    ///
-    /// :param: isOrderedBefore Function to check if the first element has higher priority.
-     public init<S: SequenceType where S.Generator.Element == T>(elements: S, isOrderedBefore: (T,T) -> Bool) {
-        heap = BinaryHeap<T>(compareFunction: isOrderedBefore)
-        for e in elements {
-            enqueue(e)
-        }
     }
     
     // MARK: Adding and Removing Elements
@@ -79,6 +80,11 @@ public struct PriorityQueue<T> {
     public mutating func removeAll(keepCapacity keep: Bool = true)  {
         heap.removeAll(keepCapacity: keep)
     }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Internal structure holding the elements.
+    private var heap : BinaryHeap<T>
 }
 
 // MARK: -

@@ -13,13 +13,22 @@ import Foundation
 /// to be removed.
 ///
 /// The `enqueue` and `dequeue` operations run in amortized constant time.
-/// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
+/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Queue<T> {
     
-    private var items = CircularArray<T>()
+    // MARK: Creating a Queue
     
-    // MARK: Properties
+    /// Constructs an empty queue.
+    public init() {}
+    
+    /// Constructs a queue from a sequence, such as an array.
+    /// The elements will be enqueued from first to last.
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+        items = CircularArray(elements)
+    }
+    
+    // MARK: Querying a Queue
     
     /// Number of elements stored in the queue.
     public var count : Int {
@@ -34,17 +43,6 @@ public struct Queue<T> {
     /// The front element in the queue, or `nil` if the queue is empty.
     public var first: T? {
         return items.first
-    }
-    
-    // MARK: Creating a Queue
-    
-    /// Constructs an empty queue.
-    public init() {}
-    
-    /// Constructs a queue from a sequence, such as an array.
-    /// The elements will be enqueued from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
-        items = CircularArray(elements)
     }
     
     // MARK: Adding and Removing Elements
@@ -66,6 +64,11 @@ public struct Queue<T> {
     public mutating func removeAll(keepCapacity keep: Bool = true)  {
         items.removeAll(keepCapacity: keep)
     }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Internal structure holding the elements.
+    private var items = CircularArray<T>()
 }
 
 // MARK: -
@@ -113,6 +116,10 @@ extension Queue: Printable, DebugPrintable {
     }
 }
 
+// MARK: ReconstructableSequence Protocol Conformance
+
+extension Queue: ReconstructableSequence {}
+
 // MARK: -
 
 // MARK: Queue Operators
@@ -127,5 +134,3 @@ public func ==<U: Equatable>(lhs: Queue<U>, rhs: Queue<U>) -> Bool {
 public func !=<U: Equatable>(lhs: Queue<U>, rhs: Queue<U>) -> Bool {
     return !(lhs==rhs)
 }
-
-extension Queue: ReconstructableSequence {}

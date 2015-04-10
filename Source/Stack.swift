@@ -12,11 +12,22 @@ import Foundation
 /// the last element added to the stack will be the first one to be removed.
 ///
 /// The `push` and `pop` operations run in amortized constant time.
-/// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
+/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Stack<T> {
 
-    // MARK: Properties
+    // MARK: Creating a Stack
+    
+    /// Constructs an empty stack.
+    public init() {}
+    
+    /// Constructs a stack from a sequence, such as an array.
+    /// The elements will be pushed from first to last.
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+        self.elements = Array(elements)
+    }
+    
+    // MARK: Querying a Stack
     
     /// Number of elements stored in the stack.
     public var count : Int {
@@ -31,19 +42,6 @@ public struct Stack<T> {
     /// The top element of the stack, or `nil` if the stack is empty.
     public var top: T? {
         return elements.last
-    }
-    
-    private var elements = [T]()
-
-    // MARK: Creating a Stack
-    
-    /// Constructs an empty stack.
-    public init() {}
-    
-    /// Constructs a stack from a sequence, such as an array.
-    /// The elements will be pushed from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
-        self.elements = Array(elements)
     }
     
     // MARK: Adding and Removing Elements
@@ -65,6 +63,11 @@ public struct Stack<T> {
     public mutating func removeAll(keepCapacity keep: Bool = true)  {
         elements.removeAll(keepCapacity:keep)
     }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Internal structure holding the elements.
+    private var elements = [T]()
 }
 
 // MARK: -
@@ -113,6 +116,10 @@ extension Stack: Printable, DebugPrintable {
     }
 }
 
+// MARK: ReconstructableSequence Protocol Conformance
+
+extension Stack: ReconstructableSequence {}
+
 // MARK: - Operators
 
 // MARK: Stack Operators
@@ -127,5 +134,3 @@ public func ==<U: Equatable>(lhs: Stack<U>, rhs: Stack<U>) -> Bool {
 public func !=<U: Equatable>(lhs: Stack<U>, rhs: Stack<U>) -> Bool {
     return !(lhs == rhs)
 }
-
-extension Stack: ReconstructableSequence {}

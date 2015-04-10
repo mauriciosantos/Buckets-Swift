@@ -10,11 +10,11 @@ import Foundation
 
 /// An array of boolean values stored
 /// using individual bits, thus providing a
-/// very small memory footprint. It has most of the feaures of a
+/// very small memory footprint. It has most of the features of a
 /// standard array such as constant time random access and
 /// amortized constant time insertion at the end of the array.
 ///
-/// Comforms to `SequenceType`, `MutableCollectionType`,
+/// Conforms to `SequenceType`, `MutableCollectionType`,
 /// `ArrayLiteralConvertible`, `Equatable`, `Hashable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct BitArray {
     
@@ -23,7 +23,50 @@ public struct BitArray {
         static let IntSize = sizeof(Int) * 8
     }
     
-    // MARK: Properties
+    // MARK: Creating a Bit Array
+    
+    /// Constructs an empty bit array.
+    public init() {}
+    
+    /// Constructs a bit array from a `Bool` sequence, such as an array.
+    public init<S: SequenceType where S.Generator.Element == Bool>(_ elements: S){
+        for value in elements {
+            append(value)
+        }
+    }
+    
+    /// Constructs a new bit array from an `Int` array representation.
+    /// All values different than 0 are considered `true`.
+    public init(intRepresentation : [Int]) {
+        bits.reserveCapacity((intRepresentation.count/Constants.IntSize) + 1)
+        for value in intRepresentation {
+            append(value != 0)
+        }
+    }
+    
+    /// Constructs a new bit array with `count` bits set to the specified value.
+    public init(count:Int, repeatedValue: Bool) {
+        if count < 0 {
+            fatalError("Can't construct BitArray with count < 0")
+        }
+        
+        let numberOfInts = (count/Constants.IntSize) + 1
+        let intValue = repeatedValue ? ~0 : 0
+        bits = [Int](count: numberOfInts, repeatedValue: intValue)
+        self.count = count
+        
+        if repeatedValue {
+            bits[bits.count - 1] = 0
+            let missingBits = count % Constants.IntSize
+            self.count = count - missingBits
+            for _ in 0..<missingBits {
+                append(repeatedValue)
+            }
+            cardinality = count
+        }
+    }
+    
+    // MARK: Querying a Bit Array
     
     /// Number of bits stored in the bit array.
     public private(set) var count = 0
@@ -46,38 +89,6 @@ public struct BitArray {
     /// The number of bits set to `true` in the bit array.
     public private(set) var cardinality = 0
     
-    private var bits = [Int]()
-    
-    // MARK: Creating a Bit Array
-    
-    /// Consctructs an empty bit array.
-    public init() {}
-    
-    /// Constructs a bit array from a `Bool` sequence, such as an array.
-    public init<S: SequenceType where S.Generator.Element == Bool>(_ elements: S){
-        for value in elements {
-            append(value)
-        }
-    }
-    
-    /// Consctructs a new bit array from an `Int` array representation.
-    /// All values different than 0 are considered `true`.
-    public init(intRepresentation : [Int]) {
-        bits.reserveCapacity((intRepresentation.count/Constants.IntSize) + 1)
-        for value in intRepresentation {
-            append(value != 0)
-        }
-    }
-    
-    /// Consctructs a new bit array with `count` bits set to the specified value.
-    public init(count:Int, repeatedValue: Bool) {
-        if count < 0 {
-            fatalError("Can't construct BitArray with count < 0")
-        }
-        for _ in 0..<count {
-            append(repeatedValue)
-        }
-    }
     
     // MARK: Adding and Removing Bits
     
@@ -145,6 +156,11 @@ public struct BitArray {
         count = 0
         cardinality = 0
     }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Structure holding the bits.
+    private var bits = [Int]()
     
     private func valueAtIndex(logicalIndex: Int) -> Bool {
         let indexPath = realIndexPath(logicalIndex)
@@ -268,6 +284,7 @@ extension BitArray: Printable, DebugPrintable {
 extension BitArray: Equatable {
 }
 
+
 // MARK: BitArray Equatable Protocol Conformance
 
 /// Returns `true` if and only if the bit arrays contain the same bits in the same order.
@@ -293,4 +310,7 @@ extension BitArray: Hashable {
     }
 }
 
+// MARK: ReconstructableSequence Protocol Conformance
+
 extension BitArray: ReconstructableSequence {}
+

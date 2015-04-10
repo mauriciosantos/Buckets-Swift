@@ -14,11 +14,22 @@ import Foundation
 ///
 /// The `enqueueFirst`, `enqueueLast`, `dequeueFirst` and `dequeueLast` 
 /// operations run in amortized constant time.
-/// Comforms to `SequenceType`, `ArrayLiteralConvertible`,
+/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Deque<T> {
+
+    // MARK: Creating a Deque
     
-    // MARK: Properties
+    /// Constructs an empty deque.
+    public init() {}
+    
+    /// Constructs a deque from a sequence, such as an array.
+    /// The elements will be enqueued from first to last.
+    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S) {
+        items = CircularArray(elements)
+    }
+    
+    // MARK: Querying a Deque
     
     /// Number of elements stored in the deque.
     public var count : Int {
@@ -38,19 +49,6 @@ public struct Deque<T> {
     /// The back element in the deque, or `nil` if the deque is empty.
     public var last: T? {
         return items.last
-    }
-    
-    private var items = CircularArray<T>()
-    
-    // MARK: Creating a Deque
-    
-    /// Constructs an empty deque.
-    public init() {}
-    
-    /// Constructs a deque from a sequence, such as an array.
-    /// The elements will be enqueued from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S) {
-        items = CircularArray(elements)
     }
     
     // MARK: Adding and Removing Elements
@@ -83,7 +81,12 @@ public struct Deque<T> {
     /// clears the underlying storage buffer.
     public mutating func removeAll(keepCapacity keep: Bool = true)  {
         items.removeAll(keepCapacity: keep)
-    }    
+    }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Internal structure holding the elements.
+    private var items = CircularArray<T>()
 }
 
 // MARK: -
@@ -131,6 +134,10 @@ extension Deque: Printable, DebugPrintable {
     }
 }
 
+// MARK: ReconstructableSequence Protocol Conformance
+
+extension Deque: ReconstructableSequence {}
+
 // MARK: - Operators
 
 // MARK: Deque Operators
@@ -146,4 +153,3 @@ public func !=<U: Equatable>(lhs: Deque<U>, rhs: Deque<U>) -> Bool {
     return !(lhs==rhs)
 }
 
-extension Deque: ReconstructableSequence {}

@@ -25,7 +25,7 @@ class CircularArrayTests: XCTestCase {
     }
     
     func testInitWithRepeatedValue() {
-        let count = 20
+        let count = 30
         cArray = CircularArray(count: count, repeatedValue: TestData.Value)
         XCTAssertEqual(cArray.count, count)
         for i in 0..<count {

@@ -8,39 +8,14 @@
 
 import Foundation
 
-/// A Bimap is a special kind of dictionary that allows bidirectional lookup between key and values.
+/// A Bimap is a special kind of dictionary that allows bidirectional lookup between keys and values.
 /// All keys and values must be unique.
 /// It allows to get, set, or delete a key-value pairs using
-/// subscript notation: `bimap[value: theValue]` or `bimap[key: thekey]`
+/// subscript notation: `bimap[value: aValue] = aKey` or `bimap[key: aKey] = aValue`
 ///
-/// Comforms to `SequenceType`, `CollectionType`, `DictionaryLiteralConvertible`,
+/// Conforms to `SequenceType`, `CollectionType`, `DictionaryLiteralConvertible`,
 /// `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
 public struct Bimap<Key: Hashable, Value: Hashable> {
-    
-    // MARK: Properties
-    
-    /// Number of key-value pairs stored in the bimap.
-    public var count: Int {
-        return keysToValues.count
-    }
-    
-    /// `true` if and only if `count == 0`.
-    public var isEmpty: Bool {
-        return keysToValues.isEmpty
-    }
-    
-    /// A collection containing all the bimap's keys.
-    public var keys: LazyForwardCollection<MapCollectionView<[Key : Value], Key>> {
-        return keysToValues.keys
-    }
-    
-    /// A collection containing all the bimap's values.
-    public var values: LazyForwardCollection<MapCollectionView<[Value : Key], Value>> {
-        return valuesToKeys.keys
-    }
-
-    private var keysToValues = [Key: Value]()
-    private var valuesToKeys = [Value: Key]()
     
     // MARK: Creating a Bimap
     
@@ -62,6 +37,28 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
         }
     }
     
+    // MARK:  Querying a Bimap
+    
+    /// Number of key-value pairs stored in the bimap.
+    public var count: Int {
+        return keysToValues.count
+    }
+    
+    /// `true` if and only if `count == 0`.
+    public var isEmpty: Bool {
+        return keysToValues.isEmpty
+    }
+    
+    /// A collection containing all the bimap's keys.
+    public var keys: LazyForwardCollection<MapCollectionView<[Key : Value], Key>> {
+        return keysToValues.keys
+    }
+    
+    /// A collection containing all the bimap's values.
+    public var values: LazyForwardCollection<MapCollectionView<[Value : Key], Value>> {
+        return valuesToKeys.keys
+    }
+
     // MARK: Accessing and Changing Bimap Elements
     
     /// Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
@@ -101,7 +98,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     
     /// Inserts or updates a value for a given key and returns the previous value 
     /// for that key if one existed, or `nil` if a previous value did not exist.
-    /// Subscript access is prefered.
+    /// Subscript access is preferred.
     public mutating func updateValue(value: Value, forKey key: Key) -> Value? {
         let previous = self[key: key]
         self[key: key] = value
@@ -110,7 +107,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     
     /// Removes the key-value pair for the given key and returns its value,
     /// or `nil` if a value for that key did not previously exist.
-    /// Subscript access is prefered.
+    /// Subscript access is preferred.
     public mutating func removeValueForKey(key: Key) -> Value? {
         let previous = self[key: key]
         self[key: key] = nil
@@ -119,7 +116,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     
     /// Removes the key-value pair for the given value and returns its key,
     /// or `nil` if a key for that value did not previously exist.
-    /// Subscript access is prefered.
+    /// Subscript access is preferred.
     public mutating func removeKeyForValue(value: Value) -> Key? {
         let previous = self[value: value]
         self[value: value] = nil
@@ -132,6 +129,14 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
         valuesToKeys.removeAll(keepCapacity: keep)
         keysToValues.removeAll(keepCapacity: keep)
     }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    /// Internal structure mapping keys to values.
+    private var keysToValues = [Key: Value]()
+    
+    /// Internal structure values keys to keys.
+    private var valuesToKeys = [Value: Key]()
 }
 
 // MARK: -
