@@ -46,7 +46,7 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
     
     /// Reconstructs and returns all the elements stored in the trie.
     public var elements: [T] {
-        var emptyGenerator = EmptySequence.generate()
+        var emptyGenerator = T(EmptyGenerator()).generate()
         var result = [T]()
         var lastKeys = [Key]()
         result.reserveCapacity(count)
@@ -136,10 +136,6 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
     /// The root node containing an empty sequence.
     private var root = TrieNode<Key>(key: nil)
     
-    /// Empty Sequence of type `T`.
-    private let EmptySequence = T([])
-    
-    
     /// Returns the node containing the last key of the prefix and its parent.
     private func nodePairForPrefix(inout keyGenerator: T.Generator, node: TrieNode<Key>,
         parent: TrieNode<Key>?) -> (endNode: TrieNode<Key>?, parent: TrieNode<Key>?) {
@@ -170,7 +166,7 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
             if node.isFinal {
                 result.append(T(keyStack))
             }
-            for (_, subNode) in node.children {
+            for subNode in node.children.values {
                 findPrefix(&prefixGenerator, keyStack: &keyStack, result:&result, node: subNode)
             }
         }

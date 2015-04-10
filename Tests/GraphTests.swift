@@ -43,7 +43,7 @@ class GraphTests: XCTestCase {
         graph["NY", "Miami"] = 1
         graph["Miami", "Toronto"] = 1
         XCTAssertTrue(graph.isAcyclic)
-        graph["Toronto", "Miami"] = 2
+        graph["Toronto", "NY"] = 2
         XCTAssertFalse(graph.isAcyclic)
     }
     
@@ -183,6 +183,22 @@ class GraphTests: XCTestCase {
         graph["Miami", "Boston"] = 1
         graph.removeAll(keepCapacity: true)
         XCTAssertEqual(graph.vertices, [])
+    }
+    
+    // MARK: Operators
+    
+    func testEqual() {
+        graph["NY", "Miami"] = 1
+        graph["Miami", "Boston"] = 1
+        graph["Miami", "Vancouver"] = 1
+        var other = Graph<String, Int>()
+        XCTAssertTrue(graph != other)
+        other["NY", "Miami"] = 1
+        other["Miami", "Boston"] = 3
+        other["Miami", "Vancouver"] = 1
+        XCTAssertTrue(graph != other)
+        other["Miami", "Boston"] = 1
+        XCTAssertTrue(graph == other)
     }
 
 }
