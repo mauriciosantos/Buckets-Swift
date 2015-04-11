@@ -1,5 +1,19 @@
-BloomFilter.swift
-	public struct BloomFilter<T: Printable>
+BloomFilterType.swift
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return bytesFromStruct(self)}
+	public var bytes: [UInt8] {return [UInt8](self.utf8)}
+Graph.swift
+	public func !=<V, E: Equatable>(lhs: Graph<V,E>, rhs: Graph<V,E>) -> Bool
+	public enum GraphTraversalOrder
 CircularArray.swift
 	public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool
 Stack.swift
@@ -10,5 +24,3 @@ PriorityQueue.swift
 	public func !=<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool
 Deque.swift
 	public func !=<U: Equatable>(lhs: Deque<U>, rhs: Deque<U>) -> Bool
-Trie.swift
-	public func ==<T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool

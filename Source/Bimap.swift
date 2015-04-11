@@ -44,7 +44,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
         return keysToValues.count
     }
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return keysToValues.isEmpty
     }
@@ -61,24 +61,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
 
     // MARK: Accessing and Changing Bimap Elements
     
-    /// Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
-    public subscript(#key: Key) -> Value? {
-        get {
-            return keysToValues[key]
-        }
-        set {
-            let oldValue = keysToValues.removeValueForKey(key)
-            if let oldValue = oldValue {
-                valuesToKeys.removeValueForKey(oldValue)
-            }
-            keysToValues[key] = newValue
-            if let newValue = newValue {
-                valuesToKeys[newValue] = key
-            }
-        }
-    }
-    
-    /// Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
+    // Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
     public subscript(#value: Value) -> Key? {
         get {
             return valuesToKeys[value]
@@ -95,6 +78,22 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
         }
     }
     
+    // Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
+    public subscript(#key: Key) -> Value? {
+        get {
+            return keysToValues[key]
+        }
+        set {
+            let oldValue = keysToValues.removeValueForKey(key)
+            if let oldValue = oldValue {
+                valuesToKeys.removeValueForKey(oldValue)
+            }
+            keysToValues[key] = newValue
+            if let newValue = newValue {
+                valuesToKeys[newValue] = key
+            }
+        }
+    }
     
     /// Inserts or updates a value for a given key and returns the previous value 
     /// for that key if one existed, or `nil` if a previous value did not exist.
@@ -138,8 +137,6 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     /// Internal structure values keys to keys.
     private var valuesToKeys = [Value: Key]()
 }
-
-// MARK: -
 
 extension Bimap: SequenceType {
     

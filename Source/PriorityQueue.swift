@@ -13,6 +13,7 @@ import Foundation
 /// elements with the highest priority are dequeued first).
 ///
 /// The `enqueue` and `dequeue` operations run in O(log(n)) time.
+///
 /// Conforms to `SequenceType`, `Printable` and `DebugPrintable`.
 public struct PriorityQueue<T> {
     
@@ -51,7 +52,7 @@ public struct PriorityQueue<T> {
         return heap.count
     }
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -86,8 +87,6 @@ public struct PriorityQueue<T> {
     /// Internal structure holding the elements.
     private var heap : BinaryHeap<T>
 }
-
-// MARK: -
 
 extension PriorityQueue: SequenceType {
     

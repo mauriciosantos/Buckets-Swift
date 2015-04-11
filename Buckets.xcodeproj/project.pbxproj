@@ -37,6 +37,8 @@
 		222334F51AB50F9D00F7480F /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
 		22504CBC1AD744CA00FBF4BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22504CBB1AD744CA00FBF4BB /* GraphTests.swift */; };
 		22504CBD1AD744CA00FBF4BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22504CBB1AD744CA00FBF4BB /* GraphTests.swift */; };
+		2252D9591AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
+		2252D95A1AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
 		228463CC1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
 		228463CD1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
@@ -103,32 +105,33 @@
 		220DD09F1AC4D7910023F3B0 /* StackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackTests.swift; path = Tests/StackTests.swift; sourceTree = SOURCE_ROOT; };
 		220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriorityQueueTests.swift; path = Tests/PriorityQueueTests.swift; sourceTree = SOURCE_ROOT; };
 		220DD0B01AC506D90023F3B0 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = Library/Frameworks/AppleScriptObjC.framework; sourceTree = DEVELOPER_DIR; };
-		220DD0D91AC756080023F3B0 /* Multiset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Multiset.swift; path = Source/Multiset.swift; sourceTree = SOURCE_ROOT; };
+		220DD0D91AC756080023F3B0 /* Multiset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Multiset.swift; path = Source/Multiset.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		222334F31AB50F9D00F7480F /* CircularArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularArrayTests.swift; path = Tests/CircularArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		222334F61AB50FB500F7480F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
 		22504CBB1AD744CA00FBF4BB /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphTests.swift; path = Tests/GraphTests.swift; sourceTree = SOURCE_ROOT; };
+		2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilterType.swift; path = Source/BloomFilterType.swift; sourceTree = SOURCE_ROOT; };
 		226D18151AB50E230075E567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
 		228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReconstructableSequence.swift; path = Source/ReconstructableSequence.swift; sourceTree = SOURCE_ROOT; };
 		228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArrayTests.swift; path = Tests/BitArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		22A142DA1AB4D40900E70376 /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A142E51AB4D40900E70376 /* Buckets iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Buckets iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Multimap.swift; path = Source/Multimap.swift; sourceTree = SOURCE_ROOT; };
-		22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bimap.swift; path = Source/Bimap.swift; sourceTree = SOURCE_ROOT; };
+		22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Multimap.swift; path = Source/Multimap.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bimap.swift; path = Source/Bimap.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultimapTests.swift; path = Tests/MultimapTests.swift; sourceTree = SOURCE_ROOT; };
 		22CC94401AD35A3A00DCB028 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrieTests.swift; path = Tests/TrieTests.swift; sourceTree = SOURCE_ROOT; };
 		22DB5B2A1ACF42AC00FD59BB /* BimapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BimapTests.swift; path = Tests/BimapTests.swift; sourceTree = SOURCE_ROOT; };
 		22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinaryHeap.swift; path = Source/BinaryHeap.swift; sourceTree = SOURCE_ROOT; };
-		22DC031B1AB50D4B006190C7 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArray.swift; path = Source/BitArray.swift; sourceTree = SOURCE_ROOT; };
+		22DC031B1AB50D4B006190C7 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BitArray.swift; path = Source/BitArray.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		22DC031C1AB50D4B006190C7 /* BloomFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilter.swift; path = Source/BloomFilter.swift; sourceTree = SOURCE_ROOT; };
 		22DC031D1AB50D4B006190C7 /* Buckets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Buckets.h; path = Source/Buckets.h; sourceTree = SOURCE_ROOT; };
-		22DC031E1AB50D4B006190C7 /* CircularArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularArray.swift; path = Source/CircularArray.swift; sourceTree = SOURCE_ROOT; };
-		22DC031F1AB50D4B006190C7 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deque.swift; path = Source/Deque.swift; sourceTree = SOURCE_ROOT; };
+		22DC031E1AB50D4B006190C7 /* CircularArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CircularArray.swift; path = Source/CircularArray.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22DC031F1AB50D4B006190C7 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Deque.swift; path = Source/Deque.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		22DC03201AB50D4B006190C7 /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FNVHash.swift; path = Source/FNVHash.swift; sourceTree = SOURCE_ROOT; };
-		22DC03211AB50D4B006190C7 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Source/Graph.swift; sourceTree = SOURCE_ROOT; };
-		22DC03241AB50D4B006190C7 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriorityQueue.swift; path = Source/PriorityQueue.swift; sourceTree = SOURCE_ROOT; };
-		22DC03251AB50D4B006190C7 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Source/Queue.swift; sourceTree = SOURCE_ROOT; };
-		22DC03261AB50D4B006190C7 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Source/Stack.swift; sourceTree = SOURCE_ROOT; };
-		22DC03271AB50D4B006190C7 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trie.swift; path = Source/Trie.swift; sourceTree = SOURCE_ROOT; };
+		22DC03211AB50D4B006190C7 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Graph.swift; path = Source/Graph.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22DC03241AB50D4B006190C7 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PriorityQueue.swift; path = Source/PriorityQueue.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22DC03251AB50D4B006190C7 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Queue.swift; path = Source/Queue.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22DC03261AB50D4B006190C7 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Stack.swift; path = Source/Stack.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22DC03271AB50D4B006190C7 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Trie.swift; path = Source/Trie.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		22DD3CBC1AB5062D0083B4AB /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DD3CC61AB5062D0083B4AB /* Buckets OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Buckets OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -171,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
+				2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */,
 				22DC03201AB50D4B006190C7 /* FNVHash.swift */,
 			);
 			name = BloomFilter;
@@ -236,9 +240,9 @@
 				220DD0D91AC756080023F3B0 /* Multiset.swift */,
 				22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */,
 				22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */,
+				22DC03211AB50D4B006190C7 /* Graph.swift */,
 				228463CA1ACF6A6E00FE2BC1 /* Trie */,
 				220B6DB01ACF6C6300D2FA52 /* BloomFilter */,
-				22DC03211AB50D4B006190C7 /* Graph.swift */,
 				22A142DD1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Source;
@@ -476,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DC032C1AB50D4B006190C7 /* BloomFilter.swift in Sources */,
+				2252D9591AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */,
 				228463CC1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */,
 				22DC03281AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				22DC03361AB50D4B006190C7 /* Graph.swift in Sources */,
@@ -516,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DC032D1AB50D4B006190C7 /* BloomFilter.swift in Sources */,
+				2252D95A1AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */,
 				228463CD1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */,
 				22DC03291AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				22DC03371AB50D4B006190C7 /* Graph.swift in Sources */,

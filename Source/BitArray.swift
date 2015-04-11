@@ -18,11 +18,6 @@ import Foundation
 /// `ArrayLiteralConvertible`, `Equatable`, `Hashable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct BitArray {
     
-    private struct Constants {
-        // Int size in bits
-        static let IntSize = sizeof(Int) * 8
-    }
-    
     // MARK: Creating a Bit Array
     
     /// Constructs an empty bit array.
@@ -71,7 +66,7 @@ public struct BitArray {
     /// Number of bits stored in the bit array.
     public private(set) var count = 0
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -92,7 +87,7 @@ public struct BitArray {
     
     // MARK: Adding and Removing Bits
     
-    /// Adds a new `Bool` as the last bit in an existing bit array.
+    /// Adds a new `Bool` as the last bit.
     public mutating func append(bit: Bool) {
         if realIndexPath(count).arrayIndex >= bits.count {
             bits.append(0)
@@ -201,6 +196,13 @@ public struct BitArray {
             fatalError("Index out of range (\(index))")
         }
     }
+    
+    // MARK: Constants
+    
+    private struct Constants {
+        // Int size in bits
+        static let IntSize = sizeof(Int) * 8
+    }
 }
 
 // MARK: -
@@ -289,7 +291,7 @@ extension BitArray: Equatable {
 
 /// Returns `true` if and only if the bit arrays contain the same bits in the same order.
 public func ==(lhs: BitArray, rhs: BitArray) -> Bool {
-    if lhs.count != rhs.count {
+    if lhs.count != rhs.count || lhs.cardinality != rhs.cardinality {
         return false
     }
     return equal(lhs, rhs)

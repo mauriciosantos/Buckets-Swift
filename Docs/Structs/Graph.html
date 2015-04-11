@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Multiset Struct Reference</title>
+    <title>Graph Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,8 +9,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Multiset" class="dashAnchor"></a>
-    <a title="Multiset Struct Reference"></a>
+    <a name="//apple_ref/swift/Struct/Graph" class="dashAnchor"></a>
+    <a title="Graph Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Buckets Docs</a> (93% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Multiset Struct Reference
+        Graph Struct Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -199,31 +199,33 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Multiset</h1>
-            <p>A Multiset (sometimes called a bag) is a special kind of set in which
-members are allowed to appear more than once. It&rsquo;s possible to convert a multiset
-to a set: <code>let set = Set(multiset)</code></p>
+            <h1>Graph</h1>
+            <p>A simple directed graph: that is, one with no loops (edges
+connected at both ends to the same vertex) and no more than one edge
+in the same direction between any two different vertices.
+All vertices in the graph are unique.
+The preferred way to insert vertices and edges is using subscript notation. Example:
+<code>graph[&quot;NY&quot;, &quot;Boston&quot;] = distance</code></p>
 
-<p>Conforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>,
-<code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+<p>Conforms to <code>SequenceType</code>.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
                 <div class="task-name-container">
-                  <a name="/Creating%20a%20Multiset"></a>
-                  <a name="//apple_ref/swift/Section/Creating a Multiset" class="dashAnchor"></a>
-                  <a href="#/Creating%20a%20Multiset">
-                    <h3 class="section-name">Creating a Multiset</h3>
+                  <a name="/Creating%20a%20Graph"></a>
+                  <a name="//apple_ref/swift/Section/Creating a Graph" class="dashAnchor"></a>
+                  <a href="#/Creating%20a%20Graph">
+                    <h3 class="section-name">Creating a Graph</h3>
                   </a>
                 </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__FT_GS0_Q__"></a>
+                    <a name="/s:FV7Buckets5GraphcUSs8Hashable___FMGS0_Q_Q0__FT_GS0_Q_Q0__"></a>
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__FT_GS0_Q__">init()</a>
+                    <a class="token" href="#/s:FV7Buckets5GraphcUSs8Hashable___FMGS0_Q_Q0__FT_GS0_Q_Q0__">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -231,7 +233,7 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Constructs an empty multiset.</p>
+                        <p>Creates an empty graph.</p>
 
                       </div>
                       <div class="declaration">
@@ -245,50 +247,23 @@ to a set: <code>let set = Set(multiset)</code></p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__USs12SequenceType_USs13GeneratorType__FQ_GS0_Qd___"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__USs12SequenceType_USs13GeneratorType__FQ_GS0_Qd___">init(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Constructs a multiset from a sequence, such as an array.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
             <div class="task-group">
                 <div class="task-name-container">
-                  <a name="/Querying%20a%20Multiset"></a>
-                  <a name="//apple_ref/swift/Section/Querying a Multiset" class="dashAnchor"></a>
-                  <a href="#/Querying%20a%20Multiset">
-                    <h3 class="section-name">Querying a Multiset</h3>
+                  <a name="/Querying%20a%20Graph"></a>
+                  <a name="//apple_ref/swift/Section/Querying a Graph" class="dashAnchor"></a>
+                  <a href="#/Querying%20a%20Graph">
+                    <h3 class="section-name">Querying a Graph</h3>
                   </a>
                 </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets8Multiset5countSi"></a>
+                    <a name="/s:vV7Buckets5Graph5countSi"></a>
                     <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets8Multiset5countSi">count</a>
+                    <a class="token" href="#/s:vV7Buckets5Graph5countSi">count</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -296,14 +271,14 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of elements stored in the multiset, including multiple copies.</p>
+                        <p>Number of vertices stored in the graph.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">count</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -313,9 +288,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets8Multiset7isEmptySb"></a>
+                    <a name="/s:vV7Buckets5Graph7isEmptySb"></a>
                     <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets8Multiset7isEmptySb">isEmpty</a>
+                    <a class="token" href="#/s:vV7Buckets5Graph7isEmptySb">isEmpty</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -340,9 +315,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets8Multiset13distinctCountSi"></a>
-                    <a name="//apple_ref/swift/Property/distinctCount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets8Multiset13distinctCountSi">distinctCount</a>
+                    <a name="/s:vV7Buckets5Graph10isCompleteSb"></a>
+                    <a name="//apple_ref/swift/Property/isComplete" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Graph10isCompleteSb">isComplete</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -350,14 +325,15 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of distinct elements stored in the multiset.</p>
+                        <p>Returns <code>true</code> if every pair of distinct vertices is connected by a
+unique edge (one in each direction).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">distinctCount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isComplete</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -367,9 +343,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets8Multiset16distinctElementsGVSs12LazySequenceGVSs21LazyForwardCollectionGVSs17MapCollectionViewGVSs10DictionaryQ_Si_Q____"></a>
-                    <a name="//apple_ref/swift/Property/distinctElements" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets8Multiset16distinctElementsGVSs12LazySequenceGVSs21LazyForwardCollectionGVSs17MapCollectionViewGVSs10DictionaryQ_Si_Q____">distinctElements</a>
+                    <a name="/s:vV7Buckets5Graph9isAcyclicSb"></a>
+                    <a name="//apple_ref/swift/Property/isAcyclic" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Graph9isAcyclicSb">isAcyclic</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -377,14 +353,15 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A sequence containing the multiset&rsquo;s distinct elements.</p>
+                        <p>Returns <code>true</code> if there&rsquo;s not a path starting and ending
+at the same vertex.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">distinctElements</span><span class="p">:</span> <span class="kt">LazySequence</span><span class="o">&lt;</span><span class="kt">LazyForwardCollection</span><span class="o">&lt;</span><span class="kt">MapCollectionView</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">T</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">],</span> <span class="kt">T</span><span class="o">&gt;&gt;&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isAcyclic</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -394,9 +371,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset8containsUSs8Hashable__FGS0_Q__FQ_Sb"></a>
-                    <a name="//apple_ref/swift/Method/contains(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset8containsUSs8Hashable__FGS0_Q__FQ_Sb">contains(_:)</a>
+                    <a name="/s:vV7Buckets5Graph8verticesERR"></a>
+                    <a name="//apple_ref/swift/Property/vertices" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Graph8verticesERR">vertices</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -404,14 +381,14 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns <code>true</code> if the multiset contains the given element.</p>
+                        <p>Returns the vertices stored in the graph.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">contains</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">vertices</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">Vertex</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -421,9 +398,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset5countUSs8Hashable__FGS0_Q__FQ_Si"></a>
-                    <a name="//apple_ref/swift/Method/count(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset5countUSs8Hashable__FGS0_Q__FQ_Si">count(_:)</a>
+                    <a name="/s:vV7Buckets5Graph5edgesGSaQ0__"></a>
+                    <a name="//apple_ref/swift/Property/edges" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Graph5edgesGSaQ0__">edges</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -431,14 +408,187 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the number of occurrences  of an element in the multiset.</p>
+                        <p>Returns the edges stored in the graph.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">count</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">edges</span><span class="p">:</span> <span class="p">[</span><span class="kt">Edge</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Graph14containsVertexUSs8Hashable___FGS0_Q_Q0__FQ_Sb"></a>
+                    <a name="//apple_ref/swift/Method/containsVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph14containsVertexUSs8Hashable___FGS0_Q_Q0__FQ_Sb">containsVertex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns <code>true</code> if the graph contains the given vertex.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsVertex</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Graph16containsEdgeFromUSs8Hashable___FGS0_Q_Q0__FTQ_2toQ__Sb"></a>
+                    <a name="//apple_ref/swift/Method/containsEdgeFrom(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph16containsEdgeFromUSs8Hashable___FGS0_Q_Q0__FTQ_2toQ__Sb">containsEdgeFrom(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns <code>true</code> if the graph contains an edge from <code>source</code> to <code>destination</code>.
+Subscript notation is preferred.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsEdgeFrom</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Graph8edgeFromUSs8Hashable___FGS0_Q_Q0__FTQ_2toQ__GSqQ0__"></a>
+                    <a name="//apple_ref/swift/Method/edgeFrom(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph8edgeFromUSs8Hashable___FGS0_Q_Q0__FTQ_2toQ__GSqQ0__">edgeFrom(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the edge connecting <code>source</code> to <code>destination</code> if it exists.
+Subscript notation is preferred.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">edgeFrom</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Edge</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Graph9neighborsERR"></a>
+                    <a name="//apple_ref/swift/Method/neighbors(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph9neighborsERR">neighbors(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the set of direct successors of the given vertex. An empty set
+is returned if the vertex does not exist.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">neighbors</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">Vertex</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Graph8pathFromUSs8Hashable___FGS0_Q_Q0__FTQ_2toQ__GSaQ__"></a>
+                    <a name="//apple_ref/swift/Method/pathFrom(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph8pathFromUSs8Hashable___FGS0_Q_Q0__FTQ_2toQ__GSaQ__">pathFrom(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of vertices representing a path from <code>source</code> to <code>destination</code>, if it exists.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">pathFrom</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Vertex</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array containing at least two vertices (<code>source</code> and <code>destination</code>) or an empty array.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Graph10generateAtUSs8Hashable___FGS0_Q_Q0__FTQ_5orderOS_19GraphTraversalOrder_GVSs11GeneratorOfQ__"></a>
+                    <a name="//apple_ref/swift/Method/generateAt(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph10generateAtUSs8Hashable___FGS0_Q_Q0__FTQ_5orderOS_19GraphTraversalOrder_GVSs11GeneratorOfQ__">generateAt(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a generator iterating over the vertices in the specified order starting at the given vertex.
+Valid options are .DepthFirst and .BreadthFirst.</p>
+
+<p>The generator never returns the same vertex more than once.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generateAt</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">GraphTraversalOrder</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">GeneratorOf</span><span class="o">&lt;</span><span class="kt">Vertex</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -459,9 +609,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset6insertUSs8Hashable__FRGS0_Q__FQ_Si"></a>
-                    <a name="//apple_ref/swift/Method/insert(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset6insertUSs8Hashable__FRGS0_Q__FQ_Si">insert(_:)</a>
+                    <a name="/s:FV7Buckets5Graph12insertVertexUSs8Hashable___FRGS0_Q_Q0__FQ_T_"></a>
+                    <a name="//apple_ref/swift/Method/insertVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph12insertVertexUSs8Hashable___FRGS0_Q_Q0__FQ_T_">insertVertex(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -469,21 +619,16 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Inserts a single occurrence of an element into the multiset.</p>
+                        <p>Inserts the given vertex to the graph if it doesn&rsquo;t exist.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insert</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insertVertex</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The number of occurrences of the element before the operation.</p>
-
                       </div>
                     </section>
                   </div>
@@ -491,9 +636,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset6insertUSs8Hashable__FRGS0_Q__FTQ_11occurrencesSi_Si"></a>
-                    <a name="//apple_ref/swift/Method/insert(_:occurrences:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset6insertUSs8Hashable__FRGS0_Q__FTQ_11occurrencesSi_Si">insert(_:occurrences:)</a>
+                    <a name="/s:FV7Buckets5Graph12removeVertexUSs8Hashable___FRGS0_Q_Q0__FQ_GSqQ__"></a>
+                    <a name="//apple_ref/swift/Method/removeVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph12removeVertexUSs8Hashable___FRGS0_Q_Q0__FQ_GSqQ__">removeVertex(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -501,21 +646,16 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Inserts a number of occurrences of an element into the multiset.</p>
+                        <p>Removes and returns the given vertex from the graph if it was present.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insert</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">occurrences</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeVertex</span><span class="p">(</span><span class="nv">vertex</span> <span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Vertex</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The number of occurrences of the element before the operation.</p>
-
                       </div>
                     </section>
                   </div>
@@ -523,9 +663,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset6removeUSs8Hashable__FRGS0_Q__FQ_Si"></a>
-                    <a name="//apple_ref/swift/Method/remove(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset6removeUSs8Hashable__FRGS0_Q__FQ_Si">remove(_:)</a>
+                    <a name="/s:FV7Buckets5Graph10insertEdgeUSs8Hashable___FRGS0_Q_Q0__FTQ0_4fromQ_2toQ__T_"></a>
+                    <a name="//apple_ref/swift/Method/insertEdge(_:from:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph10insertEdgeUSs8Hashable___FRGS0_Q_Q0__FTQ0_4fromQ_2toQ__T_">insertEdge(_:from:to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -533,21 +673,17 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes a single occurrence of an element from the multiset, if present.</p>
+                        <p>Connects two vertices with the given edge. If an edge already exists, it is replaced.
+Subscript notation is preferred.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insertEdge</span><span class="p">(</span><span class="nv">edge</span><span class="p">:</span> <span class="kt">Edge</span><span class="p">,</span> <span class="n">from</span> <span class="nv">source</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The number of occurrences of the element before the operation.</p>
-
                       </div>
                     </section>
                   </div>
@@ -555,9 +691,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset6removeUSs8Hashable__FRGS0_Q__FTQ_11occurrencesSi_Si"></a>
-                    <a name="//apple_ref/swift/Method/remove(_:occurrences:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset6removeUSs8Hashable__FRGS0_Q__FTQ_11occurrencesSi_Si">remove(_:occurrences:)</a>
+                    <a name="/s:FV7Buckets5Graph14removeEdgeFromUSs8Hashable___FRGS0_Q_Q0__FTQ_2toQ__GSqQ0__"></a>
+                    <a name="//apple_ref/swift/Method/removeEdgeFrom(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Graph14removeEdgeFromUSs8Hashable___FRGS0_Q_Q0__FTQ_2toQ__GSqQ0__">removeEdgeFrom(_:to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -565,23 +701,16 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes a number of occurrences of an element from the multiset.
-If the multiset contains fewer than this number of occurrences to begin with,
-all occurrences will be removed.</p>
+                        <p>Removes and returns the edge connecting the given vertices if it exists.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">occurrences</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeEdgeFrom</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Edge</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The number of occurrences of the element before the operation.</p>
-
                       </div>
                     </section>
                   </div>
@@ -589,41 +718,9 @@ all occurrences will be removed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset11removeAllOfUSs8Hashable__FRGS0_Q__FQ_Si"></a>
-                    <a name="//apple_ref/swift/Method/removeAllOf(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset11removeAllOfUSs8Hashable__FRGS0_Q__FQ_Si">removeAllOf(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Removes all occurrences of an element from the multiset, if present.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeAllOf</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The number of occurrences of the element before the operation.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets8Multiset9removeAllUSs8Hashable__FRGS0_Q__FT12keepCapacitySb_T_"></a>
+                    <a name="/s:FV7Buckets5Graph9removeAllUSs8Hashable___FRGS0_Q_Q0__FT12keepCapacitySb_T_"></a>
                     <a name="//apple_ref/swift/Method/removeAll(keepCapacity:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset9removeAllUSs8Hashable__FRGS0_Q__FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
+                    <a class="token" href="#/s:FV7Buckets5Graph9removeAllUSs8Hashable___FRGS0_Q_Q0__FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -631,7 +728,7 @@ all occurrences will be removed.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes all the elements from the multiset, and by default
+                        <p>Removes all vertices and edges from the graph, and by default
 clears the underlying storage buffer.</p>
 
                       </div>

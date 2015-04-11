@@ -37,7 +37,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return dictionary.count
     }
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -150,8 +150,6 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     /// Internal dictionary holding the elements.
     private var dictionary = [Key: [Value]]()
 }
-
-// MARK: -
 
 extension Multimap: SequenceType {
     

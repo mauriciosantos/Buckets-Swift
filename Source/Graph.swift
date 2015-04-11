@@ -12,8 +12,8 @@ import Foundation
 /// connected at both ends to the same vertex) and no more than one edge
 /// in the same direction between any two different vertices.
 /// All vertices in the graph are unique.
-/// The preferred  way to insert vertices and edges is using subscript notation. Example:
-/// `graph["NY", "Boston"] = distance"
+/// The preferred way to insert vertices and edges is using subscript notation. Example:
+/// `graph["NY", "Boston"] = distance`
 ///
 /// Conforms to `SequenceType`.
 public struct Graph<Vertex: Hashable, Edge> {
@@ -33,7 +33,7 @@ public struct Graph<Vertex: Hashable, Edge> {
         return nodes.count
     }
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -143,8 +143,8 @@ public struct Graph<Vertex: Hashable, Edge> {
     
     // MARK: Adding and Removing Elements
     
-    /// Gets, sets, or deletes an edge between vertices.
-    /// The vertices are inserted if they don´t exist in the graph, except when removing.
+    // Gets, sets, or deletes an edge between vertices.
+    // The vertices are inserted if they don´t exist in the graph, except when removing.
     public subscript(source: Vertex, destination: Vertex) -> Edge? {
         get {
             return edgeFrom(source, to: destination)
@@ -285,8 +285,6 @@ public struct Graph<Vertex: Hashable, Edge> {
         }
     }
 }
-
-// MARK: - Extenstions
 
 extension Graph: SequenceType {
     

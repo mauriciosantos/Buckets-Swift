@@ -8,54 +8,39 @@
 
 import Foundation
 
-private struct Constants {
-    static let DefaultFPP = 0.03
-}
-
-// Printable Description must be unique.
-public struct BloomFilter<T: Printable> {
+/// A Bloom filter is a probabilistic set designed to check rapidly and memory-efficiently,
+/// whether an element is definitely not in the set or may be in the set. The false
+/// positive probability is provided at construction time.
+///
+/// Inserted elements must conform to the `BloomFilterType` protocol. Types already conforming to the
+/// protocol include, but are not limited to: `Int`, `Double` and `String`.
+public struct BloomFilter<T: BloomFilterType> {
     
-    public let falsePositiveProbability: Double
+    // MARK: Creating a BloomFilter
     
-    public var approximateCount: Int {
-        let count = Double(bits.count)
-        let bitsSetToOne = Double(bits.cardinality)
-        let hashFunctions = Double(numberOfHashFunctions)
-        
-        let result = -count*log(1.0 - bitsSetToOne/count)/hashFunctions
-        if !result.isFinite {
-            return Int.max
-        }
-        return Int(min(result, Double(Int.max)))
+    /// Creates a Bloom filter with the expected number of elements and a default
+    /// false positive probability of 3%.
+    /// Inserting significantly more elements than specified will result a deterioration of the
+    /// false positive probability.
+    public init(expectedCount: Int) {
+        self.init(expectedCount: expectedCount, falsePositiveProbability: Constants.DefaultFPP)
     }
     
-    private var bits: BitArray
-    
-    /// Optimal number of hash functions
-    private let numberOfHashFunctions: Int
-    
-    /**
-    Creates a bloom filter
-    
-    :param: expectedSize Expected number of insertions.
-    :param: falsePositiveProbability double < 1 and > 0
-    
-    :returns:
-    */
-    public init(expectedSize: Int, falsePositiveProbability fpp: Double = Constants.DefaultFPP) {
-        fnv1(-1.0)
-        
-        if expectedSize < 0 {
-            fatalError("Can't construct BloomFilter with expectedSize < 0")
+    /// Creates a Bloom filter with the expected number of elements and
+    /// expected false positive probability.
+    /// Inserting significantly more elements than specified will result in a deterioration of the
+    /// false positive probability.
+    public init(expectedCount: Int, falsePositiveProbability fpp: Double) {
+        if expectedCount < 0 {
+            fatalError("Can't construct a Bloom filter with expectedCount < 0")
         }
-        
         if fpp <= 0.0 || fpp >= 1.0  {
             fatalError("Can't construct BloomFilter with false positive probability >= 1 or <= 0")
         }
         
         // See: http://en.wikipedia.org/wiki/Bloom_filter for calculations
         
-        let n = Double(expectedSize)
+        let n = Double(expectedCount)
         let m = n*log(1/fpp) / pow(log(2), 2)
         
         let bitArraySize = Int(m)
@@ -67,15 +52,30 @@ public struct BloomFilter<T: Printable> {
         falsePositiveProbability = fpp
     }
     
-    public mutating func insert(element: T) {
-        for i in 0..<numberOfHashFunctions {
-            let hashFunction = hashFunctionWithIndex(i)
-            let index = hashFunction(element)
-            bits[index] = true
+    // MARK: Querying a BloomFilter
+    
+    /// The probability that `contains()` will erroneously return true.
+    public let falsePositiveProbability: Double
+    
+    /// Returns the approximated number of elements in the bloom filter.
+    public var roughCount: Int {
+        let count = Double(bits.count)
+        let bitsSetToOne = Double(bits.cardinality)
+        let hashFunctions = Double(numberOfHashFunctions)
+        
+        let result = -count*log(1.0 - bitsSetToOne/count)/hashFunctions
+        if !result.isFinite {
+            return Int.max
         }
+        return Int(min(result, Double(Int.max)))
     }
     
-    /// Returns true if the element might be in this bloom filter or false if it's definitely not.
+    /// Returns `true` if no element has been inserted to the Bloom filter.
+    public var isEmpty: Bool {
+        return bits.cardinality == 0
+    }
+    
+    /// Returns `true` if the given element might be in the Bloom filter or false if it's definitely not.
     public func contains(element: T) -> Bool {
         for i in 0..<numberOfHashFunctions {
             let hashFunction = hashFunctionWithIndex(i)
@@ -87,7 +87,31 @@ public struct BloomFilter<T: Printable> {
         return true
     }
     
-    /// Creates any number of hash functions on the fly using just 2 predifined ones.
+    // MARK: Adding and Removing Elements
+    
+    /// Inserts an element into the Bloom filter. All subsequent calls to 
+    /// `contains()` with the same element will return true.
+    public mutating func insert(element: T) {
+        for i in 0..<numberOfHashFunctions {
+            let hashFunction = hashFunctionWithIndex(i)
+            let index = hashFunction(element)
+            bits[index] = true
+        }
+    }
+    
+    /// Removes all the elements from the Bloom filter.
+    public mutating func removeAll() {
+        bits = BitArray(count: bits.count, repeatedValue: false)
+    }
+    
+    // MARK: Private Properties and Helper Methods
+    
+    private var bits: BitArray
+    
+    /// Optimal number of hash functions.
+    private let numberOfHashFunctions: Int
+    
+    /// Creates any number of hash functions on the fly using just 2 predefined ones.
     /// See http://en.wikipedia.org/wiki/Double_hashing
     private func hashFunctionWithIndex(index: Int) -> (T) -> Int {
         var i = UInt(index)
@@ -95,12 +119,14 @@ public struct BloomFilter<T: Printable> {
         // Hi(x) = H0(x) + i*H1(x) mod table.size
         
         return  {
-            let str = $0.description
-            
-            let result = fnv1a(str)
-            
-            
-            return Int((fnv1(str) &+ i&*fnv1a(str)) % UInt(self.bits.count))
+            let bytes = $0.bytes
+            return Int((fnv1(bytes) &+ i&*fnv1a(bytes)) % UInt(self.bits.count))
         }
     }
+}
+
+// MARK:- Constants
+
+private struct Constants {
+    static let DefaultFPP = 0.03
 }

@@ -8,11 +8,6 @@
 
 import Foundation
 
-private struct Constants {
-    // Must be power of 2
-    private static let DefaultCapacity = 8
-}
-
 /// A circular array provides most of the features of a standard array
 /// such as constant-time random access in addition to amortized constant-time
 /// insertion/removal at both ends, instead of just one end.
@@ -58,7 +53,7 @@ public struct CircularArray<T> {
         return (tail - head) & (items.count - 1)
     }
     
-    /// `true` if and only if the circular array is empty.
+    /// Returns `true` if and only if the circular array is empty.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -207,8 +202,6 @@ public struct CircularArray<T> {
     }
 }
 
-// MARK: -
-
 extension CircularArray: SequenceType {
     
     // MARK: SequenceType Protocol Conformance
@@ -283,9 +276,14 @@ extension CircularArray: Printable, DebugPrintable {
     }
 }
 
-// MARK: ReconstructableSequence Protocol Conformance
-
 extension CircularArray: ReconstructableSequence {}
+
+// MARK: - Constants
+
+private struct Constants {
+    // Must be power of 2
+    private static let DefaultCapacity = 8
+}
 
 // MARK: - Operators
 

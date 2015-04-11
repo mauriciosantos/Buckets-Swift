@@ -14,6 +14,7 @@ import Foundation
 ///
 /// The `enqueueFirst`, `enqueueLast`, `dequeueFirst` and `dequeueLast` 
 /// operations run in amortized constant time.
+///
 /// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Deque<T> {
@@ -36,7 +37,7 @@ public struct Deque<T> {
         return items.count
     }
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -88,8 +89,6 @@ public struct Deque<T> {
     /// Internal structure holding the elements.
     private var items = CircularArray<T>()
 }
-
-// MARK: -
 
 extension Deque: SequenceType {
     

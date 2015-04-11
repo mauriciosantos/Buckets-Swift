@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Multiset Extension Reference</title>
+    <title>Graph Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,8 +9,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/Multiset" class="dashAnchor"></a>
-    <a title="Multiset Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/Graph" class="dashAnchor"></a>
+    <a title="Graph Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Buckets Docs</a> (93% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Multiset Extension Reference
+        Graph Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -199,13 +199,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Multiset</h1>
-            <p>A Multiset (sometimes called a bag) is a special kind of set in which
-members are allowed to appear more than once. It&rsquo;s possible to convert a multiset
-to a set: <code>let set = Set(multiset)</code></p>
+            <h1>Graph</h1>
+            <p>A simple directed graph: that is, one with no loops (edges
+connected at both ends to the same vertex) and no more than one edge
+in the same direction between any two different vertices.
+All vertices in the graph are unique.
+The preferred way to insert vertices and edges is using subscript notation. Example:
+<code>graph[&quot;NY&quot;, &quot;Boston&quot;] = distance</code></p>
 
-<p>Conforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>,
-<code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+<p>Conforms to <code>SequenceType</code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -221,9 +223,9 @@ to a set: <code>let set = Set(multiset)</code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets8Multiset8generateUSs8Hashable__FGS0_Q__FT_GVSs11GeneratorOfQ__"></a>
+                    <a name="/s:FV7Buckets5Graph8generateUSs8Hashable___FGS0_Q_Q0__FT_GVSs11GeneratorOfQ__"></a>
                     <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8Multiset8generateUSs8Hashable__FGS0_Q__FT_GVSs11GeneratorOfQ__">generate()</a>
+                    <a class="token" href="#/s:FV7Buckets5Graph8generateUSs8Hashable___FGS0_Q_Q0__FT_GVSs11GeneratorOfQ__">generate()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -231,177 +233,21 @@ to a set: <code>let set = Set(multiset)</code></p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Provides for-in loop functionality. Generates multiple occurrences per element.</p>
+                        <p>Provides for-in loop functionality.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">GeneratorOf</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">GeneratorOf</span><span class="o">&lt;</span><span class="kt">Vertex</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A generator over the elements.</p>
+                        <p>A generator over the vertices.</p>
 
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/Printable%20Protocol%20Conformance"></a>
-                  <a name="//apple_ref/swift/Section/Printable Protocol Conformance" class="dashAnchor"></a>
-                  <a href="#/Printable%20Protocol%20Conformance">
-                    <h3 class="section-name">Printable Protocol Conformance</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vV7Buckets8Multiset11descriptionSS"></a>
-                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets8Multiset11descriptionSS">description</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A string containing a suitable textual
-representation of the multiset.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/DebugPrintable%20Protocol%20Conformance"></a>
-                  <a name="//apple_ref/swift/Section/DebugPrintable Protocol Conformance" class="dashAnchor"></a>
-                  <a href="#/DebugPrintable%20Protocol%20Conformance">
-                    <h3 class="section-name">DebugPrintable Protocol Conformance</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vV7Buckets8Multiset16debugDescriptionSS"></a>
-                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets8Multiset16debugDescriptionSS">debugDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A string containing a suitable textual representation
-of the multiset when debugging.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/ArrayLiteralConvertible%20Protocol%20Conformance"></a>
-                  <a name="//apple_ref/swift/Section/ArrayLiteralConvertible Protocol Conformance" class="dashAnchor"></a>
-                  <a href="#/ArrayLiteralConvertible%20Protocol%20Conformance">
-                    <h3 class="section-name">ArrayLiteralConvertible Protocol Conformance</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__Ft12arrayLiteralGSaQ___GS0_Q__"></a>
-                    <a name="//apple_ref/swift/Method/init(arrayLiteral:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets8MultisetcUSs8Hashable__FMGS0_Q__Ft12arrayLiteralGSaQ___GS0_Q__">init(arrayLiteral:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Constructs a multiset using an array literal.
-Unlike a set, multiple copies of an element are inserted.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">arrayLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">T</span><span class="o">...</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/Hashable%20Protocol%20Conformance"></a>
-                  <a name="//apple_ref/swift/Section/Hashable Protocol Conformance" class="dashAnchor"></a>
-                  <a href="#/Hashable%20Protocol%20Conformance">
-                    <h3 class="section-name">Hashable Protocol Conformance</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vV7Buckets8Multiset9hashValueSi"></a>
-                    <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets8Multiset9hashValueSi">hashValue</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The hash value.
-<code>x == y</code> implies <code>x.hashValue == y.hashValue</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>

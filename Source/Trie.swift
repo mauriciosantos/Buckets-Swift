@@ -16,6 +16,7 @@ import Foundation
 ///
 /// The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
 /// where n is the length of the sequence or prefix.
+///
 /// Conforms to `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
 public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashable> {
     
@@ -39,7 +40,7 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
     /// Number of elements stored in the trie.
     public private(set) var count = 0
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -218,8 +219,6 @@ public struct Trie<T: ReconstructableSequence where T.Generator.Element: Hashabl
         return copy
     }
 }
-
-// MARK: -
 
 extension Trie: Printable, DebugPrintable {
     

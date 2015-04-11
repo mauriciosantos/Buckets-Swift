@@ -33,7 +33,7 @@ public struct Multiset<T: Hashable> {
     /// Number of elements stored in the multiset, including multiple copies.
     public private(set) var count = 0
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }

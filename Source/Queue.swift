@@ -13,6 +13,7 @@ import Foundation
 /// to be removed.
 ///
 /// The `enqueue` and `dequeue` operations run in amortized constant time.
+///
 /// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Queue<T> {
@@ -35,7 +36,7 @@ public struct Queue<T> {
         return items.count
     }
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return count == 0
     }
@@ -70,8 +71,6 @@ public struct Queue<T> {
     /// Internal structure holding the elements.
     private var items = CircularArray<T>()
 }
-
-// MARK: -
 
 extension Queue: SequenceType {
     

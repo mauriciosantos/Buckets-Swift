@@ -12,6 +12,7 @@ import Foundation
 /// the last element added to the stack will be the first one to be removed.
 ///
 /// The `push` and `pop` operations run in amortized constant time.
+///
 /// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
 /// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct Stack<T> {
@@ -34,7 +35,7 @@ public struct Stack<T> {
         return elements.count
     }
     
-    /// `true` if and only if `count == 0`.
+    /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
         return elements.isEmpty
     }
@@ -70,7 +71,6 @@ public struct Stack<T> {
     private var elements = [T]()
 }
 
-// MARK: -
 
 extension Stack: SequenceType {
     
