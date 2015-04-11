@@ -23,25 +23,25 @@ public struct BloomFilter<T: BloomFilterType> {
     /// Inserting significantly more elements than specified will result a deterioration of the
     /// false positive probability.
     public init(expectedCount: Int) {
-        self.init(expectedCount: expectedCount, falsePositiveProbability: Constants.DefaultFPP)
+        self.init(expectedCount: expectedCount, FPP: Constants.DefaultFPP)
     }
     
     /// Creates a Bloom filter with the expected number of elements and
     /// expected false positive probability.
     /// Inserting significantly more elements than specified will result in a deterioration of the
     /// false positive probability.
-    public init(expectedCount: Int, falsePositiveProbability fpp: Double) {
+    public init(expectedCount: Int, FPP: Double) {
         if expectedCount < 0 {
             fatalError("Can't construct a Bloom filter with expectedCount < 0")
         }
-        if fpp <= 0.0 || fpp >= 1.0  {
+        if FPP <= 0.0 || FPP >= 1.0  {
             fatalError("Can't construct BloomFilter with false positive probability >= 1 or <= 0")
         }
         
         // See: http://en.wikipedia.org/wiki/Bloom_filter for calculations
         
         let n = Double(expectedCount)
-        let m = n*log(1/fpp) / pow(log(2), 2)
+        let m = n*log(1/FPP) / pow(log(2), 2)
         
         let bitArraySize = Int(m)
         bits = BitArray(count: bitArraySize, repeatedValue: false)
@@ -49,13 +49,14 @@ public struct BloomFilter<T: BloomFilterType> {
         let k = (m/n) * log(2)
         numberOfHashFunctions = Int(ceil(k))
         
-        falsePositiveProbability = fpp
+        self.FPP = FPP
     }
     
     // MARK: Querying a BloomFilter
     
-    /// The probability that `contains()` will erroneously return true.
-    public let falsePositiveProbability: Double
+    /// The expected false positive probability. 
+    /// In other words, the probability that `contains()` will erroneously return true.
+    public let FPP: Double
     
     /// Returns the approximated number of elements in the bloom filter.
     public var roughCount: Int {
