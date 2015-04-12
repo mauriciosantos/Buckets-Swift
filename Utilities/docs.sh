@@ -5,3 +5,4 @@
 cd ..
 jazzy -o Docs -a Mauricio\ Santos -m Buckets -g https://github.com/mauriciosantos/Buckets-Swift --min-acl public --skip-undocumented -c
 rm -rf build
+rm -rf Docs/docsets

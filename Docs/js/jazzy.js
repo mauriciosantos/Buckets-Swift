@@ -8,24 +8,12 @@ if (navigator.userAgent.match(/xcode/i)) {
   window.jazzy.docset = true
 }
 
-$.expr[':'].textEquals = $.expr.createPseudo(function(arg) {
-    return function( elem ) {
-        return $(elem).text().match("^" + arg + "$");
-    };
-});
-
 // On doc load, toggle the URL hash discussion if present
 $(document).ready(function() {
   if (!window.jazzy.docset) {
     var linkToHash = $('a[href="' + window.location.hash +'"]');
     linkToHash.trigger("click");
   }
-  // $( ".nav-group-task:contains('Int')" ).remove();
-  // $( ".nav-group-task:contains('String')" ).remove();
-  // $( ".nav-group-task:contains('==')" ).remove();
-  // $( ".nav-group-task:contains('Bool')" ).remove();
-  $('a[href*="Extensions.html#"]').remove();
-  $( ".nav-group-task:contains('==')" ).remove();
 });
 
 // On token click, toggle its discussion and animate token.marginLeft

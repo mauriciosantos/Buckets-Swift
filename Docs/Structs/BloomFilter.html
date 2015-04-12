@@ -13,7 +13,7 @@
     <a title="BloomFilter Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Buckets Docs</a> (93% documented)</p>
+        <p><a href="../index.html">Buckets Docs</a> (88% documented)</p>
         <p class="header-right"><a href="https://github.com/mauriciosantos/Buckets-Swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -107,6 +107,9 @@
           <li class="nav-group-name">
           <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F7Bucketsoi2eeUSs9Equatable__FTGVS_6MatrixQ__GS1_Q___Sb">==(_:_:)</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:F7Bucketsoi2eeUSs8Hashable_Ss9Equatable__FTGVS_5GraphQ_Q0__GS2_Q_Q0___Sb">==(_:_:)</a>
               </li>
@@ -251,9 +254,9 @@ false positive probability.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets11BloomFiltercUS_15BloomFilterType__FMGS0_Q__FT13expectedCountSi24falsePositiveProbabilitySd_GS0_Q__"></a>
-                    <a name="//apple_ref/swift/Method/init(expectedCount:falsePositiveProbability:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets11BloomFiltercUS_15BloomFilterType__FMGS0_Q__FT13expectedCountSi24falsePositiveProbabilitySd_GS0_Q__">init(expectedCount:falsePositiveProbability:)</a>
+                    <a name="/s:FV7Buckets11BloomFiltercUS_15BloomFilterType__FMGS0_Q__FT13expectedCountSi3FPPSd_GS0_Q__"></a>
+                    <a name="//apple_ref/swift/Method/init(expectedCount:FPP:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets11BloomFiltercUS_15BloomFilterType__FMGS0_Q__FT13expectedCountSi3FPPSd_GS0_Q__">init(expectedCount:FPP:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -271,7 +274,7 @@ false positive probability.</p>
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">expectedCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">falsePositiveProbability</span> <span class="nv">fpp</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">expectedCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">FPP</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -292,9 +295,9 @@ false positive probability.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets11BloomFilter24falsePositiveProbabilitySd"></a>
-                    <a name="//apple_ref/swift/Property/falsePositiveProbability" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets11BloomFilter24falsePositiveProbabilitySd">falsePositiveProbability</a>
+                    <a name="/s:vV7Buckets11BloomFilter3FPPSd"></a>
+                    <a name="//apple_ref/swift/Property/FPP" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets11BloomFilter3FPPSd">FPP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -302,14 +305,15 @@ false positive probability.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The probability that <code>contains()</code> will erroneously return true.</p>
+                        <p>The expected false positive probability. 
+In other words, the probability that <code>contains()</code> will erroneously return true.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">falsePositiveProbability</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">FPP</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
 
                         </div>
                       </div>
