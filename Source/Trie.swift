@@ -263,7 +263,7 @@ extension Trie: Hashable {
     }
 }
 
-// MARK:- Trie Equatable Conformance
+// MARK: Trie Equatable Conformance
 
 /// Returns `true` if and only if the tries contain the same elements.
 public func ==<T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool {
