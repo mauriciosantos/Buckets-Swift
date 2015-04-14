@@ -34,6 +34,7 @@ You shouldn't worry about copying structs:
 
 Buckets collection types are optimized in the same way.
 
+### Examples
 Read the [documentation](http://mauriciosantos.github.io/Buckets-Swift/Structs.html).
 
 ## Contact
