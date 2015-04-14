@@ -6,6 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/mauriciosantos/Buckets-Swift'
   s.authors = { 'Mauricio Santos' => 'mauriciosantoss@gmail.com' }
   s.source = { :git => 'https://github.com/mauriciosantos/Buckets-Swift.git', :tag => s.version }
+  s.frameworks = 'Accelerate'
   
   s.documentation_url = 'http://mauriciosantos.github.io/Buckets-Swift/Structs.html'
   
