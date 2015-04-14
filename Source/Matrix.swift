@@ -290,7 +290,7 @@ public func -(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
         fatalError("Impossible to substract different size matrices.")
     }
     var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: 0)
-    vDSP_vsubD(lhs.grid, 1, rhs.grid, 1, &result.grid, 1, vDSP_Length(lhs.grid.count))
+    vDSP_vsubD(rhs.grid, 1, lhs.grid, 1, &result.grid, 1, vDSP_Length(lhs.grid.count))
     return result
 }
 
