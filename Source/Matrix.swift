@@ -9,11 +9,10 @@
 import Foundation
 import Accelerate
 
-
 /// A Matrix is a fixed size generic 2D collection.
 /// You can set and get elements using subscript notation. Example:
 /// `matrix[row, column] = value`
-/// 
+///
 /// This collection also provides linear algebra functions and operators such as
 /// `inverse()`, `+` and `*` using Apple's Accelerate framework. Please note that
 /// these operations are designed to work exclusively with `Double` matrices.
@@ -178,7 +177,7 @@ extension Matrix: ArrayLiteralConvertible {
     
     /// Constructs a matrix using an array literal.
     public init(arrayLiteral elements: Array<T>...) {
-       self.init(elements)
+        self.init(elements)
     }
 }
 
@@ -256,12 +255,7 @@ public func +(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
         fatalError("Impossible to add different size matrices")
     }
     var result = rhs
- 
-    #if os(iOS) && arch(i386)
-        fatalError("Accelerate not available on 32-bit simulator") // workaround for swift bug.
-        #else
-        vDSP_vaddD(lhs.grid, 1, rhs.grid, 1, &result.grid, 1, vDSP_Length(lhs.grid.count))
-    #endif
+    cblas_daxpy(Int32(lhs.grid.count), 1.0, lhs.grid, 1, &(result.grid), 1)
     return result
 }
 
@@ -273,12 +267,8 @@ public func +=(inout lhs: Matrix<Double>, rhs: Matrix<Double>) {
 /// Performs matrix and scalar addition.
 public func +(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
     var scalar = rhs
-    var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: 0)
-    #if os(iOS) && arch(i386)
-        fatalError("Accelerate not available on 32-bit simulator") // workaround for swift bug.
-        #else
-        vDSP_vsaddD(lhs.grid, 1, &scalar, &result.grid, 1, vDSP_Length(lhs.grid.count))
-    #endif
+    var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: scalar)
+    cblas_daxpy(Int32(lhs.grid.count), 1, lhs.grid, 1, &(result.grid), 1)
     return result
 }
 
@@ -299,12 +289,8 @@ public func -(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
     if lhs.rows != rhs.rows || lhs.columns != rhs.columns {
         fatalError("Impossible to substract different size matrices.")
     }
-    var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: 0)
-    #if os(iOS) && arch(i386)
-        fatalError("Accelerate not available on 32-bit simulator") // workaround for swift bug.
-    #else
-        vDSP_vsubD(rhs.grid, 1, lhs.grid, 1, &result.grid, 1, vDSP_Length(lhs.grid.count))
-    #endif
+    var result = lhs
+    cblas_daxpy(Int32(lhs.grid.count), -1.0, rhs.grid, 1, &(result.grid), 1)
     return result
 }
 
@@ -327,12 +313,8 @@ public func -=(inout lhs: Matrix<Double>, rhs: Double) {
 
 /// Negates all the values in a matrix.
 public prefix func -(m: Matrix<Double>) -> Matrix<Double> {
-    var result = Matrix<Double>(rows: m.rows, columns: m.columns, repeatedValue: 0)
-    #if os(iOS) && arch(i386)
-        fatalError("Accelerate not available on 32-bit simulator") // workaround for swift bug.
-        #else
-        vDSP_vnegD(m.grid, 1, &result.grid, 1, vDSP_Length(m.grid.count))
-    #endif
+    var result = m
+    cblas_dscal(Int32(m.grid.count), -1.0, &(result.grid), 1)
     return result
 }
 
@@ -345,25 +327,18 @@ public func *(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
     if lhs.columns != rhs.rows {
         fatalError("Matrix product is undefined: first.columns != second.rows")
     }
-    var result = Matrix<Double>(rows: lhs.rows, columns: rhs.columns, repeatedValue: 0)
-    #if os(iOS) && arch(i386)
-        fatalError("Accelerate not available on 32-bit simulator") // workaround for swift bug.
-        #else
-        vDSP_mmulD(lhs.grid, 1, rhs.grid, 1, &result.grid, 1, vDSP_Length(lhs.rows),
-        vDSP_Length(rhs.columns), vDSP_Length(lhs.columns))
-    #endif
+    var result = Matrix<Double>(rows: lhs.rows, columns: rhs.columns, repeatedValue: 0.0)
+    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, Int32(lhs.rows), Int32(rhs.columns),
+        Int32(lhs.columns), 1.0, lhs.grid, Int32(lhs.columns), rhs.grid, Int32(rhs.columns),
+        0.0, &(result.grid), Int32(result.columns))
+    
     return result
 }
 
 /// Performs matrix and scalar multiplication.
 public func *(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
-    var scalar = rhs
-    var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: 0)
-    #if os(iOS) && arch(i386)
-        fatalError("Accelerate not available on 32-bit simulator") // workaround for swift bug.
-        #else
-        vDSP_vsmulD(lhs.grid, 1, &scalar, &result.grid, 1, vDSP_Length(lhs.grid.count))
-    #endif
+    var result = lhs
+    cblas_dscal(Int32(lhs.grid.count), rhs, &(result.grid), 1)
     return result
 }
 
@@ -381,14 +356,7 @@ public func *=(inout lhs: Matrix<Double>, rhs: Double) {
 
 /// Performs matrix and scalar division.
 public func /(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
-    var scalar = rhs
-    var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: 0)
-    #if os(iOS) && arch(i386)
-        fatalError("Accelerate not available on 32-bit simulator") // workaround for swift bug.
-        #else
-        vDSP_vsdivD(lhs.grid, 1, &scalar, &result.grid, 1, vDSP_Length(lhs.grid.count))
-     #endif
-    return result
+    return lhs * (1/rhs)
 }
 
 /// Performs matrix and scalar division.

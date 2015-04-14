@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Buckets'
-  s.version = '0.1.5'
+  s.version = '0.1.6'
   s.summary = 'Swift Collection Data Structures Library'
   s.license = 'MIT'
   s.homepage = 'https://github.com/mauriciosantos/Buckets-Swift'
