@@ -26,9 +26,7 @@ Buckets is a complete, tested and documented collections library for swift.
 
 ## Usage
 
-All collection types are implemented as structures. This means they are copied when they are assigned to a new constant or variable, or when they are passed to a function or method.
-
-You shouldn't worry about copying structs:  
+All collection types are implemented as structures. This means they are copied when they are assigned to a new constant or variable, or when they are passed to a function or method. You shouldn't worry about copying structs:  
 
 > The behavior you see in your code will always be as if a copy took place. However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.
 
