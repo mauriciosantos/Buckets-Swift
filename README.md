@@ -24,16 +24,6 @@ Buckets is a complete, tested and documented collections library for swift.
 - [CircularArray](http://mauriciosantos.github.io/Buckets-Swift/Structs/CircularArray.html)
 - [BloomFilter](http://mauriciosantos.github.io/Buckets-Swift/Structs/BloomFilter.html)
 
-## Usage
-
-All collection types are implemented as structures. This means they are copied when they are assigned to a new constant or variable, or when they are passed to a function or method. 
-
-You shouldn't worry about copying structs:  
-
-> The behavior you see in your code will always be as if a copy took place. However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.
-
-Buckets collection types are optimized in the same way.
-
 ## Download
 
 ### Cocoapods
@@ -60,7 +50,34 @@ Then, run the following command:
 $ pod install
 ```
 
-### Simple tutorial
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage#-carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate Buckets into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "mauriciosantos/Buckets" >= 1.0
+```
+
+## Usage
+
+All collection types are implemented as structures. This means they are copied when they are assigned to a new constant or variable, or when they are passed to a function or method. 
+
+You shouldn't worry about copying structs:  
+
+> The behavior you see in your code will always be as if a copy took place. However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.
+
+Buckets collection types are optimized in the same way.
+
+### Walkthrough
 
 ```swift
 import Buckets
