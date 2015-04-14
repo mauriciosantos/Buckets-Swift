@@ -34,6 +34,32 @@ You shouldn't worry about copying structs:
 
 Buckets collection types are optimized in the same way.
 
+## Download
+
+### Cocoapods
+
+[CocoaPods](http://cocoapods.org) 0.36 adds support for Swift and embedded frameworks. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate Buckets into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'Buckets', '~> 1.0'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
 ### Simple tutorial
 
 ```swift
