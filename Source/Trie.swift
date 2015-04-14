@@ -12,7 +12,10 @@ import Foundation
 /// sequences compactly and searching for full sequences or partial prefixes very efficiently.
 /// It is commonly used with strings, but it's not mandatory. However, it is recommended that
 /// sequences have a somewhat limited set of values.
+///
 /// Trie elements must conform to the `ReconstructableSequence` protocol.
+/// Types already conforming to the protocol include, but are not limited to: `String`, `Array`, 
+/// `CircularArray`, `BitArray`, `Queue`, `Deque` and `Stack`.
 ///
 /// The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
 /// where n is the length of the sequence or prefix.

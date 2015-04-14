@@ -18,7 +18,7 @@ import Foundation
 /// `ArrayLiteralConvertible`, `Equatable`, `Hashable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct BitArray {
     
-    // MARK: Creating a Bit Array
+    // MARK: Creating a BitArray
     
     /// Constructs an empty bit array.
     public init() {}
@@ -61,7 +61,7 @@ public struct BitArray {
         }
     }
     
-    // MARK: Querying a Bit Array
+    // MARK: Querying a BitArray
     
     /// Number of bits stored in the bit array.
     public private(set) var count = 0

@@ -71,7 +71,7 @@ public struct BloomFilter<T: BloomFilterType> {
         return Int(min(result, Double(Int.max)))
     }
     
-    /// Returns `true` if no element has been inserted to the Bloom filter.
+    /// Returns `true` if no element has been inserted into the Bloom filter.
     public var isEmpty: Bool {
         return bits.cardinality == 0
     }

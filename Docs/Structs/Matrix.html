@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Trie Struct Reference</title>
+    <title>Matrix Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,8 +9,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Trie" class="dashAnchor"></a>
-    <a title="Trie Struct Reference"></a>
+    <a name="//apple_ref/swift/Struct/Matrix" class="dashAnchor"></a>
+    <a title="Matrix Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Buckets Docs</a> (93% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Trie Struct Reference
+        Matrix Struct Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -259,38 +259,36 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Trie</h1>
-            <p>A Trie (sometimes called a prefix tree) is used for storing a set of
-sequences compactly and searching for full sequences or partial prefixes very efficiently.
-It is commonly used with strings, but it&rsquo;s not mandatory. However, it is recommended that
-sequences have a somewhat limited set of values.</p>
+            <h1>Matrix</h1>
+            <p>A Matrix is a fixed size generic 2D collection.
+You can set and get elements using subscript notation. Example:
+<code>matrix[row, column] = value</code></p>
 
-<p>Trie elements must conform to the <code>ReconstructableSequence</code> protocol.
-Types already conforming to the protocol include, but are not limited to: <code>String</code>, <code>Array</code>, 
-<code>CircularArray</code>, <code>BitArray</code>, <code>Queue</code>, <code>Deque</code> and <code>Stack</code>.</p>
+<p>This collection also provides linear algebra functions and operators such as
+<code>inverse()</code>, <code>+</code> and <code>*</code> using Apple&rsquo;s Accelerate framework. Please note that
+these operations are designed to work exclusively with <code>Double</code> matrices.
+Check the <code>Functions</code> section for more information.</p>
 
-<p>The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
-where n is the length of the sequence or prefix.</p>
-
-<p>Conforms to <code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+<p>Conforms to <code>SequenceType</code>, <code>MutableCollectionType</code>,
+<code>ArrayLiteralConvertible</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
                 <div class="task-name-container">
-                  <a name="/Creating%20a%20Trie"></a>
-                  <a name="//apple_ref/swift/Section/Creating a Trie" class="dashAnchor"></a>
-                  <a href="#/Creating%20a%20Trie">
-                    <h3 class="section-name">Creating a Trie</h3>
+                  <a name="/Creating%20a%20Matrix"></a>
+                  <a name="//apple_ref/swift/Section/Creating a Matrix" class="dashAnchor"></a>
+                  <a href="#/Creating%20a%20Matrix">
+                    <h3 class="section-name">Creating a Matrix</h3>
                   </a>
                 </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets4TriecUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FMGS0_Q__FT_GS0_Q__"></a>
-                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4TriecUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FMGS0_Q__FT_GS0_Q__">init()</a>
+                    <a name="/s:FV7Buckets6MatrixcU__FMGS0_Q__FT4rowsSi7columnsSi13repeatedValueQ__GS0_Q__"></a>
+                    <a name="//apple_ref/swift/Method/init(rows:columns:repeatedValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets6MatrixcU__FMGS0_Q__FT4rowsSi7columnsSi13repeatedValueQ__GS0_Q__">init(rows:columns:repeatedValue:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -298,14 +296,14 @@ where n is the length of the sequence or prefix.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Constructs an empty Trie.</p>
+                        <p>Constructs a new matrix with all positions set to the specified value.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">repeatedValue</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -315,9 +313,38 @@ where n is the length of the sequence or prefix.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets4TriecUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FMGS0_Q__USs12SequenceType_US2___FQ_GS0_Qd___"></a>
+                    <a name="/s:FV7Buckets6MatrixcU__FMGS0_Q__FT4rowsSi7columnsSi4gridGSaQ___GS0_Q__"></a>
+                    <a name="//apple_ref/swift/Method/init(rows:columns:grid:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets6MatrixcU__FMGS0_Q__FT4rowsSi7columnsSi4gridGSaQ___GS0_Q__">init(rows:columns:grid:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructs a new matrix using a 1D array in row-major order.</p>
+
+<p><code>Matrix[i,j] == grid[i*columns + j]</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">grid</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets6MatrixcU__FMGS0_Q__FGSaGSaQ___GS0_Q__"></a>
                     <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4TriecUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FMGS0_Q__USs12SequenceType_US2___FQ_GS0_Qd___">init(_:)</a>
+                    <a class="token" href="#/s:FV7Buckets6MatrixcU__FMGS0_Q__FGSaGSaQ___GS0_Q__">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -325,15 +352,15 @@ where n is the length of the sequence or prefix.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Constructs a trie from a sequence, such as an array. Inserts all the elements
-from the given sequence into the trie.</p>
+                        <p>Constructs a new matrix using a 2D array.
+All columns must be the same size, otherwise an error is triggered.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">rowsArray</span><span class="p">:</span> <span class="p">[[</span><span class="kt">T</span><span class="p">]])</span></code></pre>
 
                         </div>
                       </div>
@@ -344,19 +371,19 @@ from the given sequence into the trie.</p>
             </div>
             <div class="task-group">
                 <div class="task-name-container">
-                  <a name="/Querying%20a%20Trie"></a>
-                  <a name="//apple_ref/swift/Section/Querying a Trie" class="dashAnchor"></a>
-                  <a href="#/Querying%20a%20Trie">
-                    <h3 class="section-name">Querying a Trie</h3>
+                  <a name="/Querying%20a%20Matrix"></a>
+                  <a name="//apple_ref/swift/Section/Querying a Matrix" class="dashAnchor"></a>
+                  <a href="#/Querying%20a%20Matrix">
+                    <h3 class="section-name">Querying a Matrix</h3>
                   </a>
                 </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets4Trie5countSi"></a>
-                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets4Trie5countSi">count</a>
+                    <a name="/s:vV7Buckets6Matrix4rowsSi"></a>
+                    <a name="//apple_ref/swift/Property/rows" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets6Matrix4rowsSi">rows</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -364,14 +391,14 @@ from the given sequence into the trie.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of elements stored in the trie.</p>
+                        <p>The number of rows in the matrix.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">count</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rows</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -381,9 +408,9 @@ from the given sequence into the trie.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets4Trie7isEmptySb"></a>
-                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets4Trie7isEmptySb">isEmpty</a>
+                    <a name="/s:vV7Buckets6Matrix7columnsSi"></a>
+                    <a name="//apple_ref/swift/Property/columns" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets6Matrix7columnsSi">columns</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -391,14 +418,14 @@ from the given sequence into the trie.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns <code>true</code> if and only if <code>count == 0</code>.</p>
+                        <p>The number of columns in the matrix.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -408,9 +435,9 @@ from the given sequence into the trie.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV7Buckets4Trie8elementsGSaQ__"></a>
-                    <a name="//apple_ref/swift/Property/elements" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets4Trie8elementsGSaQ__">elements</a>
+                    <a name="/s:vV7Buckets6Matrix4gridGSaQ__"></a>
+                    <a name="//apple_ref/swift/Property/grid" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets6Matrix4gridGSaQ__">grid</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -418,14 +445,16 @@ from the given sequence into the trie.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Reconstructs and returns all the elements stored in the trie.</p>
+                        <p>The one-dimensional array backing the matrix in row-major order.</p>
+
+<p><code>Matrix[i,j] == grid[i*columns + j]</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">grid</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -435,9 +464,9 @@ from the given sequence into the trie.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets4Trie8containsUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_Sb"></a>
-                    <a name="//apple_ref/swift/Method/contains(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4Trie8containsUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_Sb">contains(_:)</a>
+                    <a name="/s:vV7Buckets6Matrix9transposeGS0_Q__"></a>
+                    <a name="//apple_ref/swift/Property/transpose" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets6Matrix9transposeGS0_Q__">transpose</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -445,197 +474,14 @@ from the given sequence into the trie.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns <code>true</code> if the trie contains the given element
-and it&rsquo;s not just a prefix of another element.</p>
+                        <p>Returns the transpose of the matrix.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">contains</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets4Trie8isPrefixUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_Sb"></a>
-                    <a name="//apple_ref/swift/Method/isPrefix(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4Trie8isPrefixUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_Sb">isPrefix(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns <code>true</code> if the trie contains at least one element matching the given prefix or if the
-given prefix is empty.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isPrefix</span><span class="p">(</span><span class="nv">prefix</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets4Trie10findPrefixUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_GSaQ__"></a>
-                    <a name="//apple_ref/swift/Method/findPrefix(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4Trie10findPrefixUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_GSaQ__">findPrefix(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns all the elements in the trie matching the given prefix.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">findPrefix</span><span class="p">(</span><span class="nv">prefix</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets4Trie15longestPrefixInUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_Q_"></a>
-                    <a name="//apple_ref/swift/Method/longestPrefixIn(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4Trie15longestPrefixInUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FGS0_Q__FQ_Q_">longestPrefixIn(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns the longest prefix in the trie matching the given element.
-The returned value is not necessarily a full inserted element.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">longestPrefixIn</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/Adding%20and%20Removing%20Elements"></a>
-                  <a name="//apple_ref/swift/Section/Adding and Removing Elements" class="dashAnchor"></a>
-                  <a href="#/Adding%20and%20Removing%20Elements">
-                    <h3 class="section-name">Adding and Removing Elements</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets4Trie6insertUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FRGS0_Q__FQ_Sb"></a>
-                    <a name="//apple_ref/swift/Method/insert(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4Trie6insertUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FRGS0_Q__FQ_Sb">insert(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Inserts the given element into the trie.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insert</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p><code>true</code> if the trie did not already contain the element.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets4Trie6removeUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FRGS0_Q__FQ_GSqQ__"></a>
-                    <a name="//apple_ref/swift/Method/remove(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4Trie6removeUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FRGS0_Q__FQ_GSqQ__">remove(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Removes the given element from the trie and returns
-it if it was present. This does not affect other members
-matching the given element as a prefix.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets4Trie9removeAllUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FRGS0_Q__FT_T_"></a>
-                    <a name="//apple_ref/swift/Method/removeAll()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets4Trie9removeAllUS_23ReconstructableSequence_USs13GeneratorType_Ss8Hashable__FRGS0_Q__FT_T_">removeAll()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Removes all the elements from the trie.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeAll</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">transpose</span><span class="p">:</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>

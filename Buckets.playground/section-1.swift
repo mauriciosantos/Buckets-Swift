@@ -5,12 +5,11 @@ import Buckets
 import Accelerate
 
 
-var v = [1.1, 2.0]
-var s = 3.0
-var vsresult = [Double](count : v.count, repeatedValue : 0.0)
-vDSP_vsaddD(v, 1, &s, &vsresult, 1, vDSP_Length(v.count))
-vsresult
+var m1: Matrix<Double> = [[1,2],[3,4]]
+contains(m1, 2)
 
+m1.description
 
+let vv = 1.0
 
 var a = BloomFilter<String>(expectedCount: 2000)

@@ -12,23 +12,7 @@ BloomFilterType.swift
 	public var bytes: [UInt8] {return bytesFromStruct(self)}
 	public var bytes: [UInt8] {return [UInt8](self.utf8)}
 Matrix.swift
-	public struct Matrix<T>
 	public func !=<T: Equatable>(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool
-	public func +(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double>
-	public func +=(inout lhs: Matrix<Double>, rhs: Matrix<Double>)
-	public func +(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double>
-	public func +(lhs: Double, rhs: Matrix<Double>) -> Matrix<Double>
-	public func +=(inout lhs: Matrix<Double>, rhs: Double)
-	public func -(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double>
-	public func -=(inout lhs: Matrix<Double>, rhs: Matrix<Double>)
-	public func -(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double>
-	public func -=(inout lhs: Matrix<Double>, rhs: Double)
-	public prefix func -(m: Matrix<Double>) -> Matrix<Double>
-	public func *(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double>
-	public func *(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double>
-	public func *(lhs: Double, rhs: Matrix<Double>) -> Matrix<Double>
-	public func /(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double>
-	public func invert(matrix: Matrix<Double>) -> Matrix<Double>?
 Graph.swift
 	public func !=<V, E: Equatable>(lhs: Graph<V,E>, rhs: Graph<V,E>) -> Bool
 	public enum GraphTraversalOrder

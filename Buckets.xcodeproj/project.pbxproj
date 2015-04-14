@@ -82,6 +82,8 @@
 		22DC033F1AB50D4B006190C7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03261AB50D4B006190C7 /* Stack.swift */; };
 		22DC03401AB50D4B006190C7 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03271AB50D4B006190C7 /* Trie.swift */; };
 		22DC03411AB50D4B006190C7 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03271AB50D4B006190C7 /* Trie.swift */; };
+		22DC8A891ADB0B4B00E555E1 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC8A881ADB0B4B00E555E1 /* MatrixTests.swift */; };
+		22DC8A8A1ADB0B4B00E555E1 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC8A881ADB0B4B00E555E1 /* MatrixTests.swift */; };
 		22DD3CC71AB5062E0083B4AB /* Buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DD3CBC1AB5062D0083B4AB /* Buckets.framework */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +140,7 @@
 		22DC03251AB50D4B006190C7 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Queue.swift; path = Source/Queue.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		22DC03261AB50D4B006190C7 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Stack.swift; path = Source/Stack.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		22DC03271AB50D4B006190C7 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Trie.swift; path = Source/Trie.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		22DC8A881ADB0B4B00E555E1 /* MatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatrixTests.swift; path = Tests/MatrixTests.swift; sourceTree = SOURCE_ROOT; };
 		22DD3CBC1AB5062D0083B4AB /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DD3CC61AB5062D0083B4AB /* Buckets OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Buckets OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -279,6 +282,7 @@
 				22CC94401AD35A3A00DCB028 /* TrieTests.swift */,
 				22504CBB1AD744CA00FBF4BB /* GraphTests.swift */,
 				2297A9BC1AD9D89800550380 /* BloomFilterTests.swift */,
+				22DC8A881ADB0B4B00E555E1 /* MatrixTests.swift */,
 				22A142EA1AB4D40900E70376 /* Supporting Files */,
 			);
 			name = Tests;
@@ -521,6 +525,7 @@
 				22DB5B2B1ACF42AC00FD59BB /* BimapTests.swift in Sources */,
 				220DD09D1AC4CD080023F3B0 /* DequeTests.swift in Sources */,
 				228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */,
+				22DC8A891ADB0B4B00E555E1 /* MatrixTests.swift in Sources */,
 				220DD0A31AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */,
 				2297A9BD1AD9D89800550380 /* BloomFilterTests.swift in Sources */,
 			);
@@ -564,6 +569,7 @@
 				22DB5B2C1ACF42AC00FD59BB /* BimapTests.swift in Sources */,
 				220DD09E1AC4CD080023F3B0 /* DequeTests.swift in Sources */,
 				228E4DBB1AB51AD400DB68BA /* BitArrayTests.swift in Sources */,
+				22DC8A8A1ADB0B4B00E555E1 /* MatrixTests.swift in Sources */,
 				220DD0A41AC4E1390023F3B0 /* PriorityQueueTests.swift in Sources */,
 				2297A9BE1AD9D89800550380 /* BloomFilterTests.swift in Sources */,
 			);
