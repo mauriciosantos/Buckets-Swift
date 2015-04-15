@@ -24,11 +24,11 @@ Buckets is a complete, tested and documented collections library for swift.
 - [CircularArray](http://mauriciosantos.github.io/Buckets-Swift/Structs/CircularArray.html)
 - [BloomFilter](http://mauriciosantos.github.io/Buckets-Swift/Structs/BloomFilter.html)
 
-## Download
+## Setup
 
 ### Cocoapods
 
-[CocoaPods](http://cocoapods.org) 0.36 adds support for Swift and embedded frameworks. You can install it with the following command:
+[CocoaPods](http://cocoapods.org) is a dependency manager for Swift and Objective-C projects. The latest version adds support for embedded frameworks. You can install it with the following command:
 
 ```bash
 $ gem install cocoapods
@@ -52,7 +52,7 @@ $ pod install
 
 ### Carthage
 
-[Carthage](https://github.com/Carthage/Carthage#-carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+[Carthage](https://github.com/Carthage/Carthage#-carthage) is a decentralized dependency manager that automates the process of adding frameworks to your application.
 
 You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
 
@@ -66,6 +66,16 @@ To integrate Buckets into your Xcode project using Carthage, specify it in your 
 ```ogdl
 github "mauriciosantos/Buckets" >= 1.0
 ```
+
+### Manually
+
+You can also integrate Buckets into your project manually:
+
+- Download the [latest release](https://github.com/mauriciosantos/Buckets-Swift/releases) and unzip it in your project's folder.
+- Open the `Buckets` folder, and drag `Buckets.xcodeproj` into the file navigator of your app project. This means inside your project, not at the top level.
+- Ensure that the deployment target of Buckets.framework matches that of the application target.
+- Open your project's "Build Phases" panel. Expand the "Target Dependencies" group, and add `Buckets.framework`.
+- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Set the "Destination" to "Frameworks", and add `Buckets.framework`. There are 2 versions, one for iOS and one for OS X. Select the right one.
 
 ## Usage
 
