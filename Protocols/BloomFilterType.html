@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Stack Extension Reference</title>
+    <title>BloomFilterType Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,8 +9,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/Stack" class="dashAnchor"></a>
-    <a title="Stack Extension Reference"></a>
+    <a name="//apple_ref/swift/Protocol/BloomFilterType" class="dashAnchor"></a>
+    <a title="BloomFilterType Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Buckets Docs</a> (90% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Buckets Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Stack Extension Reference
+        BloomFilterType Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -253,38 +253,28 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Stack</h1>
+            <h1>BloomFilterType</h1>
               <div class="declaration">
                 <div class="Swift">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Stack</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">BloomFilterType</span></code></pre>
 
                 </div>
               </div>
-            <p>A Stack is a Last-In-First-Out (LIFO) collection,
-the last element added to the stack will be the first one to be removed.</p>
+            <p>Specifies an element type supported by BloomFilter.</p>
 
-<p>The <code>push</code> and <code>pop</code> operations run in amortized constant time.</p>
-
-<p>Conforms to <code>SequenceType</code>, <code>ArrayLiteralConvertible</code>,
-<code>Printable</code>, <code>DebugPrintable</code> and <code>ReconstructableSequence</code>.</p>
+<p>The easiest way to implement this protocol is by
+joining the byte arrays from properties of already conforming types, such as strings or numbers.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/SequenceType%20Protocol%20Conformance"></a>
-                  <a name="//apple_ref/swift/Section/SequenceType Protocol Conformance" class="dashAnchor"></a>
-                  <a href="#/SequenceType%20Protocol%20Conformance">
-                    <h3 class="section-name">SequenceType Protocol Conformance</h3>
-                  </a>
-                </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV7Buckets5Stack8generateurFGS0_q__FT_GCSs12AnyGeneratorq__"></a>
-                    <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets5Stack8generateurFGS0_q__FT_GCSs12AnyGeneratorq__">generate()</a>
+                    <a name="/s:vP7Buckets15BloomFilterType5bytesGSaVSs5UInt8_"></a>
+                    <a name="//apple_ref/swift/Property/bytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP7Buckets15BloomFilterType5bytesGSaVSs5UInt8_">bytes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -292,98 +282,14 @@ the last element added to the stack will be the first one to be removed.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Provides for-in loop functionality. Generates elements in LIFO order.</p>
+                        <p>Returns a byte array representation of self.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">AnyGenerator</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A generator over the elements.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/ArrayLiteralConvertible%20Protocol%20Conformance"></a>
-                  <a name="//apple_ref/swift/Section/ArrayLiteralConvertible Protocol Conformance" class="dashAnchor"></a>
-                  <a href="#/ArrayLiteralConvertible%20Protocol%20Conformance">
-                    <h3 class="section-name">ArrayLiteralConvertible Protocol Conformance</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV7Buckets5StackcurFMGS0_q__Ft12arrayLiteralGSaq___GS0_q__"></a>
-                    <a name="//apple_ref/swift/Method/init(arrayLiteral:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV7Buckets5StackcurFMGS0_q__Ft12arrayLiteralGSaq___GS0_q__">init(arrayLiteral:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Constructs a stack using an array literal.
-The elements will be pushed from first to last.
-<code>let stack: Stack&lt;Int&gt; = [1,2,3]</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">arrayLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">T</span><span class="o">...</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/CustomStringConvertible%20Protocol%20Conformance"></a>
-                  <a name="//apple_ref/swift/Section/CustomStringConvertible Protocol Conformance" class="dashAnchor"></a>
-                  <a href="#/CustomStringConvertible%20Protocol%20Conformance">
-                    <h3 class="section-name">CustomStringConvertible Protocol Conformance</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vV7Buckets5Stack11descriptionSS"></a>
-                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV7Buckets5Stack11descriptionSS">description</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A string containing a suitable textual
-representation of the stack.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">bytes</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">]</span> <span class="p">{</span><span class="k">get</span><span class="p">}</span></code></pre>
 
                         </div>
                       </div>

@@ -12,17 +12,30 @@ BloomFilterType.swift
 	public var bytes: [UInt8] {return bytesFromStruct(self)}
 	public var bytes: [UInt8] {return [UInt8](self.utf8)}
 Matrix.swift
+	public func ==<T: Equatable>(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool
 	public func !=<T: Equatable>(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool
 Graph.swift
+	public func ==<V, E: Equatable>(lhs: Graph<V,E>, rhs: Graph<V,E>) -> Bool
 	public func !=<V, E: Equatable>(lhs: Graph<V,E>, rhs: Graph<V,E>) -> Bool
 	public enum GraphTraversalOrder
+Multimap.swift
+	public func ==<Key, Value>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>) -> Bool
 CircularArray.swift
+	public func ==<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool
 	public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool
+Multiset.swift
+	public func ==<T>(lhs: Multiset<T>, rhs: Multiset<T>) -> Bool
+Bimap.swift
+	public func ==<Key, Value>(lhs: Bimap<Key, Value>, rhs: Bimap<Key, Value>) -> Bool
 Stack.swift
+	public func ==<U: Equatable>(lhs: Stack<U>, rhs: Stack<U>) -> Bool
 	public func !=<U: Equatable>(lhs: Stack<U>, rhs: Stack<U>) -> Bool
 Queue.swift
+	public func ==<U: Equatable>(lhs: Queue<U>, rhs: Queue<U>) -> Bool
 	public func !=<U: Equatable>(lhs: Queue<U>, rhs: Queue<U>) -> Bool
 PriorityQueue.swift
+	public func ==<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool
 	public func !=<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool
 Deque.swift
+	public func ==<U: Equatable>(lhs: Deque<U>, rhs: Deque<U>) -> Bool
 	public func !=<U: Equatable>(lhs: Deque<U>, rhs: Deque<U>) -> Bool
