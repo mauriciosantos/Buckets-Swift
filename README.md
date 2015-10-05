@@ -64,7 +64,7 @@ $ brew install carthage
 To integrate Buckets into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "mauriciosantos/Buckets-Swift" >= 1.0
+github "mauriciosantos/Buckets-Swift" >= 1.1
 ```
 
 ### Manually
