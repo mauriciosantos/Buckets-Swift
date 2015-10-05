@@ -5,7 +5,7 @@ Buckets is a complete, tested and documented collections library for swift.
 
 ## Requirements
 
-- iOS 8.0+ or OS X 10.9+
+- iOS 8.0+ or OS X 10.10+
 - Xcode 7.0+
 
 ## Included collections
