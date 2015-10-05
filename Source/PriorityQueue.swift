@@ -25,9 +25,8 @@ public struct PriorityQueue<T> {
     /// should be before (`true`) or after (`false`) another element using strict weak ordering.
     /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
     ///
-    /// :param: isOrderedBefore Strict weak ordering function for checking if the first element has higher priority.
+    /// - parameter isOrderedBefore: Strict weak ordering function for checking if the first element has higher priority.
     public init(_ isOrderedBefore: (T,T) -> Bool) {
-        [1].sorted(<)
         self.init([], isOrderedBefore)
     }
     
@@ -37,7 +36,7 @@ public struct PriorityQueue<T> {
     /// should be before (`true`) or after (`false`) another element using strict weak ordering.
     /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
     ///
-    /// :param: isOrderedBefore Strict weak ordering function for checking if the first element has higher priority.
+    /// - parameter isOrderedBefore: Strict weak ordering function for checking if the first element has higher priority.
      public init<S: SequenceType where S.Generator.Element == T>(_ elements: S, _ isOrderedBefore: (T,T) -> Bool) {
         heap = BinaryHeap<T>(compareFunction: isOrderedBefore)
         for e in elements {
@@ -71,7 +70,7 @@ public struct PriorityQueue<T> {
     
     /// Retrieves and removes the highest priority element of the queue.
     ///
-    /// :returns: The highest priority element, or `nil` if the queue is empty.
+    /// - returns: The highest priority element, or `nil` if the queue is empty.
     public mutating func dequeue() -> T? {
         return heap.removeMax()
     }
@@ -94,28 +93,20 @@ extension PriorityQueue: SequenceType {
     
     /// Provides for-in loop functionality. Generates elements in no particular order.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<T> {
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<T> {
         return heap.generate()
     }
 }
 
-extension PriorityQueue: Printable, DebugPrintable {
+extension PriorityQueue: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the priority queue.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the queue when debugging.
-    public var debugDescription: String {
-        return description
+        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
     }
 }
 

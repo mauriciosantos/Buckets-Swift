@@ -6,7 +6,7 @@ Buckets is a complete, tested and documented collections library for swift.
 ## Requirements
 
 - iOS 8.0+ or OS X 10.9+
-- Xcode 6.3+
+- Xcode 7.0+
 
 ## Included collections
 
@@ -41,7 +41,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Buckets', '~> 1.0'
+pod 'Buckets', '~> 1.1'
 ```
 
 Then, run the following command:
@@ -136,7 +136,7 @@ graph["Boston", "NY"] = 5
 graph["NY", "Miami"] = 5
 graph.pathFrom("Boston", to: "Miami") // ["Boston", "NY", "Miami"]
 
-var trie = Trie<String>()
+var trie = Trie()
 trie.insert("Apple")
 trie.insert("App Store")
 trie.findPrefix("App") // ["App Store", "Apple"]

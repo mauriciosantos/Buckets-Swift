@@ -47,10 +47,7 @@ graph["Boston", "NY"] = 5
 graph["NY", "Miami"] = 5
 graph.pathFrom("Boston", to: "Miami") // ["Boston", "NY", "Miami"]
 
-var trie = Trie<String>()
-trie.insert("Apple")
-trie.insert("App Store")
-trie.findPrefix("App") // ["App Store", "Apple"]
+var sss = String("hola");
 
 var matrix: Matrix<Double> = [[1,2,3], [4,5,6]]
 matrix[1, 0] = 5

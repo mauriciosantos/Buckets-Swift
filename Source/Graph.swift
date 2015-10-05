@@ -41,7 +41,7 @@ public struct Graph<Vertex: Hashable, Edge> {
     /// Returns `true` if every pair of distinct vertices is connected by a
     /// unique edge (one in each direction).
     public var isComplete: Bool {
-        return !contains(nodes.values) { $0.adjacencyList.count != count - 1 }
+        return !nodes.values.contains { $0.adjacencyList.count != count - 1 }
     }
     
     /// Returns `true` if there's not a path starting and ending
@@ -104,7 +104,7 @@ public struct Graph<Vertex: Hashable, Edge> {
     
     /// Returns an array of vertices representing a path from `source` to `destination`, if it exists.
     ///
-    /// :returns: An array containing at least two vertices (`source` and `destination`) or an empty array.
+    /// - returns: An array containing at least two vertices (`source` and `destination`) or an empty array.
     public func pathFrom(source: Vertex, to destination: Vertex) -> [Vertex] {
         if let sourceNode = nodes[source], destinationNode = nodes[destination]  {
             var path = [Vertex]()
@@ -122,7 +122,7 @@ public struct Graph<Vertex: Hashable, Edge> {
     /// Valid options are .DepthFirst and .BreadthFirst.
     ///
     /// The generator never returns the same vertex more than once.
-    public func generateAt(source: Vertex, order: GraphTraversalOrder) -> GeneratorOf<Vertex> {
+    public func generateAt(source: Vertex, order: GraphTraversalOrder) -> AnyGenerator<Vertex> {
         if let sourceNode = nodes[source] {
             let nextNode: () -> GraphNode?
             let visitEventually: (GraphNode) -> Void
@@ -138,7 +138,7 @@ public struct Graph<Vertex: Hashable, Edge> {
             }
             return vertexGenerator(sourceNode, nextNode: nextNode, visitEventually: visitEventually)
         }
-        return  GeneratorOf(EmptyGenerator())
+        return  anyGenerator(EmptyGenerator())
     }
     
     // MARK: Adding and Removing Elements
@@ -240,13 +240,13 @@ public struct Graph<Vertex: Hashable, Edge> {
     /// The generator never returns the same vertex twice.
     /// Using nextVertex and visitEventually allows you to specify the order of traversal.
     ///
-    /// :param: source The first node to visit.
-    /// :param: nextNode Returns the next node to visit.
-    /// :param: visitEventually Gives a neighbor of the vertex previously returned by nextNode().
-    private func vertexGenerator(source: GraphNode, nextNode:() -> GraphNode?, visitEventually: (GraphNode)->Void) -> GeneratorOf<Vertex> {
+    /// - parameter source: The first node to visit.
+    /// - parameter nextNode: Returns the next node to visit.
+    /// - parameter visitEventually: Gives a neighbor of the vertex previously returned by nextNode().
+    private func vertexGenerator(source: GraphNode, nextNode:() -> GraphNode?, visitEventually: (GraphNode)->Void) -> AnyGenerator<Vertex> {
         var visited = Set<GraphNode>()
         visitEventually(source)
-        return GeneratorOf {
+        return anyGenerator {
             if let next = nextNode() {
                 visited.insert(next)
                 for successor in next.successors {
@@ -277,7 +277,7 @@ public struct Graph<Vertex: Hashable, Edge> {
                 
                 let edges = oldNode.edges
                 let successors = oldNode.successors.map{newNodes[$0.data]!}
-                for (index, successor) in enumerate(successors) {
+                for (index, successor) in successors.enumerate() {
                     newNode.connectTo(successor, withEdge: edges[index])
                 }
             }
@@ -292,9 +292,9 @@ extension Graph: SequenceType {
     
     /// Provides for-in loop functionality.
     ///
-    /// :returns: A generator over the vertices.
-    public func generate() -> GeneratorOf<Vertex> {
-        return GeneratorOf(nodes.keys.generate())
+    /// - returns: A generator over the vertices.
+    public func generate() -> AnyGenerator<Vertex> {
+        return anyGenerator(nodes.keys.generate())
     }
 }
 
@@ -316,7 +316,7 @@ public func ==<V, E: Equatable>(lhs: Graph<V,E>, rhs: Graph<V,E>) -> Bool {
         if lNode.adjacencyList.count != rNode.adjacencyList.count {
             return false
         }
-        let containsAllEdges = !contains(lNode.successors) {
+        let containsAllEdges = !lNode.successors.contains {
             rNode.edgeConnectingTo($0) != lNode.edgeConnectingTo($0)
         }
         if !containsAllEdges {
@@ -346,12 +346,12 @@ private class VertexNode<V: Hashable, E>: Hashable {
     let data : V
     var adjacencyList = [Bridge]()
     
-    var successors: LazyRandomAccessCollection<MapCollectionView<[((destination: VertexNode<V, E>, edge: E))], VertexNode<V, E>>> {
-        return lazy(adjacencyList).map{$0.destination}
+    var successors: LazyCollection<[VertexNode<V, E>]> {
+        return LazyCollection(LazyCollection(adjacencyList).map{$0.destination})
     }
     
-    var edges: LazyRandomAccessCollection<MapCollectionView<[((destination: VertexNode<V, E>, edge: E))], E>> {
-        return lazy(adjacencyList).map{$0.edge}
+    var edges: LazyCollection<[E]> {
+        return LazyCollection(LazyCollection(adjacencyList).map{$0.edge})
     }
     
     var hashValue: Int {
@@ -376,7 +376,7 @@ private class VertexNode<V: Hashable, E>: Hashable {
     }
     
     func removeConnectionTo(vertex: VertexNode) -> E? {
-        for (index, neighbor) in enumerate(adjacencyList) {
+        for (index, neighbor) in adjacencyList.enumerate() {
             if neighbor.destination == vertex {
                 return adjacencyList.removeAtIndex(index).edge
             }

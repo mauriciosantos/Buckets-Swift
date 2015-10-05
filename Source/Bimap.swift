@@ -50,19 +50,19 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     }
     
     /// A collection containing all the bimap's keys.
-    public var keys: LazyForwardCollection<MapCollectionView<[Key : Value], Key>> {
-        return keysToValues.keys
+    public var keys: LazyCollection<LazyMapCollection<[Key : Value], Key>> {
+        return LazyCollection(keysToValues.keys)
     }
     
     /// A collection containing all the bimap's values.
-    public var values: LazyForwardCollection<MapCollectionView<[Value : Key], Value>> {
-        return valuesToKeys.keys
+    public var values: LazyCollection<LazyMapCollection<[Value : Key], Value>> {
+        return LazyCollection(valuesToKeys.keys)
     }
 
     // MARK: Accessing and Changing Bimap Elements
     
     // Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
-    public subscript(#value: Value) -> Key? {
+    public subscript(value value: Value) -> Key? {
         get {
             return valuesToKeys[value]
         }
@@ -79,7 +79,7 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     }
     
     // Gets, sets, or deletes a key-value pair in the bimap using square bracket subscripting.
-    public subscript(#key: Key) -> Value? {
+    public subscript(key key: Key) -> Value? {
         get {
             return keysToValues[key]
         }
@@ -144,7 +144,7 @@ extension Bimap: SequenceType {
     
     /// Provides for-in loop functionality.
     ///
-    /// :returns: A generator over the elements.
+    /// - returns: A generator over the elements.
     public func generate() -> DictionaryGenerator<Key, Value> {
         return keysToValues.generate()
     }
@@ -189,22 +189,14 @@ extension Bimap: DictionaryLiteralConvertible {
     }
 }
 
-extension Bimap: Printable, DebugPrintable {
+extension Bimap: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the bimap.
     public var description: String {
         return keysToValues.description
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the bimap when debugging.
-    public var debugDescription: String {
-        return keysToValues.debugDescription
     }
 }
 

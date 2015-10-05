@@ -44,8 +44,8 @@ public struct Multiset<T: Hashable> {
     }
     
     /// A sequence containing the multiset's distinct elements.
-    public var distinctElements: LazySequence<LazyForwardCollection<MapCollectionView<[T : Int], T>>> {
-        return lazy(members.keys)
+    public var distinctElements: LazySequence<LazyMapCollection<[T : Int], T>> {
+        return LazySequence(members.keys)
     }
     
     /// Returns `true` if the multiset contains the given element.
@@ -62,14 +62,14 @@ public struct Multiset<T: Hashable> {
     
     /// Inserts a single occurrence of an element into the multiset.
     ///
-    /// :returns: The number of occurrences of the element before the operation.
+    /// - returns: The number of occurrences of the element before the operation.
     public mutating func insert(element: T) -> Int {
         return insert(element, occurrences: 1)
     }
     
     /// Inserts a number of occurrences of an element into the multiset.
     ///
-    /// :returns: The number of occurrences of the element before the operation.
+    /// - returns: The number of occurrences of the element before the operation.
     public mutating func insert(element: T, occurrences: Int) -> Int {
         if occurrences < 1 {
             fatalError("Can't insert < 1 occurrences")
@@ -83,7 +83,7 @@ public struct Multiset<T: Hashable> {
     
     /// Removes a single occurrence of an element from the multiset, if present.
     ///
-    /// :returns: The number of occurrences of the element before the operation.
+    /// - returns: The number of occurrences of the element before the operation.
     public mutating func remove(element: T) -> Int {
         return remove(element, occurrences: 1)
     }
@@ -92,7 +92,7 @@ public struct Multiset<T: Hashable> {
     /// If the multiset contains fewer than this number of occurrences to begin with,
     /// all occurrences will be removed.
     ///
-    /// :returns: The number of occurrences of the element before the operation.
+    /// - returns: The number of occurrences of the element before the operation.
     public mutating func remove(element: T, occurrences: Int) -> Int {
         if occurrences < 1 {
             fatalError("Can't remove < 1 occurrences")
@@ -114,7 +114,7 @@ public struct Multiset<T: Hashable> {
 
     /// Removes all occurrences of an element from the multiset, if present.
     ///
-    /// :returns: The number of occurrences of the element before the operation.
+    /// - returns: The number of occurrences of the element before the operation.
     public mutating func removeAllOf(element: T) -> Int {
         let ocurrences = count(element)
         if ocurrences >= 1 {
@@ -144,12 +144,12 @@ extension Multiset: SequenceType {
     
     /// Provides for-in loop functionality. Generates multiple occurrences per element.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<T> {
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<T> {
         var keyValueGenerator = members.generate()
         var elementCount = 0
         var element : T? = nil
-        return GeneratorOf<T> {
+        return anyGenerator {
             if elementCount > 0 {
                 elementCount--
                 return element
@@ -163,22 +163,14 @@ extension Multiset: SequenceType {
     }
 }
 
-extension Multiset: Printable, DebugPrintable {
+extension Multiset: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the multiset.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the multiset when debugging.
-    public var debugDescription: String {
-        return description
+        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
     }
 }
 

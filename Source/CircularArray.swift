@@ -86,7 +86,7 @@ public struct CircularArray<T> {
     
     /// Removes the first element from the circular array and returns it.
     ///
-    /// :returns: The first element, or `nil` if the circular array is empty.
+    /// - returns: The first element, or `nil` if the circular array is empty.
     public mutating func removeFirst() -> T? {
         if let value = first {
             items[head] = nil
@@ -104,7 +104,7 @@ public struct CircularArray<T> {
     public mutating func insert(element: T, atIndex index: Int) {
         checkIndex(index, lessThan: count + 1)
         append(element)
-        for i in stride(from: count - 2, through: index, by: -1) {
+        for i in (count - 2).stride(through: index, by: -1) {
             let rIndex = realIndex(i)
             let nextIndex = realIndex(i+1)
             items[nextIndex] = items[rIndex]
@@ -114,7 +114,7 @@ public struct CircularArray<T> {
     
     /// Removes the last element from the circular array and returns it.
     ///
-    /// :returns: The last element, or nil if the circular array is empty.
+    /// - returns: The last element, or nil if the circular array is empty.
     public mutating func removeLast() -> T? {
         if let value = last {
             tail = decreaseIndex(tail)
@@ -208,9 +208,9 @@ extension CircularArray: SequenceType {
     
     /// Provides for-in loop functionality.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<T> {
-        return GeneratorOf(IndexingGenerator(self))
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<T> {
+        return anyGenerator(IndexingGenerator(self))
     }
 }
 
@@ -257,26 +257,18 @@ extension CircularArray: ArrayLiteralConvertible {
     }
 }
 
-extension CircularArray: Printable, DebugPrintable {
+extension CircularArray: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual 
     /// representation of the circular array.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation 
-    /// of the circular array when debugging.
-    public var debugDescription: String {
-        return description
+        return "[" + self.map {"\($0)"}.joinWithSeparator(", ") + "]"
     }
 }
 
-extension CircularArray: ReconstructableSequence {}
+//extension CircularArray: ReconstructableSequence {}
 
 // MARK: - Constants
 
@@ -296,7 +288,7 @@ public func ==<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bo
     if lhs.count != rhs.count {
         return false
     }
-    return equal(lhs, rhs)
+    return lhs.elementsEqual(rhs)
 }
 
 public func !=<T: Equatable>(lhs: CircularArray<T>, rhs: CircularArray<T>) -> Bool {

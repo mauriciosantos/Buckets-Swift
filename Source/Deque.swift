@@ -66,14 +66,14 @@ public struct Deque<T> {
     
     /// Retrieves and removes the front element of the deque.
     ///
-    /// :returns: The front element, or `nil` if the deque is empty.
+    /// - returns: The front element, or `nil` if the deque is empty.
     public mutating func dequeueFirst() -> T? {
         return items.removeFirst()
     }
     
     /// Retrieves and removes the back element of the deque.
     ///
-    /// :returns: The back element, or `nil` if the deque is empty.
+    /// - returns: The back element, or `nil` if the deque is empty.
     public mutating func dequeueLast() -> T? {
         return items.removeLast()
     }
@@ -96,8 +96,8 @@ extension Deque: SequenceType {
     
     /// Provides for-in loop functionality. Generates elements in FIFO order.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<T> {
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<T> {
         return items.generate()
     }
 }
@@ -110,32 +110,21 @@ extension Deque: ArrayLiteralConvertible {
     /// The elements will be enqueued from first to last.
     /// `let deque: Deque<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
+        [1,2].startIndex
         self.init(elements)
     }
 }
 
-extension Deque: Printable, DebugPrintable {
+extension Deque: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the deque.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the deque when debugging.
-    public var debugDescription: String {
-        return description
+        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
     }
 }
-
-// MARK: ReconstructableSequence Protocol Conformance
-
-extension Deque: ReconstructableSequence {}
 
 // MARK: - Operators
 

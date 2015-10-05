@@ -27,7 +27,7 @@ class PriorityQueueTests: XCTestCase {
     
     func testInitWithArray() {
         queue = PriorityQueue(TestData.List, >)
-        let list = TestData.List.sorted(>)
+        let list = TestData.List.sort(>)
         for i in 0..<list.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
@@ -46,7 +46,7 @@ class PriorityQueueTests: XCTestCase {
             queue.enqueue(i)
         }
         XCTAssertEqual(queue.count, TestData.List.count)
-        let list = TestData.List.sorted(>)
+        let list = TestData.List.sort(>)
         for i in 0..<list.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
@@ -74,7 +74,7 @@ class PriorityQueueTests: XCTestCase {
         queue = PriorityQueue(TestData.List, >)
         var list = TestData.List
         for element in queue {
-            if let index = find(list, element) {
+            if let index = list.indexOf(element) {
                 list.removeAtIndex(index)
             }
         }

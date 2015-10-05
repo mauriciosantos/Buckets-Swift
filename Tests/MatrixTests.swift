@@ -63,7 +63,7 @@ class MatrixTests: XCTestCase {
     
     func testSequenceTypeConformance() {
         matrix = Matrix([[1,2,3],[4,5,6]])
-        XCTAssertTrue(equal(matrix, [1,2,3,4,5,6]))
+        XCTAssertTrue(matrix.elementsEqual([1,2,3,4,5,6]))
     }
     
     // MARK: ArrayLiteralConvertible
@@ -205,11 +205,5 @@ class MatrixTests: XCTestCase {
         } else {
             XCTFail()
         }
-    }
-    
-    func testNotInvertibleInverse() {
-        matrix = [[2,2,3], [6,6,9], [1,4,8]]
-        let invMatrix = inverse(matrix)
-        XCTAssertTrue(invMatrix==nil)
     }
 }

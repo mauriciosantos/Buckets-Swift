@@ -26,7 +26,7 @@ class StackTests: XCTestCase {
     
     func testInitWithArray() {
         stack = Stack(TestData.List)
-        let list = TestData.List.reverse()
+        let list = Array(TestData.List.reverse())
         for i in 0..<list.count {
             let element = stack.pop()
             XCTAssertNotNil(element)
@@ -45,7 +45,7 @@ class StackTests: XCTestCase {
             stack.push(i)
         }
         XCTAssertEqual(stack.count, TestData.List.count)
-        let list = TestData.List.reverse()
+        let list = Array(TestData.List.reverse())
         for i in 0..<list.count {
             let element = stack.pop()
             XCTAssertNotNil(element)
@@ -71,14 +71,14 @@ class StackTests: XCTestCase {
     
     func testSequenceTypeConformance() {
         stack = Stack(TestData.List)
-        XCTAssertTrue(equal(stack, TestData.List.reverse()))
+        XCTAssertTrue(stack.elementsEqual(Array(TestData.List.reverse())))
     }
     
     // MARK: ArrayLiteralConvertible
     
     func testArrayLiteralConvertibleConformance() {
         stack = [1,2,3]
-        XCTAssertTrue(equal(stack, [3,2,1]))
+        XCTAssertTrue(stack.elementsEqual([3,2,1]))
     }
     
     // MARK: Operators

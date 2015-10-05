@@ -45,7 +45,7 @@ class DequeTests: XCTestCase {
         for i in TestData.List {
             deque.enqueueFirst(i)
         }
-        let reverseList = reverse(TestData.List)
+        let reverseList = Array(TestData.List.reverse())
         XCTAssertEqual(deque.count, TestData.List.count)
         for i in 0..<TestData.List.count {
             let element = deque.dequeueFirst()
@@ -89,14 +89,14 @@ class DequeTests: XCTestCase {
     
     func testSequenceTypeConformance() {
         deque = Deque(TestData.List)
-        XCTAssertTrue(equal(deque, TestData.List))
+        XCTAssertTrue(deque.elementsEqual(TestData.List))
     }
     
     // MARK: ArrayLiteralConvertible
     
     func testArrayLiteralConvertibleConformance() {
         deque = [1,2,3]
-        XCTAssertTrue(equal(deque, [1,2,3]))
+        XCTAssertTrue(deque.elementsEqual([1,2,3]))
     }
     
     // MARK: Operators

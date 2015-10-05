@@ -69,14 +69,14 @@ class QueueTests: XCTestCase {
     
     func testSequenceTypeConformance() {
         queue = Queue(TestData.List)
-        XCTAssertTrue(equal(queue, TestData.List))
+        XCTAssertTrue(queue.elementsEqual(TestData.List))
     }
     
     // MARK: ArrayLiteralConvertible
     
     func testArrayLiteralConvertibleConformance() {
         queue = [1,2,3]
-        XCTAssertTrue(equal(queue, [1,2,3]))
+        XCTAssertTrue(queue.elementsEqual([1,2,3]))
     }
     
     // MARK: Operators

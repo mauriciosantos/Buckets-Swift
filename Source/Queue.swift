@@ -55,7 +55,7 @@ public struct Queue<T> {
     
     /// Retrieves and removes the front element of the queue.
     ///
-    /// :returns: The front element, or `nil` if the queue is empty.
+    /// - returns: The front element, or `nil` if the queue is empty.
     public mutating func dequeue() -> T? {
         return items.removeFirst()
     }
@@ -78,8 +78,8 @@ extension Queue: SequenceType {
     
     /// Provides for-in loop functionality. Generates elements in FIFO order.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<T> {
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<T> {
         return items.generate()
     }
 }
@@ -96,28 +96,16 @@ extension Queue: ArrayLiteralConvertible {
     }
 }
 
-extension Queue: Printable, DebugPrintable {
+extension Queue: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the queue.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the queue when debugging.
-    public var debugDescription: String {
-        return description
+        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
     }
 }
-
-// MARK: ReconstructableSequence Protocol Conformance
-
-extension Queue: ReconstructableSequence {}
 
 // MARK: -
 

@@ -160,7 +160,7 @@ class BimapTests: XCTestCase {
     func testSequenceTypeConformance() {
         bimap = Bimap(TestData.Dictionary)
         var dictionary = TestData.Dictionary
-        for (key, value) in bimap {
+        for (key, _) in bimap {
             dictionary.removeValueForKey(key)
         }
         XCTAssertEqual(dictionary.count, 0)

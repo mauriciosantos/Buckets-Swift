@@ -120,10 +120,10 @@ class MultimapTests: XCTestCase {
         var values = [1, 2, 2, 5]
         var keys = [5,5,5, 10]
         for (key, value) in multimap {
-            if let index = find(values, value) {
+            if let index = values.indexOf(value) {
                 values.removeAtIndex(index)
             }
-            if let index = find(keys, key) {
+            if let index = keys.indexOf(key) {
                 keys.removeAtIndex(index)
             }
         }

@@ -104,7 +104,7 @@ public struct BitArray {
     public mutating func insert(bit: Bool, atIndex index: Int) {
         checkIndex(index, lessThan: count + 1)
         append(bit)
-        for i in stride(from: count - 2, through: index, by: -1) {
+        for i in (count - 2).stride(through: index, by: -1) {
             let iBit = valueAtIndex(i)
             setValue(iBit, atIndex: i+1)
         }
@@ -113,7 +113,7 @@ public struct BitArray {
     
     /// Removes the last bit from the bit array and returns it.
     ///
-    /// :returns: The last bit, or nil if the bit array is empty.
+    /// - returns: The last bit, or nil if the bit array is empty.
     public mutating func removeLast() -> Bool? {
         if let value = last {
             setValue(false, atIndex: count-1)
@@ -167,7 +167,7 @@ public struct BitArray {
     private mutating func setValue(newValue: Bool, atIndex logicalIndex: Int) {
         
         let indexPath = realIndexPath(logicalIndex)
-        var mask = 1 << indexPath.bitIndex
+        let mask = 1 << indexPath.bitIndex
         let oldValue = mask & bits[indexPath.arrayIndex] != 0
         
         switch (oldValue, newValue) {
@@ -213,9 +213,9 @@ extension BitArray: SequenceType {
     
     /// Provides for-in loop functionality.
     ///
-    /// :returns: A generator over the bits.
-    public func generate() -> GeneratorOf<Bool> {
-        return GeneratorOf(IndexingGenerator(self))
+    /// - returns: A generator over the bits.
+    public func generate() -> AnyGenerator<Bool> {
+        return anyGenerator(IndexingGenerator(self))
     }
 }
 
@@ -264,22 +264,14 @@ extension BitArray: ArrayLiteralConvertible {
     }
 }
 
-extension BitArray: Printable, DebugPrintable {
+extension BitArray: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the bit array.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable debug 
-    /// textual representation of the bit array.
-    public var debugDescription: String {
-        return description
+        return "[" + self.map {"\($0)"}.joinWithSeparator(", ") + "]"
     }
 }
 
@@ -294,7 +286,7 @@ public func ==(lhs: BitArray, rhs: BitArray) -> Bool {
     if lhs.count != rhs.count || lhs.cardinality != rhs.cardinality {
         return false
     }
-    return equal(lhs, rhs)
+    return lhs.elementsEqual(rhs)
 }
 
 extension BitArray: Hashable {
@@ -311,8 +303,3 @@ extension BitArray: Hashable {
         return result
     }
 }
-
-// MARK: ReconstructableSequence Protocol Conformance
-
-extension BitArray: ReconstructableSequence {}
-

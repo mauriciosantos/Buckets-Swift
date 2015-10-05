@@ -54,7 +54,7 @@ public struct Stack<T> {
     
     /// Retrieves and removes the top element of the stack.
     ///
-    /// :returns: The top element, or `nil` if the stack is empty.
+    /// - returns: The top element, or `nil` if the stack is empty.
     public mutating func pop() -> T? {
         return !isEmpty ? elements.removeLast() : nil
     }
@@ -78,10 +78,10 @@ extension Stack: SequenceType {
     
     /// Provides for-in loop functionality. Generates elements in LIFO order.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<T> {
-        let reverseArrayView = lazy(self.elements).reverse()
-        return GeneratorOf(IndexingGenerator(reverseArrayView))
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<T> {
+        let reverseArrayView = LazySequence(self.elements).reverse()
+        return anyGenerator(IndexingGenerator(reverseArrayView))
     }
 }
 
@@ -93,32 +93,20 @@ extension Stack: ArrayLiteralConvertible {
     /// The elements will be pushed from first to last.
     /// `let stack: Stack<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        self.elements = elements
+        self.init(elements)
     }
 }
 
-extension Stack: Printable, DebugPrintable {
+extension Stack: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the stack.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the stack when debugging.
-    public var debugDescription: String {
-        return description
+        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
     }
 }
-
-// MARK: ReconstructableSequence Protocol Conformance
-
-extension Stack: ReconstructableSequence {}
 
 // MARK: - Operators
 

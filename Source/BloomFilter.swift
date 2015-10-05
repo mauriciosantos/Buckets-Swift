@@ -115,7 +115,7 @@ public struct BloomFilter<T: BloomFilterType> {
     /// Creates any number of hash functions on the fly using just 2 predefined ones.
     /// See http://en.wikipedia.org/wiki/Double_hashing
     private func hashFunctionWithIndex(index: Int) -> (T) -> Int {
-        var i = UInt(index)
+        let i = UInt(index)
         
         // Hi(x) = H0(x) + i*H1(x) mod table.size
         

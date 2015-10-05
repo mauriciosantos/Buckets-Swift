@@ -135,7 +135,7 @@ class MultisetTests: XCTestCase {
         multiset = Multiset(TestData.List)
         var list = TestData.List
         for element in multiset {
-            if let index = find(list, element) {
+            if let index = list.indexOf(element) {
                 list.removeAtIndex(index)
             }
         }
@@ -157,7 +157,7 @@ class MultisetTests: XCTestCase {
         var other = Multiset<Int>()
         XCTAssertNotEqual(multiset.hashValue, other.hashValue)
         XCTAssertTrue(multiset != other)
-        other = Multiset(TestData.List.reverse())
+        other = Multiset(Array(TestData.List.reverse()))
         XCTAssertEqual(multiset.hashValue, other.hashValue)
         XCTAssertTrue(multiset == other)
     }

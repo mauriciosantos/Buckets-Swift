@@ -16,7 +16,7 @@ class TrieTests: XCTestCase {
         static let Elements = ["Hello", "Hel", "Apple", "Y", "Yes", "NO", ""]
     }
     
-    var trie = Trie<String>()
+    var trie = Trie()
 
     func testEmptyTrie() {
         XCTAssertEqual(trie.count, 0)
@@ -121,10 +121,10 @@ class TrieTests: XCTestCase {
     
     func testHashableConformance() {
         trie = Trie(TestData.Elements)
-        var other = Trie<String>()
+        var other = Trie()
         XCTAssertNotEqual(trie.hashValue, other.hashValue)
         XCTAssertTrue(trie != other)
-        other = Trie(TestData.Elements.reverse())
+        other = Trie(Array(TestData.Elements.reverse()))
         XCTAssertEqual(trie.hashValue, trie.hashValue)
         XCTAssertTrue(trie == other)
     }

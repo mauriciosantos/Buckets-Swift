@@ -44,7 +44,7 @@ class CircularArrayTests: XCTestCase {
         for i in TestData.List {
             cArray.prepend(i)
         }
-        let reverseList = reverse(TestData.List)
+        let reverseList = Array(TestData.List.reverse())
         XCTAssertEqual(cArray.count, TestData.List.count)
         for i in 0..<TestData.List.count {
             XCTAssertEqual(cArray[i], reverseList[i])
@@ -103,7 +103,7 @@ class CircularArrayTests: XCTestCase {
                 list.insert(TestData.Value, atIndex: j)
                 array.insert(TestData.Value, atIndex: j)
                 XCTAssertEqual(array.count, list.count)
-                XCTAssertTrue(equal(list, array))
+                XCTAssertTrue(list.elementsEqual(array))
             }
         }
     }
@@ -116,7 +116,7 @@ class CircularArrayTests: XCTestCase {
                 var array = CircularArray(list)
                 XCTAssertEqual(list.removeAtIndex(j), array.removeAtIndex(j))
                 XCTAssertEqual(array.count, list.count)
-                XCTAssertTrue(equal(list, array))
+                XCTAssertTrue(list.elementsEqual(array))
             }
         }
     }
@@ -139,7 +139,7 @@ class CircularArrayTests: XCTestCase {
     
     func testSequenceTypeConformance() {
         cArray = CircularArray(TestData.List)
-        XCTAssertTrue(equal(cArray, TestData.List))
+        XCTAssertTrue(cArray.elementsEqual(TestData.List))
     }
     
     // MARK: MutableCollectionType
@@ -157,7 +157,7 @@ class CircularArrayTests: XCTestCase {
     }
     
     func testSubscriptSet() {
-        let reversedList = reverse(TestData.List)
+        let reversedList = Array(TestData.List.reverse())
         cArray = CircularArray(count: reversedList.count, repeatedValue: 0)
         for i in 0..<reversedList.count {
             cArray[i] = reversedList[i]
@@ -169,7 +169,7 @@ class CircularArrayTests: XCTestCase {
     
     func testArrayLiteralConvertibleConformance() {
         cArray = [1,2,3]
-        XCTAssertTrue(equal(cArray, [1,2,3]))
+        XCTAssertTrue(cArray.elementsEqual([1,2,3]))
     }
     
     // MARK: Operators

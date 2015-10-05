@@ -51,8 +51,8 @@ struct BinaryHeap<T> : SequenceType {
         items.removeAll(keepCapacity: keep)
     }
     
-    func generate() -> GeneratorOf<T> {
-        return GeneratorOf(items.generate())
+    func generate() -> AnyGenerator<T> {
+        return anyGenerator(items.generate())
     }
     
     private mutating func siftUp() {
@@ -71,7 +71,7 @@ struct BinaryHeap<T> : SequenceType {
     
     private mutating func siftDown() {
         // Returns the index of the maximum element if it exists, otherwise -1
-        func maxIndex(i: Int, j: Int) -> Int {
+        func maxIndex(i: Int, _ j: Int) -> Int {
             if j >= count && i >= count {
                 return -1
             } else if j >= count && i < count {
@@ -107,7 +107,7 @@ struct BinaryHeap<T> : SequenceType {
 /// in the same order.
 /// The underlying elements must conform to the `Equatable` protocol.
 func ==<U: Equatable>(lhs: BinaryHeap<U>, rhs: BinaryHeap<U>) -> Bool {
-    return lhs.items.sorted(lhs.isOrderedBefore) == rhs.items.sorted(rhs.isOrderedBefore)
+    return lhs.items.sort(lhs.isOrderedBefore) == rhs.items.sort(rhs.isOrderedBefore)
 }
 
 func !=<U: Equatable>(lhs: BinaryHeap<U>, rhs: BinaryHeap<U>) -> Bool {

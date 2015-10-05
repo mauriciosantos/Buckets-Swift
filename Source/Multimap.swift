@@ -43,15 +43,15 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     }
     
     /// A sequence containing the multimap's unique keys.
-    public var keys: LazySequence<LazyForwardCollection<MapCollectionView<[Key : [Value]], Key>>> {
-        return lazy(dictionary.keys)
+    public var keys: LazySequence<LazyMapCollection<[Key : [Value]], Key>> {
+        return LazySequence(dictionary.keys)
     }
     
     /// A sequence containing the multimap's values.
-    public var values: LazySequence<GeneratorOf<Value>> {
-        var selfGenerator = generate()
-        let valueGenerator = GeneratorOf { selfGenerator.next()?.1 }
-        return lazy(valueGenerator)
+    public var values: LazySequence<AnyGenerator<Value>> {
+        let selfGenerator = generate()
+        let valueGenerator = anyGenerator { selfGenerator.next()?.1 }
+        return LazySequence(valueGenerator)
     }
     
     /// Returns an array containing the values associated with the given key.
@@ -79,7 +79,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     /// Returns `true` if the multimap contains at least one key-value pair with the given key and value.
     public func containsValue(value: Value, forKey key: Key) -> Bool {
         if let values = dictionary[key] {
-            return contains(values, value)
+            return values.contains(value)
         }
         return false
     }
@@ -93,7 +93,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     
     /// Inserts multiple key-value pairs into the multimap.
     ///
-    /// :param: values A sequence of values to associate with the given key
+    /// - parameter values: A sequence of values to associate with the given key
     public mutating func insertValues<S:SequenceType where S.Generator.Element == Value>(values: S, forKey key: Key) {
         var result = dictionary[key] ?? []
         let originalSize = result.count
@@ -107,7 +107,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     /// Replaces all the values associated with a given key.
     /// If the key does not exist in the multimap, the values are inserted.
     ///
-    /// :param: values A sequence of values to associate with the given key
+    /// - parameter values: A sequence of values to associate with the given key
     public mutating func replaceValues<S:SequenceType where S.Generator.Element == Value>(values: S, forKey key: Key) {
         removeValuesForKey(key)
         insertValues(values, forKey: key)
@@ -115,10 +115,10 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     
     /// Removes a single key-value pair with the given key and value from the multimap, if it exists.
     ///
-    /// :returns: The removed value, or nil if no matching pair is found.
+    /// - returns: The removed value, or nil if no matching pair is found.
     public mutating func removeValue(value: Value, forKey key: Key) -> Value? {
         if var values = dictionary[key] {
-            if let removeIndex = find(values, value) {
+            if let removeIndex = values.indexOf(value) {
                 let removedValue = values.removeAtIndex(removeIndex)
                 count--
                 dictionary[key] = values
@@ -157,12 +157,12 @@ extension Multimap: SequenceType {
     
     /// Provides for-in loop functionality.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<(Key,Value)> {
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<(Key,Value)> {
         var keyValueGenerator = dictionary.generate()
         var index = 0
         var pairs = keyValueGenerator.next()
-        return GeneratorOf<(Key,Value)> {
+        return anyGenerator {
             if let tuple = pairs {
                 let value = tuple.1[index]
                 index++
@@ -188,22 +188,14 @@ extension Multimap: DictionaryLiteralConvertible {
     }
 }
 
-extension Multimap: Printable, DebugPrintable {
+extension Multimap: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the multimap.
     public var description: String {
-        return "[" + join(", ", map(self) {"\($0.0): \($0.1)"}) + "]"
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the multimap when debugging.
-    public var debugDescription: String {
-        return description
+        return "[" + map{"\($0.0): \($0.1)"}.joinWithSeparator(", ") + "]"
     }
 }
 
@@ -219,13 +211,13 @@ public func ==<Key, Value>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>)
         return false
     }
     for (key, _) in lhs {
-        var leftValues = lhs[key]
+        let leftValues = lhs[key]
         var rightValues = rhs[key]
         if leftValues.count != rightValues.count {
             return false
         }
         for element in leftValues {
-            if let index = find(rightValues, element) {
+            if let index = rightValues.indexOf(element) {
                 rightValues.removeAtIndex(index)
             }
         }

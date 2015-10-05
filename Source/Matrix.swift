@@ -136,9 +136,9 @@ extension Matrix: SequenceType {
     /// Provides for-in loop functionality.
     /// Returns the elements in row-major order.
     ///
-    /// :returns: A generator over the elements.
-    public func generate() -> GeneratorOf<T> {
-        return GeneratorOf(IndexingGenerator(self))
+    /// - returns: A generator over the elements.
+    public func generate() -> AnyGenerator<T> {
+        return anyGenerator(IndexingGenerator(self))
     }
 }
 
@@ -181,9 +181,9 @@ extension Matrix: ArrayLiteralConvertible {
     }
 }
 
-extension Matrix: Printable, DebugPrintable {
+extension Matrix: CustomStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the matrix.
@@ -195,18 +195,10 @@ extension Matrix: Printable, DebugPrintable {
             }
             let start = i*columns
             let end = start + columns
-            result += "[" + join(", ", map(grid[start..<end]) {"\($0)"}) + "]"
+            result += "[" + grid[start..<end].map {"\($0)"}.joinWithSeparator(", ") + "]"
         }
         result += "]"
         return result
-    }
-    
-    // MARK: DebugPrintable Protocol Conformance
-    
-    /// A string containing a suitable textual representation
-    /// of the matrix when debugging.
-    public var debugDescription: String {
-        return description
     }
 }
 
@@ -239,7 +231,12 @@ public func inverse(matrix: Matrix<Double>) -> Matrix<Double>? {
     var pivots = [__CLPK_integer](count: Int(N), repeatedValue: 0)
     var workspace = [Double](count: Int(N), repeatedValue: 0.0)
     var error : __CLPK_integer = 0
+    // LU factorization
     dgetrf_(&N, &N, &invMatrix.grid, &N, &pivots, &error)
+    if error != 0 {
+        return nil
+    }
+    // Matrix inversion 
     dgetri_(&N, &invMatrix.grid, &N, &pivots, &workspace, &N, &error)
     if error != 0 {
         return nil
@@ -266,7 +263,7 @@ public func +=(inout lhs: Matrix<Double>, rhs: Matrix<Double>) {
 
 /// Performs matrix and scalar addition.
 public func +(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
-    var scalar = rhs
+    let scalar = rhs
     var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: scalar)
     cblas_daxpy(Int32(lhs.grid.count), 1, lhs.grid, 1, &(result.grid), 1)
     return result

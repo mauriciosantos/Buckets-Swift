@@ -94,7 +94,7 @@ class BitArrayTests: XCTestCase {
                 array.insert(true, atIndex: i)
                 XCTAssertEqual(array.count, list.count)
                 XCTAssertEqual(array.cardinality, cardinality(list))
-                XCTAssertTrue(equal(list, array))
+                XCTAssertTrue(list.elementsEqual(array))
         }
     }
     
@@ -110,7 +110,7 @@ class BitArrayTests: XCTestCase {
             XCTAssertEqual(list.removeAtIndex(i), array.removeAtIndex(i))
             XCTAssertEqual(array.cardinality, cardinality(list))
             XCTAssertEqual(array.count, list.count)
-            XCTAssertTrue(equal(list, array))
+            XCTAssertTrue(list.elementsEqual(array))
         }
     }
     
@@ -140,7 +140,7 @@ class BitArrayTests: XCTestCase {
     
     func testSequenceTypeConformance() {
         bArray = BitArray(TestData.List)
-        XCTAssertTrue(equal(bArray, TestData.List))
+        XCTAssertTrue(bArray.elementsEqual(TestData.List))
     }
     
     // MARK: MutableCollectionType
@@ -156,7 +156,7 @@ class BitArrayTests: XCTestCase {
     }
     
     func testSubscriptSet() {
-        let reversedList = reverse(TestData.List)
+        let reversedList = Array(TestData.List.reverse())
         bArray = BitArray(count: reversedList.count, repeatedValue: false)
         for i in 0..<reversedList.count {
             bArray[i] = reversedList[i]
@@ -166,7 +166,7 @@ class BitArrayTests: XCTestCase {
     
     func testArrayLiteralConvertibleConformance() {
         bArray = [true,false,true]
-        XCTAssertTrue(equal(bArray, [true,false,true]))
+        XCTAssertTrue(bArray.elementsEqual([true,false,true]))
         XCTAssertEqual(bArray.cardinality, 2)
     }
 

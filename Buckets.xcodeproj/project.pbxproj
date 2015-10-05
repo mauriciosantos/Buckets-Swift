@@ -39,8 +39,6 @@
 		22504CBD1AD744CA00FBF4BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22504CBB1AD744CA00FBF4BB /* GraphTests.swift */; };
 		2252D9591AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
 		2252D95A1AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
-		228463CC1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
-		228463CD1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */; };
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		228E4DBB1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		2297A9BD1AD9D89800550380 /* BloomFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297A9BC1AD9D89800550380 /* BloomFilterTests.swift */; };
@@ -117,7 +115,6 @@
 		22504CBB1AD744CA00FBF4BB /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphTests.swift; path = Tests/GraphTests.swift; sourceTree = SOURCE_ROOT; };
 		2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilterType.swift; path = Source/BloomFilterType.swift; sourceTree = SOURCE_ROOT; };
 		226D18151AB50E230075E567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
-		228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReconstructableSequence.swift; path = Source/ReconstructableSequence.swift; sourceTree = SOURCE_ROOT; };
 		228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArrayTests.swift; path = Tests/BitArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		2297A9BC1AD9D89800550380 /* BloomFilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilterTests.swift; path = Tests/BloomFilterTests.swift; sourceTree = SOURCE_ROOT; };
 		2297A9BF1AD9E48B00550380 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix.swift; path = Source/Matrix.swift; sourceTree = SOURCE_ROOT; };
@@ -205,15 +202,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		228463CA1ACF6A6E00FE2BC1 /* Trie */ = {
-			isa = PBXGroup;
-			children = (
-				22DC03271AB50D4B006190C7 /* Trie.swift */,
-				228463CB1ACF6A9000FE2BC1 /* ReconstructableSequence.swift */,
-			);
-			name = Trie;
-			sourceTree = "<group>";
-		};
 		22A142D01AB4D40900E70376 = {
 			isa = PBXGroup;
 			children = (
@@ -251,7 +239,7 @@
 				22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */,
 				22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */,
 				22DC03211AB50D4B006190C7 /* Graph.swift */,
-				228463CA1ACF6A6E00FE2BC1 /* Trie */,
+				22DC03271AB50D4B006190C7 /* Trie.swift */,
 				220B6DB01ACF6C6300D2FA52 /* BloomFilter */,
 				22A142DD1AB4D40900E70376 /* Supporting Files */,
 			);
@@ -397,7 +385,9 @@
 		22A142D11AB4D40900E70376 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Mauricio Santos";
 				TargetAttributes = {
 					220DD0D41AC508E20023F3B0 = {
@@ -493,7 +483,6 @@
 			files = (
 				22DC032C1AB50D4B006190C7 /* BloomFilter.swift in Sources */,
 				2252D9591AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */,
-				228463CC1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */,
 				22DC03281AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				2297A9C01AD9E48B00550380 /* Matrix.swift in Sources */,
 				22DC03361AB50D4B006190C7 /* Graph.swift in Sources */,
@@ -537,7 +526,6 @@
 			files = (
 				22DC032D1AB50D4B006190C7 /* BloomFilter.swift in Sources */,
 				2252D95A1AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */,
-				228463CD1ACF6A9000FE2BC1 /* ReconstructableSequence.swift in Sources */,
 				22DC03291AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
 				2297A9C11AD9E48B00550380 /* Matrix.swift in Sources */,
 				22DC03371AB50D4B006190C7 /* Graph.swift in Sources */,
@@ -628,6 +616,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -707,6 +696,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Buckets;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -731,6 +721,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Buckets;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -743,16 +734,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -762,12 +751,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -790,10 +777,12 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Buckets;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -812,9 +801,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Buckets;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
 		};
@@ -834,6 +825,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -853,6 +845,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mauriciosantos.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
