@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		220DD0D41AC508E20023F3B0 /* Documentation */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 220DD0D51AC508E20023F3B0 /* Build configuration list for PBXAggregateTarget "Documentation" */;
-			buildPhases = (
-				220DD0D81AC509300023F3B0 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Documentation;
-			productName = Doc;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		220DB8C61ACB59A600CA69C1 /* MultisetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DB8C51ACB59A600CA69C1 /* MultisetTests.swift */; };
 		220DB8C71ACB59A600CA69C1 /* MultisetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DB8C51ACB59A600CA69C1 /* MultisetTests.swift */; };
@@ -39,6 +25,61 @@
 		22504CBD1AD744CA00FBF4BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22504CBB1AD744CA00FBF4BB /* GraphTests.swift */; };
 		2252D9591AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
 		2252D95A1AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
+		226F22701C633C5A00D5F862 /* MatrixOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F226F1C633C5A00D5F862 /* MatrixOperators.swift */; };
+		226F22721C633C6F00D5F862 /* BloomFilterTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F22711C633C6F00D5F862 /* BloomFilterTypeExtensions.swift */; };
+		226F22731C633C6F00D5F862 /* BloomFilterTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F22711C633C6F00D5F862 /* BloomFilterTypeExtensions.swift */; };
+		226F22741C633C7400D5F862 /* MatrixOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F226F1C633C5A00D5F862 /* MatrixOperators.swift */; };
+		226F229C1C63405100D5F862 /* Buckets.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DC031D1AB50D4B006190C7 /* Buckets.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		226F229D1C63405900D5F862 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */; };
+		226F229E1C63405B00D5F862 /* CircularArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031E1AB50D4B006190C7 /* CircularArray.swift */; };
+		226F229F1C63405E00D5F862 /* BitArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031B1AB50D4B006190C7 /* BitArray.swift */; };
+		226F22A21C63406600D5F862 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03251AB50D4B006190C7 /* Queue.swift */; };
+		226F22A31C63406600D5F862 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031F1AB50D4B006190C7 /* Deque.swift */; };
+		226F22A41C63406600D5F862 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03261AB50D4B006190C7 /* Stack.swift */; };
+		226F22A51C63406600D5F862 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03241AB50D4B006190C7 /* PriorityQueue.swift */; };
+		226F22A61C63406600D5F862 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0D91AC756080023F3B0 /* Multiset.swift */; };
+		226F22A71C63406600D5F862 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */; };
+		226F22A81C63406600D5F862 /* Bimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */; };
+		226F22A91C63406600D5F862 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03211AB50D4B006190C7 /* Graph.swift */; };
+		226F22AA1C63406600D5F862 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03271AB50D4B006190C7 /* Trie.swift */; };
+		226F22AB1C63406B00D5F862 /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031C1AB50D4B006190C7 /* BloomFilter.swift */; };
+		226F22AC1C63406B00D5F862 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
+		226F22AD1C63406B00D5F862 /* BloomFilterTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F22711C633C6F00D5F862 /* BloomFilterTypeExtensions.swift */; };
+		226F22AE1C63406B00D5F862 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03201AB50D4B006190C7 /* FNVHash.swift */; };
+		226F22AF1C6341A700D5F862 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297A9BF1AD9E48B00550380 /* Matrix.swift */; };
+		226F22BF1C63430A00D5F862 /* Buckets.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DC031D1AB50D4B006190C7 /* Buckets.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		226F22C01C63431D00D5F862 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031A1AB50D4B006190C7 /* BinaryHeap.swift */; };
+		226F22C11C63432100D5F862 /* CircularArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031E1AB50D4B006190C7 /* CircularArray.swift */; };
+		226F22C21C63432100D5F862 /* BitArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031B1AB50D4B006190C7 /* BitArray.swift */; };
+		226F22C31C63432500D5F862 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03251AB50D4B006190C7 /* Queue.swift */; };
+		226F22C41C63432500D5F862 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031F1AB50D4B006190C7 /* Deque.swift */; };
+		226F22C51C63432500D5F862 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03261AB50D4B006190C7 /* Stack.swift */; };
+		226F22C61C63432500D5F862 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03241AB50D4B006190C7 /* PriorityQueue.swift */; };
+		226F22C71C63432500D5F862 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0D91AC756080023F3B0 /* Multiset.swift */; };
+		226F22C81C63432500D5F862 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2C1ACCB68C00DEC0D4 /* Multimap.swift */; };
+		226F22C91C63432500D5F862 /* Bimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B2F1ACD28B200DEC0D4 /* Bimap.swift */; };
+		226F22CA1C63432500D5F862 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03211AB50D4B006190C7 /* Graph.swift */; };
+		226F22CB1C63432500D5F862 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03271AB50D4B006190C7 /* Trie.swift */; };
+		226F22CC1C63432900D5F862 /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC031C1AB50D4B006190C7 /* BloomFilter.swift */; };
+		226F22CD1C63432900D5F862 /* BloomFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */; };
+		226F22CE1C63432900D5F862 /* BloomFilterTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F22711C633C6F00D5F862 /* BloomFilterTypeExtensions.swift */; };
+		226F22CF1C63432900D5F862 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC03201AB50D4B006190C7 /* FNVHash.swift */; };
+		226F22D01C6343E000D5F862 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297A9BF1AD9E48B00550380 /* Matrix.swift */; };
+		226F22D11C6343E800D5F862 /* MatrixOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F226F1C633C5A00D5F862 /* MatrixOperators.swift */; };
+		226F22DB1C63441900D5F862 /* Buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226F22B61C63423300D5F862 /* Buckets.framework */; };
+		226F22E11C6344A900D5F862 /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222334F31AB50F9D00F7480F /* CircularArrayTests.swift */; };
+		226F22E21C6344A900D5F862 /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
+		226F22E31C6344A900D5F862 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0991AC4C8DB0023F3B0 /* QueueTests.swift */; };
+		226F22E41C6344A900D5F862 /* DequeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD09C1AC4CD080023F3B0 /* DequeTests.swift */; };
+		226F22E51C6344A900D5F862 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD09F1AC4D7910023F3B0 /* StackTests.swift */; };
+		226F22E61C6344A900D5F862 /* PriorityQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD0A21AC4E1390023F3B0 /* PriorityQueueTests.swift */; };
+		226F22E71C6344A900D5F862 /* MultisetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DB8C51ACB59A600CA69C1 /* MultisetTests.swift */; };
+		226F22E81C6344A900D5F862 /* MultimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B321ACE213C00DEC0D4 /* MultimapTests.swift */; };
+		226F22E91C6344A900D5F862 /* BimapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB5B2A1ACF42AC00FD59BB /* BimapTests.swift */; };
+		226F22EA1C6344A900D5F862 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC94401AD35A3A00DCB028 /* TrieTests.swift */; };
+		226F22EB1C6344A900D5F862 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22504CBB1AD744CA00FBF4BB /* GraphTests.swift */; };
+		226F22EC1C6344A900D5F862 /* BloomFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297A9BC1AD9D89800550380 /* BloomFilterTests.swift */; };
+		226F22ED1C6344A900D5F862 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC8A881ADB0B4B00E555E1 /* MatrixTests.swift */; };
 		228E4DBA1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		228E4DBB1AB51AD400DB68BA /* BitArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */; };
 		2297A9BD1AD9D89800550380 /* BloomFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297A9BC1AD9D89800550380 /* BloomFilterTests.swift */; };
@@ -86,6 +127,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		226F22DC1C63441900D5F862 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22A142D11AB4D40900E70376 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 226F22B51C63423300D5F862;
+			remoteInfo = "Buckets tvOS";
+		};
 		22A142E71AB4D40900E70376 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22A142D11AB4D40900E70376 /* Project object */;
@@ -115,6 +163,11 @@
 		22504CBB1AD744CA00FBF4BB /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphTests.swift; path = Tests/GraphTests.swift; sourceTree = SOURCE_ROOT; };
 		2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilterType.swift; path = Source/BloomFilterType.swift; sourceTree = SOURCE_ROOT; };
 		226D18151AB50E230075E567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
+		226F226F1C633C5A00D5F862 /* MatrixOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatrixOperators.swift; path = Source/MatrixOperators.swift; sourceTree = SOURCE_ROOT; };
+		226F22711C633C6F00D5F862 /* BloomFilterTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilterTypeExtensions.swift; path = Source/BloomFilterTypeExtensions.swift; sourceTree = SOURCE_ROOT; };
+		226F22941C633F5100D5F862 /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		226F22B61C63423300D5F862 /* Buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		226F22D61C63441900D5F862 /* Buckets tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Buckets tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		228E4DB91AB51AD400DB68BA /* BitArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitArrayTests.swift; path = Tests/BitArrayTests.swift; sourceTree = SOURCE_ROOT; };
 		2297A9BC1AD9D89800550380 /* BloomFilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloomFilterTests.swift; path = Tests/BloomFilterTests.swift; sourceTree = SOURCE_ROOT; };
 		2297A9BF1AD9E48B00550380 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix.swift; path = Source/Matrix.swift; sourceTree = SOURCE_ROOT; };
@@ -143,6 +196,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		226F22901C633F5100D5F862 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		226F22B21C63423300D5F862 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		226F22D31C63441900D5F862 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				226F22DB1C63441900D5F862 /* Buckets.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22A142D61AB4D40900E70376 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +256,7 @@
 			children = (
 				22DC031C1AB50D4B006190C7 /* BloomFilter.swift */,
 				2252D9581AD8CA6E0048CB52 /* BloomFilterType.swift */,
+				226F22711C633C6F00D5F862 /* BloomFilterTypeExtensions.swift */,
 				22DC03201AB50D4B006190C7 /* FNVHash.swift */,
 			);
 			name = BloomFilter;
@@ -202,6 +278,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		226F226E1C633C4200D5F862 /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				2297A9BF1AD9E48B00550380 /* Matrix.swift */,
+				226F226F1C633C5A00D5F862 /* MatrixOperators.swift */,
+			);
+			name = Matrix;
+			sourceTree = "<group>";
+		};
 		22A142D01AB4D40900E70376 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +304,9 @@
 				22A142E51AB4D40900E70376 /* Buckets iOS Tests.xctest */,
 				22DD3CBC1AB5062D0083B4AB /* Buckets.framework */,
 				22DD3CC61AB5062D0083B4AB /* Buckets OSX Tests.xctest */,
+				226F22941C633F5100D5F862 /* Buckets.framework */,
+				226F22B61C63423300D5F862 /* Buckets.framework */,
+				226F22D61C63441900D5F862 /* Buckets tvOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,7 +318,7 @@
 				220DD0981AC4C40A0023F3B0 /* Private structures */,
 				22DC031E1AB50D4B006190C7 /* CircularArray.swift */,
 				22DC031B1AB50D4B006190C7 /* BitArray.swift */,
-				2297A9BF1AD9E48B00550380 /* Matrix.swift */,
+				226F226E1C633C4200D5F862 /* Matrix */,
 				22DC03251AB50D4B006190C7 /* Queue.swift */,
 				22DC031F1AB50D4B006190C7 /* Deque.swift */,
 				22DC03261AB50D4B006190C7 /* Stack.swift */,
@@ -288,6 +376,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		226F22911C633F5100D5F862 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				226F229C1C63405100D5F862 /* Buckets.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		226F22B31C63423300D5F862 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				226F22BF1C63430A00D5F862 /* Buckets.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22A142D71AB4D40900E70376 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,6 +411,60 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		226F22931C633F5100D5F862 /* Buckets watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 226F22991C633F5100D5F862 /* Build configuration list for PBXNativeTarget "Buckets watchOS" */;
+			buildPhases = (
+				226F228F1C633F5100D5F862 /* Sources */,
+				226F22901C633F5100D5F862 /* Frameworks */,
+				226F22911C633F5100D5F862 /* Headers */,
+				226F22921C633F5100D5F862 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Buckets watchOS";
+			productName = "Buckets watchOS";
+			productReference = 226F22941C633F5100D5F862 /* Buckets.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		226F22B51C63423300D5F862 /* Buckets tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 226F22BB1C63423300D5F862 /* Build configuration list for PBXNativeTarget "Buckets tvOS" */;
+			buildPhases = (
+				226F22B11C63423300D5F862 /* Sources */,
+				226F22B21C63423300D5F862 /* Frameworks */,
+				226F22B31C63423300D5F862 /* Headers */,
+				226F22B41C63423300D5F862 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Buckets tvOS";
+			productName = "Buckets tvOS";
+			productReference = 226F22B61C63423300D5F862 /* Buckets.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		226F22D51C63441900D5F862 /* Buckets tvOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 226F22DE1C63441900D5F862 /* Build configuration list for PBXNativeTarget "Buckets tvOS Tests" */;
+			buildPhases = (
+				226F22D21C63441900D5F862 /* Sources */,
+				226F22D31C63441900D5F862 /* Frameworks */,
+				226F22D41C63441900D5F862 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				226F22DD1C63441900D5F862 /* PBXTargetDependency */,
+			);
+			name = "Buckets tvOS Tests";
+			productName = "Buckets tvOS Tests";
+			productReference = 226F22D61C63441900D5F862 /* Buckets tvOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		22A142D91AB4D40900E70376 /* Buckets iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22A142F01AB4D40900E70376 /* Build configuration list for PBXNativeTarget "Buckets iOS" */;
@@ -386,12 +544,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Mauricio Santos";
 				TargetAttributes = {
-					220DD0D41AC508E20023F3B0 = {
-						CreatedOnToolsVersion = 6.2;
+					226F22931C633F5100D5F862 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					226F22B51C63423300D5F862 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					226F22D51C63441900D5F862 = {
+						CreatedOnToolsVersion = 7.2;
 					};
 					22A142D91AB4D40900E70376 = {
 						CreatedOnToolsVersion = 6.2;
@@ -424,12 +588,35 @@
 				22A142E41AB4D40900E70376 /* Buckets iOS Tests */,
 				22DD3CBB1AB5062D0083B4AB /* Buckets OSX */,
 				22DD3CC51AB5062D0083B4AB /* Buckets OSX Tests */,
-				220DD0D41AC508E20023F3B0 /* Documentation */,
+				226F22931C633F5100D5F862 /* Buckets watchOS */,
+				226F22B51C63423300D5F862 /* Buckets tvOS */,
+				226F22D51C63441900D5F862 /* Buckets tvOS Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		226F22921C633F5100D5F862 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		226F22B41C63423300D5F862 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		226F22D41C63441900D5F862 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22A142D81AB4D40900E70376 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -460,23 +647,76 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		220DD0D81AC509300023F3B0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
+/* Begin PBXSourcesBuildPhase section */
+		226F228F1C633F5100D5F862 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
+				226F22A61C63406600D5F862 /* Multiset.swift in Sources */,
+				226F22AC1C63406B00D5F862 /* BloomFilterType.swift in Sources */,
+				226F22AE1C63406B00D5F862 /* FNVHash.swift in Sources */,
+				226F22A91C63406600D5F862 /* Graph.swift in Sources */,
+				226F22AF1C6341A700D5F862 /* Matrix.swift in Sources */,
+				226F22AD1C63406B00D5F862 /* BloomFilterTypeExtensions.swift in Sources */,
+				226F22AB1C63406B00D5F862 /* BloomFilter.swift in Sources */,
+				226F22AA1C63406600D5F862 /* Trie.swift in Sources */,
+				226F22A31C63406600D5F862 /* Deque.swift in Sources */,
+				226F22A21C63406600D5F862 /* Queue.swift in Sources */,
+				226F229F1C63405E00D5F862 /* BitArray.swift in Sources */,
+				226F22A41C63406600D5F862 /* Stack.swift in Sources */,
+				226F22A71C63406600D5F862 /* Multimap.swift in Sources */,
+				226F22A81C63406600D5F862 /* Bimap.swift in Sources */,
+				226F22A51C63406600D5F862 /* PriorityQueue.swift in Sources */,
+				226F229E1C63405B00D5F862 /* CircularArray.swift in Sources */,
+				226F229D1C63405900D5F862 /* BinaryHeap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd $SRCROOT/Utilities\nsudo sh docs.sh\ncd ..\ncd Docs/\nopen ./index.html";
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
+		226F22B11C63423300D5F862 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				226F22C71C63432500D5F862 /* Multiset.swift in Sources */,
+				226F22C81C63432500D5F862 /* Multimap.swift in Sources */,
+				226F22C21C63432100D5F862 /* BitArray.swift in Sources */,
+				226F22C11C63432100D5F862 /* CircularArray.swift in Sources */,
+				226F22D01C6343E000D5F862 /* Matrix.swift in Sources */,
+				226F22C01C63431D00D5F862 /* BinaryHeap.swift in Sources */,
+				226F22CD1C63432900D5F862 /* BloomFilterType.swift in Sources */,
+				226F22CF1C63432900D5F862 /* FNVHash.swift in Sources */,
+				226F22C41C63432500D5F862 /* Deque.swift in Sources */,
+				226F22C51C63432500D5F862 /* Stack.swift in Sources */,
+				226F22D11C6343E800D5F862 /* MatrixOperators.swift in Sources */,
+				226F22CA1C63432500D5F862 /* Graph.swift in Sources */,
+				226F22CE1C63432900D5F862 /* BloomFilterTypeExtensions.swift in Sources */,
+				226F22C91C63432500D5F862 /* Bimap.swift in Sources */,
+				226F22CB1C63432500D5F862 /* Trie.swift in Sources */,
+				226F22C61C63432500D5F862 /* PriorityQueue.swift in Sources */,
+				226F22CC1C63432900D5F862 /* BloomFilter.swift in Sources */,
+				226F22C31C63432500D5F862 /* Queue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		226F22D21C63441900D5F862 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				226F22E51C6344A900D5F862 /* StackTests.swift in Sources */,
+				226F22EB1C6344A900D5F862 /* GraphTests.swift in Sources */,
+				226F22EA1C6344A900D5F862 /* TrieTests.swift in Sources */,
+				226F22E11C6344A900D5F862 /* CircularArrayTests.swift in Sources */,
+				226F22E81C6344A900D5F862 /* MultimapTests.swift in Sources */,
+				226F22E31C6344A900D5F862 /* QueueTests.swift in Sources */,
+				226F22E71C6344A900D5F862 /* MultisetTests.swift in Sources */,
+				226F22E91C6344A900D5F862 /* BimapTests.swift in Sources */,
+				226F22E41C6344A900D5F862 /* DequeTests.swift in Sources */,
+				226F22E21C6344A900D5F862 /* BitArrayTests.swift in Sources */,
+				226F22ED1C6344A900D5F862 /* MatrixTests.swift in Sources */,
+				226F22E61C6344A900D5F862 /* PriorityQueueTests.swift in Sources */,
+				226F22EC1C6344A900D5F862 /* BloomFilterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22A142D51AB4D40900E70376 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -496,7 +736,9 @@
 				22DC033A1AB50D4B006190C7 /* PriorityQueue.swift in Sources */,
 				22DC03321AB50D4B006190C7 /* Deque.swift in Sources */,
 				22DC03401AB50D4B006190C7 /* Trie.swift in Sources */,
+				226F22721C633C6F00D5F862 /* BloomFilterTypeExtensions.swift in Sources */,
 				22DC032A1AB50D4B006190C7 /* BitArray.swift in Sources */,
+				226F22701C633C5A00D5F862 /* MatrixOperators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,12 +769,14 @@
 				22DC032D1AB50D4B006190C7 /* BloomFilter.swift in Sources */,
 				2252D95A1AD8CA6E0048CB52 /* BloomFilterType.swift in Sources */,
 				22DC03291AB50D4B006190C7 /* BinaryHeap.swift in Sources */,
+				226F22731C633C6F00D5F862 /* BloomFilterTypeExtensions.swift in Sources */,
 				2297A9C11AD9E48B00550380 /* Matrix.swift in Sources */,
 				22DC03371AB50D4B006190C7 /* Graph.swift in Sources */,
 				22DC03351AB50D4B006190C7 /* FNVHash.swift in Sources */,
 				22AB6B2E1ACCB68C00DEC0D4 /* Multimap.swift in Sources */,
 				22DC03311AB50D4B006190C7 /* CircularArray.swift in Sources */,
 				220DD0DB1AC756080023F3B0 /* Multiset.swift in Sources */,
+				226F22741C633C7400D5F862 /* MatrixOperators.swift in Sources */,
 				22AB6B311ACD28B200DEC0D4 /* Bimap.swift in Sources */,
 				22DC033F1AB50D4B006190C7 /* Stack.swift in Sources */,
 				22DC033D1AB50D4B006190C7 /* Queue.swift in Sources */,
@@ -566,6 +810,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		226F22DD1C63441900D5F862 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 226F22B51C63423300D5F862 /* Buckets tvOS */;
+			targetProxy = 226F22DC1C63441900D5F862 /* PBXContainerItemProxy */;
+		};
 		22A142E81AB4D40900E70376 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 22A142D91AB4D40900E70376 /* Buckets iOS */;
@@ -579,19 +828,121 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		220DD0D61AC508E20023F3B0 /* Debug */ = {
+		226F229A1C633F5100D5F862 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.mauriciosantos.Buckets;
+				PRODUCT_MODULE_NAME = Buckets;
+				PRODUCT_NAME = Buckets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
 			};
 			name = Debug;
 		};
-		220DD0D71AC508E20023F3B0 /* Release */ = {
+		226F229B1C633F5100D5F862 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.mauriciosantos.Buckets;
+				PRODUCT_MODULE_NAME = Buckets;
+				PRODUCT_NAME = Buckets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
+		226F22BC1C63423300D5F862 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.mauriciosantos.Buckets;
+				PRODUCT_MODULE_NAME = Buckets;
+				PRODUCT_NAME = Buckets;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		226F22BD1C63423300D5F862 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.mauriciosantos.Buckets;
+				PRODUCT_MODULE_NAME = Buckets;
+				PRODUCT_NAME = Buckets;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
+		226F22DF1C63441900D5F862 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mauriciosantos.Buckets-tvOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		226F22E01C63441900D5F862 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mauriciosantos.Buckets-tvOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -632,6 +983,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -672,6 +1024,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -854,14 +1207,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		220DD0D51AC508E20023F3B0 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+		226F22991C633F5100D5F862 /* Build configuration list for PBXNativeTarget "Buckets watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				220DD0D61AC508E20023F3B0 /* Debug */,
-				220DD0D71AC508E20023F3B0 /* Release */,
+				226F229A1C633F5100D5F862 /* Debug */,
+				226F229B1C633F5100D5F862 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		226F22BB1C63423300D5F862 /* Build configuration list for PBXNativeTarget "Buckets tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				226F22BC1C63423300D5F862 /* Debug */,
+				226F22BD1C63423300D5F862 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		226F22DE1C63441900D5F862 /* Build configuration list for PBXNativeTarget "Buckets tvOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				226F22DF1C63441900D5F862 /* Debug */,
+				226F22E01C63441900D5F862 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		22A142D41AB4D40900E70376 /* Build configuration list for PBXProject "Buckets" */ = {
 			isa = XCConfigurationList;

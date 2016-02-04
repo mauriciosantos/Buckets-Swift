@@ -5,8 +5,8 @@ Buckets is a complete, tested and documented collections library for swift.
 
 ## Requirements
 
-- iOS 8.0+ or OS X 10.10+
-- Xcode 7.0+
+- iOS 8.0+/OS X 10.10+/watchOS/tvOS
+- Xcode 7.2+
 
 ## Included collections
 
@@ -41,7 +41,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Buckets', '~> 1.1'
+pod 'Buckets', '~> 1.2.0'
 ```
 
 Then, run the following command:

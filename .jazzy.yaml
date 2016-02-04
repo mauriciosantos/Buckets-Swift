@@ -1,0 +1,35 @@
+# Run jazzy from the current directory to generate documentation.
+
+module: Buckets
+author: Mauricio Santos
+github_url: https://github.com/mauriciosantos/Buckets-Swift
+min_acl: public
+output: Docs
+skip_undocumented: true
+clean: true
+exclude: [Source/BloomFilterTypeExtensions.swift]
+
+custom_categories:
+  - name: Data Structures
+    children:    
+    - Queue
+    - Deque
+    - Stack
+    - PriorityQueue
+    - Multiset
+    - Multimap
+    - Bimap
+    - Graph
+    - Trie
+    - Matrix
+    - BitArray
+    - CircularArray
+    - BloomFilter
+  - name: Protocols
+    children:    
+    - BloomFilterType
+    
+# Keep this until Cocoadocs is using a Jazzy release with the updated config keys:
+module_name: Buckets
+author_name: Mauricio Santos
+excluded_files: [Source/BloomFilterTypeExtensions.swift]
