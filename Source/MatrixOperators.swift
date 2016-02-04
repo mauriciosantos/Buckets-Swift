@@ -6,6 +6,7 @@
 //  Copyright © 2016 Mauricio Santos. All rights reserved.
 //
 
+#if !os(watchOS)
 import Foundation
 import Accelerate
 
@@ -153,3 +154,4 @@ public func /(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
 public func /=(inout lhs: Matrix<Double>, rhs: Double) {
     lhs.grid = (lhs/rhs).grid
 }
+#endif
