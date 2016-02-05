@@ -2,6 +2,7 @@ language: objective-c
 osx_image: xcode7.2
 env:
   global:
+  - secure: "GdmhWb6VRqGzuwCpPXGNFI3urJAuvYi5uV1m0OownJPBqUhAW1mTZXay+u5sKgxxHCrZrdUW3oxcsDlhP7VYIVE3m/q6VvRUjxvgJE7p5GH/lzYx4yOqOG2J+Yf1L/R6Ms/1pbf+xURMthyrO1qpXoDofSXZJiNpQkw087khx9OZfBTk+2KyovyXzCxzK1U2aQIB4yccegjvO2TUnSlPWPdG+PJPU4d+alquPvZnkqjjTZlxahfmSvwF1VWdvSbXyX2dHsnhIePD9ilBHKkI2aduwQnbgJFRkjeJutQpcERkWxXorDQ0rxEfv7Uj2f14Cd3H19WXtnQ8FMF8JPHhJQHWQyWKoRzoR2VflC+g6y2x5Tb+vrhFvaMwTtAu+jYolMB7PEcE6Po6aD9COU0hNOIvXeW1gzw2mklRM42uLpK25JPYYV4y0eroajF4d0QMY6uZdZKYIbR351rgFsYu+MIUlhsuHtNkjm134RZwuMbGxw+FzwYHTSP805Zjwzkz00axhSZ5CWDOAbVzLGx1iSCfeDyzz+CHw75gzekkTafMhxzFfn/WcGDvmW3RZZQ/HKGPjg/92sypY/5JghlaXXgVN/Q4o6wH3ogkV3+G0zK7WPwa63LRxavhXI2PaqAxOhcJnX2hjctXDjuJOMA6067uQyol9rmM/o2hf0caf64="
   - LC_CTYPE=en_US.UTF-8
   - LANG=en_US.UTF-8
   - WORKSPACE=Buckets.xcworkspace
@@ -46,4 +47,27 @@ script:
   # Run `pod lib lint` if specified
   - if [ $POD_LINT == "YES" ]; then
       pod lib lint;
+    fi
+after_success:
+  # Generate and publish docs
+  - gem install jazzy
+  - jazzy
+  - if [ "$TRAVIS_REPO_SLUG" == "mauriciosantos/Buckets-Swift" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+      echo -e "Publishing docs...\n"
+      cp -R Docs $HOME/Docs
+
+      cd $HOME
+      git config --global user.email "travis@travis-ci.org"
+      git config --global user.name "travis-ci"
+      # Redirect any output to /dev/null to hide any sensitive credential data that might otherwise be exposed in the logs.
+      git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/mauriciosantos/Buckets-Swift.git gh-pages > /dev/null
+
+      cd gh-pages
+      git rm -rf *
+      cp -Rf $HOME/Docs ./
+      git add -f .
+      git commit -m "Latest docs from successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages"
+      git push -fq origin gh-pages > /dev/null
+
+      echo -e "Published docs to gh-pages.\n"
     fi

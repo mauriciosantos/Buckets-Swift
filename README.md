@@ -1,4 +1,10 @@
 # [Buckets](https://github.com/mauriciosantos/Buckets-Swift/)
+
+[![Build Status](https://travis-ci.org/mauriciosantos/Buckets-Swift.svg?branch=master)](https://travis-ci.org/mauriciosantos/Buckets-Swift)
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Buckets.svg)](https://img.shields.io/cocoapods/v/Buckets.svg)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Platform](https://img.shields.io/cocoapods/p/Buckets.svg?style=flat)](http://cocoadocs.org/docsets/Buckets)
+
 **Swift Collection Data Structures Library**
 
 Buckets is a complete, tested and documented collections library for swift.
@@ -64,7 +70,7 @@ $ brew install carthage
 To integrate Buckets into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "mauriciosantos/Buckets-Swift" >= 1.1
+github "mauriciosantos/Buckets-Swift" >= 1.2.0
 ```
 
 ### Manually
