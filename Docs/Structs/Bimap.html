@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bimap Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Bimap" class="dashAnchor"></a>
+    <a title="Bimap Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Buckets Docs</a> (93% documented)</p>
+        <p class="header-right"><a href="https://github.com/mauriciosantos/Buckets-Swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Buckets Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Bimap Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Data Structures.html">Data Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Queue.html">Queue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Deque.html">Deque</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Stack.html">Stack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PriorityQueue.html">PriorityQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Multiset.html">Multiset</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Multimap.html">Multimap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bimap.html">Bimap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Graph.html">Graph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Trie.html">Trie</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Matrix.html">Matrix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BitArray.html">BitArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CircularArray.html">CircularArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BloomFilter.html">BloomFilter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/BloomFilterType.html">BloomFilterType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Functions.html">Other Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1mFTGVS_6MatrixSd_Sd_GS0_Sd_">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1mFTGVS_6MatrixSd_GS0_Sd__GS0_Sd_">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1mFTSdGVS_6MatrixSd__GS0_Sd_">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2meFTRGVS_6MatrixSd_Sd_T_">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1pFTGVS_6MatrixSd_Sd_GS0_Sd_">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1pFTGVS_6MatrixSd_GS0_Sd__GS0_Sd_">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1pFTSdGVS_6MatrixSd__GS0_Sd_">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2peFTRGVS_6MatrixSd_Sd_T_">+=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2peFTRGVS_6MatrixSd_GS0_Sd__T_">+=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsop1sFGVS_6MatrixSd_GS0_Sd_">-(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1sFTGVS_6MatrixSd_GS0_Sd__GS0_Sd_">-(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1sFTGVS_6MatrixSd_Sd_GS0_Sd_">-(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2seFTRGVS_6MatrixSd_GS0_Sd__T_">-=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2seFTRGVS_6MatrixSd_Sd_T_">-=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi1dFTGVS_6MatrixSd_Sd_GS0_Sd_">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2deFTRGVS_6MatrixSd_Sd_T_">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeuRq_Ss9Equatable_FTGVS_6Matrixq__GS1_q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeFTVS_8BitArrayS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeFTVS_4TrieS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeuRq_Ss9Equatable_FTGVS_5Dequeq__GS1_q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeuRq_Ss9Equatable_FTGVS_13PriorityQueueq__GS1_q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeuRq_Ss9Equatable_FTGVS_5Queueq__GS1_q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeu0_Rq_Ss8Hashableq0_Ss9Equatable_FTGVS_5Graphq_q0__GS2_q_q0___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeu0_Rq_Ss8Hashableq0_S0__FTGVS_5Bimapq_q0__GS1_q_q0___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeuRq_Ss8Hashable_FTGVS_8Multisetq__GS1_q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeuRq_Ss9Equatable_FTGVS_13CircularArrayq__GS1_q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeu0_Rq_Ss8Hashableq0_Ss9Equatable_FTGVS_8Multimapq_q0__GS2_q_q0___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:ZF7Bucketsoi2eeuRq_Ss9Equatable_FTGVS_5Stackq__GS1_q___Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Functions.html#/s:F7Buckets7inverseFGVS_6MatrixSd_GSqGS0_Sd__">inverse(_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Bimap</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Bimap</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Value</span><span class="p">:</span> <span class="kt">Hashable</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p>A Bimap is a special kind of dictionary that allows bidirectional lookup between keys and values.
+All keys and values must be unique.
+It allows to get, set, or delete a key-value pairs using
+subscript notation: <code>bimap[value: aValue] = aKey</code> or <code>bimap[key: aKey] = aValue</code></p>
+
+<p>Conforms to <code>SequenceType</code>, <code>CollectionType</code>, <code>DictionaryLiteralConvertible</code>,
+<code>Equatable</code>, <code>Hashable</code>, <code>Printable</code> and <code>DebugPrintable</code>.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20a%20Bimap"></a>
+                <a name="//apple_ref/swift/Section/Creating a Bimap" class="dashAnchor"></a>
+                <a href="#/Creating%20a%20Bimap">
+                  <h3 class="section-name">Creating a Bimap</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimapcu0_Rq_Ss8Hashableq0_S1__FMGS0_q_q0__FT_GS0_q_q0__"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimapcu0_Rq_Ss8Hashableq0_S1__FMGS0_q_q0__FT_GS0_q_q0__">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructs an empty bimap.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimapcu0_Rq_Ss8Hashableq0_S1__FMGS0_q_q0__FT15minimumCapacitySi_GS0_q_q0__"></a>
+                    <a name="//apple_ref/swift/Method/init(minimumCapacity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimapcu0_Rq_Ss8Hashableq0_S1__FMGS0_q_q0__FT15minimumCapacitySi_GS0_q_q0__">init(minimumCapacity:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructs a bimap with at least the given number of
+elements worth of storage. The actual capacity will be the
+smallest power of 2 that&rsquo;s &gt;= <code>minimumCapacity</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">minimumCapacity</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimapcu0__Rq_Ss8Hashableq0_S1_qd__Ss12SequenceTypezqqqd__S2_9GeneratorSs13GeneratorType7ElementTq_q0___FMGS0_q_q0__Fqd__GS0_q_q0__"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimapcu0__Rq_Ss8Hashableq0_S1_qd__Ss12SequenceTypezqqqd__S2_9GeneratorSs13GeneratorType7ElementTq_q0___FMGS0_q_q0__Fqd__GS0_q_q0__">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructs a bimap from a sequence of key-value pairs, such as a dictionary.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span><span class="kt">SequenceType</span> <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="p">(</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/%20Querying%20a%20Bimap"></a>
+                <a name="//apple_ref/swift/Section/ Querying a Bimap" class="dashAnchor"></a>
+                <a href="#/%20Querying%20a%20Bimap">
+                  <h3 class="section-name"> Querying a Bimap</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap5countSi"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap5countSi">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Number of key-value pairs stored in the bimap.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap7isEmptySb"></a>
+                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap7isEmptySb">isEmpty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns <code>true</code> if and only if <code>count == 0</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap4keysGVSs14LazyCollectionGVSs17LazyMapCollectionGVSs10Dictionaryq_q0__q___"></a>
+                    <a name="//apple_ref/swift/Property/keys" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap4keysGVSs14LazyCollectionGVSs17LazyMapCollectionGVSs10Dictionaryq_q0__q___">keys</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A collection containing all the bimap&rsquo;s keys.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">keys</span><span class="p">:</span> <span class="kt">LazyCollection</span><span class="o">&lt;</span><span class="kt">LazyMapCollection</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Key</span> <span class="p">:</span> <span class="kt">Value</span><span class="p">],</span> <span class="kt">Key</span><span class="o">&gt;&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap6valuesGVSs14LazyCollectionGVSs17LazyMapCollectionGVSs10Dictionaryq0_q__q0___"></a>
+                    <a name="//apple_ref/swift/Property/values" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap6valuesGVSs14LazyCollectionGVSs17LazyMapCollectionGVSs10Dictionaryq0_q__q0___">values</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A collection containing all the bimap&rsquo;s values.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">values</span><span class="p">:</span> <span class="kt">LazyCollection</span><span class="o">&lt;</span><span class="kt">LazyMapCollection</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Value</span> <span class="p">:</span> <span class="kt">Key</span><span class="p">],</span> <span class="kt">Value</span><span class="o">&gt;&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessing%20and%20Changing%20Bimap%20Elements"></a>
+                <a name="//apple_ref/swift/Section/Accessing and Changing Bimap Elements" class="dashAnchor"></a>
+                <a href="#/Accessing%20and%20Changing%20Bimap%20Elements">
+                  <h3 class="section-name">Accessing and Changing Bimap Elements</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimap11updateValueu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__FTq0_6forKeyq__GSqq0__"></a>
+                    <a name="//apple_ref/swift/Method/updateValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimap11updateValueu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__FTq0_6forKeyq__GSqq0__">updateValue(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Inserts or updates a value for a given key and returns the previous value 
+for that key if one existed, or <code>nil</code> if a previous value did not exist.
+Subscript access is preferred.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">updateValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimap17removeValueForKeyu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__Fq_GSqq0__"></a>
+                    <a name="//apple_ref/swift/Method/removeValueForKey(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimap17removeValueForKeyu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__Fq_GSqq0__">removeValueForKey(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes the key-value pair for the given key and returns its value,
+or <code>nil</code> if a value for that key did not previously exist.
+Subscript access is preferred.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeValueForKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimap17removeKeyForValueu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__Fq0_GSqq__"></a>
+                    <a name="//apple_ref/swift/Method/removeKeyForValue(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimap17removeKeyForValueu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__Fq0_GSqq__">removeKeyForValue(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes the key-value pair for the given value and returns its key,
+or <code>nil</code> if a key for that value did not previously exist.
+Subscript access is preferred.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeKeyForValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Key</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimap9removeAllu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__FT12keepCapacitySb_T_"></a>
+                    <a name="//apple_ref/swift/Method/removeAll(keepCapacity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimap9removeAllu0_Rq_Ss8Hashableq0_S1__FRGS0_q_q0__FT12keepCapacitySb_T_">removeAll(keepCapacity:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes all the elements from the bimap, and by default
+clears the underlying storage buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeAll</span><span class="p">(</span><span class="n">keepCapacity</span> <span class="nv">keep</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/SequenceType%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/SequenceType Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/SequenceType%20Protocol%20Conformance">
+                  <h3 class="section-name">SequenceType Protocol Conformance</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimap8generateu0_Rq_Ss8Hashableq0_S1__FGS0_q_q0__FT_GVSs19DictionaryGeneratorq_q0__"></a>
+                    <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimap8generateu0_Rq_Ss8Hashableq0_S1__FGS0_q_q0__FT_GVSs19DictionaryGeneratorq_q0__">generate()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Provides for-in loop functionality.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">DictionaryGenerator</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A generator over the elements.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CollectionType%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/CollectionType Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/CollectionType%20Protocol%20Conformance">
+                  <h3 class="section-name">CollectionType Protocol Conformance</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap10startIndexGVSs15DictionaryIndexq_q0__"></a>
+                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap10startIndexGVSs15DictionaryIndexq_q0__">startIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The position of the first element in a non-empty bimap.</p>
+
+<p>Identical to <code><a href="../Structs/Bimap.html#/s:vV7Buckets5Bimap8endIndexGVSs15DictionaryIndexq_q0__">endIndex</a></code> in an empty bimap</p>
+
+<p>Complexity: amortized O(1)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="kt">DictionaryIndex</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap8endIndexGVSs15DictionaryIndexq_q0__"></a>
+                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap8endIndexGVSs15DictionaryIndexq_q0__">endIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The collection&rsquo;s <q>past the end</q> position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code><a href="../Structs/Bimap.html#/s:vV7Buckets5Bimap10startIndexGVSs15DictionaryIndexq_q0__">startIndex</a></code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p>Complexity: amortized O(1)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="kt">DictionaryIndex</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/DictionaryLiteralConvertible%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/DictionaryLiteralConvertible Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/DictionaryLiteralConvertible%20Protocol%20Conformance">
+                  <h3 class="section-name">DictionaryLiteralConvertible Protocol Conformance</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV7Buckets5Bimapcu0_Rq_Ss8Hashableq0_S1__FMGS0_q_q0__Ft17dictionaryLiteralGSaTq_q0____GS0_q_q0__"></a>
+                    <a name="//apple_ref/swift/Method/init(dictionaryLiteral:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV7Buckets5Bimapcu0_Rq_Ss8Hashableq0_S1__FMGS0_q_q0__Ft17dictionaryLiteralGSaTq_q0____GS0_q_q0__">init(dictionaryLiteral:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructs a bimap using a dictionary literal.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">dictionaryLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">(</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span><span class="o">...</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CustomStringConvertible%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/CustomStringConvertible Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/CustomStringConvertible%20Protocol%20Conformance">
+                  <h3 class="section-name">CustomStringConvertible Protocol Conformance</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap11descriptionSS"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap11descriptionSS">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A string containing a suitable textual
+representation of the bimap.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Hashable%20Protocol%20Conformance"></a>
+                <a name="//apple_ref/swift/Section/Hashable Protocol Conformance" class="dashAnchor"></a>
+                <a href="#/Hashable%20Protocol%20Conformance">
+                  <h3 class="section-name">Hashable Protocol Conformance</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV7Buckets5Bimap9hashValueSi"></a>
+                    <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV7Buckets5Bimap9hashValueSi">hashValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The hash value.
+<code>x == y</code> implies <code>x.hashValue == y.hashValue</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://github.com/mauriciosantos/Buckets-Swift" target="_blank" rel="external">Mauricio Santos</a>. All rights reserved. (Last updated: 2016-02-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
