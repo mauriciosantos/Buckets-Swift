@@ -3,6 +3,7 @@ osx_image: xcode7.2
 env:
   global:
   - secure: "GdmhWb6VRqGzuwCpPXGNFI3urJAuvYi5uV1m0OownJPBqUhAW1mTZXay+u5sKgxxHCrZrdUW3oxcsDlhP7VYIVE3m/q6VvRUjxvgJE7p5GH/lzYx4yOqOG2J+Yf1L/R6Ms/1pbf+xURMthyrO1qpXoDofSXZJiNpQkw087khx9OZfBTk+2KyovyXzCxzK1U2aQIB4yccegjvO2TUnSlPWPdG+PJPU4d+alquPvZnkqjjTZlxahfmSvwF1VWdvSbXyX2dHsnhIePD9ilBHKkI2aduwQnbgJFRkjeJutQpcERkWxXorDQ0rxEfv7Uj2f14Cd3H19WXtnQ8FMF8JPHhJQHWQyWKoRzoR2VflC+g6y2x5Tb+vrhFvaMwTtAu+jYolMB7PEcE6Po6aD9COU0hNOIvXeW1gzw2mklRM42uLpK25JPYYV4y0eroajF4d0QMY6uZdZKYIbR351rgFsYu+MIUlhsuHtNkjm134RZwuMbGxw+FzwYHTSP805Zjwzkz00axhSZ5CWDOAbVzLGx1iSCfeDyzz+CHw75gzekkTafMhxzFfn/WcGDvmW3RZZQ/HKGPjg/92sypY/5JghlaXXgVN/Q4o6wH3ogkV3+G0zK7WPwa63LRxavhXI2PaqAxOhcJnX2hjctXDjuJOMA6067uQyol9rmM/o2hf0caf64="
+  - secure: "tUUniTiUgjosU6nthQ3sU/BaTXrxJRJfCAY/p10qF1eI/n2gHZfuiAwwL0QVkIYROa/YkT8n4k4o66zhak/exFLKKquG3AKYbjHVcgayqTvl0TAd13MqSJyoxeJ/mkBobqX8g0ui8pirT/3jPpvy0dUDOnCZjeKvw5gEhkwsmz6E1bBhEVJk6VmVb9j4XWUSrYdt0HqrXnpv3BJktmJQ9mN6RjuitRRSGtJ0aMxfKHBg87/ZjuzkjkrKmn7pyvcLT5tmEnomjzaruUfwZ0nEUvUgHqthjeRzngp2DYDMC6qEN8EU76+fSmTltFtns08wdSfSifEBLB+Fe/2JXlXJYSLYhPOzqt0srMDEgv9zyYooKfkRAzagR6mpSSueXZbzCezTYqSuU5pSFjuey9PS6R30Sn+vEtjhrhAExsRIFL+R/lGZi9kSO0DGz5/RI75nN+VUabOyTYBuy3s7QP4ApRs9AcpxXrFbepcG4RyrrleSHNT9AaX3Pw/k7gzzlDcH0d14CQ797237d7rD3IbRZqhE3Z5ZnosVSAHY3yWXmrGOmnNx6JuOmdXri8/ULh/B8DJ7gskxQG8Xc+kQtSUEMn7UCGe+7L6Z+FUp1wkW36+RHyOyFafFZGwhZu8hV/YwKCDzCemEpKI+FejyNWVpZ6VncsQG72C4a2ywpt+WwFs="
   - LC_CTYPE=en_US.UTF-8
   - LANG=en_US.UTF-8
   - WORKSPACE=Buckets.xcworkspace
@@ -25,52 +26,10 @@ env:
     - DESTINATION="arch=x86_64"                    SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES"  POD_LINT="NO"  DOCS="NO"
     - DESTINATION="OS=9.1,name=Apple TV 1080p"     SCHEME="$TVOS_FRAMEWORK_SCHEME"    SDK="$TVOS_SDK"    RUN_TESTS="YES"  POD_LINT="NO"  DOCS="NO"
     - DESTINATION="OS=2.1,name=Apple Watch - 38mm" SCHEME="$WATCHOS_FRAMEWORK_SCHEME" SDK="$WATCHOS_SDK" RUN_TESTS="NO"   POD_LINT="NO"  DOCS="NO"
-script:
-  - set -o pipefail
-  - xcodebuild -version
-  - xcodebuild -showsdks
-  # Build Framework in Debug and Run Tests if specified
-  - |
-    if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO test | xcpretty -c;
-    else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
-    fi
-
-  # Build Framework in ReleaseTest and Run Tests if specified
-  - |
-    if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration ReleaseTest ONLY_ACTIVE_ARCH=NO test | xcpretty -c;
-    else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration ReleaseTest ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
-    fi
-
-  # Run `pod lib lint` if specified
-  - |
-    if [ $POD_LINT == "YES" ]; then
-      pod lib lint --allow-warnings;
-    fi
-after_success:
-  # Generate and publish docs
-  - |
-    if [ "$DOCS" == "YES" ] && [ "$TRAVIS_REPO_SLUG" == "mauriciosantos/Buckets-Swift" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
-      gem install jazzy
-      jazzy
-      echo -e "Publishing docs...\n"
-      cp -R Docs $HOME/Docs
-
-      cd $HOME
-      git config --global user.email "travis@travis-ci.org"
-      git config --global user.name "travis-ci"
-      # Redirect any output to /dev/null to hide any sensitive credential data that might otherwise be exposed in the logs.
-      git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/mauriciosantos/Buckets-Swift.git gh-pages > /dev/null
-
-      cd gh-pages
-      git rm -rf *
-      cp -Rf $HOME/Docs/. ./
-      git add -f .
-      git commit -m "Latest docs from successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages"
-      git push -fq origin gh-pages > /dev/null
-      echo -e "Published docs to gh-pages.\n"
-    fi
-    
+script: ./Scripts/test.sh
+after_success: ./Scripts/docs.sh
+deploy:
+  provider: script
+  script: ./Scripts/deploy.sh
+  on:
+    tags: true

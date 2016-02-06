@@ -28,7 +28,7 @@ custom_categories:
   - name: Protocols
     children:    
     - BloomFilterType
-    
+
 # Keep this until Cocoadocs is using a Jazzy release with the updated config keys:
 module_name: Buckets
 author_name: Mauricio Santos
