@@ -1,7 +1,7 @@
 # [Buckets](https://github.com/mauriciosantos/Buckets-Swift/)
 
 [![Build Status](https://travis-ci.org/mauriciosantos/Buckets-Swift.svg?branch=master)](https://travis-ci.org/mauriciosantos/Buckets-Swift)
-[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Buckets.svg)](https://img.shields.io/cocoapods/v/Buckets.svg)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Buckets.svg)](https://img.shields.io/cocoapods/v/Buckets.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/Buckets.svg?style=flat)](http://cocoadocs.org/docsets/Buckets)
 
@@ -32,7 +32,7 @@ Buckets is a complete, tested and documented collections library for swift.
 
 ## Setup
 
-### Cocoapods
+### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Swift and Objective-C projects. The latest version adds support for embedded frameworks. You can install it with the following command:
 
