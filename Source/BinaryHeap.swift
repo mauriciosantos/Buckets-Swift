@@ -52,7 +52,7 @@ struct BinaryHeap<T> : SequenceType {
     }
     
     func generate() -> AnyGenerator<T> {
-        return anyGenerator(items.generate())
+        return AnyGenerator(items.generate())
     }
     
     private mutating func siftUp() {

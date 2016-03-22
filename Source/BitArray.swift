@@ -93,7 +93,7 @@ public struct BitArray {
             bits.append(0)
         }
         setValue(bit, atIndex: count)
-        count++
+        count += 1
     }
     
     /// Inserts a bit into the array at a given index.
@@ -117,7 +117,7 @@ public struct BitArray {
     public mutating func removeLast() -> Bool? {
         if let value = last {
             setValue(false, atIndex: count-1)
-            count--
+            count -= 1
             return value
         }
         return nil
@@ -172,9 +172,9 @@ public struct BitArray {
         
         switch (oldValue, newValue) {
             case (false, true):
-                cardinality++
+                cardinality += 1
             case (true, false):
-                cardinality--
+                cardinality -= 1
             default:
                 break
         }
@@ -190,9 +190,9 @@ public struct BitArray {
         return (logicalIndex / Constants.IntSize, logicalIndex % Constants.IntSize)
     }
     
-    private func checkIndex(index: Int, var lessThan: Int? = nil) {
-        lessThan = lessThan == nil ? count : lessThan
-        if index < 0 || index >= lessThan!  {
+    private func checkIndex(index: Int, lessThan: Int? = nil) {
+        let bound = lessThan == nil ? count : lessThan
+        if index < 0 || index >= bound!  {
             fatalError("Index out of range (\(index))")
         }
     }
@@ -215,7 +215,7 @@ extension BitArray: SequenceType {
     ///
     /// - returns: A generator over the bits.
     public func generate() -> AnyGenerator<Bool> {
-        return anyGenerator(IndexingGenerator(self))
+        return AnyGenerator(IndexingGenerator(self))
     }
 }
 

@@ -137,7 +137,7 @@ extension Matrix: SequenceType {
     ///
     /// - returns: A generator over the elements.
     public func generate() -> AnyGenerator<T> {
-        return anyGenerator(IndexingGenerator(self))
+        return AnyGenerator(IndexingGenerator(self))
     }
 }
 

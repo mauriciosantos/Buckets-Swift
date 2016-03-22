@@ -31,7 +31,7 @@ class MatrixTests: XCTestCase {
         for i in 0..<matrix.rows {
             for j in 0..<matrix.columns {
                 XCTAssertEqual(matrix[i,j], counter)
-                counter++
+                counter += 1
             }
         }
     }
@@ -42,7 +42,7 @@ class MatrixTests: XCTestCase {
         for i in 0..<matrix.rows {
             for j in 0..<matrix.columns {
                 XCTAssertEqual(matrix[i,j], counter)
-                counter++
+                counter += 1
             }
         }
     }
@@ -74,7 +74,7 @@ class MatrixTests: XCTestCase {
         for i in 0..<matrix.rows {
             for j in 0..<matrix.columns {
                 XCTAssertEqual(matrix[i,j], counter)
-                counter++
+                counter += 1
             }
         }
     }

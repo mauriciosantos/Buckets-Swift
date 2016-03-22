@@ -92,7 +92,7 @@ public struct Trie {
             copyMyself()
             var keyGenerator = word.characters.generate()
             if insert(&keyGenerator, node: root) {
-                count++
+                count += 1
                 return true
             }
         }
@@ -114,7 +114,7 @@ public struct Trie {
                     where elementNode.children.isEmpty  {
                         parentNode.children.removeValueForKey(key)
                 }
-                count--
+                count -= 1
                 return word
             }
         }
@@ -173,15 +173,17 @@ public struct Trie {
     }
     
     private func longestPrefixIn(inout keyGenerator: IndexingGenerator<String.CharacterView>,
-        var lastChars: [Character], node: TrieNode) -> String {
-            
+        lastChars: [Character], node: TrieNode) -> String {
+        let chars: [Character]
         if let key = node.key {
-            lastChars.append(key)
+            chars = lastChars + [key]
+        } else {
+            chars = lastChars
         }
         if let theKey = keyGenerator.next(), nextNode = node.children[theKey] {
-            return longestPrefixIn(&keyGenerator, lastChars:lastChars, node: nextNode)
+            return longestPrefixIn(&keyGenerator, lastChars:chars, node: nextNode)
         }
-        return String(lastChars)
+        return String(chars)
     }
     
     private func insert(inout keyGenerator: IndexingGenerator<String.CharacterView>, node: TrieNode) -> Bool {

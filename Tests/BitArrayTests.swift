@@ -189,7 +189,7 @@ class BitArrayTests: XCTestCase {
         var result = 0
         for value in array {
             if value {
-                result++
+                result += 1
             }
         }
         return result

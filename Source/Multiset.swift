@@ -149,15 +149,15 @@ extension Multiset: SequenceType {
         var keyValueGenerator = members.generate()
         var elementCount = 0
         var element : T? = nil
-        return anyGenerator {
+        return AnyGenerator {
             if elementCount > 0 {
-                elementCount--
+                elementCount -= 1
                 return element
             }
             let nextTuple = keyValueGenerator.next()
             element = nextTuple?.0
             elementCount = nextTuple?.1 ?? 1
-            elementCount--
+            elementCount -= 1
             return element
         }
     }

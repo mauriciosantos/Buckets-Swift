@@ -138,7 +138,7 @@ public struct Graph<Vertex: Hashable, Edge> {
             }
             return vertexGenerator(sourceNode, nextNode: nextNode, visitEventually: visitEventually)
         }
-        return  anyGenerator(EmptyGenerator())
+        return  AnyGenerator(EmptyGenerator())
     }
     
     // MARK: Adding and Removing Elements
@@ -246,7 +246,7 @@ public struct Graph<Vertex: Hashable, Edge> {
     private func vertexGenerator(source: GraphNode, nextNode:() -> GraphNode?, visitEventually: (GraphNode)->Void) -> AnyGenerator<Vertex> {
         var visited = Set<GraphNode>()
         visitEventually(source)
-        return anyGenerator {
+        return AnyGenerator {
             if let next = nextNode() {
                 visited.insert(next)
                 for successor in next.successors {
@@ -294,7 +294,7 @@ extension Graph: SequenceType {
     ///
     /// - returns: A generator over the vertices.
     public func generate() -> AnyGenerator<Vertex> {
-        return anyGenerator(nodes.keys.generate())
+        return AnyGenerator(nodes.keys.generate())
     }
 }
 

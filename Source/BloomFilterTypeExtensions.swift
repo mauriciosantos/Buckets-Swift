@@ -51,8 +51,9 @@ extension String: BloomFilterType {
     public var bytes: [UInt8] {return [UInt8](self.utf8)}
 }
 
-private func bytesFromStruct<T>(var value: T) -> [UInt8] {
-    return withUnsafePointer(&value) {
+private func bytesFromStruct<T>(value: T) -> [UInt8] {
+    var theValue = value
+    return withUnsafePointer(&theValue) {
         Array(UnsafeBufferPointer(start: UnsafePointer<UInt8>($0), count: sizeof(T)))
     }
 }

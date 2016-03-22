@@ -81,7 +81,7 @@ extension Stack: SequenceType {
     /// - returns: A generator over the elements.
     public func generate() -> AnyGenerator<T> {
         let reverseArrayView = LazySequence(self.elements).reverse()
-        return anyGenerator(IndexingGenerator(reverseArrayView))
+        return AnyGenerator(IndexingGenerator(reverseArrayView))
     }
 }
 

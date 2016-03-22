@@ -194,9 +194,9 @@ public struct CircularArray<T> {
         items = newArray
     }
     
-    private func checkIndex(index: Int, var lessThan: Int? = nil) {
-        lessThan = lessThan == nil ? count : lessThan
-        if index < 0 || index >= lessThan!  {
+    private func checkIndex(index: Int, lessThan: Int? = nil) {
+        let bound = lessThan == nil ? count : lessThan
+        if index < 0 || index >= bound!  {
             fatalError("Index out of range (\(index))")
         }
     }
@@ -210,7 +210,7 @@ extension CircularArray: SequenceType {
     ///
     /// - returns: A generator over the elements.
     public func generate() -> AnyGenerator<T> {
-        return anyGenerator(IndexingGenerator(self))
+        return AnyGenerator(IndexingGenerator(self))
     }
 }
 

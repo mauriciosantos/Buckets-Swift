@@ -50,7 +50,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     /// A sequence containing the multimap's values.
     public var values: LazySequence<AnyGenerator<Value>> {
         let selfGenerator = generate()
-        let valueGenerator = anyGenerator { selfGenerator.next()?.1 }
+        let valueGenerator = AnyGenerator { selfGenerator.next()?.1 }
         return LazySequence(valueGenerator)
     }
     
@@ -120,7 +120,7 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         if var values = dictionary[key] {
             if let removeIndex = values.indexOf(value) {
                 let removedValue = values.removeAtIndex(removeIndex)
-                count--
+                count -= 1
                 dictionary[key] = values
                 return removedValue
             }
@@ -162,10 +162,10 @@ extension Multimap: SequenceType {
         var keyValueGenerator = dictionary.generate()
         var index = 0
         var pairs = keyValueGenerator.next()
-        return anyGenerator {
+        return AnyGenerator {
             if let tuple = pairs {
                 let value = tuple.1[index]
-                index++
+                index += 1
                 if index >= tuple.1.count {
                     index = 0
                     pairs = keyValueGenerator.next()
