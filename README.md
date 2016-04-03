@@ -165,7 +165,7 @@ bFilter.insert("a")
 bFilter.contains("a") // true
 ```
 
-Read the [documentation](http://mauriciosantos.github.io/Buckets-Swift/Structs.html).
+Read the [documentation](http://mauriciosantos.github.io/Buckets-Swift/Data%20Structures.html).
 
 ## Contact
 
