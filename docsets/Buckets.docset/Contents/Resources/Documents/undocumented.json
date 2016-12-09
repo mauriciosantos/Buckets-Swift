@@ -1,0 +1,131 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Bimap.swift",
+      "line": 243,
+      "symbol": "==(_:_:).Key",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/CircularArray.swift",
+      "line": 285,
+      "symbol": "==(_:_:).T",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/CircularArray.swift",
+      "line": 292,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Deque.swift",
+      "line": 139,
+      "symbol": "==(_:_:).U",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Deque.swift",
+      "line": 143,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Graph.swift",
+      "line": 312,
+      "symbol": "==(_:_:).V",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Graph.swift",
+      "line": 334,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Graph.swift",
+      "line": 340,
+      "symbol": "GraphTraversalOrder",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Matrix.swift",
+      "line": 193,
+      "symbol": "==(_:_:).T",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Matrix.swift",
+      "line": 198,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Multimap.swift",
+      "line": 204,
+      "symbol": "Multimap.==(_:_:).Key",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Multiset.swift",
+      "line": 186,
+      "symbol": "==(_:_:).T",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/PriorityQueue.swift",
+      "line": 122,
+      "symbol": "==(_:_:).U",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/PriorityQueue.swift",
+      "line": 126,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Queue.swift",
+      "line": 119,
+      "symbol": "==(_:_:).U",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Queue.swift",
+      "line": 123,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Stack.swift",
+      "line": 120,
+      "symbol": "==(_:_:).U",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauricio/Desktop/Buckets-Swift/Source/Stack.swift",
+      "line": 124,
+      "symbol": "!=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/mauricio/Desktop/Buckets-Swift"
+}
