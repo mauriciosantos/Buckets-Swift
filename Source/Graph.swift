@@ -11,14 +11,14 @@ import Foundation
 /// A simple directed graph: that is, one with no loops (edges
 /// connected at both ends to the same vertex) and no more than one edge
 /// in the same direction between any two different vertices.
-/// All vertices in the graph are unique.
-/// The preferred way to insert vertices and edges is using subscript notation. Example:
+/// All vertices in the graph are unique. Edges are not allowed to be generic types.
+/// The preferred way to acess and insert vertices or edges is using subscript notation. Example:
 /// `graph["NY", "Boston"] = distance`
 ///
-/// Conforms to `SequenceType`.
+/// Conforms to `Sequence`.
 public struct Graph<Vertex: Hashable, Edge> {
     
-    private typealias GraphNode = VertexNode<Vertex, Edge>
+    fileprivate typealias GraphNode = VertexNode<Vertex, Edge>
     
     // MARK: Creating a Graph
     
@@ -74,20 +74,20 @@ public struct Graph<Vertex: Hashable, Edge> {
     }
     
     /// Returns `true` if the graph contains the given vertex.
-    public func containsVertex(vertex: Vertex) -> Bool {
+    public func containsVertex(_ vertex: Vertex) -> Bool {
         return nodes[vertex] != nil
     }
     
     /// Returns `true` if the graph contains an edge from `source` to `destination`.
     /// Subscript notation is preferred.
-    public func containsEdgeFrom(source: Vertex, to destination: Vertex) -> Bool {
+    public func containsEdgeFrom(_ source: Vertex, to destination: Vertex) -> Bool {
         return edgeFrom(source, to: destination) != nil
     }
     
     /// Returns the edge connecting `source` to `destination` if it exists.
     /// Subscript notation is preferred.
-    public func edgeFrom(source: Vertex, to destination: Vertex) -> Edge? {
-        if let sourceNode = nodes[source], destinationNode = nodes[destination] {
+    public func edgeFrom(_ source: Vertex, to destination: Vertex) -> Edge? {
+        if let sourceNode = nodes[source], let destinationNode = nodes[destination] {
             return sourceNode.edgeConnectingTo(destinationNode)
         }
         return nil
@@ -95,7 +95,7 @@ public struct Graph<Vertex: Hashable, Edge> {
     
     /// Returns the set of direct successors of the given vertex. An empty set
     /// is returned if the vertex does not exist.
-    public func neighbors(source: Vertex) -> Set<Vertex> {
+    public func neighbors(_ source: Vertex) -> Set<Vertex> {
         if let node = nodes[source] {
             return Set(node.successors.map{$0.data})
         }
@@ -104,9 +104,9 @@ public struct Graph<Vertex: Hashable, Edge> {
     
     /// Returns an array of vertices representing a path from `source` to `destination`, if it exists.
     ///
-    /// - returns: An array containing at least two vertices (`source` and `destination`) or an empty array.
-    public func pathFrom(source: Vertex, to destination: Vertex) -> [Vertex] {
-        if let sourceNode = nodes[source], destinationNode = nodes[destination]  {
+    /// - returns: An array containing at least two vertices (`source` and `destination`) or nil.
+    public func pathFrom(_ source: Vertex, to destination: Vertex) -> [Vertex]? {
+        if let sourceNode = nodes[source], let destinationNode = nodes[destination]  {
             var path = [Vertex]()
             var visited = Set<GraphNode>()
             for successor in sourceNode.successors {
@@ -114,31 +114,34 @@ public struct Graph<Vertex: Hashable, Edge> {
                     return [source] + path
                 }
             }
+            if !path.isEmpty {
+                return path
+            }
         }
-        return []
+        return nil
     }
     
     /// Returns a generator iterating over the vertices in the specified order starting at the given vertex.
     /// Valid options are .DepthFirst and .BreadthFirst.
     ///
     /// The generator never returns the same vertex more than once.
-    public func generateAt(source: Vertex, order: GraphTraversalOrder) -> AnyGenerator<Vertex> {
+    public func generateAt(_ source: Vertex, order: GraphTraversalOrder) -> AnyIterator<Vertex> {
         if let sourceNode = nodes[source] {
             let nextNode: () -> GraphNode?
             let visitEventually: (GraphNode) -> Void
             switch order {
-            case .DepthFirst:
+            case .depthFirst:
                 var nextVertices = Stack<GraphNode>()
-                nextNode = {nextVertices.pop()}
+                nextNode = {nextVertices.isEmpty ? nil : nextVertices.pop()}
                 visitEventually = {nextVertices.push($0)}
-            case .BreadthFirst:
+            case .breadthFirst:
                 var nextVertices = Queue<GraphNode>()
-                nextNode = {nextVertices.dequeue()}
+                nextNode = {nextVertices.isEmpty ? nil : nextVertices.dequeue()}
                 visitEventually = {nextVertices.enqueue($0)}
             }
             return vertexGenerator(sourceNode, nextNode: nextNode, visitEventually: visitEventually)
         }
-        return  AnyGenerator(EmptyGenerator())
+        return  AnyIterator(EmptyIterator())
     }
     
     // MARK: Adding and Removing Elements
@@ -159,7 +162,7 @@ public struct Graph<Vertex: Hashable, Edge> {
     }
     
     /// Inserts the given vertex to the graph if it doesn't exist.
-    public mutating func insertVertex(vertex: Vertex) {
+    public mutating func insertVertex(_ vertex: Vertex) {
         if !containsVertex(vertex) {
             copyMyself()
             nodes[vertex] = GraphNode(vertex)
@@ -167,10 +170,11 @@ public struct Graph<Vertex: Hashable, Edge> {
     }
     
     /// Removes and returns the given vertex from the graph if it was present.
-    public mutating func removeVertex(vertex : Vertex) -> Vertex? {
+    @discardableResult
+    public mutating func removeVertex(_ vertex : Vertex) -> Vertex? {
         if containsVertex(vertex) {
             copyMyself()
-            let value = nodes.removeValueForKey(vertex)?.data
+            let value = nodes.removeValue(forKey: vertex)?.data
             for other in nodes.keys {
                 removeEdgeFrom(other, to: vertex)
             }
@@ -181,7 +185,7 @@ public struct Graph<Vertex: Hashable, Edge> {
     
     /// Connects two vertices with the given edge. If an edge already exists, it is replaced.
     /// Subscript notation is preferred.
-    public mutating func insertEdge(edge: Edge, from source: Vertex, to destination: Vertex) {
+    public mutating func insertEdge(_ edge: Edge, from source: Vertex, to destination: Vertex) {
         if source == destination {
             fatalError("Simple graphs can't have edges connected at both ends to the same vertex.")
         }
@@ -193,7 +197,8 @@ public struct Graph<Vertex: Hashable, Edge> {
     }
     
     /// Removes and returns the edge connecting the given vertices if it exists.
-    public mutating func removeEdgeFrom(source: Vertex, to destination: Vertex) -> Edge? {
+    @discardableResult
+    public mutating func removeEdgeFrom(_ source: Vertex, to destination: Vertex) -> Edge? {
         if containsVertex(source) && containsVertex(destination) {
             copyMyself()
             return nodes[source]!.removeConnectionTo(nodes[destination]!)
@@ -203,22 +208,22 @@ public struct Graph<Vertex: Hashable, Edge> {
     
     /// Removes all vertices and edges from the graph, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true) {
-        nodes.removeAll(keepCapacity: keep)
+    public mutating func removeAll(keepingCapacity keep: Bool = false) {
+        nodes.removeAll(keepingCapacity: keep)
     }
     
     // MARK: Private Properties and Helper Methods
     
     /// Adjacency lists graph representation.
-    private var nodes = [Vertex: GraphNode]()
+    fileprivate var nodes = [Vertex: GraphNode]()
     
     
     /// Unique identifier to perform copy-on-write.
-    private var tag = Tag()
+    fileprivate var tag = Tag()
     
     
     /// Finds a path from `source` to `destination` recursively.
-    private func containsPathFrom(source: GraphNode, to destination: GraphNode, inout visited: Set<GraphNode> , inout path: [Vertex]) -> Bool {
+    fileprivate func containsPathFrom(_ source: GraphNode, to destination: GraphNode, visited: inout Set<GraphNode> , path: inout [Vertex]) -> Bool {
         if visited.contains(source) {
             return false
         }
@@ -243,10 +248,10 @@ public struct Graph<Vertex: Hashable, Edge> {
     /// - parameter source: The first node to visit.
     /// - parameter nextNode: Returns the next node to visit.
     /// - parameter visitEventually: Gives a neighbor of the vertex previously returned by nextNode().
-    private func vertexGenerator(source: GraphNode, nextNode:() -> GraphNode?, visitEventually: (GraphNode)->Void) -> AnyGenerator<Vertex> {
+    fileprivate func vertexGenerator(_ source: GraphNode, nextNode:@escaping () -> GraphNode?, visitEventually: @escaping (GraphNode)->Void) -> AnyIterator<Vertex> {
         var visited = Set<GraphNode>()
         visitEventually(source)
-        return AnyGenerator {
+        return AnyIterator {
             if let next = nextNode() {
                 visited.insert(next)
                 for successor in next.successors {
@@ -265,8 +270,8 @@ public struct Graph<Vertex: Hashable, Edge> {
     ///
     /// The Graph itself is a value type but a VertexNode is a reference type,
     /// calling this method ensures copy-on-write behavior.
-    private mutating func copyMyself() {
-        if !isUniquelyReferencedNonObjC(&tag) {
+    fileprivate mutating func copyMyself() {
+        if !isKnownUniquelyReferenced(&tag) {
             tag = Tag()
             var newNodes = [Vertex: GraphNode]()
             for vertex in nodes.keys {
@@ -275,9 +280,9 @@ public struct Graph<Vertex: Hashable, Edge> {
             for (vertex, oldNode) in nodes {
                 let newNode = newNodes[vertex]!
                 
-                let edges = oldNode.edges
+                let edges = Array(oldNode.edges)
                 let successors = oldNode.successors.map{newNodes[$0.data]!}
-                for (index, successor) in successors.enumerate() {
+                for (index, successor) in successors.enumerated() {
                     newNode.connectTo(successor, withEdge: edges[index])
                 }
             }
@@ -286,15 +291,15 @@ public struct Graph<Vertex: Hashable, Edge> {
     }
 }
 
-extension Graph: SequenceType {
+extension Graph: Sequence {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: Sequence Protocol Conformance
     
     /// Provides for-in loop functionality.
     ///
     /// - returns: A generator over the vertices.
-    public func generate() -> AnyGenerator<Vertex> {
-        return AnyGenerator(nodes.keys.generate())
+    public func makeIterator() -> AnyIterator<Vertex> {
+        return AnyIterator(nodes.keys.makeIterator())
     }
 }
 
@@ -333,8 +338,8 @@ public func !=<V, E: Equatable>(lhs: Graph<V,E>, rhs: Graph<V,E>) -> Bool {
 // MARK: - GraphTraversalOrder
 
 public enum GraphTraversalOrder {
-    case DepthFirst
-    case BreadthFirst
+    case depthFirst
+    case breadthFirst
 }
 
 // MARK: - VertexNode
@@ -346,12 +351,12 @@ private class VertexNode<V: Hashable, E>: Hashable {
     let data : V
     var adjacencyList = [Bridge]()
     
-    var successors: LazyCollection<[VertexNode<V, E>]> {
-        return LazyCollection(LazyCollection(adjacencyList).map{$0.destination})
+    var successors: AnyCollection<VertexNode<V, E>> {
+        return AnyCollection(adjacencyList.lazy.map {$0.destination})
     }
     
-    var edges: LazyCollection<[E]> {
-        return LazyCollection(LazyCollection(adjacencyList).map{$0.edge})
+    var edges: AnyCollection<E> {
+        return AnyCollection(adjacencyList.lazy.map {$0.edge})
     }
     
     var hashValue: Int {
@@ -362,11 +367,11 @@ private class VertexNode<V: Hashable, E>: Hashable {
         self.data = vertex
     }
     
-    func connectTo(vertex: VertexNode, withEdge edge: E) {
+    func connectTo(_ vertex: VertexNode, withEdge edge: E) {
         adjacencyList.append((vertex, edge))
     }
     
-    func edgeConnectingTo(vertex: VertexNode) -> E? {
+    func edgeConnectingTo(_ vertex: VertexNode) -> E? {
         for neighbor in adjacencyList {
             if neighbor.destination == vertex {
                 return neighbor.edge
@@ -375,10 +380,10 @@ private class VertexNode<V: Hashable, E>: Hashable {
         return nil
     }
     
-    func removeConnectionTo(vertex: VertexNode) -> E? {
-        for (index, neighbor) in adjacencyList.enumerate() {
+    func removeConnectionTo(_ vertex: VertexNode) -> E? {
+        for (index, neighbor) in adjacencyList.enumerated() {
             if neighbor.destination == vertex {
-                return adjacencyList.removeAtIndex(index).edge
+                return adjacencyList.remove(at: index).edge
             }
         }
         return nil

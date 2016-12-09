@@ -124,7 +124,7 @@ class TrieTests: XCTestCase {
         var other = Trie()
         XCTAssertNotEqual(trie.hashValue, other.hashValue)
         XCTAssertTrue(trie != other)
-        other = Trie(Array(TestData.Elements.reverse()))
+        other = Trie(Array(TestData.Elements.reversed()))
         XCTAssertEqual(trie.hashValue, trie.hashValue)
         XCTAssertTrue(trie == other)
     }

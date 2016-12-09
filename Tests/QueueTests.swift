@@ -29,7 +29,7 @@ class QueueTests: XCTestCase {
         for i in 0..<TestData.List.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, TestData.List[i])
+            XCTAssertEqual(element, TestData.List[i])
         }
     }
     
@@ -47,22 +47,14 @@ class QueueTests: XCTestCase {
         for i in 0..<TestData.List.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, TestData.List[i])
+            XCTAssertEqual(element, TestData.List[i])
         }
-        XCTAssertNil(queue.dequeue())
-        XCTAssertNil(queue.first)
-    }
-    
-    func testEmptyDequeue() {
-        XCTAssertNil(queue.dequeue())
-        XCTAssertNil(queue.first)
     }
     
     func testRemoveAll() {
         queue = Queue(TestData.List)
-        queue.removeAll(keepCapacity: true)
+        queue.removeAll(keepingCapacity: true)
         XCTAssertEqual(queue.count, 0)
-        XCTAssertNil(queue.dequeue())
     }
     
     // MARK: SequenceType

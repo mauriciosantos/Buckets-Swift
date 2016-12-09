@@ -161,7 +161,7 @@ class BimapTests: XCTestCase {
         bimap = Bimap(TestData.Dictionary)
         var dictionary = TestData.Dictionary
         for (key, _) in bimap {
-            dictionary.removeValueForKey(key)
+            dictionary.removeValue(forKey: key)
         }
         XCTAssertEqual(dictionary.count, 0)
     }
@@ -197,7 +197,7 @@ class BimapTests: XCTestCase {
         bimap = Bimap(TestData.Dictionary)
         var other = Bimap<Int, Int>()
         XCTAssertTrue(bimap != other)
-        other = Bimap(bimap)
+        other = bimap
         XCTAssertTrue(bimap == other)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 // Max Heap
-struct BinaryHeap<T> : SequenceType {
+struct BinaryHeap<T> : Sequence {
     
     var isEmpty: Bool {
         return items.isEmpty
@@ -22,14 +22,14 @@ struct BinaryHeap<T> : SequenceType {
     }
     
     // returns true if the first argument has the highest priority
-    private let isOrderedBefore: (T,T) -> Bool
-    private var items = [T]()
+    fileprivate let isOrderedBefore: (T,T) -> Bool
+    fileprivate var items = [T]()
     
-    init(compareFunction: (T,T) -> Bool) {
+    init(compareFunction: @escaping (T,T) -> Bool) {
         isOrderedBefore = compareFunction
     }
     
-    mutating func insert(element: T) {
+    mutating func insert(_ element: T) {
         items.append(element)
         siftUp()
     }
@@ -47,16 +47,16 @@ struct BinaryHeap<T> : SequenceType {
         return nil
     }
     
-    mutating func removeAll(keepCapacity keep: Bool = true)  {
-        items.removeAll(keepCapacity: keep)
+    mutating func removeAll(keepingCapacity keep: Bool = false)  {
+        items.removeAll(keepingCapacity: keep)
     }
     
-    func generate() -> AnyGenerator<T> {
-        return AnyGenerator(items.generate())
+    func makeIterator() -> AnyIterator<T> {
+        return AnyIterator(items.makeIterator())
     }
     
-    private mutating func siftUp() {
-        func parent(index: Int) -> Int {
+    fileprivate mutating func siftUp() {
+        func parent(_ index: Int) -> Int {
             return (index - 1) / 2
         }
         
@@ -69,9 +69,9 @@ struct BinaryHeap<T> : SequenceType {
         }
     }
     
-    private mutating func siftDown() {
+    fileprivate mutating func siftDown() {
         // Returns the index of the maximum element if it exists, otherwise -1
-        func maxIndex(i: Int, _ j: Int) -> Int {
+        func maxIndex(_ i: Int, _ j: Int) -> Int {
             if j >= count && i >= count {
                 return -1
             } else if j >= count && i < count {
@@ -83,11 +83,11 @@ struct BinaryHeap<T> : SequenceType {
             }
         }
         
-        func leftChild(index: Int) -> Int {
+        func leftChild(_ index: Int) -> Int {
             return (2 * index) + 1
         }
         
-        func rightChild(index: Int) -> Int {
+        func rightChild(_ index: Int) -> Int {
             return (2 * index) + 2
         }
         
@@ -107,7 +107,7 @@ struct BinaryHeap<T> : SequenceType {
 /// in the same order.
 /// The underlying elements must conform to the `Equatable` protocol.
 func ==<U: Equatable>(lhs: BinaryHeap<U>, rhs: BinaryHeap<U>) -> Bool {
-    return lhs.items.sort(lhs.isOrderedBefore) == rhs.items.sort(rhs.isOrderedBefore)
+    return lhs.items.sorted(by: lhs.isOrderedBefore) == rhs.items.sorted(by: rhs.isOrderedBefore)
 }
 
 func !=<U: Equatable>(lhs: BinaryHeap<U>, rhs: BinaryHeap<U>) -> Bool {

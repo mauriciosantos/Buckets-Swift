@@ -26,7 +26,7 @@ class CircularArrayTests: XCTestCase {
     
     func testInitWithRepeatedValue() {
         let count = 30
-        cArray = CircularArray(count: count, repeatedValue: TestData.Value)
+        cArray = CircularArray(repeating: TestData.Value, count: count)
         XCTAssertEqual(cArray.count, count)
         for i in 0..<count {
             XCTAssertEqual(cArray[i], TestData.Value)
@@ -44,7 +44,7 @@ class CircularArrayTests: XCTestCase {
         for i in TestData.List {
             cArray.prepend(i)
         }
-        let reverseList = Array(TestData.List.reverse())
+        let reverseList = Array(TestData.List.reversed())
         XCTAssertEqual(cArray.count, TestData.List.count)
         for i in 0..<TestData.List.count {
             XCTAssertEqual(cArray[i], reverseList[i])
@@ -69,27 +69,17 @@ class CircularArrayTests: XCTestCase {
         }
     }
     
-    func testEmptyRemoveFirst() {
-        XCTAssertNil(cArray.removeFirst())
-        XCTAssertEqual(cArray.count, 0)
-    }
-    
     func testNonEmptyRemoveFirst() {
         cArray = CircularArray(TestData.List)
         let first = cArray.removeFirst()
-        XCTAssertTrue(first != nil && first == TestData.List.first!)
+        XCTAssertEqual(first, TestData.List.first)
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
-    }
-    
-    func testEmptyRemoveLast() {
-        XCTAssertNil(cArray.removeLast())
-        XCTAssertEqual(cArray.count, 0)
     }
     
     func testNonEmptyRemoveLast() {
         cArray = CircularArray(TestData.List)
         let last = cArray.removeLast()
-        XCTAssertTrue(last != nil && last == TestData.List.last!)
+        XCTAssertEqual(last, TestData.List.last)
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
         XCTAssertEqual(cArray.count, TestData.List.count - 1)
     }
@@ -100,8 +90,8 @@ class CircularArrayTests: XCTestCase {
             for j in 0...i {
                 var list = [] + TestData.List[0...i]
                 var array = CircularArray(list)
-                list.insert(TestData.Value, atIndex: j)
-                array.insert(TestData.Value, atIndex: j)
+                list.insert(TestData.Value, at: j)
+                array.insert(TestData.Value, at: j)
                 XCTAssertEqual(array.count, list.count)
                 XCTAssertTrue(list.elementsEqual(array))
             }
@@ -114,7 +104,7 @@ class CircularArrayTests: XCTestCase {
             for j in 0...i {
                 var list = [] + TestData.List[0...i]
                 var array = CircularArray(list)
-                XCTAssertEqual(list.removeAtIndex(j), array.removeAtIndex(j))
+                XCTAssertEqual(list.remove(at: j), array.remove(at: j))
                 XCTAssertEqual(array.count, list.count)
                 XCTAssertTrue(list.elementsEqual(array))
             }
@@ -123,14 +113,13 @@ class CircularArrayTests: XCTestCase {
     
     func testRemoveAll() {
         cArray = CircularArray(TestData.List)
-        cArray.removeAll(keepCapacity: true)
+        cArray.removeAll(keepingCapacity: true)
         XCTAssertEqual(cArray.count, 0)
-        XCTAssertNil(cArray.removeFirst())
     }
     
     func testAppendAfterRemoveAll() {
         cArray = CircularArray(TestData.List)
-        cArray.removeAll(keepCapacity: true)
+        cArray.removeAll(keepingCapacity: true)
         cArray.append(TestData.Value)
         XCTAssertTrue(cArray.first != nil && cArray.first! == TestData.Value)
     }
@@ -157,8 +146,8 @@ class CircularArrayTests: XCTestCase {
     }
     
     func testSubscriptSet() {
-        let reversedList = Array(TestData.List.reverse())
-        cArray = CircularArray(count: reversedList.count, repeatedValue: 0)
+        let reversedList = Array(TestData.List.reversed())
+        cArray = CircularArray(repeating: 0, count: reversedList.count)
         for i in 0..<reversedList.count {
             cArray[i] = reversedList[i]
             XCTAssertEqual(cArray[i], reversedList[i])

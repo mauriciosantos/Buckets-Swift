@@ -7,5 +7,3 @@ if [ "$DEPLOY" == "YES" ] && [ "$TRAVIS_REPO_SLUG" == "mauriciosantos/Buckets-Sw
 	rvm use default
 	pod trunk push
 fi
-
-

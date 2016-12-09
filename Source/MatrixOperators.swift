@@ -6,7 +6,7 @@
 //  Copyright © 2016 Mauricio Santos. All rights reserved.
 //
 
-#if !os(watchOS)
+#if os(OSX) || os(iOS)
 import Foundation
 import Accelerate
 
@@ -16,14 +16,14 @@ import Accelerate
 
 /// Returns the inverse of the given matrix or nil if it doesn't exist.
 /// If the argument is a non-square matrix an error is triggered.
-public func inverse(matrix: Matrix<Double>) -> Matrix<Double>? {
+public func inverse(_ matrix: Matrix<Double>) -> Matrix<Double>? {
     if matrix.columns != matrix.rows {
         fatalError("Can't invert a non-square matrix.")
     }
     var invMatrix = matrix
     var N = __CLPK_integer(sqrt(Double(invMatrix.grid.count)))
-    var pivots = [__CLPK_integer](count: Int(N), repeatedValue: 0)
-    var workspace = [Double](count: Int(N), repeatedValue: 0.0)
+    var pivots = [__CLPK_integer](repeating: 0, count: Int(N))
+    var workspace = [Double](repeating: 0.0, count: Int(N))
     var error : __CLPK_integer = 0
     // LU factorization
     dgetrf_(&N, &N, &invMatrix.grid, &N, &pivots, &error)
@@ -51,14 +51,14 @@ public func +(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
 }
 
 /// Performs matrix and matrix addition.
-public func +=(inout lhs: Matrix<Double>, rhs: Matrix<Double>) {
+public func +=(lhs: inout Matrix<Double>, rhs: Matrix<Double>) {
     lhs.grid = (lhs + rhs).grid
 }
 
 /// Performs matrix and scalar addition.
 public func +(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
     let scalar = rhs
-    var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeatedValue: scalar)
+    var result = Matrix<Double>(rows: lhs.rows, columns: lhs.columns, repeating: scalar)
     cblas_daxpy(Int32(lhs.grid.count), 1, lhs.grid, 1, &(result.grid), 1)
     return result
 }
@@ -69,7 +69,7 @@ public func +(lhs: Double, rhs: Matrix<Double>) -> Matrix<Double> {
 }
 
 /// Performs matrix and scalar addition.
-public func +=(inout lhs: Matrix<Double>, rhs: Double) {
+public func +=(lhs: inout Matrix<Double>, rhs: Double) {
     lhs.grid = (lhs + rhs).grid
 }
 
@@ -86,7 +86,7 @@ public func -(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
 }
 
 /// Performs matrix and matrix subtraction.
-public func -=(inout lhs: Matrix<Double>, rhs: Matrix<Double>) {
+public func -=(lhs: inout Matrix<Double>, rhs: Matrix<Double>) {
     lhs.grid = (lhs - rhs).grid
 }
 
@@ -96,7 +96,7 @@ public func -(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
 }
 
 /// Performs matrix and scalar subtraction.
-public func -=(inout lhs: Matrix<Double>, rhs: Double) {
+public func -=(lhs: inout Matrix<Double>, rhs: Double) {
     lhs.grid = (lhs - rhs).grid
 }
 
@@ -118,7 +118,7 @@ public func *(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
     if lhs.columns != rhs.rows {
         fatalError("Matrix product is undefined: first.columns != second.rows")
     }
-    var result = Matrix<Double>(rows: lhs.rows, columns: rhs.columns, repeatedValue: 0.0)
+    var result = Matrix<Double>(rows: lhs.rows, columns: rhs.columns, repeating: 0.0)
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, Int32(lhs.rows), Int32(rhs.columns),
         Int32(lhs.columns), 1.0, lhs.grid, Int32(lhs.columns), rhs.grid, Int32(rhs.columns),
         0.0, &(result.grid), Int32(result.columns))
@@ -139,7 +139,7 @@ public func *(lhs: Double, rhs: Matrix<Double>) -> Matrix<Double> {
 }
 
 /// Performs matrix and scalar multiplication.
-public func *=(inout lhs: Matrix<Double>, rhs: Double) {
+public func *=(lhs: inout Matrix<Double>, rhs: Double) {
     lhs.grid = (lhs*rhs).grid
 }
 
@@ -151,7 +151,7 @@ public func /(lhs: Matrix<Double>, rhs: Double) -> Matrix<Double> {
 }
 
 /// Performs matrix and scalar division.
-public func /=(inout lhs: Matrix<Double>, rhs: Double) {
+public func /=(lhs: inout Matrix<Double>, rhs: Double) {
     lhs.grid = (lhs/rhs).grid
 }
 #endif

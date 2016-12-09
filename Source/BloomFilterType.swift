@@ -14,6 +14,6 @@ import Foundation
 /// joining the byte arrays from properties of already conforming types, such as strings or numbers.
 public protocol BloomFilterType {
     
-    /// Returns a byte array representation of self.
-    var bytes: [UInt8] {get}
+    /// Returns a data representation of self.
+    var bytes: Data {get}
 }

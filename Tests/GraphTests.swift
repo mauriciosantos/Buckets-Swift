@@ -99,7 +99,7 @@ class GraphTests: XCTestCase {
         graph["NY", "Miami"] = 1
         graph["Miami", "Boston"] = 1
         graph["Boston", "La"] = 1
-        XCTAssertEqual(graph.pathFrom("Boston", to: "NY"), [])
+        XCTAssertNil(graph.pathFrom("Boston", to: "NY"))
     }
     
     func testExistingPathFromTo() {
@@ -107,13 +107,13 @@ class GraphTests: XCTestCase {
         graph["Miami", "Boston"] = 1
         graph["Miami", "Vancouver"] = 1
         graph["Boston", "LA"] = 1
-        XCTAssertEqual(graph.pathFrom("NY", to: "LA"), ["NY", "Miami", "Boston", "LA"])
+        XCTAssertEqual(graph.pathFrom("NY", to: "LA")!, ["NY", "Miami", "Boston", "LA"])
     }
     
     func testCyclicPathFromTo() {
         graph["NY", "Miami"] = 1
         graph["Miami", "NY"] = 1
-        XCTAssertEqual(graph.pathFrom("NY", to: "NY"), ["NY", "Miami", "NY"])
+        XCTAssertEqual(graph.pathFrom("NY", to: "NY")!, ["NY", "Miami", "NY"])
     }
     
     func testGenerateDepthFirstAt() {
@@ -122,7 +122,7 @@ class GraphTests: XCTestCase {
         graph["Miami", "Vancouver"] = 1
         graph["Boston", "LA"] = 1
         var visited = Set<String>()
-        for vertex in graph.generateAt("NY", order: .DepthFirst) {
+        for vertex in graph.generateAt("NY", order: .depthFirst) {
             if visited.contains(vertex) {
                 XCTFail()
             }
@@ -137,7 +137,7 @@ class GraphTests: XCTestCase {
         graph["Miami", "Vancouver"] = 1
         graph["Boston", "LA"] = 1
         var visited = Set<String>()
-        for vertex in graph.generateAt("NY", order: .BreadthFirst) {
+        for vertex in graph.generateAt("NY", order: .breadthFirst) {
             if visited.contains(vertex) {
                 XCTFail()
             }
@@ -181,7 +181,7 @@ class GraphTests: XCTestCase {
     func testRemoveAll() {
         graph["NY", "Miami"] = 1
         graph["Miami", "Boston"] = 1
-        graph.removeAll(keepCapacity: true)
+        graph.removeAll(keepingCapacity: true)
         XCTAssertEqual(graph.vertices, [])
     }
     

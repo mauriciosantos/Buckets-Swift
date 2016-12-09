@@ -30,7 +30,7 @@ class DequeTests: XCTestCase {
         for i in 0..<TestData.List.count {
             let element = deque.dequeueFirst()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, TestData.List[i])
+            XCTAssertEqual(element, TestData.List[i])
         }
     }
     
@@ -45,17 +45,13 @@ class DequeTests: XCTestCase {
         for i in TestData.List {
             deque.enqueueFirst(i)
         }
-        let reverseList = Array(TestData.List.reverse())
+        let reverseList = Array(TestData.List.reversed())
         XCTAssertEqual(deque.count, TestData.List.count)
         for i in 0..<TestData.List.count {
             let element = deque.dequeueFirst()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, reverseList[i])
+            XCTAssertEqual(element, reverseList[i])
         }
-    }
-    
-    func testEmptyDequeueFirst() {
-        XCTAssertNil(deque.dequeueFirst())
     }
     
     func testSingleEnqueueLast() {
@@ -73,16 +69,14 @@ class DequeTests: XCTestCase {
         for i in 0..<TestData.List.count {
             let element = deque.dequeueFirst()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, TestData.List[i])
+            XCTAssertEqual(element, TestData.List[i])
         }
     }
     
     func testRemoveAll() {
         deque = Deque(TestData.List)
-        deque.removeAll(keepCapacity: true)
+        deque.removeAll(keepingCapacity: true)
         XCTAssertEqual(deque.count, 0)
-        XCTAssertNil(deque.dequeueFirst())
-        XCTAssertNil(deque.dequeueLast())
     }
     
     // MARK: SequenceType

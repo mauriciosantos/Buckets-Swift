@@ -30,7 +30,7 @@ private struct Constants {
 // MARK:- Public API
 
 /// Calculates FNV-1 hash from a raw byte sequence, such as an array.
-func fnv1<S:SequenceType where S.Generator.Element == UInt8>(bytes: S) -> UInt {
+func fnv1<S:Sequence>(_ bytes: S) -> UInt where S.Iterator.Element == UInt8 {
     var hash = Constants.OffsetBasis
     for byte in bytes {
         hash = hash &* Constants.FNVPrime // &* means multiply with overflow
@@ -40,7 +40,7 @@ func fnv1<S:SequenceType where S.Generator.Element == UInt8>(bytes: S) -> UInt {
 }
 
 /// Calculates FNV-1a hash from a raw byte sequence, such as an array.
-func fnv1a<S:SequenceType where S.Generator.Element == UInt8>(bytes: S) -> UInt {
+func fnv1a<S:Sequence>(_ bytes: S) -> UInt where S.Iterator.Element == UInt8 {
     var hash = Constants.OffsetBasis
     for byte in bytes {
         hash ^= UInt(byte)

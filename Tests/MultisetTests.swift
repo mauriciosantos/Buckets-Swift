@@ -23,7 +23,7 @@ class MultisetTests: XCTestCase {
     func testEmptyMultiset() {
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.distinctCount, 0)
-        XCTAssertEqual(multiset.remove(TestData.Value), 0)
+        multiset.remove(TestData.Value)
         XCTAssertFalse(multiset.contains(TestData.Value))
     }
     
@@ -52,9 +52,8 @@ class MultisetTests: XCTestCase {
         XCTAssertEqual(multiset.count(TestData.Value), 2)
     }
     
-    func testSingleInsertoccurrences() {
-        let prev = multiset.insert(TestData.Value, occurrences: 5)
-        XCTAssertEqual(prev, 0)
+    func testSingleInsertOccurrences() {
+        multiset.insert(TestData.Value, occurrences: 5)
         XCTAssertEqual(multiset.count, 5)
         XCTAssertEqual(multiset.distinctCount, 1)
         XCTAssertEqual(multiset.count(TestData.Value), 5)
@@ -62,20 +61,20 @@ class MultisetTests: XCTestCase {
     
     func testConsecutiveInsertoccurrences() {
         multiset.insert(TestData.Value, occurrences: 5)
-        let prev = multiset.insert(TestData.Value, occurrences: 5)
-        XCTAssertEqual(prev, 5)
+        multiset.insert(TestData.Value, occurrences: 5)
         XCTAssertEqual(multiset.count, 10)
         XCTAssertEqual(multiset.distinctCount, 1)
         XCTAssertEqual(multiset.count(TestData.Value), 10)
     }
     
     func testEmptyRemove() {
-        XCTAssertEqual(multiset.remove(TestData.Value), 0)
+        multiset.remove(TestData.Value)
+        XCTAssertEqual(multiset.count, 0)
     }
     
     func testRemove() {
         multiset.insert(TestData.Value, occurrences: 5)
-        XCTAssertEqual(multiset.remove(TestData.Value), 5)
+        multiset.remove(TestData.Value)
         XCTAssertEqual(multiset.count(TestData.Value), 4)
         XCTAssertEqual(multiset.count, 4)
         XCTAssertEqual(multiset.distinctCount, 1)
@@ -83,7 +82,7 @@ class MultisetTests: XCTestCase {
     
     func testRemoveUnique() {
         multiset.insert(TestData.Value, occurrences: 1)
-        XCTAssertEqual(multiset.remove(TestData.Value), 1)
+        multiset.remove(TestData.Value)
         XCTAssertEqual(multiset.count(TestData.Value), 0)
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.distinctCount, 0)
@@ -91,7 +90,7 @@ class MultisetTests: XCTestCase {
     
     func testRemoveoccurrences() {
         multiset.insert(TestData.Value, occurrences: 5)
-        XCTAssertEqual(multiset.remove(TestData.Value, occurrences: 2), 5)
+        multiset.remove(TestData.Value, occurrences: 2)
         XCTAssertEqual(multiset.count(TestData.Value), 3)
         XCTAssertEqual(multiset.count, 3)
         XCTAssertEqual(multiset.distinctCount, 1)
@@ -99,7 +98,7 @@ class MultisetTests: XCTestCase {
     
     func testRemoveoccurrencesMax() {
         multiset.insert(TestData.Value, occurrences: 5)
-        XCTAssertEqual(multiset.remove(TestData.Value, occurrences: 10), 5)
+        multiset.remove(TestData.Value, occurrences: 10)
         XCTAssertEqual(multiset.count(TestData.Value), 0)
         XCTAssertFalse(multiset.contains(TestData.Value))
         XCTAssertEqual(multiset.count, 0)
@@ -108,14 +107,14 @@ class MultisetTests: XCTestCase {
     
     func testRemoveAllOf() {
         multiset.insert(TestData.Value, occurrences: 5)
-        XCTAssertEqual(multiset.removeAllOf(TestData.Value), 5)
+        multiset.removeAllOf(TestData.Value)
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.distinctCount, 0)
     }
     
     func testRemoveAll() {
         multiset = Multiset(TestData.List)
-        multiset.removeAll(keepCapacity: true)
+        multiset.removeAll(keepingCapacity: true)
         XCTAssertEqual(multiset.count, 0)
         XCTAssertEqual(multiset.distinctCount, 0)
     }
@@ -135,8 +134,8 @@ class MultisetTests: XCTestCase {
         multiset = Multiset(TestData.List)
         var list = TestData.List
         for element in multiset {
-            if let index = list.indexOf(element) {
-                list.removeAtIndex(index)
+            if let index = list.index(of: element) {
+                list.remove(at: index)
             }
         }
         XCTAssertEqual(list.count, 0)
@@ -157,7 +156,7 @@ class MultisetTests: XCTestCase {
         var other = Multiset<Int>()
         XCTAssertNotEqual(multiset.hashValue, other.hashValue)
         XCTAssertTrue(multiset != other)
-        other = Multiset(Array(TestData.List.reverse()))
+        other = Multiset(Array(TestData.List.reversed()))
         XCTAssertEqual(multiset.hashValue, other.hashValue)
         XCTAssertTrue(multiset == other)
     }

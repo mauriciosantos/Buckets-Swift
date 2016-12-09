@@ -14,7 +14,7 @@ import Foundation
 /// The operations for insertion, removal, lookup, and prefix matching run in O(n) time,
 /// where n is the length of the sequence or prefix.
 ///
-/// Conforms to `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
+/// Conforms to `CustomStringConvertible`, `Hashable`.
 public struct Trie {
     
     // MARK: Creating a Trie
@@ -24,7 +24,7 @@ public struct Trie {
     
     /// Constructs a trie from a sequence, such as an array. Inserts all the elements
     /// from the given sequence into the trie.
-    public init<S: SequenceType where S.Generator.Element == String>(_ elements: S){
+    public init<S: Sequence>(_ elements: S) where S.Iterator.Element == String {
         for e in elements {
             insert(e)
         }
@@ -33,7 +33,7 @@ public struct Trie {
     // MARK: Querying a Trie
     
     /// Number of words stored in the trie.
-    public private(set) var count = 0
+    public fileprivate(set) var count = 0
     
     /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
@@ -42,7 +42,7 @@ public struct Trie {
     
     /// Reconstructs and returns all the words stored in the trie.
     public var elements: [String] {
-        var emptyGenerator = "".characters.generate()
+        var emptyGenerator = "".characters.makeIterator()
         var result = [String]()
         var lastKeys = [Character]()
         result.reserveCapacity(count)
@@ -52,23 +52,23 @@ public struct Trie {
     
     /// Returns `true` if the trie contains the given word
     /// and it's not just a prefix of another word.
-    public func contains(word: String) -> Bool {
-        var keys = word.characters.generate()
+    public func contains(_ word: String) -> Bool {
+        var keys = word.characters.makeIterator()
         let nodePair = nodePairForPrefix(&keys, node: root, parent: nil)
         return nodePair.endNode?.isWord ?? false
     }
     
     /// Returns `true` if the trie contains at least one word matching the given prefix or if the
     /// given prefix is empty.
-    public func isPrefix(prefix: String) -> Bool {
-        var keys = prefix.characters.generate()
+    public func isPrefix(_ prefix: String) -> Bool {
+        var keys = prefix.characters.makeIterator()
         let nodePair = nodePairForPrefix(&keys, node: root, parent: nil)
         return nodePair.endNode != nil
     }
     
     /// Returns all the words in the trie matching the given prefix.
-    public func findPrefix(prefix: String) -> [String] {
-        var prefixKeys = prefix.characters.generate()
+    public func findPrefix(_ prefix: String) -> [String] {
+        var prefixKeys = prefix.characters.makeIterator()
         var result = [String]()
         var lastKeys = [Character]()
         findPrefix(&prefixKeys, charStack: &lastKeys, result:&result, node: root)
@@ -77,8 +77,8 @@ public struct Trie {
     
     /// Returns the longest prefix in the trie matching the given word.
     /// The returned value is not necessarily a full word in the trie.
-    public func longestPrefixIn(element: String) -> String {
-        var keys = element.characters.generate()
+    public func longestPrefixIn(_ element: String) -> String {
+        var keys = element.characters.makeIterator()
         return longestPrefixIn(&keys, lastChars:[], node: root)
     }
     
@@ -87,10 +87,11 @@ public struct Trie {
     /// Inserts the given word into the trie.
     ///
     /// - returns: `true` if the trie did not already contain the word.
-    public mutating func insert(word: String) -> Bool {
+    @discardableResult
+    public mutating func insert(_ word: String) -> Bool {
         if !contains(word) {
             copyMyself()
-            var keyGenerator = word.characters.generate()
+            var keyGenerator = word.characters.makeIterator()
             if insert(&keyGenerator, node: root) {
                 count += 1
                 return true
@@ -102,17 +103,18 @@ public struct Trie {
     /// Removes the given word from the trie and returns
     /// it if it was present. This does not affect other words
     /// matching the given word as a prefix.
-    public mutating func remove(word: String) -> String? {
+    @discardableResult
+    public mutating func remove(_ word: String) -> String? {
         if contains(word) {
             copyMyself()
-            var generator = word.characters.generate()
+            var generator = word.characters.makeIterator()
             let nodePair = nodePairForPrefix(&generator, node: root, parent: nil)
             
-            if let elementNode = nodePair.endNode where elementNode.isWord {
+            if let elementNode = nodePair.endNode , elementNode.isWord {
                 elementNode.isWord = false
-                if let parentNode = nodePair.parent, key = elementNode.key
-                    where elementNode.children.isEmpty  {
-                        parentNode.children.removeValueForKey(key)
+                if let parentNode = nodePair.parent, let key = elementNode.key
+                    , elementNode.children.isEmpty  {
+                        parentNode.children.removeValue(forKey: key)
                 }
                 count -= 1
                 return word
@@ -130,10 +132,10 @@ public struct Trie {
     // MARK: Private Properties and Helper Methods
     
     /// The root node containing an empty word.
-    private var root = TrieNode(key: nil)
+    fileprivate var root = TrieNode(key: nil)
     
     /// Returns the node containing the last key of the prefix and its parent.
-    private func nodePairForPrefix(inout charGenerator: IndexingGenerator<String.CharacterView>,
+    fileprivate func nodePairForPrefix(_ charGenerator: inout IndexingIterator<String.CharacterView>,
         node: TrieNode,
         parent: TrieNode?) -> (endNode: TrieNode?, parent: TrieNode?) {
             
@@ -149,8 +151,8 @@ public struct Trie {
         }
     }
     
-    private func findPrefix(inout prefixGenerator: IndexingGenerator<String.CharacterView>,
-        inout charStack: [Character], inout result: [String], node: TrieNode) {
+    fileprivate func findPrefix(_ prefixGenerator: inout IndexingIterator<String.CharacterView>,
+        charStack: inout [Character], result: inout [String], node: TrieNode) {
         
         if let key = node.key {
             charStack.append(key)
@@ -172,7 +174,7 @@ public struct Trie {
         }
     }
     
-    private func longestPrefixIn(inout keyGenerator: IndexingGenerator<String.CharacterView>,
+    fileprivate func longestPrefixIn(_ keyGenerator: inout IndexingIterator<String.CharacterView>,
         lastChars: [Character], node: TrieNode) -> String {
         let chars: [Character]
         if let key = node.key {
@@ -180,13 +182,13 @@ public struct Trie {
         } else {
             chars = lastChars
         }
-        if let theKey = keyGenerator.next(), nextNode = node.children[theKey] {
+        if let theKey = keyGenerator.next(), let nextNode = node.children[theKey] {
             return longestPrefixIn(&keyGenerator, lastChars:chars, node: nextNode)
         }
         return String(chars)
     }
     
-    private func insert(inout keyGenerator: IndexingGenerator<String.CharacterView>, node: TrieNode) -> Bool {
+    fileprivate func insert(_ keyGenerator: inout IndexingIterator<String.CharacterView>, node: TrieNode) -> Bool {
         if let nextKey = keyGenerator.next() {
             let nextNode = node.children[nextKey] ?? TrieNode(key: nextKey)
             node.children[nextKey] = nextNode
@@ -203,13 +205,13 @@ public struct Trie {
     ///
     /// The Trie itself is a value type but a TrieNode is a reference type,
     /// calling this method ensures copy-on-write behavior.
-    private mutating func copyMyself() {
-        if !isUniquelyReferencedNonObjC(&root) {
+    fileprivate mutating func copyMyself() {
+        if !isKnownUniquelyReferenced(&root) {
             root = deepCopyNode(root)
         }
     }
     
-    private func deepCopyNode(node: TrieNode) -> TrieNode {
+    fileprivate func deepCopyNode(_ node: TrieNode) -> TrieNode {
         let copy = TrieNode(key: node.key, isWord: node.isWord)
         for (key, subNode) in node.children {
             copy.children[key] = deepCopyNode(subNode)
@@ -220,15 +222,15 @@ public struct Trie {
 
 extension Trie: CustomStringConvertible, CustomDebugStringConvertible {
     
-    // MARK: Printable Protocol Conformance
+    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the trie.
     public var description: String {
-        return "[" + elements.map {"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + elements.map {"\($0)"}.joined(separator: ", ") + "]"
     }
     
-    // MARK: DebugPrintable Protocol Conformance
+    // MARK: CustomDebugStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual representation
     /// of the trie when debugging.
@@ -247,7 +249,7 @@ extension Trie: Hashable {
         return hashValue(root)
     }
     
-    private func hashValue(node: TrieNode) -> Int {
+    fileprivate func hashValue(_ node: TrieNode) -> Int {
         var result = 71
         result = (31 ^ result) ^ node.isWord.hashValue
         result = (31 ^ result) ^ (node.key?.hashValue ?? 0)

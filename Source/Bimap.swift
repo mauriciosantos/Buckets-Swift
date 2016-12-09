@@ -13,8 +13,8 @@ import Foundation
 /// It allows to get, set, or delete a key-value pairs using
 /// subscript notation: `bimap[value: aValue] = aKey` or `bimap[key: aKey] = aValue`
 ///
-/// Conforms to `SequenceType`, `CollectionType`, `DictionaryLiteralConvertible`,
-/// `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
+/// Conforms to `Sequence`, `Collection`, `ExpressibleByDictionaryLiteral`,
+/// `Equatable`, `Hashable` and `CustomStringConvertible`.
 public struct Bimap<Key: Hashable, Value: Hashable> {
     
     // MARK: Creating a Bimap
@@ -30,8 +30,15 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
         valuesToKeys = [Value: Key](minimumCapacity: minimumCapacity)
     }
     
-    /// Constructs a bimap from a sequence of key-value pairs, such as a dictionary.
-    public init<S:SequenceType where S.Generator.Element == (Key, Value)>(_ elements: S) {
+    /// Constructs a bimap from a dictionary.
+    public init(_ elements: Dictionary<Key, Value>) {
+        for (k, value) in elements {
+            self[key: k] = value
+        }
+    }
+    
+    /// Constructs a bimap from a sequence of key-value pairs.
+    public init<S:Sequence>(_ elements: S) where S.Iterator.Element == (Key, Value) {
         for (k, value) in elements {
             self[key: k] = value
         }
@@ -50,13 +57,13 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     }
     
     /// A collection containing all the bimap's keys.
-    public var keys: LazyCollection<LazyMapCollection<[Key : Value], Key>> {
-        return LazyCollection(keysToValues.keys)
+    public var keys: AnyCollection<Key> {
+        return AnyCollection(keysToValues.keys)
     }
     
     /// A collection containing all the bimap's values.
-    public var values: LazyCollection<LazyMapCollection<[Value : Key], Value>> {
-        return LazyCollection(valuesToKeys.keys)
+    public var values: AnyCollection<Value> {
+        return AnyCollection(valuesToKeys.keys)
     }
 
     // MARK: Accessing and Changing Bimap Elements
@@ -67,9 +74,9 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
             return valuesToKeys[value]
         }
         set(newKey) {
-            let oldKey = valuesToKeys.removeValueForKey(value)
+            let oldKey = valuesToKeys.removeValue(forKey: value)
             if let oldKey = oldKey {
-                keysToValues.removeValueForKey(oldKey)
+                keysToValues.removeValue(forKey: oldKey)
             }
             valuesToKeys[value] = newKey
             if let newKey = newKey {
@@ -84,9 +91,9 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
             return keysToValues[key]
         }
         set {
-            let oldValue = keysToValues.removeValueForKey(key)
+            let oldValue = keysToValues.removeValue(forKey: key)
             if let oldValue = oldValue {
-                valuesToKeys.removeValueForKey(oldValue)
+                valuesToKeys.removeValue(forKey: oldValue)
             }
             keysToValues[key] = newValue
             if let newValue = newValue {
@@ -98,7 +105,8 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     /// Inserts or updates a value for a given key and returns the previous value 
     /// for that key if one existed, or `nil` if a previous value did not exist.
     /// Subscript access is preferred.
-    public mutating func updateValue(value: Value, forKey key: Key) -> Value? {
+    @discardableResult
+    public mutating func updateValue(_ value: Value, forKey key: Key) -> Value? {
         let previous = self[key: key]
         self[key: key] = value
         return previous
@@ -107,7 +115,8 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     /// Removes the key-value pair for the given key and returns its value,
     /// or `nil` if a value for that key did not previously exist.
     /// Subscript access is preferred.
-    public mutating func removeValueForKey(key: Key) -> Value? {
+    @discardableResult
+    public mutating func removeValueForKey(_ key: Key) -> Value? {
         let previous = self[key: key]
         self[key: key] = nil
         return previous
@@ -116,7 +125,8 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     /// Removes the key-value pair for the given value and returns its key,
     /// or `nil` if a key for that value did not previously exist.
     /// Subscript access is preferred.
-    public mutating func removeKeyForValue(value: Value) -> Key? {
+    @discardableResult
+    public mutating func removeKeyForValue(_ value: Value) -> Key? {
         let previous = self[value: value]
         self[value: value] = nil
         return previous
@@ -125,34 +135,35 @@ public struct Bimap<Key: Hashable, Value: Hashable> {
     /// Removes all the elements from the bimap, and by default
     /// clears the underlying storage buffer.
     public mutating func removeAll(keepCapacity keep: Bool = true) {
-        valuesToKeys.removeAll(keepCapacity: keep)
-        keysToValues.removeAll(keepCapacity: keep)
+        valuesToKeys.removeAll(keepingCapacity: keep)
+        keysToValues.removeAll(keepingCapacity: keep)
     }
     
     // MARK: Private Properties and Helper Methods
     
     /// Internal structure mapping keys to values.
-    private var keysToValues = [Key: Value]()
+    fileprivate var keysToValues = [Key: Value]()
     
     /// Internal structure values keys to keys.
-    private var valuesToKeys = [Value: Key]()
+    fileprivate var valuesToKeys = [Value: Key]()
 }
 
-extension Bimap: SequenceType {
+extension Bimap: Sequence {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: Sequence Protocol Conformance
     
     /// Provides for-in loop functionality.
     ///
     /// - returns: A generator over the elements.
-    public func generate() -> DictionaryGenerator<Key, Value> {
-        return keysToValues.generate()
+    public func makeIterator() -> DictionaryIterator<Key, Value> {
+        return keysToValues.makeIterator()
     }
 }
 
-extension Bimap: CollectionType {
+extension Bimap: Collection {
     
-    // MARK: CollectionType Protocol Conformance
+    
+    // MARK: Collection Protocol Conformance
     
     /// The position of the first element in a non-empty bimap.
     ///
@@ -174,14 +185,24 @@ extension Bimap: CollectionType {
         return keysToValues.endIndex
     }
     
-    public subscript (position: DictionaryIndex<Key, Value>) -> (Key, Value) {
+    /// Returns the position immediately after the given index.
+    ///
+    /// - Parameter i: A valid index of the collection. `i` must be less than
+    ///   `endIndex`.
+    /// - Returns: The index value immediately after `i`.
+    public func index(after i: DictionaryIndex<Key, Value>) -> DictionaryIndex<Key, Value> {
+        return keysToValues.index(after: i)
+    }
+
+    
+    public subscript(position: DictionaryIndex<Key, Value>) -> (key: Key, value: Value) {
         return keysToValues[position]
     }
 }
 
-extension Bimap: DictionaryLiteralConvertible {
+extension Bimap: ExpressibleByDictionaryLiteral {
     
-    // MARK: DictionaryLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByDictionaryLiteral Protocol Conformance
     
     /// Constructs a bimap using a dictionary literal.
     public init(dictionaryLiteral elements: (Key, Value)...) {

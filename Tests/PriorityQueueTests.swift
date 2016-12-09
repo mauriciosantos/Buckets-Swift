@@ -18,7 +18,7 @@ class PriorityQueueTests: XCTestCase {
         static let Max = 5
     }
     
-    var queue = PriorityQueue<Int>(>)
+    var queue = PriorityQueue<Int>(sortedBy: >)
     
     func testEmptyQueue() {
         XCTAssertEqual(queue.count, 0)
@@ -26,12 +26,12 @@ class PriorityQueueTests: XCTestCase {
     }
     
     func testInitWithArray() {
-        queue = PriorityQueue(TestData.List, >)
-        let list = TestData.List.sort(>)
+        queue = PriorityQueue(TestData.List, sortedBy: >)
+        let list = TestData.List.sorted(by: >)
         for i in 0..<list.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, list[i])
+            XCTAssertEqual(element, list[i])
         }
     }
     
@@ -46,36 +46,28 @@ class PriorityQueueTests: XCTestCase {
             queue.enqueue(i)
         }
         XCTAssertEqual(queue.count, TestData.List.count)
-        let list = TestData.List.sort(>)
+        let list = TestData.List.sorted(by: >)
         for i in 0..<list.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, list[i])
+            XCTAssertEqual(element, list[i])
         }
-        XCTAssertNil(queue.dequeue())
-        XCTAssertNil(queue.first)
-    }
-    
-    func testEmptyDequeue() {
-        XCTAssertNil(queue.dequeue())
-        XCTAssertNil(queue.first)
     }
     
     func testRemoveAll() {
-        queue = PriorityQueue(TestData.List, >)
-        queue.removeAll(keepCapacity: true)
+        queue = PriorityQueue(TestData.List, sortedBy: >)
+        queue.removeAll(keepingCapacity: true)
         XCTAssertEqual(queue.count, 0)
-        XCTAssertNil(queue.dequeue())
     }
     
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
-        queue = PriorityQueue(TestData.List, >)
+        queue = PriorityQueue(TestData.List, sortedBy: >)
         var list = TestData.List
         for element in queue {
-            if let index = list.indexOf(element) {
-                list.removeAtIndex(index)
+            if let index = list.index(of: element) {
+                list.remove(at: index)
             }
         }
         XCTAssertEqual(list.count, 0)
@@ -84,8 +76,8 @@ class PriorityQueueTests: XCTestCase {
     // MARK: Operators
     
     func testEqual() {
-        queue = PriorityQueue<Int>(>)
-        var other = PriorityQueue<Int>(>)
+        queue = PriorityQueue<Int>(sortedBy: >)
+        var other = PriorityQueue<Int>(sortedBy: >)
         XCTAssertTrue(queue == other)
         queue.enqueue(TestData.Value)
         XCTAssertFalse(queue == other)

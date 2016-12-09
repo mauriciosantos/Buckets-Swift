@@ -14,8 +14,8 @@ import Foundation
 /// standard array such as constant time random access and
 /// amortized constant time insertion at the end of the array.
 ///
-/// Conforms to `SequenceType`, `MutableCollectionType`,
-/// `ArrayLiteralConvertible`, `Equatable`, `Hashable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
+/// Conforms to `MutableCollection`, `ExpressibleByArrayLiteral`
+/// , `Equatable`, `Hashable`, `CustomStringConvertible`
 public struct BitArray {
     
     // MARK: Creating a BitArray
@@ -24,14 +24,14 @@ public struct BitArray {
     public init() {}
     
     /// Constructs a bit array from a `Bool` sequence, such as an array.
-    public init<S: SequenceType where S.Generator.Element == Bool>(_ elements: S){
+    public init<S: Sequence>(_ elements: S) where S.Iterator.Element == Bool {
         for value in elements {
             append(value)
         }
     }
     
     /// Constructs a new bit array from an `Int` array representation.
-    /// All values different than 0 are considered `true`.
+    /// All values different from 0 are considered `true`.
     public init(intRepresentation : [Int]) {
         bits.reserveCapacity((intRepresentation.count/Constants.IntSize) + 1)
         for value in intRepresentation {
@@ -40,14 +40,12 @@ public struct BitArray {
     }
     
     /// Constructs a new bit array with `count` bits set to the specified value.
-    public init(count:Int, repeatedValue: Bool) {
-        if count < 0 {
-            fatalError("Can't construct BitArray with count < 0")
-        }
+    public init(repeating repeatedValue: Bool, count: Int) {
+        precondition(count >= 0, "Can't construct BitArray with count < 0")
         
         let numberOfInts = (count/Constants.IntSize) + 1
         let intValue = repeatedValue ? ~0 : 0
-        bits = [Int](count: numberOfInts, repeatedValue: intValue)
+        bits = [Int](repeating: intValue, count: numberOfInts)
         self.count = count
         
         if repeatedValue {
@@ -64,7 +62,7 @@ public struct BitArray {
     // MARK: Querying a BitArray
     
     /// Number of bits stored in the bit array.
-    public private(set) var count = 0
+    public fileprivate(set) var count = 0
     
     /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
@@ -82,13 +80,12 @@ public struct BitArray {
     }
     
     /// The number of bits set to `true` in the bit array.
-    public private(set) var cardinality = 0
-    
+    public fileprivate(set) var cardinality = 0
     
     // MARK: Adding and Removing Bits
     
     /// Adds a new `Bool` as the last bit.
-    public mutating func append(bit: Bool) {
+    public mutating func append(_ bit: Bool) {
         if realIndexPath(count).arrayIndex >= bits.count {
             bits.append(0)
         }
@@ -101,33 +98,36 @@ public struct BitArray {
     /// of existing bits, or as the last bit. The index must be less
     /// than or equal to the number of bits in the bit array. If you
     /// attempt to remove a bit at a greater index, you’ll trigger an error.
-    public mutating func insert(bit: Bool, atIndex index: Int) {
+    public mutating func insert(_ bit: Bool, at index: Int) {
         checkIndex(index, lessThan: count + 1)
         append(bit)
-        for i in (count - 2).stride(through: index, by: -1) {
+        for i in stride(from: (count - 2), through: index, by: -1) {
             let iBit = valueAtIndex(i)
             setValue(iBit, atIndex: i+1)
         }
         setValue(bit, atIndex: index)
+        
     }
     
     /// Removes the last bit from the bit array and returns it.
     ///
     /// - returns: The last bit, or nil if the bit array is empty.
-    public mutating func removeLast() -> Bool? {
+    @discardableResult
+    public mutating func removeLast() -> Bool {
         if let value = last {
             setValue(false, atIndex: count-1)
             count -= 1
             return value
         }
-        return nil
+        preconditionFailure("Array is empty")
     }
     
     /// Removes the bit at the given index and returns it.
     /// The index must be less than the number of bits in the
     /// bit array. If you attempt to remove a bit at a
     /// greater index, you’ll trigger an error.
-    public mutating func removeAtIndex(index: Int) -> Bool {
+    @discardableResult
+    public mutating func remove(at index: Int) -> Bool {
         checkIndex(index)
         let bit = valueAtIndex(index)
         
@@ -142,9 +142,9 @@ public struct BitArray {
     
     /// Removes all the bits from the array, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true)  {
+    public mutating func removeAll(keepingCapacity keep: Bool = false)  {
         if !keep {
-            bits.removeAll(keepCapacity: false)
+            bits.removeAll(keepingCapacity: false)
         } else {
             bits[0 ..< bits.count] = [0]
         }
@@ -155,17 +155,16 @@ public struct BitArray {
     // MARK: Private Properties and Helper Methods
     
     /// Structure holding the bits.
-    private var bits = [Int]()
+    fileprivate var bits = [Int]()
     
-    private func valueAtIndex(logicalIndex: Int) -> Bool {
+    fileprivate func valueAtIndex(_ logicalIndex: Int) -> Bool {
         let indexPath = realIndexPath(logicalIndex)
         var mask = 1 << indexPath.bitIndex
         mask = mask & bits[indexPath.arrayIndex]
         return mask != 0
     }
     
-    private mutating func setValue(newValue: Bool, atIndex logicalIndex: Int) {
-        
+    fileprivate mutating func setValue(_ newValue: Bool, atIndex logicalIndex: Int) {
         let indexPath = realIndexPath(logicalIndex)
         let mask = 1 << indexPath.bitIndex
         let oldValue = mask & bits[indexPath.arrayIndex] != 0
@@ -186,42 +185,26 @@ public struct BitArray {
         }
     }
     
-    private func realIndexPath(logicalIndex: Int) -> (arrayIndex: Int, bitIndex: Int) {
+    fileprivate func realIndexPath(_ logicalIndex: Int) -> (arrayIndex: Int, bitIndex: Int) {
         return (logicalIndex / Constants.IntSize, logicalIndex % Constants.IntSize)
     }
     
-    private func checkIndex(index: Int, lessThan: Int? = nil) {
+    fileprivate func checkIndex(_ index: Int, lessThan: Int? = nil) {
         let bound = lessThan == nil ? count : lessThan
-        if index < 0 || index >= bound!  {
-            fatalError("Index out of range (\(index))")
-        }
+        precondition(count >= 0 && index < bound!, "Index out of range (\(index))")
     }
     
     // MARK: Constants
     
-    private struct Constants {
+    fileprivate struct Constants {
         // Int size in bits
-        static let IntSize = sizeof(Int) * 8
+        static let IntSize = MemoryLayout<Int>.size * 8
     }
 }
 
-// MARK: -
-
-extension BitArray: SequenceType {
+extension BitArray: MutableCollection {
     
-    // MARK: SequenceType Protocol Conformance
-    
-    /// Provides for-in loop functionality.
-    ///
-    /// - returns: A generator over the bits.
-    public func generate() -> AnyGenerator<Bool> {
-        return AnyGenerator(IndexingGenerator(self))
-    }
-}
-
-extension BitArray: MutableCollectionType {
-    
-    // MARK: MutableCollectionType Protocol Conformance
+    // MARK: MutableCollection Protocol Conformance
     
     /// Always zero, which is the index of the first bit when non-empty.
     public var startIndex : Int {
@@ -232,6 +215,15 @@ extension BitArray: MutableCollectionType {
     /// subscript argument.
     public var endIndex : Int {
         return count
+    }
+    
+    /// Returns the position immediately after the given index.
+    ///
+    /// - Parameter i: A valid index of the collection. `i` must be less than
+    ///   `endIndex`.
+    /// - Returns: The index value immediately after `i`.
+    public func index(after i: Int) -> Int {
+        return i + 1
     }
     
     /// Provides random access to individual bits using square bracket noation.
@@ -250,9 +242,9 @@ extension BitArray: MutableCollectionType {
     }
 }
 
-extension BitArray: ArrayLiteralConvertible {
+extension BitArray: ExpressibleByArrayLiteral {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByArrayLiteral Protocol Conformance
     
     /// Constructs a bit array using a `Bool` array literal.
     /// `let example: BitArray = [true, false, true]`
@@ -271,13 +263,12 @@ extension BitArray: CustomStringConvertible {
     /// A string containing a suitable textual
     /// representation of the bit array.
     public var description: String {
-        return "[" + self.map {"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + self.map {"\($0)"}.joined(separator: ", ") + "]"
     }
 }
 
 extension BitArray: Equatable {
 }
-
 
 // MARK: BitArray Equatable Protocol Conformance
 

@@ -11,7 +11,7 @@ exclude: [Source/BloomFilterTypeExtensions.swift]
 
 custom_categories:
   - name: Data Structures
-    children:    
+    children:
     - Queue
     - Deque
     - Stack
@@ -26,10 +26,10 @@ custom_categories:
     - CircularArray
     - BloomFilter
   - name: Protocols
-    children:    
+    children:
     - BloomFilterType
 
 # Keep this until Cocoadocs is using a Jazzy release with the updated config keys:
-module_name: Buckets
-author_name: Mauricio Santos
-excluded_files: [Source/BloomFilterTypeExtensions.swift]
+module: Buckets
+author: Mauricio Santos
+exclude: [Source/BloomFilterTypeExtensions.swift]

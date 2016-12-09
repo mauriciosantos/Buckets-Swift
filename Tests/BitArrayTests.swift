@@ -35,7 +35,7 @@ class BitArrayTests: XCTestCase {
     }
     
     func testInitWithRepeatedValue() {
-        bArray = BitArray(count: TestData.Size, repeatedValue: true)
+        bArray = BitArray(repeating: true, count: TestData.Size)
         XCTAssertEqual(bArray.count, TestData.Size)
         XCTAssertEqual(bArray.cardinality, TestData.Size)
         for i in 0..<TestData.Size {
@@ -65,17 +65,12 @@ class BitArrayTests: XCTestCase {
         }
     }
     
-    func testEmptyRemoveLast() {
-        XCTAssertNil(bArray.removeLast())
-        XCTAssertEqual(bArray.count, 0)
-        XCTAssertEqual(bArray.cardinality, 0)
-    }
     
     func testNonEmptyRemoveLast() {
         bArray = BitArray(TestData.List)
         
         let last = bArray.removeLast()
-        XCTAssertTrue(last != nil && last == TestData.List.last!)
+        XCTAssertEqual(last, TestData.List.last)
         XCTAssertEqual(bArray.count, TestData.List.count - 1)
         XCTAssertEqual(bArray.cardinality, TestData.Cardinality - 1)
         
@@ -90,8 +85,8 @@ class BitArrayTests: XCTestCase {
         for i in 0...TestData.List.count {
                 var list = TestData.List
                 var array = BitArray(list)
-                list.insert(true, atIndex: i)
-                array.insert(true, atIndex: i)
+                list.insert(true, at: i)
+                array.insert(true, at: i)
                 XCTAssertEqual(array.count, list.count)
                 XCTAssertEqual(array.cardinality, cardinality(list))
                 XCTAssertTrue(list.elementsEqual(array))
@@ -99,7 +94,7 @@ class BitArrayTests: XCTestCase {
     }
     
     func testEmptyInsertAtIndex() {
-        bArray.insert(true, atIndex: 0)
+        bArray.insert(true, at: 0)
         XCTAssertTrue(bArray.first != nil && bArray.first! == true)
     }
     
@@ -107,7 +102,7 @@ class BitArrayTests: XCTestCase {
         for i in 0..<TestData.List.count {
             var list = TestData.List
             var array = BitArray(list)
-            XCTAssertEqual(list.removeAtIndex(i), array.removeAtIndex(i))
+            XCTAssertEqual(list.remove(at: i), array.remove(at: i))
             XCTAssertEqual(array.cardinality, cardinality(list))
             XCTAssertEqual(array.count, list.count)
             XCTAssertTrue(list.elementsEqual(array))
@@ -116,21 +111,20 @@ class BitArrayTests: XCTestCase {
     
     func testSingleElementRemoveAtIndex() {
         bArray.append(true)
-        XCTAssertEqual(bArray.removeAtIndex(0), true)
+        XCTAssertEqual(bArray.remove(at: 0), true)
         XCTAssertNil(bArray.first)
     }
     
     func testRemoveAll() {
         bArray = BitArray(TestData.List)
-        bArray.removeAll(keepCapacity: true)
+        bArray.removeAll(keepingCapacity: true)
         XCTAssertEqual(bArray.cardinality, 0)
         XCTAssertEqual(bArray.count, 0)
-        XCTAssertNil(bArray.removeLast())
     }
     
     func testAppendAfterRemoveAll() {
         bArray = BitArray(TestData.List)
-        bArray.removeAll(keepCapacity: true)
+        bArray.removeAll(keepingCapacity: true)
         bArray.append(true)
         XCTAssertEqual(bArray.cardinality, 1)
         XCTAssertTrue(bArray.first != nil && bArray.first! == true)
@@ -156,8 +150,8 @@ class BitArrayTests: XCTestCase {
     }
     
     func testSubscriptSet() {
-        let reversedList = Array(TestData.List.reverse())
-        bArray = BitArray(count: reversedList.count, repeatedValue: false)
+        let reversedList = Array(TestData.List.reversed())
+        bArray = BitArray(repeating: false, count: reversedList.count)
         for i in 0..<reversedList.count {
             bArray[i] = reversedList[i]
             XCTAssertEqual(bArray[i], reversedList[i])
@@ -185,7 +179,7 @@ class BitArrayTests: XCTestCase {
     
     // MARK: Helper methods
     
-    private func cardinality(array: [Bool]) -> Int{
+    fileprivate func cardinality(_ array: [Bool]) -> Int{
         var result = 0
         for value in array {
             if value {

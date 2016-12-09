@@ -14,8 +14,8 @@ import Foundation
 ///
 /// The `enqueue` and `dequeue` operations run in amortized constant time.
 ///
-/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
-/// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
+/// Conforms to `Sequence`, `ExpressibleByArrayLiteral`,
+/// `CustomStringConvertible`.
 public struct Queue<T> {
     
     // MARK: Creating a Queue
@@ -25,7 +25,7 @@ public struct Queue<T> {
     
     /// Constructs a queue from a sequence, such as an array.
     /// The elements will be enqueued from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+    public init<S: Sequence>(_ elements: S) where S.Iterator.Element == T {
         items = CircularArray(elements)
     }
     
@@ -49,44 +49,46 @@ public struct Queue<T> {
     // MARK: Adding and Removing Elements
     
     /// Inserts an element into the back of the queue.
-    public mutating func enqueue(element: T) {
+    public mutating func enqueue(_ element: T) {
         items.append(element)
     }
     
     /// Retrieves and removes the front element of the queue.
     ///
-    /// - returns: The front element, or `nil` if the queue is empty.
-    public mutating func dequeue() -> T? {
+    /// - returns: The front element.
+    @discardableResult
+    public mutating func dequeue() -> T {
+        precondition(!isEmpty, "Queue is empty")
         return items.removeFirst()
     }
     
     /// Removes all the elements from the queue, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true)  {
-        items.removeAll(keepCapacity: keep)
+    public mutating func removeAll(keepingCapacity keep: Bool = false)  {
+        items.removeAll(keepingCapacity: keep)
     }
     
     // MARK: Private Properties and Helper Methods
     
     /// Internal structure holding the elements.
-    private var items = CircularArray<T>()
+    fileprivate var items = CircularArray<T>()
 }
 
-extension Queue: SequenceType {
+extension Queue: Sequence {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: Sequence Protocol Conformance
     
     /// Provides for-in loop functionality. Generates elements in FIFO order.
     ///
     /// - returns: A generator over the elements.
-    public func generate() -> AnyGenerator<T> {
-        return items.generate()
+    public func makeIterator() -> AnyIterator<T> {
+        return AnyIterator(items.makeIterator())
     }
 }
 
-extension Queue: ArrayLiteralConvertible {
+extension Queue: ExpressibleByArrayLiteral {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByArrayLiteral Protocol Conformance
     
     /// Constructs a queue using an array literal.
     /// The elements will be enqueued from first to last.
@@ -103,7 +105,7 @@ extension Queue: CustomStringConvertible {
     /// A string containing a suitable textual
     /// representation of the queue.
     public var description: String {
-        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + map{"\($0)"}.joined(separator: ", ") + "]"
     }
 }
 

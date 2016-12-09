@@ -18,7 +18,7 @@ stack.push("first")
 stack.push("last")
 stack.pop() // "last"
 
-var pQueue = PriorityQueue<Int>(<)
+var pQueue = PriorityQueue<Int>(sortedBy: <)
 pQueue.enqueue(3)
 pQueue.enqueue(1)
 pQueue.enqueue(2)

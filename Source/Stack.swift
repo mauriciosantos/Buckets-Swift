@@ -13,8 +13,8 @@ import Foundation
 ///
 /// The `push` and `pop` operations run in amortized constant time.
 ///
-/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
-/// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
+/// Conforms to `Sequence`, `ExpressibleByArrayLiteral`,
+/// `CustomStringConvertible`.
 public struct Stack<T> {
 
     // MARK: Creating a Stack
@@ -24,7 +24,7 @@ public struct Stack<T> {
     
     /// Constructs a stack from a sequence, such as an array.
     /// The elements will be pushed from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+    public init<S: Sequence>(_ elements: S) where S.Iterator.Element == T {
         self.elements = Array(elements)
     }
     
@@ -48,46 +48,48 @@ public struct Stack<T> {
     // MARK: Adding and Removing Elements
     
     /// Inserts an element into the top of the stack.
-    public mutating func push(element: T) {
+    public mutating func push(_ element: T) {
         elements.append(element)
     }
     
     /// Retrieves and removes the top element of the stack.
     ///
-    /// - returns: The top element, or `nil` if the stack is empty.
-    public mutating func pop() -> T? {
-        return !isEmpty ? elements.removeLast() : nil
+    /// - returns: The top element.
+    @discardableResult
+    public mutating func pop() -> T {
+        precondition(!isEmpty, "Stack is empty")
+        return elements.removeLast()
     }
     
     /// Removes all the elements from the stack, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true)  {
-        elements.removeAll(keepCapacity:keep)
+    public mutating func removeAll(keepingCapacity keep: Bool = false)  {
+        elements.removeAll(keepingCapacity:keep)
     }
     
     // MARK: Private Properties and Helper Methods
     
     /// Internal structure holding the elements.
-    private var elements = [T]()
+    fileprivate var elements = [T]()
 }
 
 
-extension Stack: SequenceType {
+extension Stack: Sequence {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: Sequence Protocol Conformance
     
     /// Provides for-in loop functionality. Generates elements in LIFO order.
     ///
     /// - returns: A generator over the elements.
-    public func generate() -> AnyGenerator<T> {
-        let reverseArrayView = LazySequence(self.elements).reverse()
-        return AnyGenerator(IndexingGenerator(reverseArrayView))
+    public func makeIterator() -> AnyIterator<T> {
+        let reversed: ReversedRandomAccessCollection<[T]> = elements.reversed()
+        return AnyIterator(reversed.makeIterator())
     }
 }
 
-extension Stack: ArrayLiteralConvertible {
+extension Stack: ExpressibleByArrayLiteral {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByArrayLiteral Protocol Conformance
     
     /// Constructs a stack using an array literal.
     /// The elements will be pushed from first to last.
@@ -104,7 +106,7 @@ extension Stack: CustomStringConvertible {
     /// A string containing a suitable textual
     /// representation of the stack.
     public var description: String {
-        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + map{"\($0)"}.joined(separator: ", ") + "]"
     }
 }
 

@@ -13,37 +13,32 @@ import Foundation
 /// `matrix[row, column] = value`
 ///
 /// This collection also provides linear algebra functions and operators such as
-/// `inverse()`, `+` and `*` using Apple's Accelerate framework. Please note that
+/// `inverse()`, `+` and `*` using Apple's Accelerate framework where vailable. Please note that
 /// these operations are designed to work exclusively with `Double` matrices.
 /// Check the `Functions` section for more information.
 ///
-/// Conforms to `SequenceType`, `MutableCollectionType`,
-/// `ArrayLiteralConvertible`, `Printable` and `DebugPrintable`.
+/// Conforms to `MutableCollection`,
+/// `ExpressibleByArrayLiteral` and `CustomStringConvertible`.
 public struct Matrix<T> {
     
     // MARK: Creating a Matrix
     
     /// Constructs a new matrix with all positions set to the specified value.
-    public init(rows: Int, columns: Int, repeatedValue: T) {
-        if rows <= 0 {
-            fatalError("Can't create matrix. Invalid number of rows.")
-        }
-        if columns <= 0 {
-            fatalError("Can't create matrix. Invalid number of columns")
-        }
+    public init(rows: Int, columns: Int, repeating repeatedValue: T) {
+        precondition(rows >= 0, "Can't create matrix. Invalid number of rows")
+        precondition(columns >= 0, "Can't create matrix. Invalid number of columns")
         
         self.rows = rows
         self.columns = columns
-        grid = Array(count: rows * columns, repeatedValue: repeatedValue)
+        grid = Array(repeating: repeatedValue, count: rows * columns)
     }
     
     /// Constructs a new matrix using a 1D array in row-major order.
     ///
     /// `Matrix[i,j] == grid[i*columns + j]`
     public init(rows: Int, columns: Int, grid: [T]) {
-        if grid.count != rows*columns {
-            fatalError("Can't create matrix. grid.count must equal rows*columns")
-        }
+        precondition(grid.count == rows*columns, "Can't create matrix. grid.count must equal rows*columns")
+
         self.rows = rows
         self.columns = columns
         self.grid = grid
@@ -53,16 +48,13 @@ public struct Matrix<T> {
     /// All columns must be the same size, otherwise an error is triggered.
     public init(_ rowsArray: [[T]]) {
         let rows = rowsArray.count
-        if rows <= 0 {
-            fatalError("Can't create an empty matrix.")
-        }
-        if rowsArray[0].count <= 0 {
-            fatalError("Can't create a matrix column with no elements.")
-        }
+        precondition(rows > 0, "Can't create an empty matrix")
+        precondition(rowsArray[0].count > 0, "Can't create a matrix column with no elements")
+
         let columns = rowsArray[0].count
         for subArray in rowsArray {
             if subArray.count != columns {
-                fatalError("Can't create a matrix with different sixzed columns")
+                preconditionFailure("Can't create a matrix with different sized columns")
             }
         }
         var grid = Array<T>()
@@ -90,7 +82,7 @@ public struct Matrix<T> {
     
     /// Returns the transpose of the matrix.
     public var transpose: Matrix<T> {
-        var result = Matrix(rows: columns, columns: rows, repeatedValue: self[0,0])
+        var result = Matrix(rows: columns, columns: rows, repeating: self[0,0])
         for i in 0..<rows {
             for j in 0..<columns {
                 result[j,i] = self[i,j]
@@ -106,42 +98,25 @@ public struct Matrix<T> {
     // The first argument is the column number.
     public subscript(row: Int, column: Int) -> T {
         get {
-            if !indexIsValidForRow(row, column: column) {
-                fatalError("Index out of range")
-            }
+            precondition(indexIsValidForRow(row, column: column), "Index out of range")
             return grid[(row * columns) + column]
         }
         set {
-            if !indexIsValidForRow(row, column: column) {
-                fatalError("Index out of range")
-            }
+            precondition(indexIsValidForRow(row, column: column), "Index out of range")
             grid[(row * columns) + column] = newValue
         }
     }
     
     // MARK: Private Properties and Helper Methods
     
-    private func indexIsValidForRow(row: Int, column: Int) -> Bool {
+    fileprivate func indexIsValidForRow(_ row: Int, column: Int) -> Bool {
         return row >= 0 && row < rows && column >= 0 && column < columns
     }
 }
 
-// MARK: -
 
-extension Matrix: SequenceType {
-    
-    // MARK: SequenceType Protocol Conformance
-    
-    /// Provides for-in loop functionality.
-    /// Returns the elements in row-major order.
-    ///
-    /// - returns: A generator over the elements.
-    public func generate() -> AnyGenerator<T> {
-        return AnyGenerator(IndexingGenerator(self))
-    }
-}
+extension Matrix: MutableCollection {
 
-extension Matrix: MutableCollectionType {
     
     // MARK: MutableCollectionType Protocol Conformance
     
@@ -157,6 +132,15 @@ extension Matrix: MutableCollectionType {
         return rows*columns
     }
     
+    /// Returns the position immediately after the given index.
+    ///
+    /// - Parameter i: A valid index of the collection. `i` must be less than
+    ///   `endIndex`.
+    /// - Returns: The index value immediately after `i`.
+    public func index(after i: Int) -> Int {
+        return i + 1
+    }
+    
     /// Provides random access to elements using the matrix back-end array coordinate
     /// in row-major order.
     /// Matrix[row, column] is preferred.
@@ -170,9 +154,9 @@ extension Matrix: MutableCollectionType {
     }
 }
 
-extension Matrix: ArrayLiteralConvertible {
+extension Matrix: ExpressibleByArrayLiteral {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByArrayLiteral Protocol Conformance
     
     /// Constructs a matrix using an array literal.
     public init(arrayLiteral elements: Array<T>...) {
@@ -194,7 +178,7 @@ extension Matrix: CustomStringConvertible {
             }
             let start = i*columns
             let end = start + columns
-            result += "[" + grid[start..<end].map {"\($0)"}.joinWithSeparator(", ") + "]"
+            result += "[" + grid[start..<end].map {"\($0)"}.joined(separator: ", ") + "]"
         }
         result += "]"
         return result

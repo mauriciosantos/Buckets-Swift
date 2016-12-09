@@ -15,7 +15,7 @@ class MatrixTests: XCTestCase {
     var matrix: Matrix<Double> = [[1]]
     
     func testInitWithRepeatedValue() {
-        matrix = Matrix(rows: 10, columns: 10, repeatedValue: 5)
+        matrix = Matrix(rows: 10, columns: 10, repeating: 5)
         XCTAssertEqual(matrix.rows, 10)
         XCTAssertEqual(matrix.columns, 10)
         for i in 0..<matrix.rows {
@@ -91,6 +91,8 @@ class MatrixTests: XCTestCase {
     }
     
     // MARK: Linear Algebra
+
+    #if os(OSX) || os(iOS)
     
     func testMatrixAddition() {
         matrix = matrix + [[3]]
@@ -197,7 +199,7 @@ class MatrixTests: XCTestCase {
     
     func testInverse() {
         matrix = [[1,1], [1,2]]
-        if let inv = inverse(matrix) {
+        if let inv = Buckets.inverse(matrix) {
             XCTAssertEqual(inv[0,0], 2)
             XCTAssertEqual(inv[0,1], -1)
             XCTAssertEqual(inv[1,0], -1)
@@ -206,4 +208,5 @@ class MatrixTests: XCTestCase {
             XCTFail()
         }
     }
+    #endif
 }

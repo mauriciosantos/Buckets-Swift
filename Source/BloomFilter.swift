@@ -44,7 +44,7 @@ public struct BloomFilter<T: BloomFilterType> {
         let m = n*log(1/FPP) / pow(log(2), 2)
         
         let bitArraySize = Int(m)
-        bits = BitArray(count: bitArraySize, repeatedValue: false)
+        bits = BitArray(repeating: false, count: bitArraySize)
         
         let k = (m/n) * log(2)
         numberOfHashFunctions = Int(ceil(k))
@@ -77,7 +77,7 @@ public struct BloomFilter<T: BloomFilterType> {
     }
     
     /// Returns `true` if the given element might be in the Bloom filter or false if it's definitely not.
-    public func contains(element: T) -> Bool {
+    public func contains(_ element: T) -> Bool {
         for i in 0..<numberOfHashFunctions {
             let hashFunction = hashFunctionWithIndex(i)
             let index = hashFunction(element)
@@ -92,7 +92,7 @@ public struct BloomFilter<T: BloomFilterType> {
     
     /// Inserts an element into the Bloom filter. All subsequent calls to 
     /// `contains()` with the same element will return true.
-    public mutating func insert(element: T) {
+    public mutating func insert(_ element: T) {
         for i in 0..<numberOfHashFunctions {
             let hashFunction = hashFunctionWithIndex(i)
             let index = hashFunction(element)
@@ -102,19 +102,19 @@ public struct BloomFilter<T: BloomFilterType> {
     
     /// Removes all the elements from the Bloom filter.
     public mutating func removeAll() {
-        bits = BitArray(count: bits.count, repeatedValue: false)
+        bits = BitArray(repeating: false, count: bits.count)
     }
     
     // MARK: Private Properties and Helper Methods
     
-    private var bits: BitArray
+    fileprivate var bits: BitArray
     
     /// Optimal number of hash functions.
-    private let numberOfHashFunctions: Int
+    fileprivate let numberOfHashFunctions: Int
     
     /// Creates any number of hash functions on the fly using just 2 predefined ones.
     /// See http://en.wikipedia.org/wiki/Double_hashing
-    private func hashFunctionWithIndex(index: Int) -> (T) -> Int {
+    fileprivate func hashFunctionWithIndex(_ index: Int) -> (T) -> Int {
         let i = UInt(index)
         
         // Hi(x) = H0(x) + i*H1(x) mod table.size

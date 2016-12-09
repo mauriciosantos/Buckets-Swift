@@ -12,8 +12,8 @@ import Foundation
 /// members are allowed to appear more than once. It's possible to convert a multiset
 /// to a set: `let set = Set(multiset)`
 ///
-/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
-/// `Equatable`, `Hashable`, `Printable` and `DebugPrintable`.
+/// Conforms to `Sequence`, `ExpressibleByArrayLiteral` and
+///  `Hashable`.
 public struct Multiset<T: Hashable> {
     
     // MARK: Creating a Multiset
@@ -22,7 +22,7 @@ public struct Multiset<T: Hashable> {
     public init() {}
     
     /// Constructs a multiset from a sequence, such as an array.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+    public init<S: Sequence>(_ elements: S) where S.Iterator.Element == T{
         for e in elements {
             insert(e)
         }
@@ -31,7 +31,7 @@ public struct Multiset<T: Hashable> {
     // MARK: Querying a Multiset
     
     /// Number of elements stored in the multiset, including multiple copies.
-    public private(set) var count = 0
+    public fileprivate(set) var count = 0
     
     /// Returns `true` if and only if `count == 0`.
     public var isEmpty: Bool {
@@ -44,112 +44,90 @@ public struct Multiset<T: Hashable> {
     }
     
     /// A sequence containing the multiset's distinct elements.
-    public var distinctElements: LazySequence<LazyMapCollection<[T : Int], T>> {
-        return LazySequence(members.keys)
+    public var distinctElements: AnySequence<T> {
+        return AnySequence(members.keys)
     }
     
     /// Returns `true` if the multiset contains the given element.
-    public func contains(element: T) -> Bool {
+    public func contains(_ element: T) -> Bool {
         return members[element] != nil
     }
     
     /// Returns the number of occurrences  of an element in the multiset.
-    public func count(element: T) -> Int {
+    public func count(_ element: T) -> Int {
         return members[element] ?? 0
     }
     
     // MARK: Adding and Removing Elements
     
     /// Inserts a single occurrence of an element into the multiset.
-    ///
-    /// - returns: The number of occurrences of the element before the operation.
-    public mutating func insert(element: T) -> Int {
-        return insert(element, occurrences: 1)
+    public mutating func insert(_ element: T) {
+        insert(element, occurrences: 1)
     }
     
     /// Inserts a number of occurrences of an element into the multiset.
-    ///
-    /// - returns: The number of occurrences of the element before the operation.
-    public mutating func insert(element: T, occurrences: Int) -> Int {
-        if occurrences < 1 {
-            fatalError("Can't insert < 1 occurrences")
-        }
+    public mutating func insert(_ element: T, occurrences: Int) {
+        precondition(occurrences >= 1, "Invalid number of occurrences")
         let previousNumber = members[element] ?? 0
-        
         members[element] = previousNumber + occurrences
         count += occurrences
-        return previousNumber
     }
     
     /// Removes a single occurrence of an element from the multiset, if present.
-    ///
-    /// - returns: The number of occurrences of the element before the operation.
-    public mutating func remove(element: T) -> Int {
+    public mutating func remove(_ element: T) {
         return remove(element, occurrences: 1)
     }
     
     /// Removes a number of occurrences of an element from the multiset.
     /// If the multiset contains fewer than this number of occurrences to begin with,
     /// all occurrences will be removed.
-    ///
-    /// - returns: The number of occurrences of the element before the operation.
-    public mutating func remove(element: T, occurrences: Int) -> Int {
-        if occurrences < 1 {
-            fatalError("Can't remove < 1 occurrences")
-        }
+    public mutating func remove(_ element: T, occurrences: Int) {
+        precondition(occurrences >= 1, "Invalid number of occurrences")
         if let currentOccurrences = members[element] {
-            let nRemoved = min(currentOccurrences, occurrences)
+            let nRemoved = [currentOccurrences, occurrences].min()!
             count -= nRemoved
             let newOcurrencies = currentOccurrences - nRemoved
             if newOcurrencies == 0 {
-                members.removeValueForKey(element)
+                members.removeValue(forKey: element)
             } else {
                 members[element] = newOcurrencies
             }
-            return currentOccurrences
-        } else {
-            return 0
         }
     }
 
     /// Removes all occurrences of an element from the multiset, if present.
-    ///
-    /// - returns: The number of occurrences of the element before the operation.
-    public mutating func removeAllOf(element: T) -> Int {
+    public mutating func removeAllOf(_ element: T) {
         let ocurrences = count(element)
-        if ocurrences >= 1 {
-            return remove(element, occurrences: ocurrences)
-        }
-        return 0
+        return remove(element, occurrences: ocurrences)
     }
     
     /// Removes all the elements from the multiset, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true) {
-        members.removeAll(keepCapacity: keep)
+    public mutating func removeAll(keepingCapacity keep: Bool = false) {
+        members.removeAll(keepingCapacity: keep)
         count = 0
     }
     
     // MARK: Private Properties and Helper Methods
     
     /// Internal dictionary holding the elements.
-    private var members = [T: Int]()
+    fileprivate var members = [T: Int]()
 }
 
 // MARK: -
 
-extension Multiset: SequenceType {
+extension Multiset: Sequence {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: Sequence Protocol Conformance
     
     /// Provides for-in loop functionality. Generates multiple occurrences per element.
     ///
     /// - returns: A generator over the elements.
-    public func generate() -> AnyGenerator<T> {
-        var keyValueGenerator = members.generate()
+    public func makeIterator() -> AnyIterator<T> {
+        var keyValueGenerator = members.makeIterator()
         var elementCount = 0
         var element : T? = nil
-        return AnyGenerator {
+        return AnyIterator {
             if elementCount > 0 {
                 elementCount -= 1
                 return element
@@ -170,13 +148,13 @@ extension Multiset: CustomStringConvertible {
     /// A string containing a suitable textual
     /// representation of the multiset.
     public var description: String {
-        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + map{"\($0)"}.joined(separator: ", ") + "]"
     }
 }
 
-extension Multiset: ArrayLiteralConvertible {
+extension Multiset: ExpressibleByArrayLiteral {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByArrayLiteral Protocol Conformance
     
     /// Constructs a multiset using an array literal.
     /// Unlike a set, multiple copies of an element are inserted.

@@ -13,7 +13,7 @@ import Buckets
 class MultimapTests: XCTestCase {
 
     struct TestData {
-        static let Dictionary = [1: 2,2: 3, 3: 4]
+        static let Dictionary = [1: 2, 2: 3, 3: 4]
     }
     
     var multimap = Multimap<Int, Int>()
@@ -21,7 +21,9 @@ class MultimapTests: XCTestCase {
     func testEmptyMultimap() {
         XCTAssertEqual(multimap.count, 0)
         XCTAssertEqual(multimap.keyCount, 0)
-        XCTAssertEqual(multimap.valuesForKey(1), [])
+        multimap.removeValuesForKey(1)
+        XCTAssertEqual(multimap.count, 0)
+        XCTAssertEqual(multimap.keyCount, 0)
     }
     
     func testInitWithDictionary() {
@@ -31,11 +33,6 @@ class MultimapTests: XCTestCase {
         for (k,v) in TestData.Dictionary {
             XCTAssertTrue(multimap.containsValue(v, forKey: k))
         }
-    }
-    
-    func testValuesForKey() {
-        multimap = Multimap(TestData.Dictionary)
-        XCTAssertEqual(multimap.valuesForKey(1), [2])
     }
     
     func testContainsKey() {
@@ -53,8 +50,8 @@ class MultimapTests: XCTestCase {
     
     func testSubscript() {
         multimap = Multimap(TestData.Dictionary)
-        XCTAssertEqual(multimap.valuesForKey(1), [2])
-        XCTAssertEqual(multimap.valuesForKey(100), [])
+        XCTAssertEqual(multimap[1], [2])
+        XCTAssertEqual(multimap[100], [])
     }
     
     func testInsertValueForKey() {
@@ -85,6 +82,8 @@ class MultimapTests: XCTestCase {
     func testRemoveValueForKey() {
         multimap.insertValues([1, 2, 2], forKey: 5)
         multimap.removeValue(2, forKey: 5)
+        var a = [1: 1]
+        a.removeValue(forKey: 1)
         XCTAssertEqual(multimap.count, 2)
         XCTAssertEqual(multimap.keyCount, 1)
         XCTAssertTrue(multimap.containsValue(1, forKey: 5))
@@ -106,10 +105,10 @@ class MultimapTests: XCTestCase {
     
     func testRemoveAll() {
         multimap = Multimap(TestData.Dictionary)
-        multimap.removeAll(keepCapacity: true)
+        multimap.removeAll(keepingCapacity: true)
         XCTAssertEqual(multimap.count, 0)
         XCTAssertEqual(multimap.keyCount, 0)
-        XCTAssertEqual(multimap.valuesForKey(1), [])
+        XCTAssertEqual(multimap[1], [])
     }
     
     // MARK: SequenceType
@@ -120,11 +119,11 @@ class MultimapTests: XCTestCase {
         var values = [1, 2, 2, 5]
         var keys = [5,5,5, 10]
         for (key, value) in multimap {
-            if let index = values.indexOf(value) {
-                values.removeAtIndex(index)
+            if let index = values.index(of: value) {
+                values.remove(at: index)
             }
-            if let index = keys.indexOf(key) {
-                keys.removeAtIndex(index)
+            if let index = keys.index(of: key) {
+                keys.remove(at: index)
             }
         }
         XCTAssertEqual(values.count, 0)
@@ -137,8 +136,8 @@ class MultimapTests: XCTestCase {
         multimap = [1:2, 2:2, 2:2]
         XCTAssertEqual(multimap.count, 3)
         XCTAssertEqual(multimap.keyCount, 2)
-        XCTAssertEqual(multimap.valuesForKey(1), [2])
-        XCTAssertEqual(multimap.valuesForKey(2), [2,2])
+        XCTAssertEqual(multimap[1], [2])
+        XCTAssertEqual(multimap[2], [2, 2])
     }
     
     // MARK: Equatable
@@ -147,7 +146,7 @@ class MultimapTests: XCTestCase {
         multimap = Multimap(TestData.Dictionary)
         var other = Multimap<Int, Int>()
         XCTAssertTrue(multimap != other)
-        other = Multimap(multimap)
+        other = multimap
         XCTAssertTrue(multimap == other)
     }
 }

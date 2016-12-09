@@ -26,11 +26,11 @@ class StackTests: XCTestCase {
     
     func testInitWithArray() {
         stack = Stack(TestData.List)
-        let list = Array(TestData.List.reverse())
+        let list = Array(TestData.List.reversed())
         for i in 0..<list.count {
             let element = stack.pop()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, list[i])
+            XCTAssertEqual(element, list[i])
         }
     }
     
@@ -45,33 +45,26 @@ class StackTests: XCTestCase {
             stack.push(i)
         }
         XCTAssertEqual(stack.count, TestData.List.count)
-        let list = Array(TestData.List.reverse())
+        let list = Array(TestData.List.reversed())
         for i in 0..<list.count {
             let element = stack.pop()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, list[i])
+            XCTAssertEqual(element, list[i])
         }
-        XCTAssertNil(stack.pop())
-        XCTAssertNil(stack.top)
-    }
-    
-    func testEmptyPop() {
-        XCTAssertNil(stack.pop())
         XCTAssertNil(stack.top)
     }
     
     func testRemoveAll() {
         stack = Stack(TestData.List)
-        stack.removeAll(keepCapacity: true)
+        stack.removeAll(keepingCapacity: true)
         XCTAssertEqual(stack.count, 0)
-        XCTAssertNil(stack.pop())
     }
     
     // MARK: SequenceType
     
     func testSequenceTypeConformance() {
         stack = Stack(TestData.List)
-        XCTAssertTrue(stack.elementsEqual(Array(TestData.List.reverse())))
+        XCTAssertTrue(stack.elementsEqual(Array(TestData.List.reversed())))
     }
     
     // MARK: ArrayLiteralConvertible

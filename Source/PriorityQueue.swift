@@ -14,31 +14,31 @@ import Foundation
 ///
 /// The `enqueue` and `dequeue` operations run in O(log(n)) time.
 ///
-/// Conforms to `SequenceType`, `Printable` and `DebugPrintable`.
+/// Conforms to `Sequence`, `CustomStringConvertible`.
 public struct PriorityQueue<T> {
     
     // MARK: Creating a Priority Queue
     
     /// Constructs an empty priority queue using a closure to
     /// determine the order of a provided pair of elements. The closure that you supply for 
-    /// `isOrderedBefore` should return a boolean value to indicate whether one element
+    /// `sortedBy` should return a boolean value to indicate whether one element
     /// should be before (`true`) or after (`false`) another element using strict weak ordering.
     /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
     ///
-    /// - parameter isOrderedBefore: Strict weak ordering function for checking if the first element has higher priority.
-    public init(_ isOrderedBefore: (T,T) -> Bool) {
-        self.init([], isOrderedBefore)
+    /// - parameter sortedBy: Strict weak ordering function checking if the first element has higher priority.
+    public init(sortedBy sortFunction: @escaping (T,T) -> Bool) {
+        self.init([], sortedBy: sortFunction)
     }
     
     /// Constructs a priority queue from a sequence, such as an array, using a given closure to
     /// determine the order of a provided pair of elements. The closure that you supply for
-    /// `isOrderedBefore` should return a boolean value to indicate whether one element
+    /// `sortedBy` should return a boolean value to indicate whether one element
     /// should be before (`true`) or after (`false`) another element using strict weak ordering.
     /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
     ///
-    /// - parameter isOrderedBefore: Strict weak ordering function for checking if the first element has higher priority.
-     public init<S: SequenceType where S.Generator.Element == T>(_ elements: S, _ isOrderedBefore: (T,T) -> Bool) {
-        heap = BinaryHeap<T>(compareFunction: isOrderedBefore)
+    /// - parameter sortedBy: Strict weak ordering function for checking if the first element has higher priority.
+     public init<S: Sequence>(_ elements: S, sortedBy sortFunction: @escaping (T,T) -> Bool) where S.Iterator.Element == T {
+        heap = BinaryHeap<T>(compareFunction: sortFunction)
         for e in elements {
             enqueue(e)
         }
@@ -64,38 +64,40 @@ public struct PriorityQueue<T> {
     // MARK: Adding and Removing Elements
     
     /// Inserts an element into the priority queue.
-    public mutating func enqueue(element: T) {
+    public mutating func enqueue(_ element: T) {
         heap.insert(element)
     }
     
     /// Retrieves and removes the highest priority element of the queue.
     ///
     /// - returns: The highest priority element, or `nil` if the queue is empty.
-    public mutating func dequeue() -> T? {
-        return heap.removeMax()
+    @discardableResult
+    public mutating func dequeue() -> T {
+        precondition(!isEmpty, "Queue is empty")
+        return heap.removeMax()!
     }
     
     /// Removes all the elements from the priority queue, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true)  {
-        heap.removeAll(keepCapacity: keep)
+    public mutating func removeAll(keepingCapacity keep: Bool = false)  {
+        heap.removeAll(keepingCapacity: keep)
     }
     
     // MARK: Private Properties and Helper Methods
     
     /// Internal structure holding the elements.
-    private var heap : BinaryHeap<T>
+    fileprivate var heap : BinaryHeap<T>
 }
 
-extension PriorityQueue: SequenceType {
+extension PriorityQueue: Sequence {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: Sequence Protocol Conformance
     
     /// Provides for-in loop functionality. Generates elements in no particular order.
     ///
     /// - returns: A generator over the elements.
-    public func generate() -> AnyGenerator<T> {
-        return heap.generate()
+    public func makeIterator() -> AnyIterator<T> {
+        return heap.makeIterator()
     }
 }
 
@@ -106,7 +108,7 @@ extension PriorityQueue: CustomStringConvertible {
     /// A string containing a suitable textual
     /// representation of the priority queue.
     public var description: String {
-        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + map{"\($0)"}.joined(separator: ", ") + "]"
     }
 }
 

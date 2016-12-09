@@ -13,8 +13,8 @@ import Foundation
 /// insertion/removal at both ends, instead of just one end.
 /// It allows to get or set elements using subscript notation.
 ///
-/// Conforms to `SequenceType`, `MutableCollectionType`,
-/// `ArrayLiteralConvertible`, `Equatable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
+/// Conforms to `MutableCollection`,
+/// `ExpressibleByArrayLiteral`, `Equatable`, `CustomStringConvertible`.
 public struct CircularArray<T> {
     
     // MARK: Creating a Circular Array
@@ -24,23 +24,22 @@ public struct CircularArray<T> {
     
     /// Constructs a circular array with a given number of elements, each 
     /// initialized to the same value.
-    public init(count: Int, repeatedValue: T) {
-        if count < 0 {
-            fatalError("Can't construct CircularArray with count < 0")
-        }
+    public init(repeating repeatedValue: T, count: Int) {
+        precondition(count >= 0, "Can't construct CircularArray with count < 0")
+
         var nextPowerOfTwo = 1
         while nextPowerOfTwo < count + 1 {
             nextPowerOfTwo *= 2
         }
         
-        let capacity = max(nextPowerOfTwo, Constants.DefaultCapacity)
-        items = [T?](count: capacity, repeatedValue: repeatedValue)
+        let capacity = [nextPowerOfTwo, Constants.DefaultCapacity].max()!
+        items = [T?](repeating: repeatedValue, count: capacity)
         items[count..<capacity] = [nil]
         tail = count
     }
     
     /// Constructs a circular array from a sequence, such as an array.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S){
+    public init<S: Sequence>(_ elements: S) where S.Iterator.Element == T{
         for e in elements {
             append(e)
         }
@@ -71,14 +70,14 @@ public struct CircularArray<T> {
     // MARK: Adding and Removing Elements
     
     /// Adds a new item as the first element in an existing circular array.
-    public mutating func prepend(element: T) {
+    public mutating func prepend(_ element: T) {
         head = decreaseIndex(head)
         items[head] = element
         checkCapacity()
     }
     
     /// Adds a new item as the last element in an existing circular array.
-    public mutating func append(element: T) {
+    public mutating func append(_ element: T) {
         items[tail] = element
         tail = increaseIndex(tail)
         checkCapacity()
@@ -86,25 +85,39 @@ public struct CircularArray<T> {
     
     /// Removes the first element from the circular array and returns it.
     ///
-    /// - returns: The first element, or `nil` if the circular array is empty.
-    public mutating func removeFirst() -> T? {
+    /// - returns: The first element.
+    @discardableResult
+    public mutating func removeFirst() -> T {
         if let value = first {
             items[head] = nil
             head = increaseIndex(head)
             return value
         }
-        return nil
+        preconditionFailure("Array is empty")
     }
     
+    /// Removes the last element from the circular array and returns it.
+    ///
+    /// - returns: The last element.
+    @discardableResult
+    public mutating func removeLast() -> T {
+        if let value = last {
+            tail = decreaseIndex(tail)
+            items[tail] = nil
+            return value
+        }
+        preconditionFailure("Array is empty")
+    }
+
     /// Inserts an element into the collection at a given index.
     /// Use this method to insert a new element anywhere within the range
     /// of existing items, or as the last item. The index must be less
     /// than or equal to the number of items in the circular array. If you
     /// attempt to remove an item at a greater index, you’ll trigger an error.
-    public mutating func insert(element: T, atIndex index: Int) {
+    public mutating func insert(_ element: T, at index: Int) {
         checkIndex(index, lessThan: count + 1)
         append(element)
-        for i in (count - 2).stride(through: index, by: -1) {
+        for i in stride(from: (count - 2), through: index, by: -1) {
             let rIndex = realIndex(i)
             let nextIndex = realIndex(i+1)
             items[nextIndex] = items[rIndex]
@@ -112,24 +125,14 @@ public struct CircularArray<T> {
         items[index] = element
     }
     
-    /// Removes the last element from the circular array and returns it.
-    ///
-    /// - returns: The last element, or nil if the circular array is empty.
-    public mutating func removeLast() -> T? {
-        if let value = last {
-            tail = decreaseIndex(tail)
-            items[tail] = nil
-            return value
-        }
-        return nil
-    }
     
     /// Removes the element at the given index and returns it. 
     ///
     /// The index must be less than the number of items in the 
     /// circular array. If you attempt to remove an item at a 
     /// greater index, you’ll trigger an error.
-    public mutating func removeAtIndex(index: Int) -> T {
+    @discardableResult
+    public mutating func remove(at index: Int) -> T {
         checkIndex(index)
         let element = items[realIndex(index)]
         
@@ -144,9 +147,9 @@ public struct CircularArray<T> {
     
     /// Removes all the elements from the collection, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true)  {
+    public mutating func removeAll(keepingCapacity keep: Bool = false)  {
         if !keep {
-            items.removeAll(keepCapacity: false)
+            items.removeAll(keepingCapacity: false)
         } else {
             items[0 ..< items.count] = [nil]
         }
@@ -157,34 +160,34 @@ public struct CircularArray<T> {
     // MARK: Private Properties and Helper Methods
     
     /// Regular array holding the elements.
-    private var items = [T?](count: Constants.DefaultCapacity, repeatedValue: nil)
+    fileprivate var items = [T?](repeating: nil, count: Constants.DefaultCapacity)
     
     /// The real index of the first item.
-    private var head: Int = 0
+    fileprivate var head: Int = 0
     
     /// The real index of the last item + 1.
-    private var tail: Int = 0
+    fileprivate var tail: Int = 0
     
-    private func increaseIndex(index: Int) -> Int {
+    fileprivate func increaseIndex(_ index: Int) -> Int {
         return (index + 1) & (items.count - 1)
     }
     
-    private func decreaseIndex(index: Int) -> Int {
+    fileprivate func decreaseIndex(_ index: Int) -> Int {
         return (index - 1) & (items.count - 1)
     }
     
-    private func realIndex(logicalIndex: Int) -> Int {
+    fileprivate func realIndex(_ logicalIndex: Int) -> Int {
         return (head + logicalIndex) & (items.count - 1)
     }
     
-    private mutating func checkCapacity() {
+    fileprivate mutating func checkCapacity() {
         if head != tail {
             return
         }
         
         // Array full. Create a bigger one
         
-        var newArray = [T?](count: items.count * 2, repeatedValue: nil)
+        var newArray = [T?](repeating: nil, count: items.count * 2)
         let nFront = items.count - head
         newArray[0 ..< nFront] = items[head ..< items.count]
         newArray[nFront ..< nFront + head] = items[0 ..< head]
@@ -194,7 +197,7 @@ public struct CircularArray<T> {
         items = newArray
     }
     
-    private func checkIndex(index: Int, lessThan: Int? = nil) {
+    fileprivate func checkIndex(_ index: Int, lessThan: Int? = nil) {
         let bound = lessThan == nil ? count : lessThan
         if index < 0 || index >= bound!  {
             fatalError("Index out of range (\(index))")
@@ -202,21 +205,9 @@ public struct CircularArray<T> {
     }
 }
 
-extension CircularArray: SequenceType {
+extension CircularArray: MutableCollection {
     
-    // MARK: SequenceType Protocol Conformance
-    
-    /// Provides for-in loop functionality.
-    ///
-    /// - returns: A generator over the elements.
-    public func generate() -> AnyGenerator<T> {
-        return AnyGenerator(IndexingGenerator(self))
-    }
-}
-
-extension CircularArray: MutableCollectionType {
-    
-    // MARK: MutableCollectionType Protocol Conformance
+    // MARK: MutableCollection Protocol Conformance
     
     /// Always zero, which is the index of the first element when non-empty.
     public var startIndex : Int {
@@ -226,6 +217,15 @@ extension CircularArray: MutableCollectionType {
     /// Always `count`, which is  the successor of the last valid subscript argument.
     public var endIndex : Int {
         return count
+    }
+    
+    /// Returns the position immediately after the given index.
+    ///
+    /// - Parameter i: A valid index of the collection. `i` must be less than
+    ///   `endIndex`.
+    /// - Returns: The index value immediately after `i`.
+    public func index(after i: Int) -> Int {
+        return i + 1
     }
     
     /// Provides random access to elements using square bracket notation.
@@ -246,9 +246,9 @@ extension CircularArray: MutableCollectionType {
     }
 }
 
-extension CircularArray: ArrayLiteralConvertible {
+extension CircularArray: ExpressibleByArrayLiteral {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByArrayLiteral Protocol Conformance
     
     /// Constructs a circular array using an array literal.
     /// `let example: CircularArray<Int> = [1,2,3]`
@@ -264,17 +264,15 @@ extension CircularArray: CustomStringConvertible {
     /// A string containing a suitable textual 
     /// representation of the circular array.
     public var description: String {
-        return "[" + self.map {"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + self.map {"\($0)"}.joined(separator: ", ") + "]"
     }
 }
-
-//extension CircularArray: ReconstructableSequence {}
 
 // MARK: - Constants
 
 private struct Constants {
     // Must be power of 2
-    private static let DefaultCapacity = 8
+    fileprivate static let DefaultCapacity = 8
 }
 
 // MARK: - Operators

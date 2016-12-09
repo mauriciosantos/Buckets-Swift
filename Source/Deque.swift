@@ -15,8 +15,8 @@ import Foundation
 /// The `enqueueFirst`, `enqueueLast`, `dequeueFirst` and `dequeueLast` 
 /// operations run in amortized constant time.
 ///
-/// Conforms to `SequenceType`, `ArrayLiteralConvertible`,
-/// `Printable`, `DebugPrintable` and `ReconstructableSequence`.
+/// Conforms to `Sequence`, `ExpressibleByArrayLiteral`,
+/// `CustomStringConvertible`.
 public struct Deque<T> {
 
     // MARK: Creating a Deque
@@ -26,7 +26,7 @@ public struct Deque<T> {
     
     /// Constructs a deque from a sequence, such as an array.
     /// The elements will be enqueued from first to last.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S) {
+    public init<S: Sequence>(_ elements: S) where S.Iterator.Element == T {
         items = CircularArray(elements)
     }
     
@@ -55,62 +55,65 @@ public struct Deque<T> {
     // MARK: Adding and Removing Elements
     
     /// Inserts an element into the back of the deque.
-    public mutating func enqueueLast(element: T) {
+    public mutating func enqueueLast(_ element: T) {
         items.append(element)
     }
     
     /// Inserts an element into the front of the deque.
-    public mutating func enqueueFirst(element: T) {
+    public mutating func enqueueFirst(_ element: T) {
         items.prepend(element)
     }
     
     /// Retrieves and removes the front element of the deque.
     ///
     /// - returns: The front element, or `nil` if the deque is empty.
-    public mutating func dequeueFirst() -> T? {
+    @discardableResult
+    public mutating func dequeueFirst() -> T {
+        precondition(!isEmpty, "Deque is empty")
         return items.removeFirst()
     }
     
     /// Retrieves and removes the back element of the deque.
     ///
     /// - returns: The back element, or `nil` if the deque is empty.
-    public mutating func dequeueLast() -> T? {
+    @discardableResult
+    public mutating func dequeueLast() -> T {
+        precondition(!isEmpty, "Deque is empty")
         return items.removeLast()
     }
     
     /// Removes all the elements from the deque, and by default
     /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true)  {
-        items.removeAll(keepCapacity: keep)
+    public mutating func removeAll(keepingCapacity keep: Bool = false)  {
+        items.removeAll(keepingCapacity: keep)
     }
     
     // MARK: Private Properties and Helper Methods
     
     /// Internal structure holding the elements.
-    private var items = CircularArray<T>()
+    fileprivate var items = CircularArray<T>()
 }
 
-extension Deque: SequenceType {
+extension Deque: Sequence {
     
-    // MARK: SequenceType Protocol Conformance
+    // MARK: Sequence Protocol Conformance
     
     /// Provides for-in loop functionality. Generates elements in FIFO order.
     ///
     /// - returns: A generator over the elements.
-    public func generate() -> AnyGenerator<T> {
-        return items.generate()
+    public func makeIterator() -> AnyIterator<T> {
+        return AnyIterator(items.makeIterator())
     }
 }
 
-extension Deque: ArrayLiteralConvertible {
+extension Deque: ExpressibleByArrayLiteral {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
+    // MARK: ExpressibleByArrayLiteral Protocol Conformance
     
     /// Constructs a deque using an array literal.
     /// The elements will be enqueued from first to last.
     /// `let deque: Deque<Int> = [1,2,3]`
     public init(arrayLiteral elements: T...) {
-        [1,2].startIndex
         self.init(elements)
     }
 }
@@ -122,7 +125,7 @@ extension Deque: CustomStringConvertible {
     /// A string containing a suitable textual
     /// representation of the deque.
     public var description: String {
-        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
+        return "[" + map{"\($0)"}.joined(separator: ", ") + "]"
     }
 }
 

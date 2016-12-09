@@ -5,14 +5,15 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/Buckets.svg?style=flat)](http://cocoadocs.org/docsets/Buckets)
 
-**Swift Collection Data Structures Library**
+**Swift Collections Library**
 
 Buckets is a complete, tested and documented collections library for swift.
 
 ## Requirements
 
-- iOS 8.0+/OS X 10.10+/watchOS/tvOS
-- Xcode 7.3+
+Swift 3.0+ platforms such as:
+
+Linux/iOS 9.0+/MacOS 10.10+/watchOS 2.0+/tvOS 9.0+
 
 ## Included collections
 
@@ -44,10 +45,10 @@ To integrate Buckets into your Xcode project using CocoaPods, specify it in your
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '10.0'
 use_frameworks!
 
-pod 'Buckets', '~> 1.2.0'
+pod 'Buckets', '~> 2.0'
 ```
 
 Then, run the following command:
@@ -70,22 +71,26 @@ $ brew install carthage
 To integrate Buckets into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "mauriciosantos/Buckets-Swift" >= 1.2.0
+github "mauriciosantos/Buckets-Swift" ~> 2.0
 ```
+
+### Swift Package Manager
+
+See [Swift Package Manager documentation](https://swift.org/package-manager/#conceptual-overview)
 
 ### Manually
 
-You can also integrate Buckets into your project manually:
+You can also integrate Buckets into your Xcode project manually:
 
 - Download the [latest release](https://github.com/mauriciosantos/Buckets-Swift/releases) and unzip it in your project's folder.
 - Open the `Buckets` folder, and drag `Buckets.xcodeproj` into the file navigator of your app project. This means inside your project, not at the top level.
 - Ensure that the deployment target of Buckets.framework matches that of the application target.
 - Open your project's "Build Phases" panel. Expand the "Target Dependencies" group, and add `Buckets.framework`.
-- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Set the "Destination" to "Frameworks", and add `Buckets.framework`. There are 2 versions, one for iOS and one for OS X. Select the right one.
+- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Set the "Destination" to "Frameworks", and add `Buckets.framework`. There are 4 versions for each platform. Select the right one.
 
 ## Usage
 
-All collection types are implemented as structures. This means they are copied when they are assigned to a new constant or variable, or when they are passed to a function or method. 
+All collection types are implemented as structures. This means they are copied when they are assigned to a new constant or variable, or when they are passed to a function or method.
 
 You shouldn't worry about copying structs:  
 
@@ -113,7 +118,7 @@ stack.push("first")
 stack.push("last")
 stack.pop() // "last"
 
-var pQueue = PriorityQueue<Int>(<)
+var pQueue = PriorityQueue<Int>(sortedBy: <)
 pQueue.enqueue(3)
 pQueue.enqueue(1)
 pQueue.enqueue(2)
@@ -142,10 +147,7 @@ graph["Boston", "NY"] = 5
 graph["NY", "Miami"] = 5
 graph.pathFrom("Boston", to: "Miami") // ["Boston", "NY", "Miami"]
 
-var trie = Trie()
-trie.insert("Apple")
-trie.insert("App Store")
-trie.findPrefix("App") // ["App Store", "Apple"]
+var sss = String("hola");
 
 var matrix: Matrix<Double> = [[1,2,3], [4,5,6]]
 matrix[1, 0] = 5
