@@ -11,7 +11,7 @@ if [ "$DEPLOY" == "YES" ] && [ "$TRAVIS_REPO_SLUG" == "mauriciosantos/Buckets-Sw
   cd $HOME
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "travis-ci"
-  
+
   # Redirect any output to /dev/null to hide any sensitive credential data that might otherwise be exposed in the logs.
   git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/mauriciosantos/Buckets-Swift.git gh-pages > /dev/null
 
