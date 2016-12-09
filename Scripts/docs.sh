@@ -4,6 +4,7 @@
 if [ "$DEPLOY" == "YES" ] && [ "$TRAVIS_REPO_SLUG" == "mauriciosantos/Buckets-Swift" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
   set -e
   echo -e "Installing Jazzy...\n"
+  gem uninstall json
   gem install jazzy
   echo -e "Generating docs...\n"
   jazzy
