@@ -3,7 +3,9 @@
 # Only generate and run docs once
 if [ "$DEPLOY" == "YES" ] && [ "$TRAVIS_REPO_SLUG" == "mauriciosantos/Buckets-Swift" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
   set -e
+  echo -e "Installing Jazzy...\n"
   gem install jazzy
+  echo -e "Generating docs...\n"
   jazzy
   echo -e "Publishing docs...\n"
   cp -R Docs $HOME/Docs
