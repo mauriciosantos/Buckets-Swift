@@ -168,7 +168,3 @@ bFilter.contains("a") // true
 ```
 
 Read the [documentation](http://mauriciosantos.github.io/Buckets-Swift/Data%20Structures.html).
-
-## Contact
-
-Mauricio Santos, [mauriciosantoss@gmail.com](mailto:mauriciosantoss@gmail.com)
