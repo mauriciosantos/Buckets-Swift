@@ -48,7 +48,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 use_frameworks!
 
-pod 'Buckets', '~> 2.0'
+target 'TargetName' do
+  pod 'Buckets', '~> 2.0'
+end
 ```
 
 Then, run the following command:
