@@ -149,8 +149,6 @@ graph["Boston", "NY"] = 5
 graph["NY", "Miami"] = 5
 graph.pathFrom("Boston", to: "Miami") // ["Boston", "NY", "Miami"]
 
-var sss = String("hola");
-
 var matrix: Matrix<Double> = [[1,2,3], [4,5,6]]
 matrix[1, 0] = 5
 matrix - [[1,0,1], [1,0,1]] // [[0,2,2],[4,5,5]]
