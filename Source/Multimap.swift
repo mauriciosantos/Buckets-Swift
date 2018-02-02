@@ -13,7 +13,7 @@ import Foundation
 ///
 /// Comforms to `Sequence`, `ExpressibleByDictionaryLiteral`,
 /// `Equatable` and `CustomStringConvertible`
-public struct Multimap<Key: Hashable, Value: Equatable> {
+public struct Multimap<Key: Hashable, Value> {
     
     // MARK: Creating a Multimap
     
@@ -68,14 +68,6 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         return dictionary[key] != nil
     }
     
-    /// Returns `true` if the multimap contains at least one key-value pair with the given key and value.
-    public func containsValue(_ value: Value, forKey key: Key) -> Bool {
-        if let values = dictionary[key] {
-            return values.contains(value)
-        }
-        return false
-    }
-    
     // MARK: Accessing and Changing Multimap Elements
     
     /// Inserts a key-value pair into the multimap.
@@ -106,25 +98,6 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
         insertValues(values, forKey: key)
     }
     
-    /// Removes a single key-value pair with the given key and value from the multimap, if it exists.
-    ///
-    /// - returns: The removed value, or nil if no matching pair is found.
-    @discardableResult
-    public mutating func removeValue(_ value: Value, forKey key: Key) -> Value? {
-        if var values = dictionary[key] {
-            if let removeIndex = values.index(of: value) {
-                let removedValue = values.remove(at: removeIndex)
-                count -= 1
-                dictionary[key] = values
-                return removedValue
-            }
-            if values.isEmpty {
-                dictionary.removeValue(forKey: key)
-            }
-        }
-        return nil
-    }
-    
     /// Removes all values associated with the given key.
     public mutating func removeValuesForKey(_ key: Key) {
         if let values = dictionary.removeValue(forKey: key) {
@@ -143,6 +116,36 @@ public struct Multimap<Key: Hashable, Value: Equatable> {
     
     /// Internal dictionary holding the elements.
     fileprivate var dictionary = [Key: [Value]]()
+}
+
+extension Multimap where Value: Equatable {
+    
+    /// Returns `true` if the multimap contains at least one key-value pair with the given key and value.
+    public func containsValue(_ value: Value, forKey key: Key) -> Bool {
+        if let values = dictionary[key] {
+            return values.contains(value)
+        }
+        return false
+    }
+    
+    /// Removes a single key-value pair with the given key and value from the multimap, if it exists.
+    ///
+    /// - returns: The removed value, or nil if no matching pair is found.
+    @discardableResult
+    public mutating func removeValue(_ value: Value, forKey key: Key) -> Value? {
+        if var values = dictionary[key] {
+            if let removeIndex = values.index(of: value) {
+                let removedValue = values.remove(at: removeIndex)
+                count -= 1
+                dictionary[key] = values
+                return removedValue
+            }
+            if values.isEmpty {
+                dictionary.removeValue(forKey: key)
+            }
+        }
+        return nil
+    }
 }
 
 extension Multimap: Sequence {
@@ -196,12 +199,13 @@ extension Multimap: CustomStringConvertible {
     }
 }
 
-extension Multimap: Equatable {
+// Waiting for https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md
+extension Multimap /* : Equatable where Value: Equatable */ {
     
     // MARK: Multimap Equatable Conformance
     
     /// Returns `true` if and only if the multimaps contain the same key-value pairs.
-    public static func ==<Key, Value>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>) -> Bool {
+    public static func ==<Key, Value: Equatable>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>) -> Bool {
         if lhs.count != rhs.count || lhs.keyCount != rhs.keyCount {
             return false
         }

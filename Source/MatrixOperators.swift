@@ -24,18 +24,13 @@ public func inverse(_ matrix: Matrix<Double>) -> Matrix<Double>? {
     var N = __CLPK_integer(sqrt(Double(invMatrix.grid.count)))
     var pivots = [__CLPK_integer](repeating: 0, count: Int(N))
     var workspace = [Double](repeating: 0.0, count: Int(N))
-    var error : __CLPK_integer = 0
-    // LU factorization
-    dgetrf_(&N, &N, &invMatrix.grid, &N, &pivots, &error)
-    if error != 0 {
-        return nil
+    
+    return withUnsafeMutablePointer(to: &N) {
+        return
+            dgetrf_($0, $0, &invMatrix.grid, &N, &pivots, nil) == 0 &&
+            dgetri_($0, &invMatrix.grid, $0, &pivots, &workspace, &N, nil) == 0 ?
+                invMatrix : nil
     }
-    // Matrix inversion
-    dgetri_(&N, &invMatrix.grid, &N, &pivots, &workspace, &N, &error)
-    if error != 0 {
-        return nil
-    }
-    return invMatrix
 }
 
 // Addition

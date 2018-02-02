@@ -63,7 +63,7 @@ struct BinaryHeap<T> : Sequence {
         var i = count - 1
         var parentIndex = parent(i)
         while i > 0 && !isOrderedBefore(items[parentIndex], items[i]) {
-            swap(&items[i], &items[parentIndex])
+            items.swapAt(i, parentIndex)
             i = parentIndex
             parentIndex = parent(i)
         }
@@ -94,7 +94,7 @@ struct BinaryHeap<T> : Sequence {
         var i = 0
         var max = maxIndex(leftChild(i), rightChild(i))
         while max >= 0 && !isOrderedBefore(items[i], items[max]) {
-            swap(&items[max], &items[i])
+            items.swapAt(max, i)
             i = max
             max = maxIndex(leftChild(i), rightChild(i))
         }
