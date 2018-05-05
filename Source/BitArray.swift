@@ -198,7 +198,7 @@ public struct BitArray {
     
     fileprivate struct Constants {
         // Int size in bits
-        static let IntSize = MemoryLayout<Int>.size * 8
+        static let IntSize = Int.bitsize
     }
 }
 
