@@ -12,7 +12,8 @@ import Foundation
 /// associated with multiple values. This implementation allows duplicate key-value pairs.
 ///
 /// Comforms to `Sequence`, `ExpressibleByDictionaryLiteral`,
-/// `Equatable` and `CustomStringConvertible`
+/// and `CustomStringConvertible`
+/// Optionally conforms to `Equatable` (if `Value` is `Equatable`)
 public struct Multimap<Key: Hashable, Value> {
     
     // MARK: Creating a Multimap
@@ -199,8 +200,10 @@ extension Multimap: CustomStringConvertible {
     }
 }
 
-// Waiting for https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md
-extension Multimap /* : Equatable where Value: Equatable */ {
+// TODO: Can this conditional be done without as much code duplication? Refactoring didn’t succeed in Xcode 10.1.
+#if swift(>=4.1)
+// https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md
+extension Multimap: Equatable where Value: Equatable {
     
     // MARK: Multimap Equatable Conformance
     
@@ -227,5 +230,33 @@ extension Multimap /* : Equatable where Value: Equatable */ {
         return true
     }
 }
+#else
+extension Multimap {
 
+    // MARK: Multimap Equatable Conformance
+
+    /// Returns `true` if and only if the multimaps contain the same key-value pairs.
+    public static func ==<Key, Value: Equatable>(lhs: Multimap<Key, Value>, rhs: Multimap<Key, Value>) -> Bool {
+        if lhs.count != rhs.count || lhs.keyCount != rhs.keyCount {
+            return false
+        }
+        for (key, _) in lhs {
+            let leftValues = lhs[key]
+            var rightValues = rhs[key]
+            if leftValues.count != rightValues.count {
+                return false
+            }
+            for element in leftValues {
+                if let index = rightValues.index(of: element) {
+                    rightValues.remove(at: index)
+                }
+            }
+            if !rightValues.isEmpty {
+                return false
+            }
+        }
+        return true
+    }
+}
+#endif
 
