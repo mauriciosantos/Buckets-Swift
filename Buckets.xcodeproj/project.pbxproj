@@ -296,6 +296,7 @@
 				22A142DB1AB4D40900E70376 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		22A142DB1AB4D40900E70376 /* Products */ = {
 			isa = PBXGroup;
