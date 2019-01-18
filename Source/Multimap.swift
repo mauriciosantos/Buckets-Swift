@@ -22,7 +22,7 @@ public struct Multimap<Key: Hashable, Value> {
     
     /// Constructs a multimap from a dictionary.
     public init(_ elements: Dictionary<Key, Value>) {
-        for (key ,value) in elements {
+        for (key, value) in elements {
             insertValue(value, forKey: key)
         }
     }
