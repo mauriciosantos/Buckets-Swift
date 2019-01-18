@@ -331,8 +331,7 @@
 				220B6DB01ACF6C6300D2FA52 /* BloomFilter */,
 				22A142DD1AB4D40900E70376 /* Supporting Files */,
 			);
-			name = Source;
-			path = Buckets;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		22A142DD1AB4D40900E70376 /* Supporting Files */ = {
@@ -361,8 +360,7 @@
 				22DC8A881ADB0B4B00E555E1 /* MatrixTests.swift */,
 				22A142EA1AB4D40900E70376 /* Supporting Files */,
 			);
-			name = Tests;
-			path = BucketsTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		22A142EA1AB4D40900E70376 /* Supporting Files */ = {
