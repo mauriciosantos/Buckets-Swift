@@ -184,8 +184,9 @@ public struct Trie {
         }
         if let theKey = keyGenerator.next(), let nextNode = node.children[theKey] {
             return longestPrefixIn(&keyGenerator, lastChars:chars, node: nextNode)
+        } else {
+            return String(chars)
         }
-        return String(chars)
     }
     
     fileprivate func insert(_ keyGenerator: inout IndexingIterator<String>, node: TrieNode) -> Bool {
