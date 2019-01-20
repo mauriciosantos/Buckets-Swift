@@ -79,7 +79,8 @@ public struct Trie {
     /// The returned value is not necessarily a full word in the trie.
     public func longestPrefixIn(_ element: String) -> String {
         var keys = element.makeIterator()
-        return longestPrefixIn(&keys, lastChars:[], node: root)
+        var lastKeys = [Character]()
+        return longestPrefixIn(&keys, charStack: &lastKeys, node: root)
     }
     
     // MARK: Adding and Removing Elements
@@ -175,17 +176,14 @@ public struct Trie {
     }
     
     fileprivate func longestPrefixIn(_ keyGenerator: inout IndexingIterator<String>,
-        lastChars: [Character], node: TrieNode) -> String {
-        let chars: [Character]
+        charStack: inout [Character], node: TrieNode) -> String {
         if let key = node.key {
-            chars = lastChars + [key]
-        } else {
-            chars = lastChars
+            charStack.append(key)
         }
         if let theKey = keyGenerator.next(), let nextNode = node.children[theKey] {
-            return longestPrefixIn(&keyGenerator, lastChars:chars, node: nextNode)
+            return longestPrefixIn(&keyGenerator, charStack: &charStack, node: nextNode)
         } else {
-            return String(chars)
+            return String(charStack)
         }
     }
     
