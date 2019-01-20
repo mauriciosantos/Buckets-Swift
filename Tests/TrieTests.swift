@@ -44,13 +44,13 @@ class TrieTests: XCTestCase {
          XCTAssertFalse(trie.contains("H"))
     }
     
-    func testContiansEmptyPrefix() {
+    func testContainsEmptyPrefix() {
         XCTAssertTrue(trie.isPrefix(""))
         trie = Trie(TestData.Elements)
         XCTAssertTrue(trie.isPrefix(""))
     }
     
-    func testContiansValidPrefix() {
+    func testContainsValidPrefix() {
         trie = Trie(TestData.Elements)
         XCTAssertTrue(trie.isPrefix("Hell"))
         XCTAssertTrue(trie.isPrefix("H"))
@@ -58,7 +58,7 @@ class TrieTests: XCTestCase {
         XCTAssertTrue(trie.isPrefix("NO"))
     }
     
-    func testContiansInvalidPrefix() {
+    func testContainsInvalidPrefix() {
         trie = Trie(TestData.Elements)
         XCTAssertFalse(trie.isPrefix("Yello"))
         XCTAssertFalse(trie.isPrefix("Hello World"))
@@ -66,7 +66,7 @@ class TrieTests: XCTestCase {
         XCTAssertFalse(trie.isPrefix("NOse"))
     }
     
-    func testfindPrefix() {
+    func testFindPrefix() {
         trie = Trie(TestData.Elements)
         XCTAssertEqual(trie.findPrefix("Hello World"), [])
         XCTAssertEqual(Set(trie.findPrefix("")), Set(TestData.Elements))
@@ -75,7 +75,7 @@ class TrieTests: XCTestCase {
         XCTAssertEqual(Set(trie.findPrefix("NO")), Set(["NO"]))
     }
     
-    func testlongestPrefixIn() {
+    func testLongestPrefixIn() {
         trie = Trie(TestData.Elements)
         XCTAssertEqual(trie.longestPrefixIn(""), "")
         XCTAssertEqual(trie.longestPrefixIn("abc"), "")

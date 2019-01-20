@@ -16,26 +16,29 @@ import Accelerate
 
 /// Returns the inverse of the given matrix or nil if it doesn't exist.
 /// If the argument is a non-square matrix an error is triggered.
+/// Comments and improvements from: http://connor-johnson.com/2015/10/07/matrix-inversion-using-swift-and-accelerate/
 public func inverse(_ matrix: Matrix<Double>) -> Matrix<Double>? {
     if matrix.columns != matrix.rows {
         fatalError("Can't invert a non-square matrix.")
     }
     var invMatrix = matrix
+    // Get the dimensions of the matrix. An NxN matrix has N^2
+    // elements, so sqrt( N^2 ) will return N, the dimension.
     var N = __CLPK_integer(sqrt(Double(invMatrix.grid.count)))
+    // Initialize some arrays for the dgetrf_(), and dgetri_() functions.
     var pivots = [__CLPK_integer](repeating: 0, count: Int(N))
     var workspace = [Double](repeating: 0.0, count: Int(N))
-    var error : __CLPK_integer = 0
-    // LU factorization
-    dgetrf_(&N, &N, &invMatrix.grid, &N, &pivots, &error)
-    if error != 0 {
-        return nil
+    
+    return withUnsafeMutablePointer(to: &N) {
+        var error: __CLPK_integer = 0
+    
+        return
+            // Perform LU factorization.
+            dgetrf_($0, $0, &invMatrix.grid, $0, &pivots, &error) == 0 &&
+            // Calculate inverse from LU factorization.
+            dgetri_($0, &invMatrix.grid, $0, &pivots, &workspace, $0, &error) == 0 ?
+                invMatrix : nil
     }
-    // Matrix inversion
-    dgetri_(&N, &invMatrix.grid, &N, &pivots, &workspace, &N, &error)
-    if error != 0 {
-        return nil
-    }
-    return invMatrix
 }
 
 // Addition

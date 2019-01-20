@@ -42,7 +42,7 @@ public struct Trie {
     
     /// Reconstructs and returns all the words stored in the trie.
     public var elements: [String] {
-        var emptyGenerator = "".characters.makeIterator()
+        var emptyGenerator = "".makeIterator()
         var result = [String]()
         var lastKeys = [Character]()
         result.reserveCapacity(count)
@@ -53,7 +53,7 @@ public struct Trie {
     /// Returns `true` if the trie contains the given word
     /// and it's not just a prefix of another word.
     public func contains(_ word: String) -> Bool {
-        var keys = word.characters.makeIterator()
+        var keys = word.makeIterator()
         let nodePair = nodePairForPrefix(&keys, node: root, parent: nil)
         return nodePair.endNode?.isWord ?? false
     }
@@ -61,14 +61,14 @@ public struct Trie {
     /// Returns `true` if the trie contains at least one word matching the given prefix or if the
     /// given prefix is empty.
     public func isPrefix(_ prefix: String) -> Bool {
-        var keys = prefix.characters.makeIterator()
+        var keys = prefix.makeIterator()
         let nodePair = nodePairForPrefix(&keys, node: root, parent: nil)
         return nodePair.endNode != nil
     }
     
     /// Returns all the words in the trie matching the given prefix.
     public func findPrefix(_ prefix: String) -> [String] {
-        var prefixKeys = prefix.characters.makeIterator()
+        var prefixKeys = prefix.makeIterator()
         var result = [String]()
         var lastKeys = [Character]()
         findPrefix(&prefixKeys, charStack: &lastKeys, result:&result, node: root)
@@ -78,8 +78,9 @@ public struct Trie {
     /// Returns the longest prefix in the trie matching the given word.
     /// The returned value is not necessarily a full word in the trie.
     public func longestPrefixIn(_ element: String) -> String {
-        var keys = element.characters.makeIterator()
-        return longestPrefixIn(&keys, lastChars:[], node: root)
+        var keys = element.makeIterator()
+        var lastKeys = [Character]()
+        return longestPrefixIn(&keys, charStack: &lastKeys, node: root)
     }
     
     // MARK: Adding and Removing Elements
@@ -91,7 +92,7 @@ public struct Trie {
     public mutating func insert(_ word: String) -> Bool {
         if !contains(word) {
             copyMyself()
-            var keyGenerator = word.characters.makeIterator()
+            var keyGenerator = word.makeIterator()
             if insert(&keyGenerator, node: root) {
                 count += 1
                 return true
@@ -107,7 +108,7 @@ public struct Trie {
     public mutating func remove(_ word: String) -> String? {
         if contains(word) {
             copyMyself()
-            var generator = word.characters.makeIterator()
+            var generator = word.makeIterator()
             let nodePair = nodePairForPrefix(&generator, node: root, parent: nil)
             
             if let elementNode = nodePair.endNode , elementNode.isWord {
@@ -135,7 +136,7 @@ public struct Trie {
     fileprivate var root = TrieNode(key: nil)
     
     /// Returns the node containing the last key of the prefix and its parent.
-    fileprivate func nodePairForPrefix(_ charGenerator: inout IndexingIterator<String.CharacterView>,
+    fileprivate func nodePairForPrefix(_ charGenerator: inout IndexingIterator<String>,
         node: TrieNode,
         parent: TrieNode?) -> (endNode: TrieNode?, parent: TrieNode?) {
             
@@ -151,7 +152,7 @@ public struct Trie {
         }
     }
     
-    fileprivate func findPrefix(_ prefixGenerator: inout IndexingIterator<String.CharacterView>,
+    fileprivate func findPrefix(_ prefixGenerator: inout IndexingIterator<String>,
         charStack: inout [Character], result: inout [String], node: TrieNode) {
         
         if let key = node.key {
@@ -174,21 +175,19 @@ public struct Trie {
         }
     }
     
-    fileprivate func longestPrefixIn(_ keyGenerator: inout IndexingIterator<String.CharacterView>,
-        lastChars: [Character], node: TrieNode) -> String {
-        let chars: [Character]
+    fileprivate func longestPrefixIn(_ keyGenerator: inout IndexingIterator<String>,
+        charStack: inout [Character], node: TrieNode) -> String {
         if let key = node.key {
-            chars = lastChars + [key]
-        } else {
-            chars = lastChars
+            charStack.append(key)
         }
         if let theKey = keyGenerator.next(), let nextNode = node.children[theKey] {
-            return longestPrefixIn(&keyGenerator, lastChars:chars, node: nextNode)
+            return longestPrefixIn(&keyGenerator, charStack: &charStack, node: nextNode)
+        } else {
+            return String(charStack)
         }
-        return String(chars)
     }
     
-    fileprivate func insert(_ keyGenerator: inout IndexingIterator<String.CharacterView>, node: TrieNode) -> Bool {
+    fileprivate func insert(_ keyGenerator: inout IndexingIterator<String>, node: TrieNode) -> Bool {
         if let nextKey = keyGenerator.next() {
             let nextNode = node.children[nextKey] ?? TrieNode(key: nextKey)
             node.children[nextKey] = nextNode
